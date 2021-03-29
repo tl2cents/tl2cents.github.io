@@ -19,7 +19,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/2-1.jpg">
 <meta property="article:published_time" content="2021-03-20T12:42:40.000Z">
-<meta property="article:modified_time" content="2021-03-29T04:34:43.817Z">
+<meta property="article:modified_time" content="2021-03-29T04:57:15.170Z">
 <meta property="article:author" content="tl2cents">
 <meta property="article:tag" content="USCT">
 <meta property="article:tag" content="0S2021">
@@ -271,7 +271,7 @@
 <p>API(Application Programming Interface)：应用程序接口，是一些预先定义的函数，提供应用程序与开发人员基于某软件或硬件的以访问一组例程的能力，而又无需访问源码，或理解内部工作机制的细节。</p>
 <p><strong>逻辑联系如下：</strong></p>
 <ul>
-<li>一个API可能需要一个或者多个系统调用来完成其特定的功能，API是与程序员交互的，而系统调用是直接与内核交互的，其关系如下：**<code>程序员&lt;--&gt;API&lt;--&gt;系统调用&lt;--&gt;内核空间</code>。**</li>
+<li>一个API可能需要一个或者多个系统调用来完成其特定的功能，API是与程序员交互的，而系统调用是直接与内核交互的，其关系如下：<code>程序员&lt;--&gt;API&lt;--&gt;系统调用&lt;--&gt;内核空间</code>。</li>
 <li>因此系统调用是不与程序员进行交互的，它根据API函数，通过一个软中断机制向内核提交请求，以获取内核服务的接口。</li>
 <li>最后，API与系统调用的对应关系，一个API可能对应多个API，因为它可能会用到多个系统调用来实现其函数功能，甚至一个API也可能不需要系统调用。总之，如果一个API需要内核空间提供的服务来完成功能的话，它必须调用相应的系统函数。</li>
 </ul>
