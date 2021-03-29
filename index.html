@@ -402,7 +402,11 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h1 id="简单的PNG隐写"><a href="#简单的PNG隐写" class="headerlink" title="简单的PNG隐写"></a>简单的PNG隐写</h1><h2 id="zip-伪加密"><a href="#zip-伪加密" class="headerlink" title="zip 伪加密"></a>zip 伪加密</h2><p>拿到zip包也没有任何提示的情况下，第一个想到的是<strong>zip伪加密</strong>，或者就是暴力强行破解(一般设置stringprintable的字典，不超过6位还是能算的)。<br>&nbsp;<br>&nbsp;<br>这个直接拖进winhex或者HxD里面去看，zip文件前面直接找<code>50 4B 03 04</code>,把在它两个字节之后的09改00即可(实际伪加密一般为<code>50 4B 03 04 14 00 09 00 08 00</code>，09的第二位只要是奇数都代表加密),最好把文件中的这样的十六进制串都改一改。然后找<code>50 4B 01 02</code>，一般在末尾，在它后面4个字节的09改成00即可。<br><strong>上面的方法也可以自己产生zip伪加密的包</strong>。<br>&nbsp;<br>&nbsp;<br>伪加密破开后，就可以拿到两个图片如下:</p>
+    <h1 id="简单的PNG隐写"><a href="#简单的PNG隐写" class="headerlink" title="简单的PNG隐写"></a>简单的PNG隐写</h1><h2 id="zip-伪加密"><a href="#zip-伪加密" class="headerlink" title="zip 伪加密"></a>zip 伪加密</h2><hr>
+<p><strong>对zip包加密和图像隐写感兴趣的师傅强烈推荐我自己的一道题，参考我另一篇博客<a target="_blank" rel="noopener" href="https://tl2cents.github.io/2021/03/28/%E9%BA%BB%E8%A1%A3%E5%AD%A6%E5%A7%90%E7%9A%84%E7%A7%98%E5%AF%86/">麻衣学姐的秘密</a>，或者去CTFlearn平台玩一玩这题。</strong></p>
+<hr>
+<p>拿到zip包也没有任何提示的情况下，第一个想到的是<strong>zip伪加密</strong>，或者就是暴力强行破解(一般设置stringprintable的字典，不超过6位还是能算的)。<br>&nbsp;<br>&nbsp;<br>这个直接拖进winhex或者HxD里面去看，zip文件前面直接找<code>50 4B 03 04</code>,把在它两个字节之后的09改00即可(实际伪加密一般为<code>50 4B 03 04 14 00 09 00 08 00</code>，09的第二位只要是奇数都代表加密),最好把文件中的这样的十六进制串都改一改。然后找<code>50 4B 01 02</code>，一般在末尾，在它后面4个字节的09改成00即可。<br><strong>上面的方法也可以自己产生zip伪加密的包</strong>。</p>
+<p>&nbsp;<br>&nbsp;<br>伪加密破开后，就可以拿到两个图片如下:</p>
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
