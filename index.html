@@ -66,7 +66,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/img/a.png" class="js-avatar">
+			<img src="/img/backgroud.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 			<h1 class="header-author"><a href="/">tl2cents</a></h1>
@@ -76,9 +76,9 @@
 		<nav class="header-menu">
 			<ul>
 			
-				<li><a href="/" target="_blank">北林慕个人主页</a></li>
+				<li><a href="/" >北林慕个人主页</a></li>
 			
-				<li><a href="/" target="_blank">技术笔记</a></li>
+				<li><a href="/" >技术笔记</a></li>
 			
 			</ul>
 		</nav>
@@ -101,13 +101,13 @@
 			<div class="social">
 				
 					
-						<a class="github" href="https://github.com/tl2cents" 
-												title="GitHub" target="_blank"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" rel="noopener" href="https://github.com/tl2cents" 
+												title="GitHub" ><i class="icon-github"></i></a>
 					
 				
 					
 						<a class="mail" href="/3104350335@qq.com" 
-												title="邮件联系" target="_blank"><i class="icon-mail"></i></a>
+												title="邮件联系" ><i class="icon-mail"></i></a>
 					
 				
 			</div>
@@ -129,7 +129,7 @@
 		<header id="header" class="inner">
 			<div class="profilepic">
 				<a href="/">
-					<img src="/img/a.png" class="js-avatar">
+					<img src="/img/backgroud.jpg" class="js-avatar">
 				</a>
 			</div>
 			<hgroup>
@@ -248,10 +248,6 @@
     
 
     
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/03/28/Mai-senpai's%20Secret/">view more >></a>
-    </p>
-    
 
     
     <div class="clearfix"></div>
@@ -342,10 +338,6 @@
     
 
     
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/03/28/%E9%BA%BB%E8%A1%A3%E5%AD%A6%E5%A7%90%E7%9A%84%E7%A7%98%E5%AF%86/">view more >></a>
-    </p>
-    
 
     
     <div class="clearfix"></div>
@@ -406,28 +398,6 @@
 <p><strong>对zip包加密和图像隐写感兴趣的师傅强烈推荐我自己的一道题，参考我另一篇博客<a target="_blank" rel="noopener" href="https://tl2cents.github.io/2021/03/28/%E9%BA%BB%E8%A1%A3%E5%AD%A6%E5%A7%90%E7%9A%84%E7%A7%98%E5%AF%86/">麻衣学姐的秘密</a>，或者去CTFlearn平台玩一玩这题。</strong></p>
 <hr>
 <p>拿到zip包也没有任何提示的情况下，第一个想到的是<strong>zip伪加密</strong>，或者就是暴力强行破解(一般设置stringprintable的字典，不超过6位还是能算的)。<br>&nbsp;<br>&nbsp;<br>这个直接拖进winhex或者HxD里面去看，zip文件前面直接找<code>50 4B 03 04</code>,把在它两个字节之后的09改00即可(实际伪加密一般为<code>50 4B 03 04 14 00 09 00 08 00</code>，09的第二位只要是奇数都代表加密),最好把文件中的这样的十六进制串都改一改。然后找<code>50 4B 01 02</code>，一般在末尾，在它后面4个字节的09改成00即可。<br><strong>上面的方法也可以自己产生zip伪加密的包</strong>。</p>
-<p>&nbsp;<br>&nbsp;<br>伪加密破开后，就可以拿到两个图片如下:</p>
-<center>
-    <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-    src="/images/hint.png">
-    <br>
-    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
-    display: inline-block;
-    color: #999;
-    padding: 2px;">hint</div>
-</center>
-
-<center>
-    <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-    src="/images/flag.jpg">
-    <br>
-    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
-    display: inline-block;
-    color: #999;
-    padding: 2px;">好看的小姐姐</div>
-</center>
     
     <a class="article-more-a" href="/2021/03/28/DASCTF-WriteUp/#more">more >></a>
     
@@ -458,10 +428,6 @@
 
     
 
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/03/28/DASCTF-WriteUp/">view more >></a>
-    </p>
     
 
     
@@ -563,10 +529,6 @@
     
 
     
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/03/20/USTC%20OS%202021%20Spring%20HW%201/">view more >></a>
-    </p>
-    
 
     
     <div class="clearfix"></div>
@@ -655,10 +617,6 @@
 
     
 
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/03/20/hello-world/">view more >></a>
-    </p>
     
 
     
