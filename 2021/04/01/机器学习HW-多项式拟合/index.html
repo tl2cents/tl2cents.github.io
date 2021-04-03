@@ -6,17 +6,29 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Tag: 日常 | 北林慕的个人博客</title>
+  <title>机器学习HW-多项式拟合 | 北林慕的个人博客</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="北林慕的个人博客">
-<meta property="og:url" content="http://example.com/tags/%E6%97%A5%E5%B8%B8/index.html">
+  <meta name="description" content="问题描述 Each row is a sample containing two numbers x and y, where x is the input feature and y is its corresponding response. Notice that, x and y are splited by ‘\t’. For example, x is 0.025817872 and">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习HW-多项式拟合">
+<meta property="og:url" content="http://example.com/2021/04/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0HW-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8B%9F%E5%90%88/index.html">
 <meta property="og:site_name" content="北林慕的个人博客">
+<meta property="og:description" content="问题描述 Each row is a sample containing two numbers x and y, where x is the input feature and y is its corresponding response. Notice that, x and y are splited by ‘\t’. For example, x is 0.025817872 and">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2021/04/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0HW-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8B%9F%E5%90%88/1.png">
+<meta property="og:image" content="http://example.com/2021/04/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0HW-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8B%9F%E5%90%88/2.png">
+<meta property="og:image" content="http://example.com/2021/04/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0HW-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8B%9F%E5%90%88/3.png">
+<meta property="og:image" content="http://example.com/2021/04/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0HW-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8B%9F%E5%90%88/1_times_fitting.png">
+<meta property="og:image" content="http://example.com/2021/04/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0HW-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8B%9F%E5%90%88/2_times_fitting.png">
+<meta property="article:published_time" content="2021-04-01T13:41:56.000Z">
+<meta property="article:modified_time" content="2021-04-03T15:39:13.250Z">
 <meta property="article:author" content="tl2cents">
+<meta property="article:tag" content="USTC">
+<meta property="article:tag" content="Machine Learning">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/04/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0HW-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8B%9F%E5%90%88/1.png">
   
     <link rel="alternative" href="/atom.xml" title="北林慕的个人博客" type="application/atom+xml">
   
@@ -81,7 +93,7 @@
 		<nav class="header-smart-menu">
 			
 				
-					<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+					<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">文章目录</a>
 				
 			
 				
@@ -102,8 +114,13 @@
 					
 				
 					
-						<a class="mail" href="/3104350335@qq.com" 
-												title="邮件联系" ><i class="icon-mail"></i></a>
+						<a class="zhihu" target="_blank" rel="noopener" href="https://www.zhihu.com/people/tl2cents" 
+												title="知乎" ><i class="icon-zhihu"></i></a>
+					
+				
+					
+						<a class="twitter" target="_blank" rel="noopener" href="https://twitter.com/tl2cents" 
+												title="Twitter" ><i class="icon-twitter"></i></a>
 					
 				
 			</div>
@@ -149,8 +166,13 @@
 						
 					
 						
-						<a class="mail" target="_blank" 
-							href="/3104350335@qq.com" title="邮件联系"><i class="icon-mail"></i></a>
+						<a class="zhihu" target="_blank" 
+							href="https://www.zhihu.com/people/tl2cents" title="知乎"><i class="icon-zhihu"></i></a>
+						
+					
+						
+						<a class="twitter" target="_blank" 
+							href="https://twitter.com/tl2cents" title="Twitter"><i class="icon-twitter"></i></a>
 						
 					
 				</div>
@@ -178,69 +200,228 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="blog-机器学习HW-多项式拟合" class="article article-type-blog " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-blog">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/03/20/hello-world/" class="archive-article-date">
-        <time datetime="2021-03-20T00:40:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-20</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/03/20/hello-world/" target="_blank">博客搭建记录</a>
   
+    <h1 class="article-title" itemprop="name">
+      机器学习HW-多项式拟合
     </h1>
   
 
 
-        <div class="article-info info-on-right">
-          
+  
+  
+<a href="/2021/04/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0HW-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8B%9F%E5%90%88/" class="archive-article-date">
+        <time datetime="2021-04-01T13:41:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-01</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">1.1k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">5分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><blockquote>
+<p>Each row is a sample containing two numbers x and y, where x is the input feature and y is its corresponding response. Notice that, x and y are splited by ‘\t’.</p>
+<p>For example, x is 0.025817872 and y is 1.072778871 in</p>
+<p><code>0.025817872 1.072778871</code></p>
+</blockquote>
+<p>&nbsp;<br>给定一个文件data，有x,y两组数据，进行多项式拟合。很简单的一个问题，基本是学习python的numpy库一些函数的使用和plt的画图。</p>
+<span id="more"></span>
+
+<p>然后关于多项式拟合的求解问题，在第一次长达40页的作业中写了无数次，无论是最小化MSE还是MLE（极大似然估计）都算过了，这里就懒得贴公式了。贴一下之前看到的推导的图：</p>
+<center><img style="margin: 0 auto;" src="1.png"/></center>
+<center><img style="margin: 0 auto;" src="2.png"/></center>
+<center><img style="margin: 0 auto;" src="3.png"/></center>
+&nbsp;
+&nbsp;
+
+<h2 id="Numpy的笔记"><a href="#Numpy的笔记" class="headerlink" title="Numpy的笔记"></a>Numpy的笔记</h2><p><code>numpy</code>赛高！之前用<code>numpy</code>也就是做信号处理和打打CTF比赛会用，还真没有系统的去看它的函数和具体的参数。这次感觉学了很多没见过的方法，做个笔记。</p>
+<ul>
+<li>几种数据类型：array，list，matrix，这三个数据类型挺容易混淆的，反正python里面最容易出bug的就是各种各样的奇怪的类型不匹配错误，反正慢慢<code>print(type(x))</code>看一看，转换类型什么的还是不难调的。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line">numpy.mat(x) <span class="comment">#转matrix类型</span></span><br><span class="line">numpy.array(x) <span class="comment">#转array类型</span></span><br><span class="line">numpy.flatten(x) <span class="comment">#顾名思义，把多维的array摊开</span></span><br><span class="line">numpy.newaxis <span class="comment">#扩充维度</span></span><br></pre></td></tr></table></figure></li>
+<li><code>numpy</code>数组和矩阵的生成，线性方程求解<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">numpy.linalg(a,b) <span class="comment">#解线性方程，直接ax=b，随便两个矩阵</span></span><br><span class="line">numpy.tile(<span class="built_in">list</span>,[a,b])<span class="comment">#往横纵方向分别拉伸a倍和b倍</span></span><br><span class="line">numpy.zeros([a,b],<span class="built_in">type</span>)<span class="comment">#生成类型为type的全0矩阵</span></span><br><span class="line">a=np.zeros([<span class="number">10</span>,<span class="number">10</span>],<span class="built_in">float</span>)<span class="comment">#10*10 float</span></span><br><span class="line">np.linspace(-<span class="number">1</span>, <span class="number">1</span>, <span class="number">30</span>) <span class="comment">#生成（-1,1）内的点列，第三个参数是划分粒度</span></span><br></pre></td></tr></table></figure></li>
+<li>推荐一个很好用的<code>numpy</code>读取数据的方法<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data = np.loadtxt(f)<span class="comment">#载入数据，f为文件读取路径</span></span><br><span class="line">x = data[:, <span class="number">0</span>]<span class="comment">#取第一列</span></span><br><span class="line">y = data[:, <span class="number">1</span>]<span class="comment">#取第二列，类推</span></span><br></pre></td></tr></table></figure>
+&nbsp;<br>&nbsp;</li>
+</ul>
+<h2 id="数据以及源码"><a href="#数据以及源码" class="headerlink" title="数据以及源码"></a>数据以及源码</h2><p>这里就直接放下源代码，注释写的应该很清楚了，plt画图后面有时间再整，很好用，基本和matlab的功能没什么差别。</p>
+<ul>
+<li>实验数据<a href="data">data</a></li>
+<li>源代码<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_squared_error</span><br><span class="line"></span><br><span class="line"><span class="comment"># 多项式拟合函数</span></span><br><span class="line"><span class="comment"># m代表拟合多项式的最高次数</span></span><br><span class="line"><span class="comment"># n为数据点的个数</span></span><br><span class="line"><span class="comment"># x为数据x轴方向上的向量(x1,x2,...,xn)，y为数据y轴方向上的向量(y1,y2,...,yn)</span></span><br><span class="line"><span class="comment"># 拟合目标：最小化MSE，即min∑(y-head - y)^2的参数矩阵W</span></span><br><span class="line"><span class="comment"># 关于W的方程(X&#x27; * X) * W = X&#x27; * y</span></span><br><span class="line"><span class="comment"># X是n*(m+1)矩阵,第i行为1,xi,xi^2,...,xn^m</span></span><br><span class="line"><span class="comment"># X&#x27;是X转置, lamba为正则项(默认为0)，防止过拟合</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">polynthic_fit</span>(<span class="params">m, n, x, y, lamda=<span class="number">0</span></span>):</span></span><br><span class="line">    print(<span class="string">&quot;The number of polynths is &quot;</span>, m, <span class="string">&quot; the length of data set is &quot;</span>, n)</span><br><span class="line">    m_list = np.arange(m+<span class="number">1</span>)  <span class="comment"># (0,1,2...,m)</span></span><br><span class="line">    m_list = m_list[np.newaxis, :]  <span class="comment"># 扩充至二维</span></span><br><span class="line">    e = np.tile(m_list, [n, <span class="number">1</span>])  <span class="comment"># 扩展为目标维数矩阵</span></span><br><span class="line">    X = np.power(x, e)  <span class="comment"># 扩展为x</span></span><br><span class="line">    Xt = X.transpose()</span><br><span class="line">    a = np.matmul(Xt, X) + lamda*np.identity(m+<span class="number">1</span>)  <span class="comment"># a=X&#x27;*X+lamdaI(m+1)</span></span><br><span class="line">    b = np.matmul(Xt, y)  <span class="comment"># b=X&#x27;*y</span></span><br><span class="line">    W = np.linalg.solve(a, b)  <span class="comment"># aW = b &lt;=&gt; (X.T * X) * W = X.T * T,解线性方程组</span></span><br><span class="line">    <span class="comment"># print(W)  # 参数矩阵</span></span><br><span class="line">    <span class="comment"># 生成拟合的数据点 y-head=X*W</span></span><br><span class="line">    y_head = np.matmul(X, W)</span><br><span class="line">    <span class="keyword">return</span> W, y_head</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">draw_fitting</span>(<span class="params">xn, yn, W, m</span>):</span></span><br><span class="line">    <span class="comment"># 图像绘制</span></span><br><span class="line">    plt.figure(<span class="number">1</span>, figsize=(<span class="number">8</span>, <span class="number">5</span>))</span><br><span class="line">    p = np.poly1d(W.flatten()[::-<span class="number">1</span>])</span><br><span class="line">    print(p)</span><br><span class="line">    x = np.linspace(-<span class="number">1</span>, <span class="number">1</span>, <span class="number">30</span>)</span><br><span class="line">    y = p(x)</span><br><span class="line">    <span class="comment"># 拟合出来的m次多项式曲线</span></span><br><span class="line">    plt.plot(x, y, <span class="string">&#x27;g&#x27;</span>, linewidth=<span class="number">3</span>)</span><br><span class="line">    <span class="comment"># 原数据散点图</span></span><br><span class="line">    plt.scatter(xn, yn, color=<span class="string">&#x27;b&#x27;</span>, marker=<span class="string">&#x27;o&#x27;</span>, edgecolors=<span class="string">&#x27;b&#x27;</span>,</span><br><span class="line">                s=<span class="number">100</span>, linewidth=<span class="number">3</span>, label=<span class="string">&quot;training data&quot;</span>)</span><br><span class="line"></span><br><span class="line">    plt.tick_params(labelsize=<span class="number">15</span>)</span><br><span class="line">    <span class="comment"># 自定义x,y轴的精度</span></span><br><span class="line">    plt.xticks(np.linspace(-<span class="number">1</span>, <span class="number">1</span>, <span class="number">5</span>))</span><br><span class="line">    plt.yticks(np.linspace(<span class="number">0</span>, <span class="number">1</span>, <span class="number">3</span>))</span><br><span class="line">    <span class="comment"># plt.ylim(-1.5, 1.5)#设置坐标轴范围</span></span><br><span class="line">    <span class="comment"># 曲线风格，label样式</span></span><br><span class="line">    font = &#123;<span class="string">&#x27;family&#x27;</span>: <span class="string">&#x27;Times New Roman&#x27;</span>, <span class="string">&#x27;size&#x27;</span>: <span class="number">20</span>&#125;</span><br><span class="line">    plt.xlabel(<span class="string">&#x27;x&#x27;</span>, font)</span><br><span class="line">    plt.ylabel(<span class="string">&#x27;y&#x27;</span>, font, rotation=<span class="string">&#x27;horizontal&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    plt.title(<span class="built_in">str</span>(m)+<span class="string">&#x27;-times-fitting&#x27;</span>, font)</span><br><span class="line">    plt.savefig(<span class="built_in">str</span>(m)+<span class="string">&#x27;_times_fitting.png&#x27;</span>, dpi=<span class="number">400</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">file_read</span>(<span class="params">f</span>):</span></span><br><span class="line">    data = np.loadtxt(f)</span><br><span class="line">    x = data[:, <span class="number">0</span>]</span><br><span class="line">    y = data[:, <span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> x, y</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    x, y = file_read(<span class="string">&#x27;data&#x27;</span>)</span><br><span class="line">    times = <span class="number">2</span></span><br><span class="line">    <span class="comment"># np.mat(y).transpose()转为矩阵并且规格为m*1</span></span><br><span class="line">    W, y_head = polynthic_fit(times, <span class="built_in">len</span>(x), np.mat(</span><br><span class="line">        x).transpose(), np.mat(y).transpose())</span><br><span class="line">    print(<span class="string">&#x27;拟合的多项式系数如下:\n&#x27;</span>, np.array(W))</span><br><span class="line">    draw_fitting(x, y, np.array(W), times)</span><br><span class="line">    print(<span class="string">&#x27;MSE : &#x27;</span>, mean_squared_error(y_head, y))</span><br></pre></td></tr></table></figure>
+&nbsp;<br>&nbsp;</li>
+</ul>
+<h2 id="拟合结果及图像"><a href="#拟合结果及图像" class="headerlink" title="拟合结果及图像"></a>拟合结果及图像</h2><p><strong>实际结果</strong><br> <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">times <span class="number">1</span></span><br><span class="line"><span class="number">0.4308</span> x + <span class="number">1</span></span><br><span class="line">MSE :  <span class="number">0.009405599894797913</span></span><br><span class="line"></span><br><span class="line">times <span class="number">2</span></span><br><span class="line"><span class="number">-0.1422</span> x ^<span class="number">2</span>+ <span class="number">0.3861</span> x + <span class="number">1.03</span></span><br><span class="line">MSE :  <span class="number">0.008083110784509665</span></span><br></pre></td></tr></table></figure></p>
+<center><img style="margin: 0 auto;" src="1_times_fitting.png" alt="一次拟合"/></center>
+<center><img style="margin: 0 auto;" src="2_times_fitting.png" alt="二次拟合"/></center>
+
+
+
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">日常</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">USTC</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+    
 
     
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/04/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0HW-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8B%9F%E5%90%88/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2021/03/28/Mai-senpai's%20Secret/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mai-senpai&#39;s Secret</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Numpy%E7%9A%84%E7%AC%94%E8%AE%B0"><span class="toc-number">2.</span> <span class="toc-text">Numpy的笔记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%BB%A5%E5%8F%8A%E6%BA%90%E7%A0%81"><span class="toc-number">3.</span> <span class="toc-text">数据以及源码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%9F%E5%90%88%E7%BB%93%E6%9E%9C%E5%8F%8A%E5%9B%BE%E5%83%8F"><span class="toc-number">4.</span> <span class="toc-text">拟合结果及图像</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
           </div>
@@ -269,9 +450,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
@@ -328,7 +509,7 @@
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">文章目录</a></li>
       
         
       
@@ -357,10 +538,6 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">DASCTF</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">writeup</a>
               </li>
              
@@ -381,15 +558,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Homework</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">日常</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">教程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">USTC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
             
             <div class="clearfix"></div>
