@@ -117,18 +117,6 @@
 				
 			</div>
 		
-			
-			
-			
-			
-			<div>
-				<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="240" height="86" src="//music.163.com/outchain/player?type=2&id=1436709403&auto=1&height=66"></iframe>
-			</div>
-			
-				
-				<p style="font-size: 12px;">落日归山海<p>
-			
-		
 		</nav>
 	</header>		
 </div>
@@ -207,6 +195,102 @@
             
 
   
+    <article id="blog-2021-MRCTF-WriteUp" class="article article-type-blog  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/04/11/2021-MRCTF-WriteUp/" target="_blank">2021-MRCTF-WriteUp</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/04/11/2021-MRCTF-WriteUp/" class="archive-article-date">
+        <time datetime="2021-04-11T14:35:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-11</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="MISC-Real-Checkin"><a href="#MISC-Real-Checkin" class="headerlink" title="MISC-Real Checkin"></a>MISC-Real Checkin</h1><ul>
+<li><p><strong>零宽字符隐写</strong></p>
+<p>MISC方向的签到题，不过很有意思(毕竟500分)。</p>
+<center><img style="margin: 0 auto;" width="65%" height="65%" src="/images/MRCTF-checkin.png" alt="MISC签到"/></center>
+
+<p>所以去比赛的QQ群@之后得到这样一串消息</p>
+<p><code>@tl2cents 叮咚！你的好大儿zbr向你发送了签到码，请注意查收：‍‎‏‍‎‍‍‎‌‌‌‍‍‎‍‎‏‎‌‎‌‌‍‎‌‌‎‌‌‍‏‎‍‎‎‌‌‍‌‏‎‎‌‍‎‌‍‎‍‎‎‍‎‎‍‏‎‎‎‍‏‌Q9LimBaEBG9170WBI41KAfuRu6f9leWI7omgqq9yhBiUcpwPFGfREdjOsXWCNmRlPljq/33rj8ri2HDafqHrw5uzc3h4pYvfPjBAE2UJxU97CSuG9UlBZRiSQEpZzRnL</code>.</p>
+<p>貌似就挺简单的，之前没有hint，直接复制后面的base64的编码然后解码，发现是乱码。所以肯定有加密，不会这么白给的。那么我们仔细看一上面的消息，如下（发现是有零宽字符隐写）：</p>
+<center><img style="margin: 0 auto;" width="100%" height="100%" src="/images/空白符.png" alt="MISC签到"/></center>
+    
+    <a class="article-more-a" href="/2021/04/11/2021-MRCTF-WriteUp/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">writeup</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="blog-2021数字中国CTF-Cubic密码题解" class="article article-type-blog  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -236,7 +320,7 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p><del>每次打CTF比赛都喜欢看些奇奇怪怪的题,好久没有碰逆向了。</del><br>这次做这道椭圆曲线的密码的原因是之前见过这个有趣的方程问题。这题求方程：<br>$$<br>\frac{x}{y+z}+\frac{y}{x+z}+\frac{z}{x+y}=6<br>$$<br><strong>约束条件：</strong> </p>
+    <p>这次做这道椭圆曲线的密码的原因是之前见过这个有趣的方程问题。这题求方程：<br>$$<br>\frac{x}{y+z}+\frac{y}{x+z}+\frac{z}{x+y}=6<br>$$<br><strong>约束条件：</strong> </p>
 <ul>
 <li><code>x,y,z</code> 都是<strong>正整数</strong>，并且六组解都互素，即给了约束条件<code>gcd（x,y,z）=1</code>,也就是不能由一组解简单构造多解。</li>
 <li>不计<code>x,y,z</code>的顺序，即不能简单得由一组解排列组合。</li>

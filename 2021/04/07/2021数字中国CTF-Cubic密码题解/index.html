@@ -10,17 +10,17 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="每次打CTF比赛都喜欢看些奇奇怪怪的题,好久没有碰逆向了。这次做这道椭圆曲线的密码的原因是之前见过这个有趣的方程问题。这题求方程：$$\frac{x}{y+z}+\frac{y}{x+z}+\frac{z}{x+y}&#x3D;6$$约束条件：   x,y,z 都是正整数，并且六组解都互素，即给了约束条件gcd（x,y,z）&#x3D;1,也就是不能由一组解简单构造多解。 不计x,y,z的顺序，即不能简单得由一组解排">
+  <meta name="description" content="这次做这道椭圆曲线的密码的原因是之前见过这个有趣的方程问题。这题求方程：$$\frac{x}{y+z}+\frac{y}{x+z}+\frac{z}{x+y}&#x3D;6$$约束条件：   x,y,z 都是正整数，并且六组解都互素，即给了约束条件gcd（x,y,z）&#x3D;1,也就是不能由一组解简单构造多解。 不计x,y,z的顺序，即不能简单得由一组解排列组合。  给上面的条件也就是为了防止爆破的非预期解，不过">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2021数字中国CTF-Cubic密码题解">
 <meta property="og:url" content="http://example.com/2021/04/07/2021%E6%95%B0%E5%AD%97%E4%B8%AD%E5%9B%BDCTF-Cubic%E5%AF%86%E7%A0%81%E9%A2%98%E8%A7%A3/index.html">
 <meta property="og:site_name" content="北林慕的个人博客">
-<meta property="og:description" content="每次打CTF比赛都喜欢看些奇奇怪怪的题,好久没有碰逆向了。这次做这道椭圆曲线的密码的原因是之前见过这个有趣的方程问题。这题求方程：$$\frac{x}{y+z}+\frac{y}{x+z}+\frac{z}{x+y}&#x3D;6$$约束条件：   x,y,z 都是正整数，并且六组解都互素，即给了约束条件gcd（x,y,z）&#x3D;1,也就是不能由一组解简单构造多解。 不计x,y,z的顺序，即不能简单得由一组解排">
+<meta property="og:description" content="这次做这道椭圆曲线的密码的原因是之前见过这个有趣的方程问题。这题求方程：$$\frac{x}{y+z}+\frac{y}{x+z}+\frac{z}{x+y}&#x3D;6$$约束条件：   x,y,z 都是正整数，并且六组解都互素，即给了约束条件gcd（x,y,z）&#x3D;1,也就是不能由一组解简单构造多解。 不计x,y,z的顺序，即不能简单得由一组解排列组合。  给上面的条件也就是为了防止爆破的非预期解，不过">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://mlzeng.com/image/an-interesting-equation/sols.png">
 <meta property="og:image" content="http://example.com/2021/04/07/2021%E6%95%B0%E5%AD%97%E4%B8%AD%E5%9B%BDCTF-Cubic%E5%AF%86%E7%A0%81%E9%A2%98%E8%A7%A3/flag.jpg">
 <meta property="article:published_time" content="2021-04-07T08:58:36.000Z">
-<meta property="article:modified_time" content="2021-04-09T16:10:15.203Z">
+<meta property="article:modified_time" content="2021-04-11T15:33:24.298Z">
 <meta property="article:author" content="tl2cents">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="crypto">
@@ -121,18 +121,6 @@
 					
 				
 			</div>
-		
-			
-			
-			
-			
-			<div>
-				<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="240" height="86" src="//music.163.com/outchain/player?type=2&id=1436709403&auto=1&height=66"></iframe>
-			</div>
-			
-				
-				<p style="font-size: 12px;">落日归山海<p>
-			
 		
 		</nav>
 	</header>		
@@ -257,7 +245,7 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p><del>每次打CTF比赛都喜欢看些奇奇怪怪的题,好久没有碰逆向了。</del><br>这次做这道椭圆曲线的密码的原因是之前见过这个有趣的方程问题。这题求方程：<br>$$<br>\frac{x}{y+z}+\frac{y}{x+z}+\frac{z}{x+y}=6<br>$$<br><strong>约束条件：</strong> </p>
+    <p>这次做这道椭圆曲线的密码的原因是之前见过这个有趣的方程问题。这题求方程：<br>$$<br>\frac{x}{y+z}+\frac{y}{x+z}+\frac{z}{x+y}=6<br>$$<br><strong>约束条件：</strong> </p>
 <ul>
 <li><code>x,y,z</code> 都是<strong>正整数</strong>，并且六组解都互素，即给了约束条件<code>gcd（x,y,z）=1</code>,也就是不能由一组解简单构造多解。</li>
 <li>不计<code>x,y,z</code>的顺序，即不能简单得由一组解排列组合。</li>
@@ -267,7 +255,7 @@
 <p>如果要爆算的话，假设最优的只要穷举两个数，那么至少数量级为10^300。现在顶尖的超算也不超过10^20每秒，那么穷举时间大概是10^280s,这个数字应该比宇宙的年龄都大多了。</p>
 <p>后面第六组解到了4500位（应该是最小的前六组解了），这个看似简单的方程的解就是如此离谱。</p>
 <span id="more"></span>
-<p>这个题我之前看过<a target="_blank" rel="noopener" href="https://mlzeng.com/an-interesting-equation.html">zml大佬的博客</a>，有点印象，就把博客翻出来看了一下（流下了没有数理基础的眼泪）。有兴趣看详细数学原理的移步大佬的博客以及一篇14年的论文<a target="_blank" rel="noopener" href="http://publikacio.uni-eszterhazy.hu/2858/1/AMI_43_from29to41.pdf">An unusual cubic representation problem</a>(<strong>可见这个问题你早几年研究并求解出来是可以发数论方向的论文的</strong>)，我后面写的东西偏脚本一些。</p>
+<p>这个题我之前看过<a target="_blank" rel="noopener" href="https://mlzeng.com/an-interesting-equation.html">zml大佬的博客</a>，有点印象，就把博客翻出来看了一下。有兴趣看详细数学原理的移步大佬的博客以及一篇14年的论文<a target="_blank" rel="noopener" href="http://publikacio.uni-eszterhazy.hu/2858/1/AMI_43_from29to41.pdf">An unusual cubic representation problem</a>(<strong>可见这个问题早些年求解出来是可以发数论方向的论文的</strong>)，我后面写的东西偏脚本一些。</p>
 <p>（呜呜，然而因为第一次碰到<code>nc</code>交互因为输入过长被截断的情况，<del>让我一度怀疑题目错了</del>，错过了拿flag的时间，后面拿socket交互在服务器没关的时候还是拿了flag，还是比赛经验太少了，<del>雾</del>）<br>&nbsp;<br>&nbsp;</p>
 <h2 id="服务器源码"><a href="#服务器源码" class="headerlink" title="服务器源码"></a>服务器源码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> gcd</span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</span><br><span class="line"><span class="keyword">from</span> fractions <span class="keyword">import</span> Fraction <span class="keyword">as</span> Frac</span><br><span class="line"></span><br><span class="line">N = <span class="number">6</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_num</span>(<span class="params">prompt</span>):</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        num = <span class="built_in">int</span>(<span class="built_in">input</span>(prompt))</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> num <span class="keyword">if</span> num &gt; <span class="number">0</span> <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(<span class="string">f&quot;Please give me <span class="subst">&#123;N&#125;</span> pairs of positive integers (x,y,z) &quot;</span></span><br><span class="line">      <span class="string">f&quot;satisfying the equation `x/(y+z) + y/(z+x) + z/(x+y) = <span class="subst">&#123;N&#125;</span>`\n&quot;</span>)</span><br><span class="line">anss = []</span><br><span class="line">mark = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">    x = read_num(<span class="string">&quot;[&gt;] x: &quot;</span>)</span><br><span class="line">    y = read_num(<span class="string">&quot;[&gt;] y: &quot;</span>)</span><br><span class="line">    z = read_num(<span class="string">&quot;[&gt;] z: &quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> x * y * z == <span class="number">0</span>: <span class="comment"># positive integer</span></span><br><span class="line">        mark = <span class="number">1</span></span><br><span class="line">        print(<span class="string">&quot;This is not what i want!\n&quot;</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span> reduce(gcd, [x, y, z]) != <span class="number">1</span>: <span class="comment"># (kx, ky, kz)</span></span><br><span class="line">        mark = <span class="number">1</span></span><br><span class="line">        print(<span class="string">&quot;This is not what i want!\n&quot;</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span> Frac(x, y+z) + Frac(y, z+x) + Frac(z, x+y) != N:</span><br><span class="line">        mark = <span class="number">1</span></span><br><span class="line">        print(<span class="string">&quot;This is not what i want!\n&quot;</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    ans = <span class="built_in">tuple</span>(<span class="built_in">sorted</span>([x, y, z])) <span class="comment"># (y, x, z)</span></span><br><span class="line">    <span class="keyword">if</span> ans <span class="keyword">in</span> anss:</span><br><span class="line">        mark = <span class="number">1</span></span><br><span class="line">        print(<span class="string">&quot;This is not what i want!\n&quot;</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">&quot;You are right!\n&quot;</span>)</span><br><span class="line">        anss.append(ans)</span><br><span class="line"><span class="keyword">if</span> mark == <span class="number">0</span>:</span><br><span class="line">    flag = <span class="built_in">open</span>(<span class="string">&#x27;flag&#x27;</span>, <span class="string">&#x27;r&#x27;</span>).read()</span><br><span class="line">    print(<span class="string">&quot;flag is: &quot;</span> + flag + <span class="string">&quot;\n&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">&quot;Something wrong!\n&quot;</span>)</span><br></pre></td></tr></table></figure>
 
@@ -379,6 +367,15 @@
 
 
 <nav id="article-nav">
+  
+    <a href="/2021/04/11/2021-MRCTF-WriteUp/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          2021-MRCTF-WriteUp
+        
+      </div>
+    </a>
   
   
     <a href="/2021/04/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0HW-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8B%9F%E5%90%88/" id="article-nav-older" class="article-nav-link-wrap">
