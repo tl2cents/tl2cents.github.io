@@ -5,7 +5,7 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://example.com">
+  <link rel="dns-prefetch" href="https://tl2cents.github.io">
   <title>机器学习HW-多项式拟合 | 北林慕的个人博客</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -13,22 +13,22 @@
   <meta name="description" content="问题描述 Each row is a sample containing two numbers x and y, where x is the input feature and y is its corresponding response. Notice that, x and y are splited by ‘\t’. For example, x is 0.025817872 and">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习HW-多项式拟合">
-<meta property="og:url" content="http://example.com/2021/04/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0HW-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8B%9F%E5%90%88/index.html">
+<meta property="og:url" content="https://tl2cents.github.io/2021/04/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0HW-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8B%9F%E5%90%88/index.html">
 <meta property="og:site_name" content="北林慕的个人博客">
 <meta property="og:description" content="问题描述 Each row is a sample containing two numbers x and y, where x is the input feature and y is its corresponding response. Notice that, x and y are splited by ‘\t’. For example, x is 0.025817872 and">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2021/04/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0HW-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8B%9F%E5%90%88/1.png">
-<meta property="og:image" content="http://example.com/2021/04/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0HW-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8B%9F%E5%90%88/2.png">
-<meta property="og:image" content="http://example.com/2021/04/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0HW-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8B%9F%E5%90%88/3.png">
-<meta property="og:image" content="http://example.com/2021/04/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0HW-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8B%9F%E5%90%88/1_times_fitting.png">
-<meta property="og:image" content="http://example.com/2021/04/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0HW-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8B%9F%E5%90%88/2_times_fitting.png">
+<meta property="og:image" content="https://tl2cents.github.io/2021/04/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0HW-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8B%9F%E5%90%88/1.png">
+<meta property="og:image" content="https://tl2cents.github.io/2021/04/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0HW-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8B%9F%E5%90%88/2.png">
+<meta property="og:image" content="https://tl2cents.github.io/2021/04/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0HW-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8B%9F%E5%90%88/3.png">
+<meta property="og:image" content="https://tl2cents.github.io/2021/04/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0HW-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8B%9F%E5%90%88/1_times_fitting.png">
+<meta property="og:image" content="https://tl2cents.github.io/2021/04/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0HW-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8B%9F%E5%90%88/2_times_fitting.png">
 <meta property="article:published_time" content="2021-04-01T13:41:56.000Z">
 <meta property="article:modified_time" content="2021-04-03T15:50:42.229Z">
 <meta property="article:author" content="tl2cents">
 <meta property="article:tag" content="USTC">
 <meta property="article:tag" content="Machine Learning">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/04/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0HW-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8B%9F%E5%90%88/1.png">
+<meta name="twitter:image" content="https://tl2cents.github.io/2021/04/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0HW-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8B%9F%E5%90%88/1.png">
   
     <link rel="alternative" href="/atom.xml" title="北林慕的个人博客" type="application/atom+xml">
   
@@ -70,7 +70,10 @@
       
 
 
-<div class="overlay" style="background: #4d4d4d;background: url('/img/biubiubiu.gif') no-repeat ;"></div>
+<!-- 恢复gif图片请恢复下面的语句 -->
+<div class="overlay" style="background: rgba(255, 255, 255, 0.0);"></div>
+<!-- 左侧边栏（上半部分）不设置背景颜色 -->
+<!-- <div class="overlay"  style="background: rgba(255, 255, 255, 0.0);> -->
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
@@ -130,11 +133,11 @@
 </div>
 
     </div>
-    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse" style="background: https://th.bing.com/th/id/Re7aa4c546c9f67472a9bb67421cf0136?rik=pQNEUX%2bvja0MNg&amp;riu=http%3a%2f%2fimage.qianye88.com%2fpic%2f64d6988be4b5c6306d33cb2f2b4925e2&amp;ehk=IUfTIMuNa0z8MHGhwpLJaaP3xWMgHnkN6gVUeGvNAZE%3d&amp;risl=&amp;pid=ImgRaw no-repeat 100%;background-size:cover;opacity:0.7;filter:alpha(opacity=70);">
+    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse" style="background: /img/img-dc48606e38d660aab836ad1cd12438d9.jpg no-repeat 100%;background-size:cover;opacity:0.5;filter:alpha(opacity=70);">
       
       
 <nav id="mobile-nav">
-  	<div class="overlay js-overlay" style="background: #4d4d4d"></div>
+  	<div class="overlay js-overlay" style="background: rgba(255, 255, 255, 0.0)"></div>
 	<div class="btnctn js-mobile-btnctn">
   		<div class="slider-trigger list" q-on="click: openSlider(e)"><i class="icon icon-sort"></i></div>
 	</div>
@@ -359,7 +362,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/04/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0HW-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8B%9F%E5%90%88/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://tl2cents.github.io/2021/04/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0HW-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8B%9F%E5%90%88/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -441,7 +444,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2021 <a href="http://example.com/" target="_blank">tl2cents</a>
+    		&copy; 2021 <a href="https://tl2cents.github.io/" target="_blank">tl2cents</a>
     	</div>
       	<div class="footer-right">
 			
@@ -697,7 +700,7 @@
     	<section class="tools-section tools-section-me" q-show="aboutme">
         
           
-  	  		<div class="aboutme-wrap" id="aboutme"><br>&nbsp;&nbsp;Studying Cyber Security in USTC<br><br>&nbsp;&nbsp;CTF learner:<br>&nbsp;&nbsp;Interested in reversing and crypto<br>&nbsp;&nbsp;QQ:3104350335<br><br>&nbsp;&nbsp;Thanks for JoeyBling<br /></div>
+  	  		<div class="aboutme-wrap" id="aboutme"><br>&nbsp;&nbsp;Studying Cyber Security in USTC<br><br>&nbsp;&nbsp;CTF learner:<br>&nbsp;&nbsp;Interested in reversing and crypto<br>&nbsp;&nbsp;QQ:3104350335<br><br>&nbsp;&nbsp;Thanks for JoeyBling<br/></div>
   	  	
     	</section>
     
@@ -782,12 +785,59 @@
 </script>
 
   
-    <script type="text/javascript"
-    color="100,100,255" opacity='0.95' zIndex="-1" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
-    
   <!-- 
   <script async type="text/javascript" size="90" alpha="0.2" zIndex="0" src="/plugins/ribbon.js/ribbon.min.js"></script> -->
   
+  
+    <script type="text/javascript" src="/plugins/live2d-widget.js/L2Dwidget.min.js"></script>
+<script type="text/javascript">
+  /**
+   * 完整配置请参考：https://l2dwidget.js.org/docs/class/src/index.js~L2Dwidget.html#instance-method-init
+   */
+  var pluginModelPath = "assets/", // 模型的文件路径，无需更改
+    pluginRootPath = "/live2d_models/"; // 插件的路径，无需更改
+  //特定的模型json文件名称
+  var modelPathJson = {
+    "epsilon2_1": "Epsilon2.1",
+    "gf": "Gantzert_Felixander",
+    "haru/01": "haru01",
+    "haru/02": "haru02",
+    "nietzsche": "nietzche"
+  }
+
+  
+    var modelName = "tororo";
+  
+
+  var modelJsonPath = "";
+  if (modelPathJson[modelName]) {
+    modelJsonPath = pluginRootPath + modelName + "/" + pluginModelPath + modelPathJson[modelName] +
+      ".model.json";
+  } else {
+    modelJsonPath = pluginRootPath + modelName + "/" + pluginModelPath + modelName + ".model.json";
+  }
+  L2Dwidget.init({
+    model: {
+      jsonPath: modelJsonPath
+    },
+    display: {
+       position: "right", 
+       width: 145, 
+       height: 315, 
+       hOffset: 50, 
+      
+    },
+    mobile: {
+       show: false, 
+       scale: 0.6 
+    },
+    react: {
+       opacity: 0.8 
+    }
+  })
+
+</script>
+
   
   
   <script type="text/javascript" src="/lib/snow.js"></script>
