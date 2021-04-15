@@ -180,7 +180,7 @@ html {
 
 body {
   margin: 0;
-  font-size: 14px;
+  font-size: 15px;
   font-family: Helvetica Neue, Helvetica, STHeiTi, Arial, sans-serif;
   line-height: 1.5;
   /* 原字体颜色 */
@@ -2384,6 +2384,7 @@ pre .id {
   display: block;
   font-size: .8em;
   color: #aaa
+  /* color: rgb(63, 53, 53) */
 }
 
 .article-entry hr {
