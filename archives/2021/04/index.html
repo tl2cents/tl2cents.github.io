@@ -3632,9 +3632,9 @@
       init: function () {
         var t = document.querySelector("#page-nav");
         t && !document.querySelector("#page-nav .extend.prev") && (t.innerHTML =
-            '<a class="extend prev disabled" rel="prev">;</a>' + t.innerHTML), t && !document
+            '<a class="extend prev disabled" rel="prev"></a>' + t.innerHTML), t && !document
           .querySelector("#page-nav .extend.next") && (t.innerHTML = t.innerHTML +
-            '<a class="extend next disabled" rel="next">;</a>'), yiliaConfig && yiliaConfig
+            '<a class="extend next disabled" rel="next"></a>'), yiliaConfig && yiliaConfig
           .open_in_new && document.querySelectorAll(".article-entry a:not(.article-more-a)").forEach(function (
             t) {
             var n = t.getAttribute("target");
