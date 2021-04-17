@@ -184,11 +184,11 @@ body {
   font-family: Helvetica Neue, Helvetica, STHeiTi, Arial, sans-serif;
   line-height: 1.5;
   /* 原字体颜色 */
-  /* color: #333; */
-  color: rgb(26, 9, 9);
+  color: #333;
+  /* color: rgb(26, 9, 9); */
   /* background-color: #fff; */
   min-height: 100%;
-  background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), 
+  background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), 
   /* url('https://th.bing.com/th/id/Re7aa4c546c9f67472a9bb67421cf0136?rik=pQNEUX%2bvja0MNg&riu=http%3a%2f%2fimage.qianye88.com%2fpic%2f64d6988be4b5c6306d33cb2f2b4925e2&ehk=IUfTIMuNa0z8MHGhwpLJaaP3xWMgHnkN6gVUeGvNAZE%3d&risl=&pid=ImgRaw') no-repeat 0% 0%/ cover; */
   url('/img/pick2.jpg') no-repeat fixed 50% 50%/ cover;
   /* url: '/img/img-dc48606e38d660aab836ad1cd12438d9.jpg no-repeat 100%;background-size:cover;opacity:0.5;filter:alpha(opacity=70);' */
@@ -781,7 +781,7 @@ html {
 .left-col {
   /* background: #fff; */
   /* 修改上半部分透明度 */
-  background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+  background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)),
   url('/img/img-9bdc119f9b346939b6ba29a6c04c56ad.jpg') no-repeat 0% 20%/ cover;
   width: 300px;
   position: fixed;
@@ -2117,7 +2117,7 @@ pre .id {
   border: 1px solid #ddd;
   border-top: 1px solid #fff;
   border-bottom: 1px solid #fff;
-  background: rgb(255, 255, 255,0.0);
+  background: rgb(255, 255, 255,.8);
   transition: all .2s ease-in
 }
 
