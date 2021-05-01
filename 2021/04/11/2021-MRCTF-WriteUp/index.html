@@ -10,20 +10,20 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="MISC-Real Checkin 零宽字符隐写 MISC方向的签到题，不过很有意思(毕竟500分)。   去比赛的QQ群@之后得到这样一串消息 @tl2cents 叮咚！你的好大儿zbr向你发送了签到码，请注意查收：‍‎‏‍‎‍‍‎‌‌‌‍‍‎‍‎‏‎‌‎‌‌‍‎‌‌‎‌‌‍‏‎‍‎‎‌‌‍‌‏‎‎‌‍‎‌‍‎‍‎‎‍‎‎‍‏‎‎‎‍‏‌Q9LimBaEBG9170WBI41KAfuRu6f9l">
+  <meta name="description" content="MISC-Real Checkin 零宽字符隐写 MISC方向的签到题，不过很有意思。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2021-MRCTF-WriteUp">
 <meta property="og:url" content="https://tl2cents.github.io/2021/04/11/2021-MRCTF-WriteUp/index.html">
 <meta property="og:site_name" content="Bellin&#39;s blog">
-<meta property="og:description" content="MISC-Real Checkin 零宽字符隐写 MISC方向的签到题，不过很有意思(毕竟500分)。   去比赛的QQ群@之后得到这样一串消息 @tl2cents 叮咚！你的好大儿zbr向你发送了签到码，请注意查收：‍‎‏‍‎‍‍‎‌‌‌‍‍‎‍‎‏‎‌‎‌‌‍‎‌‌‎‌‌‍‏‎‍‎‎‌‌‍‌‏‎‎‌‍‎‌‍‎‍‎‎‍‎‎‍‏‎‎‎‍‏‌Q9LimBaEBG9170WBI41KAfuRu6f9l">
+<meta property="og:description" content="MISC-Real Checkin 零宽字符隐写 MISC方向的签到题，不过很有意思。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://tl2cents.github.io/images/MRCTF-checkin.png">
 <meta property="og:image" content="https://tl2cents.github.io/images/空白符.png">
-<meta property="og:image" content="https://tl2cents.github.io/images/5%E8%BF%9B%E5%88%B6decr.png">
-<meta property="og:image" content="https://tl2cents.github.io/2021/04/11/2021-MRCTF-WriteUp/QQ%E6%88%AA%E5%9B%BE20210411231703.png">
-<meta property="og:image" content="https://tl2cents.github.io/2021/04/11/2021-MRCTF-WriteUp/QQ%E6%88%AA%E5%9B%BE20210411231942.png">
+<meta property="og:image" content="https://tl2cents.github.io/images/5进制decr.png">
+<meta property="og:image" content="https://tl2cents.github.io/2021/04/11/2021-MRCTF-WriteUp/QQ截图20210411231703.png">
+<meta property="og:image" content="https://tl2cents.github.io/2021/04/11/2021-MRCTF-WriteUp/QQ截图20210411231942.png">
 <meta property="article:published_time" content="2021-04-11T14:35:51.000Z">
-<meta property="article:modified_time" content="2021-04-12T00:40:15.295Z">
+<meta property="article:modified_time" content="2021-04-30T02:05:15.419Z">
 <meta property="article:author" content="Bellin">
 <meta property="article:tag" content="writeup">
 <meta property="article:tag" content="CTF">
@@ -237,7 +237,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">795字</span>
+      <span class="post-count">791字</span>
     </span>
   </span>
 
@@ -259,20 +259,21 @@
     
     <h1 id="MISC-Real-Checkin"><a href="#MISC-Real-Checkin" class="headerlink" title="MISC-Real Checkin"></a>MISC-Real Checkin</h1><ul>
 <li><p><strong>零宽字符隐写</strong></p>
-<p>MISC方向的签到题，不过很有意思(毕竟500分)。</p>
+<p>MISC方向的签到题，不过很有意思。</p>
 <center><img style="margin: 0 auto;" width="65%" height="65%" src="/images/MRCTF-checkin.png" alt="MISC签到"/></center>
-
-<p>去比赛的QQ群@之后得到这样一串消息</p>
-<p><code>@tl2cents 叮咚！你的好大儿zbr向你发送了签到码，请注意查收：‍‎‏‍‎‍‍‎‌‌‌‍‍‎‍‎‏‎‌‎‌‌‍‎‌‌‎‌‌‍‏‎‍‎‎‌‌‍‌‏‎‎‌‍‎‌‍‎‍‎‎‍‎‎‍‏‎‎‎‍‏‌Q9LimBaEBG9170WBI41KAfuRu6f9leWI7omgqq9yhBiUcpwPFGfREdjOsXWCNmRlPljq/33rj8ri2HDafqHrw5uzc3h4pYvfPjBAE2UJxU97CSuG9UlBZRiSQEpZzRnL</code>.</p>
-<p>貌似挺简单的，之前没有hint，直接复制后面base64的编码然后解码，发现是乱码。所以肯定有加密，不会这么白给的。那么我们仔细看一上面的消息，如下（发现是零宽字符隐写）：</p>
-<center><img style="margin: 0 auto;" width="100%" height="100%" src="/images/空白符.png" alt="MISC签到"/></center>
 <span id="more"></span>
+去比赛的QQ群@之后得到这样一串消息
+
+`@tl2cents 叮咚！你的好大儿zbr向你发送了签到码，请注意查收：‍‎‏‍‎‍‍‎‌‌‌‍‍‎‍‎‏‎‌‎‌‌‍‎‌‌‎‌‌‍‏‎‍‎‎‌‌‍‌‏‎‎‌‍‎‌‍‎‍‎‎‍‎‎‍‏‎‎‎‍‏‌Q9LimBaEBG9170WBI41KAfuRu6f9leWI7omgqq9yhBiUcpwPFGfREdjOsXWCNmRlPljq/33rj8ri2HDafqHrw5uzc3h4pYvfPjBAE2UJxU97CSuG9UlBZRiSQEpZzRnL`.
+
+貌似挺简单的，之前没有hint，直接复制后面base64的编码然后解码，发现是乱码。所以肯定有加密，不会这么白给的。那么我们仔细看一上面的消息，如下（发现是零宽字符隐写）：
+<center><img style="margin: 0 auto;" width="100%" height="100%" src="/images/空白符.png" alt="MISC签到"/></center>
 
 <p>仔细看下有哪些零宽字符，UE、Winhex什么的都行，或者直接去CyberChef看。有下面五个零宽字符：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hideset=[<span class="string">b&#x27;\xe2\x80\x8b&#x27;</span>,<span class="string">b&quot;\xe2\x80\x8c&quot;</span>,<span class="string">b&quot;\xe2\x80\x8d&quot;</span>,<span class="string">b&quot;\xe2\x80\x8e&quot;</span>,<span class="string">b&quot;\xe2\x80\x8f&quot;</span>]</span><br></pre></td></tr></table></figure>
-
 <p>直接去在线网站extract隐写的东西，发现都行不太通，那就看看隐写的这些字符特征，将<code>U+200B，U+200C，U+200D，U+200E，U+200F</code>，分别看成0，1，2，3，4，extract出来是这样子的：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">data=<span class="built_in">open</span>(<span class="string">&#x27;realcheckin/msg&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>).read()</span><br><span class="line">hideset=[<span class="string">b&#x27;\xe2\x80\x8b&#x27;</span>,<span class="string">b&quot;\xe2\x80\x8c&quot;</span>,<span class="string">b&quot;\xe2\x80\x8d&quot;</span>,<span class="string">b&quot;\xe2\x80\x8e&quot;</span>,<span class="string">b&quot;\xe2\x80\x8f&quot;</span>]</span><br><span class="line">num=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(data)//<span class="number">3</span>):</span><br><span class="line">    <span class="keyword">if</span> data[<span class="number">3</span>*i:<span class="number">3</span>*i+<span class="number">3</span>] <span class="keyword">in</span> hideset:</span><br><span class="line">        print(hideset.index(data[<span class="number">3</span>*i:<span class="number">3</span>*i+<span class="number">3</span>]),end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">        num=num+<span class="built_in">str</span>(hideset.index(data[<span class="number">3</span>*i:<span class="number">3</span>*i+<span class="number">3</span>]))</span><br><span class="line">print(<span class="built_in">len</span>(num))</span><br><span class="line"><span class="comment">#0000234000023200002310000112000023000002340000313000011200003110000311000024300002330000112000014300003120000310000023000002330000233000024300003030000241</span></span><br><span class="line"><span class="comment">#154</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">data=<span class="built_in">open</span>(<span class="string">&#x27;realcheckin/msg&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>).read()</span><br><span class="line">hideset=[<span class="string">b&#x27;\xe2\x80\x8b&#x27;</span>,<span class="string">b&quot;\xe2\x80\x8c&quot;</span>,<span class="string">b&quot;\xe2\x80\x8d&quot;</span>,<span class="string">b&quot;\xe2\x80\x8e&quot;</span>,<span class="string">b&quot;\xe2\x80\x8f&quot;</span>]</span><br><span class="line">num=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(data)//<span class="number">3</span>):</span><br><span class="line">    <span class="keyword">if</span> data[<span class="number">3</span>*i:<span class="number">3</span>*i+<span class="number">3</span>] <span class="keyword">in</span> hideset:</span><br><span class="line">        print(hideset.index(data[<span class="number">3</span>*i:<span class="number">3</span>*i+<span class="number">3</span>]),end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">        num=num+<span class="built_in">str</span>(hideset.index(data[<span class="number">3</span>*i:<span class="number">3</span>*i+<span class="number">3</span>]))</span><br><span class="line">print(<span class="built_in">len</span>(num))</span><br><span class="line"><span class="comment">#0000234000023200002310000112000023000002340000313000011200003110000311000024300002330000112000014300003120000310000023000002330000233000024300003030000241</span></span><br><span class="line"><span class="comment">#154</span></span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 <p>&nbsp;<br>&nbsp;</p>
 <ul>
@@ -280,15 +281,16 @@
 <p>可以看到上面的字符串基本都是4个0然后后面3位在变化，显然7个一组，类似ASCII，当成5进制稍微算一下第一个数就是69，刚好就是E的ASCII码，Okay，基本确定五进制，然后写个脚本extract一下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">strs=<span class="string">&quot;0000234000023200002310000112000023000002340000313000011200003110000311000024300002330000112000014300003120000310000023000002330000233000024300003030000241&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(strs)//<span class="number">7</span>):</span><br><span class="line">    num=strs[<span class="number">7</span>*i:<span class="number">7</span>*i+<span class="number">7</span>]</span><br><span class="line">    n=<span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">7</span>):</span><br><span class="line">        <span class="comment"># print(num[-j])</span></span><br><span class="line">        n=n+<span class="built_in">int</span>(num[-(j+<span class="number">1</span>)])*(<span class="number">5</span>**j)</span><br><span class="line">    print(<span class="built_in">chr</span>(n),end=<span class="string">&quot;&quot;</span>)</span><br><span class="line"><span class="comment">#output: ECB AES QQID 0RPADDING</span></span><br></pre></td></tr></table></figure>
 <p>&nbsp;<br>&nbsp;<br>好的，AES，加密，然后密钥KEY显然就是和你的QQ号有关，后面的<code>0RPADDING</code>就是拿<code>0R</code>什么的填充到密钥长度，不知道啥意思，    反正都试一下，最后发现是直接拿QQ号当成16进制的秘钥，后面填充全0（只能看第二个hint一个个试试运气吧）。解密结果如下：</p>
-<p><img src="/images/5%E8%BF%9B%E5%88%B6decr.png"></p>
+<p><img src="/images/5进制decr.png" alt=""></p>
 <p>好家伙，这套娃，然后去天璇的公众号输入上面的字符串拿到flag</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MRCTF&#123;Let<span class="string">&#x27;s_Have_Fun!&#125; #有一说一这个flag也太好猜了</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MRCTF&#123;Let<span class="string">&#x27;s_Have_Fun!&#125; #有一说一这个flag也太好猜了</span></span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 <p>&nbsp;<br>&nbsp;</p>
 <h2 id="RE-Real-Checkin"><a href="#RE-Real-Checkin" class="headerlink" title="RE-Real Checkin"></a>RE-Real Checkin</h2><p>这个就是真正的签到题了，发现加了<code>upx 3.91</code>壳，直接下个<code>upx</code>脱壳，然后放进IDA看程序逻辑：</p>
-<p><img src="QQ%E6%88%AA%E5%9B%BE20210411231703.png"></p>
+<p><img src="QQ截图20210411231703.png" alt=""></p>
 <p>&nbsp;<br>&nbsp;<br>简单逻辑，甚至base64编码都写出来了，但是<code>wait</code>，把中那段比较的base64编码字符放进一般的base64解码，发现出来是乱码？然后仔细看下base64的encode函数，发现它的字符转换表如下：</p>
-<p><img src="QQ%E6%88%AA%E5%9B%BE20210411231942.png"></p>
+<p><img src="QQ截图20210411231942.png" alt=""></p>
 <p>转换成字符发现它把一般的大小写字符串换了个位置。所以大小写字母转换一下，<code>TVJDVEZ7d0VsYzBNZV90MF9NUkNURl8ybzIxISEhfQ==</code>放进base64解码得到flag：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MRCTF&#123;wElc0Me_t0_MRCTF_2o21!!!&#125;</span><br></pre></td></tr></table></figure>
 <p>&nbsp;<br>就水了两个签到题，没想到最后rank 61，<strong>其他的签到题感觉都很离谱。</strong></p>

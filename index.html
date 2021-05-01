@@ -325,8 +325,7 @@
     
     <h1 id="0S-2021-Homework-2"><a href="#0S-2021-Homework-2" class="headerlink" title="0S-2021 Homework 2"></a>0S-2021 Homework 2</h1><h2 id="1-Including-the-initial-parent-process-how-many-processes-are-created-by-the-program-shown-in-Figure-1"><a href="#1-Including-the-initial-parent-process-how-many-processes-are-created-by-the-program-shown-in-Figure-1" class="headerlink" title="1. Including the initial parent process, how many processes are created by  the program shown in Figure 1?"></a>1. Including the initial parent process, how many processes are created by  the program shown in Figure 1?</h2><center><img style="margin: 0 auto;" width="65%" height="65%" src="/OS2021IMG/QQ截图20210404090658.png" alt="OSHW2"/></center>
 
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution:"></a>Solution:</h2><p>First ,in the first circle, the main process split into two processes, and in the second circle, the two process split into 4 processes.</p>
-<p>That is as follows</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution:"></a>Solution:</h2><p>First ,in the first circle, the main process split into two processes, and in the second circle, the two process split into 4 processes.<br>
     
     <a class="article-more-a" href="/2021/04/13/USTC%200S%202021%20Spring%20HW%202/#more">more >></a>
     
@@ -416,13 +415,8 @@
     
     <h1 id="MISC-Real-Checkin"><a href="#MISC-Real-Checkin" class="headerlink" title="MISC-Real Checkin"></a>MISC-Real Checkin</h1><ul>
 <li><p><strong>零宽字符隐写</strong></p>
-<p>MISC方向的签到题，不过很有意思(毕竟500分)。</p>
+<p>MISC方向的签到题，不过很有意思。</p>
 <center><img style="margin: 0 auto;" width="65%" height="65%" src="/images/MRCTF-checkin.png" alt="MISC签到"/></center>
-
-<p>去比赛的QQ群@之后得到这样一串消息</p>
-<p><code>@tl2cents 叮咚！你的好大儿zbr向你发送了签到码，请注意查收：‍‎‏‍‎‍‍‎‌‌‌‍‍‎‍‎‏‎‌‎‌‌‍‎‌‌‎‌‌‍‏‎‍‎‎‌‌‍‌‏‎‎‌‍‎‌‍‎‍‎‎‍‎‎‍‏‎‎‎‍‏‌Q9LimBaEBG9170WBI41KAfuRu6f9leWI7omgqq9yhBiUcpwPFGfREdjOsXWCNmRlPljq/33rj8ri2HDafqHrw5uzc3h4pYvfPjBAE2UJxU97CSuG9UlBZRiSQEpZzRnL</code>.</p>
-<p>貌似挺简单的，之前没有hint，直接复制后面base64的编码然后解码，发现是乱码。所以肯定有加密，不会这么白给的。那么我们仔细看一上面的消息，如下（发现是零宽字符隐写）：</p>
-<center><img style="margin: 0 auto;" width="100%" height="100%" src="/images/空白符.png" alt="MISC签到"/></center>
     
     <a class="article-more-a" href="/2021/04/11/2021-MRCTF-WriteUp/#more">more >></a>
     
@@ -510,15 +504,16 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>这次做这道椭圆曲线的密码的原因是之前见过这个有趣的方程问题。这题求方程：<br>$$<br>\frac{x}{y+z}+\frac{y}{x+z}+\frac{z}{x+y}=6<br>$$<br><strong>约束条件：</strong> </p>
+    <p>这次做这道椭圆曲线的密码的原因是之前见过这个有趣的方程问题。这题求方程：</p>
+<script type="math/tex; mode=display">
+\frac{x}{y+z}+\frac{y}{x+z}+\frac{z}{x+y}=6</script><p><strong>约束条件：</strong> </p>
 <ul>
 <li><code>x,y,z</code> 都是<strong>正整数</strong>，并且六组解都互素，即给了约束条件<code>gcd（x,y,z）=1</code>,也就是不能由一组解简单构造多解。</li>
 <li>不计<code>x,y,z</code>的顺序，即不能简单得由一组解排列组合。</li>
 </ul>
-<p>给上面的条件也就是为了防止爆破的非预期解，不过要爆破到第一组最小的解也是不可能的。毕竟这个方程看起来简单（整数解确实简单），但是它的<strong>最小正整数解</strong>有足足150位！最小解如下：</p>
+<p>上面这个方程要爆破到第一组最小的解是不可能的。毕竟这个方程看起来简单（整数解确实简单），但是它的<strong>最小正整数解</strong>有足足150位！最小解如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x=<span class="number">20260869859883222379931520298326390700152988332214525711323500132179943287700005601210288797153868533207131302477269470450828233936557</span></span><br><span class="line">y=<span class="number">1218343242702905855792264237868803223073090298310121297526752830558323845503910071851999217959704024280699759290559009162035102974023</span></span><br><span class="line">z=<span class="number">2250324022012683866886426461942494811141200084921223218461967377588564477616220767789632257358521952443049813799712386367623925971447</span></span><br></pre></td></tr></table></figure>
-<p>如果要爆算的话，假设最优的只要穷举两个数，那么至少数量级为10^300。现在顶尖的超算也不超过10^20每秒，那么穷举时间大概是10^280s,这个数字应该比宇宙的年龄都大多了。</p>
-<p>后面第六组解到了4500位（应该是最小的前六组解了），这个看似简单的方程的解就是如此离谱。</p>
+<p>如果要爆算的话，假设最优的只要穷举两个数，那么至少数量级为10^300。现在顶尖的超算也不超过10^20每秒，那么穷举时间大概是10^280s,这个数字应该比宇宙的年龄都大多了。<br>
     
     <a class="article-more-a" href="/2021/04/07/2021%E6%95%B0%E5%AD%97%E4%B8%AD%E5%9B%BDCTF-Cubic%E5%AF%86%E7%A0%81%E9%A2%98%E8%A7%A3/#more">more >></a>
     

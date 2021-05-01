@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://tl2cents.github.io/2021/04/29/Gradient%20Descent/1.png">
 <meta property="og:image" content="https://tl2cents.github.io/2021/04/29/Gradient%20Descent/page.png">
 <meta property="article:published_time" content="2021-04-29T12:47:41.000Z">
-<meta property="article:modified_time" content="2021-04-30T02:04:05.732Z">
+<meta property="article:modified_time" content="2021-05-01T04:26:32.117Z">
 <meta property="article:author" content="Bellin">
 <meta property="article:tag" content="USTC">
 <meta property="article:tag" content="Machine Learning">
@@ -263,7 +263,7 @@
 </ul>
 <script type="math/tex; mode=display">
 z_{ij}\leftarrow\frac{x_{ij}-\min (\textbf{x}_i)}{ \max (\textbf{x}_i) -  \min (\textbf{x}_i) }</script><script type="math/tex; mode=display">
-where \quad z_{ij}\quad  denotes\quad  the \quad j_{th}\quad  entry\quad  of\quad  \textbf{z}_i \in \mathbb{R}^n \, and \,\, \bar{\textbf{Z}} = (\textbf{1},\textbf{z}_1,\dots,\textbf{z}_d)\in \mathbb{R}^{n\times(d+1)}. \, The \quad  problem \quad becomes\\ \arg\min_{\textbf{u}}g(\textbf{u}) = \frac{1}{n}\|\textbf{y}-\bar{\textbf{Z}}\textbf{u}\|_2^2</script><ul>
+where \quad z_{ij}\quad  denotes\quad  the \quad j_{th}\quad  entry\quad  of\quad  \textbf{z}_i \in \mathbb{R}^n \, and \,\, \bar{\textbf{Z}} = (\textbf{1},\textbf{z}_1,\dots,\textbf{z}_d)\in \mathbb{R}^{n\times(d+1)}. \, \\ The \quad  problem \quad becomes\\ \arg\min_{\textbf{u}}g(\textbf{u}) = \frac{1}{n}\|\textbf{y}-\bar{\textbf{Z}}\textbf{u}\|_2^2</script><ul>
 <li>The code in python is as follows to normalize the training data (meanwhile we plug the extra column (1,1,…,1).T into X ): </li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">transform_X</span>(<span class="params">X</span>):</span></span><br><span class="line">    <span class="comment"># Normalization in colunm space</span></span><br><span class="line">    range_of_X = X.<span class="built_in">max</span>(axis=<span class="number">0</span>)-X.<span class="built_in">min</span>(axis=<span class="number">0</span>)</span><br><span class="line">    X = (X-X.<span class="built_in">min</span>(axis=<span class="number">0</span>))/range_of_X</span><br><span class="line">    <span class="comment"># insert (1,1,...,1)^T into the first column of matrix X ,axis=1 代表行，插入每一行的0号位置</span></span><br><span class="line">    X = np.insert(X, <span class="number">0</span>, values=<span class="number">1</span>, axis=<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> X</span><br></pre></td></tr></table></figure>

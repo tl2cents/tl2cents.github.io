@@ -24,7 +24,7 @@
 <meta property="og:image" content="https://tl2cents.github.io/OS2021IMG/QQ截图20210404104826.png">
 <meta property="og:image" content="https://tl2cents.github.io/OS2021IMG/QQ截图20210404105726.png">
 <meta property="article:published_time" content="2021-04-12T23:52:22.000Z">
-<meta property="article:modified_time" content="2021-04-13T00:05:03.366Z">
+<meta property="article:modified_time" content="2021-04-30T02:08:38.094Z">
 <meta property="article:author" content="Bellin">
 <meta property="article:tag" content="0S2021">
 <meta property="article:tag" content="USTC">
@@ -260,14 +260,14 @@
     
     <h1 id="0S-2021-Homework-2"><a href="#0S-2021-Homework-2" class="headerlink" title="0S-2021 Homework 2"></a>0S-2021 Homework 2</h1><h2 id="1-Including-the-initial-parent-process-how-many-processes-are-created-by-the-program-shown-in-Figure-1"><a href="#1-Including-the-initial-parent-process-how-many-processes-are-created-by-the-program-shown-in-Figure-1" class="headerlink" title="1. Including the initial parent process, how many processes are created by  the program shown in Figure 1?"></a>1. Including the initial parent process, how many processes are created by  the program shown in Figure 1?</h2><center><img style="margin: 0 auto;" width="65%" height="65%" src="/OS2021IMG/QQ截图20210404090658.png" alt="OSHW2"/></center>
 
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution:"></a>Solution:</h2><p>First ,in the first circle, the main process split into two processes, and in the second circle, the two process split into 4 processes.</p>
-<p>That is as follows</p>
-<span id="more"></span>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution:"></a>Solution:</h2><p>First ,in the first circle, the main process split into two processes, and in the second circle, the two process split into 4 processes.<br><span id="more"></span><br>That is as follows</p>
 <center><img style="margin: 0 auto;" width="45%" height="45%" src="/OS2021IMG/QQ截图20210413080141.png" alt="OSHW2"/></center>
 
 <p>PS:  sub1 indicates that the value of i when the child process enters the loop next time is 1 and so on.</p>
 <p>The image above doesn’t show all the sub-process nodes (without sub4 processes,and when sub4 process  enters,the loop ends).And we note that one of the sub1 is exactly the main process, and other splits are similar. The nodes of each level of the tree are halved(except the first level)</p>
-<p>So we can calculate the final result as follows:<br>$$<br>N=1+\sum_1^42^{i-1}=1+1+2+4+8=16<br>$$<br>Thus, the total number of the processes created by the program is 16. </p>
+<p>So we can calculate the final result as follows: </p>
+<script type="math/tex; mode=display">
+N=1+\sum_1^42^{i-1}=1+1+2+4+8=16</script><p>Thus, the total number of the processes created by the program is 16. </p>
 <h2 id="2-Explain-the-circumstances-under-which-the-line-of-code-marked-printf-‘‘LINE-J’’-in-Figure-2-will-be-reached"><a href="#2-Explain-the-circumstances-under-which-the-line-of-code-marked-printf-‘‘LINE-J’’-in-Figure-2-will-be-reached" class="headerlink" title="2.Explain the circumstances under which the line of code marked printf  (‘‘LINE J’’) in Figure 2 will be reached."></a>2.Explain the circumstances under which the line of code marked printf  (‘‘LINE J’’) in Figure 2 will be reached.</h2><center><img style="margin: 0 auto;" width="65%" height="65%" src="/OS2021IMG/QQ截图20210404101324.png" alt="OSHW2"/></center>
 
 
@@ -302,7 +302,7 @@
 <li>And if there exists <strong>wait()</strong> function in the parent function, the parent will suspend its process and wait until the child process turns to terminated status and sents <strong>SIGCHILD</strong> to parent process to wake it up. Thus, we can control the execution order of parent and child processes .</li>
 </ul>
 <h2 id="7-Explain-what-a-zombie-process-is-and-when-a-zombie-process-will-be-eliminated-i-e-its-PCB-entry-is-removed-from-kernel"><a href="#7-Explain-what-a-zombie-process-is-and-when-a-zombie-process-will-be-eliminated-i-e-its-PCB-entry-is-removed-from-kernel" class="headerlink" title="7. Explain what a zombie process is and when a zombie process will be  eliminated (i.e., its PCB entry is removed from kernel)."></a>7. Explain what a zombie process is and when a zombie process will be  eliminated (i.e., its PCB entry is removed from kernel).</h2><h2 id="Solution-5"><a href="#Solution-5" class="headerlink" title="Solution:"></a>Solution:</h2><p>A zombie process means that when a process calls the exit command to end its life, it cleans up all user space memory and most of the allocated kernel space memory, and only reserves a position in the process list (Zombie data structure) )  to record the exit status of the process and other information for other processes to collect (mostly , the parent of the procee will need these information).</p>
-<p>The zombie process will remain in the process table in a terminated state, and will always wait for the parent process to read the exit status code. Therefore, as long as the child process exits, the parent process is still running, but the parent process does not read the child process status,  the child process is in the state of Zombie process. Usually , this period begins from the time when the child process sents <code>SIGCHILD</code> and ends when the <code>SIGCHILD </code> is recived by the parent process or explicitly ignored by the parent.  Anyway, when ending the zombie state ,os reclaim the PCB data structure from the kernel space.</p>
+<p>The zombie process will remain in the process table in a terminated state, and will always wait for the parent process to read the exit status code. Therefore, as long as the child process exits, the parent process is still running, but the parent process does not read the child process status,  the child process is in the state of Zombie process. Usually , this period begins from the time when the child process sents <code>SIGCHILD</code> and ends when the <code>SIGCHILD</code> is recived by the parent process or explicitly ignored by the parent.  Anyway, when ending the zombie state ,os reclaim the PCB data structure from the kernel space.</p>
 <p>Sometimes, if the parent process terminates prematurely, the child process will be reinserted to <code>init</code>  prcocess, and <code>init</code> will periodically call <code>wait()</code> to get signals from the dead process to eliminate the zombie process. </p>
 <h2 id="8-Explain-what-data-will-be-stored-in-user-space-and-kernel-space-memory-for-a-prosess"><a href="#8-Explain-what-data-will-be-stored-in-user-space-and-kernel-space-memory-for-a-prosess" class="headerlink" title="8. Explain what data will be stored in user-space and kernel-space memory  for a prosess."></a>8. Explain what data will be stored in user-space and kernel-space memory  for a prosess.</h2><h2 id="Solution-6"><a href="#Solution-6" class="headerlink" title="Solution:"></a>Solution:</h2><ul>
 <li>In user-space: Global varibles, local varibles , codes and constants are stored in user space.(Process’s memory and code)</li>
