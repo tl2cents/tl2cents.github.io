@@ -204,6 +204,96 @@
             
 
   
+    <article id="blog-Gradient Descent" class="article article-type-blog  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/04/29/Gradient%20Descent/" target="_blank">Gradient Descent</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/04/29/Gradient%20Descent/" class="archive-article-date">
+        <time datetime="2021-04-29T12:47:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-29</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="Gradient-Descent-and-Strongly-Covex-Optimization-Problem"><a href="#Gradient-Descent-and-Strongly-Covex-Optimization-Problem" class="headerlink" title="Gradient Descent and Strongly Covex Optimization Problem"></a>Gradient Descent and Strongly Covex Optimization Problem</h1><p>We provide you with a data set, where the number of samples n is 16087 and the number of features d is 10013. Suppose that X ∈ R <sup>n×d </sup>is the input feature matrix and y ∈ R <sup>n</sup> is the corresponding response vector. We use the linear model to fit the data, and thus we can formulate the optimization problem as</p>
+<script type="math/tex; mode=display">
+\arg\min_{\textbf{w}}f(\textbf{w}) = \frac{1}{n}\|\textbf{y}-\bar{\textbf{X}}\textbf{w}\|_2^2</script><p>where X = (1, X) ∈ R <sup>n×(d+1)</sup> and w = (w<sub>0</sub>, w<sub>1</sub>, . . . , w<sub>d</sub>) &gt; ∈ R <sup>d+1</sup>.<br>
+    
+    <a class="article-more-a" href="/2021/04/29/Gradient%20Descent/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">USTC</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="blog-USTC 0S 2021 Spring HW 2" class="article article-type-blog  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -452,99 +542,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="blog-机器学习HW-多项式拟合" class="article article-type-blog  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/04/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0HW-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8B%9F%E5%90%88/" target="_blank">机器学习HW-多项式拟合</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/04/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0HW-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8B%9F%E5%90%88/" class="archive-article-date">
-        <time datetime="2021-04-01T13:41:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-01</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><blockquote>
-<p>Each row is a sample containing two numbers x and y, where x is the input feature and y is its corresponding response. Notice that, x and y are splited by ‘\t’.</p>
-<p>For example, x is 0.025817872 and y is 1.072778871 in</p>
-<p><code>0.025817872 1.072778871</code></p>
-</blockquote>
-<p>&nbsp;<br>给定一个文件data，有x,y两组数据，进行多项式拟合。很简单的一个问题，基本是学习python的numpy库一些函数的使用和plt的画图。</p>
-    
-    <a class="article-more-a" href="/2021/04/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0HW-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8B%9F%E5%90%88/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">USTC</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
         		</li>
       		
 		</ul>
