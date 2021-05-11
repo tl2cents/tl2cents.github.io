@@ -9,13 +9,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://tl2cents.github.io">
-  <title>Tag: writeup | Bellin&#39;s blog</title>
+  <title>Tag: Writeup | Bellin&#39;s blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta property="og:type" content="website">
 <meta property="og:title" content="Bellin&#39;s blog">
-<meta property="og:url" content="https://tl2cents.github.io/tags/writeup/index.html">
+<meta property="og:url" content="https://tl2cents.github.io/tags/Writeup/index.html">
 <meta property="og:site_name" content="Bellin&#39;s blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Bellin">
@@ -82,7 +82,7 @@
 			
 				<li><a href="/" >Home</a></li>
 			
-				<li><a href="/" >Technical notes</a></li>
+				<li><a href="/" >NONE</a></li>
 			
 			</ul>
 		</nav>
@@ -184,7 +184,7 @@
 		        
 					<li style="width: 33.333333333333336%"><a href="/">Home</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/">Technical notes</a></li>
+					<li style="width: 33.333333333333336%"><a href="/">NONE</a></li>
 		        
 				</ul>
 			</nav>
@@ -218,8 +218,8 @@
     <header class="archive-article-header">
       	<div class="article-meta">
 	      	
-<a href="/2021/04/11/2021-MRCTF-WriteUp/" class="archive-article-date">
-        <time datetime="2021-04-11T14:35:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-11</time>
+<a href="/2021/05/11/Red-Hat-Cup-2021-Writeup/" class="archive-article-date">
+        <time datetime="2021-05-11T01:37:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-11</time>
 </a>
 
         </div>
@@ -227,7 +227,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="archive-article-title" href="/2021/04/11/2021-MRCTF-WriteUp/" target="_blank">2021-MRCTF-WriteUp</a>
+	  <a class="archive-article-title" href="/2021/05/11/Red-Hat-Cup-2021-Writeup/" target="_blank">Red-Hat-Cup-2021-Writeup</a>
   
     </h1>
   
@@ -244,54 +244,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">writeup</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-blog">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/03/28/DASCTF-WriteUp/" class="archive-article-date">
-        <time datetime="2021-03-28T15:47:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-28</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/03/28/DASCTF-WriteUp/" target="_blank">DASCTF2021-WriteUp</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">writeup</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Writeup</a>
         		</li>
       		
 		</ul>
@@ -6805,6 +6758,10 @@
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Writeup</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -6994,6 +6951,59 @@
   
     <script type="text/javascript" src="/plugins/live2d-widget.js/L2Dwidget.min.js"></script>
 <script type="text/javascript">
+  /**
+   * 完整配置请参考：https://l2dwidget.js.org/docs/class/src/index.js~L2Dwidget.html#instance-method-init
+   */
+  var pluginModelPath = "assets/", // 模型的文件路径，无需更改
+    pluginRootPath = "/live2d_models/"; // 插件的路径，无需更改
+  //特定的模型json文件名称
+  var modelPathJson = {
+    "epsilon2_1": "Epsilon2.1",
+    "gf": "Gantzert_Felixander",
+    "haru/01": "haru01",
+    "haru/02": "haru02",
+    "nietzsche": "nietzche"
+  }
+
+  
+    var modelName = "tororo";
+  
+
+  var modelJsonPath = "";
+  if (modelPathJson[modelName]) {
+    modelJsonPath = pluginRootPath + modelName + "/" + pluginModelPath + modelPathJson[modelName] +
+      ".model.json";
+  } else {
+    modelJsonPath = pluginRootPath + modelName + "/" + pluginModelPath + modelName + ".model.json";
+  }
+  L2Dwidget.init({
+    model: {
+      jsonPath: modelJsonPath
+    },
+    display: {
+       position: "right", 
+       width: 145, 
+       height: 315, 
+       hOffset: 50, 
+      
+    },
+    mobile: {
+       show: false, 
+       scale: 0.6 
+    },
+    react: {
+       opacity: 0.8 
+    }
+  })
+
+</script>
+
+  
+  
+</body>
+
+</html>
+ript type="text/javascript">
   /**
    * 完整配置请参考：https://l2dwidget.js.org/docs/class/src/index.js~L2Dwidget.html#instance-method-init
    */

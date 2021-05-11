@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://tl2cents.github.io/2021/05/11/Red-Hat-Cup-2021-Writeup/</loc>
+    <lastmod>2021-05-11</lastmod>
+  </url>
+  <url>
     <loc>https://tl2cents.github.io/2021/04/29/Gradient%20Descent/</loc>
     <lastmod>2021-05-01</lastmod>
   </url>
