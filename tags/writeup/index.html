@@ -68,7 +68,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/img/backgroud.jpg" class="js-avatar">
+			<img src="/img/head.png" class="js-avatar">
 		</a>
 		<hgroup>
 			<h1 class="header-author"><a href="/">Bellin</a></h1>
@@ -138,7 +138,7 @@
 		<header id="header" class="inner">
 			<div class="profilepic">
 				<a href="/">
-					<img src="/img/backgroud.jpg" class="js-avatar">
+					<img src="/img/head.png" class="js-avatar">
 				</a>
 			</div>
 			<hgroup>
@@ -1052,6 +1052,97 @@
               e = r.length,
               i = c(t, e);
             return new(L(r, r[St]))(r.buffer, r.byteOffset + i * r.BYTES_PER_ELEMENT, O((void 0 === n ? e : c(n,
+              e)) - i))
+          }
+        },
+        Wt = function (t, n) {
+          return Lt(this, dt.call(At(this), t, n))
+        },
+        Ut = function (t) {
+          At(this);
+          var n = Ft(arguments[1], 1),
+            r = this.length,
+            e = v(t),
+            i = O(e.length),
+            o = 0;
+          if (r < i + n) throw B(Et);
+          for (; o < i;) this[n + o] = e[o++]
+        },
+        Vt = {
+          entries: function () {
+            return at.call(At(this))
+          },
+          keys: function () {
+            return ft.call(At(this))
+          },
+          values: function () {
+            return ct.call(At(this))
+          }
+        },
+        Bt = function (t, n) {
+          return P(t) && t[_t] && "symbol" != typeof n && n in t && String(+n) == String(n)
+        },
+        qt = function (t, n) {
+          return Bt(t, n = f(n, !0)) ? i(2, t[n]) : V(t, n)
+        },
+        zt = function (t, n, r) {
+          return !(Bt(t, n = f(n, !0)) && P(r) && a(r, "value")) || a(r, "get") || a(r, "set") || r.configurable ||
+            a(r, "writable") && !r.writable || a(r, "enumerable") && !r.enumerable ? U(t, n, r) : (t[n] = r.value,
+              t)
+        };
+      wt || (W.f = qt, G.f = zt), m(m.S + m.F * !wt, "Object", {
+        getOwnPropertyDescriptor: qt,
+        defineProperty: zt
+      }), x(function () {
+        yt.call({})
+      }) && (yt = gt = function () {
+        return vt.call(this)
+      });
+      var Kt = o({}, Gt);
+      o(Kt, Vt), _(Kt, bt, Vt.values), o(Kt, {
+        slice: Wt,
+        set: Ut,
+        constructor: function () {},
+        toString: yt,
+        toLocaleString: Dt
+      }), Tt(Kt, "buffer", "b"), Tt(Kt, "byteOffset", "o"), Tt(Kt, "byteLength", "l"), Tt(Kt, "length", "e"), U(
+        Kt, xt, {
+          get: function () {
+            return this[_t]
+          }
+        }), t.exports = function (t, l, n, o) {
+        var h = t + ((o = !!o) ? "Clamped" : "") + "Array",
+          r = "get" + t,
+          u = "set" + t,
+          v = b[h],
+          c = v || {},
+          e = v && F(v),
+          i = !v || !S.ABV,
+          f = {},
+          a = v && v[$],
+          p = function (t, i) {
+            U(t, i, {
+              get: function () {
+                return t = i, (n = this._d).v[r](t * l + n.o, Pt);
+                var t, n
+              },
+              set: function (t) {
+                return n = i, r = t, e = this._d, o && (r = (r = Math.round(r)) < 0 ? 0 : 255 < r ? 255 :
+                  255 & r), void e.v[u](n * l + e.o, r, Pt);
+                var n, r, e
+              },
+              enumerable: !0
+            })
+          };
+        i ? (v = n(function (t, n, r, e) {
+          w(t, v, h, "_d");
+          var i, o, u, c, f = 0,
+            a = 0;
+          if (P(n)) {
+            if (!(n instanceof X || (c = M(n)) == K || c == H)) return _t in n ? Nt(v, n) : kt.call(v, n);
+            i = n, a = Ft(r, l);
+            var s = n.byteLength;
+            if (void 0 =d 0 === n ? e : c(n,
               e)) - i))
           }
         },
@@ -6909,112 +7000,6 @@
                 <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 
                 <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
-
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                      <div class="pswp__preloader__cut">
-                        <div class="pswp__preloader__donut"></div>
-                      </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div> 
-            </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-  </div>
-
-  
-  
-<script type="text/javascript" src="/plugins/activate-power-mode/activate-power-mode.js"></script>
-<script>
-  POWERMODE.colorful = true; // make power mode colorful
-  POWERMODE.shake = false; // turn off shake
-  document.body.addEventListener('input', POWERMODE);
-</script>
-
-  
-  <!-- 
-  <script async type="text/javascript" size="90" alpha="0.2" zIndex="0" src="/plugins/ribbon.js/ribbon.min.js"></script> -->
-  
-  
-    <script type="text/javascript" src="/plugins/live2d-widget.js/L2Dwidget.min.js"></script>
-<script type="text/javascript">
-  /**
-   * 完整配置请参考：https://l2dwidget.js.org/docs/class/src/index.js~L2Dwidget.html#instance-method-init
-   */
-  var pluginModelPath = "assets/", // 模型的文件路径，无需更改
-    pluginRootPath = "/live2d_models/"; // 插件的路径，无需更改
-  //特定的模型json文件名称
-  var modelPathJson = {
-    "epsilon2_1": "Epsilon2.1",
-    "gf": "Gantzert_Felixander",
-    "haru/01": "haru01",
-    "haru/02": "haru02",
-    "nietzsche": "nietzche"
-  }
-
-  
-    var modelName = "tororo";
-  
-
-  var modelJsonPath = "";
-  if (modelPathJson[modelName]) {
-    modelJsonPath = pluginRootPath + modelName + "/" + pluginModelPath + modelPathJson[modelName] +
-      ".model.json";
-  } else {
-    modelJsonPath = pluginRootPath + modelName + "/" + pluginModelPath + modelName + ".model.json";
-  }
-  L2Dwidget.init({
-    model: {
-      jsonPath: modelJsonPath
-    },
-    display: {
-       position: "right", 
-       width: 145, 
-       height: 315, 
-       hOffset: 50, 
-      
-    },
-    mobile: {
-       show: false, 
-       scale: 0.6 
-    },
-    react: {
-       opacity: 0.8 
-    }
-  })
-
-</script>
-
-  
-  
-</body>
-
-</html>
-ton pswp__button--share" style="display:none" title="Share"></button>
 
                 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 
