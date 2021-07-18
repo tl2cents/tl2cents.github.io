@@ -878,7 +878,8 @@ html {
 
 .left-col #header .profilepic {
   display: block;
-  border: 5px solid #fff;
+  /* 头像边界的设置处 */
+  border: 0px solid rgb(151, 189, 206);
   border-radius: 300px;
   width: 128px;
   height: 128px;
@@ -899,9 +900,10 @@ html {
   background: #88acdb;
   border-radius: 50%;
   border: 0;
-  -webkit-transition: -webkit-transform 1s ease-out;
+  /* 头像旋转设置 */
+  /* -webkit-transition: -webkit-transform 1s ease-out;
   -moz-transition: -moz-transform 1s ease-out;
-  -o-transition: -o-transform 1s ease-out;
+  -o-transition: -o-transform 1s ease-out; */
   -ms-transition: -ms-transform 1s ease-out
 }
 
