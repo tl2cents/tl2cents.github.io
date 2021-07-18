@@ -9,29 +9,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://tl2cents.github.io">
-  <title>2021 MRCTF WriteUp | Bellin&#39;s blog</title>
+  <title>USTC OS 2021 Spring HW1 | Bellin&#39;s blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="MISC-Real Checkin 零宽字符隐写 MISC方向的签到题，不过很有意思。">
+  <meta name="description" content="1. 请分别从系统和用户的角度，阐述操作系统的主要功能？从用户角度来说，OS主要功能有：  操作系统可以对计算机系统的各项资源开展调度工作，其中包括软硬件设备、数据信息等，运用操作系统可以减少人工资源分配的工作量，用户不必自己去分配各种资源，计算机的智能化得到提高。   其次在资源管理方面，若有多个用户来管理一个计算机系统，那么在用户进行资源共享时可能存在冲突。而操作系统可以协调计算机的各个组成部">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2021 MRCTF WriteUp">
-<meta property="og:url" content="https://tl2cents.github.io/2021/04/11/2021-MRCTF-WriteUp/index.html">
+<meta property="og:title" content="USTC OS 2021 Spring HW1">
+<meta property="og:url" content="https://tl2cents.github.io/2021/03/20/USTC%20OS%202021%20Spring%20HW1/index.html">
 <meta property="og:site_name" content="Bellin&#39;s blog">
-<meta property="og:description" content="MISC-Real Checkin 零宽字符隐写 MISC方向的签到题，不过很有意思。">
+<meta property="og:description" content="1. 请分别从系统和用户的角度，阐述操作系统的主要功能？从用户角度来说，OS主要功能有：  操作系统可以对计算机系统的各项资源开展调度工作，其中包括软硬件设备、数据信息等，运用操作系统可以减少人工资源分配的工作量，用户不必自己去分配各种资源，计算机的智能化得到提高。   其次在资源管理方面，若有多个用户来管理一个计算机系统，那么在用户进行资源共享时可能存在冲突。而操作系统可以协调计算机的各个组成部">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tl2cents.github.io/images/MRCTF-checkin.png">
-<meta property="og:image" content="https://tl2cents.github.io/images/空白符.png">
-<meta property="og:image" content="https://tl2cents.github.io/images/5进制decr.png">
-<meta property="og:image" content="https://tl2cents.github.io/2021/04/11/2021-MRCTF-WriteUp/QQ截图20210411231703.png">
-<meta property="og:image" content="https://tl2cents.github.io/2021/04/11/2021-MRCTF-WriteUp/QQ截图20210411231942.png">
-<meta property="article:published_time" content="2021-04-11T14:35:51.000Z">
-<meta property="article:modified_time" content="2021-05-12T14:22:55.747Z">
+<meta property="og:image" content="https://tl2cents.github.io/images/oshw.jpg">
+<meta property="article:published_time" content="2021-03-20T12:42:40.000Z">
+<meta property="article:modified_time" content="2021-07-18T09:22:54.452Z">
 <meta property="article:author" content="Bellin">
-<meta property="article:tag" content="CTF">
-<meta property="article:tag" content="writeup">
+<meta property="article:tag" content="USTC">
+<meta property="article:tag" content="0S2021">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tl2cents.github.io/images/MRCTF-checkin.png">
+<meta name="twitter:image" content="https://tl2cents.github.io/images/oshw.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Bellin&#39;s blog" type="application/atom+xml">
   
@@ -212,22 +208,22 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="blog-2021-MRCTF-WriteUp" class="article article-type-blog " itemscope itemprop="blogPost">
+            <article id="blog-USTC OS 2021 Spring HW1" class="article article-type-blog " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      2021 MRCTF WriteUp
+      USTC OS 2021 Spring HW1
     </h1>
   
 
 
   
   
-<a href="/2021/04/11/2021-MRCTF-WriteUp/" class="archive-article-date">
-        <time datetime="2021-04-11T14:35:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-11</time>
+<a href="/2021/03/20/USTC%20OS%202021%20Spring%20HW1/" class="archive-article-date">
+        <time datetime="2021-03-20T12:42:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-20</time>
 </a>
 
   
@@ -240,7 +236,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">791字</span>
+      <span class="post-count">2.6k字</span>
     </span>
   </span>
 
@@ -249,7 +245,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">3分</span>
+      <span class="post-count">8分</span>
     </span>
   </span>
 </div>
@@ -263,43 +259,100 @@
     
     <!-- newly added -->
     
-    <h1 id="MISC-Real-Checkin"><a href="#MISC-Real-Checkin" class="headerlink" title="MISC-Real Checkin"></a>MISC-Real Checkin</h1><ul>
-<li><p><strong>零宽字符隐写</strong></p>
-<p>MISC方向的签到题，不过很有意思。</p>
-<center><img style="margin: 0 auto;" width="65%" height="65%" src="/images/MRCTF-checkin.png" alt="MISC签到"/></center>
-<span id="more"></span>
-去比赛的QQ群@之后得到这样一串消息
-
-`@tl2cents 叮咚！你的好大儿zbr向你发送了签到码，请注意查收：‍‎‏‍‎‍‍‎‌‌‌‍‍‎‍‎‏‎‌‎‌‌‍‎‌‌‎‌‌‍‏‎‍‎‎‌‌‍‌‏‎‎‌‍‎‌‍‎‍‎‎‍‎‎‍‏‎‎‎‍‏‌Q9LimBaEBG9170WBI41KAfuRu6f9leWI7omgqq9yhBiUcpwPFGfREdjOsXWCNmRlPljq/33rj8ri2HDafqHrw5uzc3h4pYvfPjBAE2UJxU97CSuG9UlBZRiSQEpZzRnL`.
-
-貌似挺简单的，之前没有hint，直接复制后面base64的编码然后解码，发现是乱码。所以肯定有加密，不会这么白给的。那么我们仔细看一上面的消息，如下（发现是零宽字符隐写）：
-<center><img style="margin: 0 auto;" width="100%" height="100%" src="/images/空白符.png" alt="MISC签到"/></center>
-
-<p>仔细看下有哪些零宽字符，UE、Winhex什么的都行，或者直接去CyberChef看。有下面五个零宽字符：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hideset=[<span class="string">b&#x27;\xe2\x80\x8b&#x27;</span>,<span class="string">b&quot;\xe2\x80\x8c&quot;</span>,<span class="string">b&quot;\xe2\x80\x8d&quot;</span>,<span class="string">b&quot;\xe2\x80\x8e&quot;</span>,<span class="string">b&quot;\xe2\x80\x8f&quot;</span>]</span><br></pre></td></tr></table></figure>
-<p>直接去在线网站extract隐写的东西，发现都行不太通，那就看看隐写的这些字符特征，将<code>U+200B，U+200C，U+200D，U+200E，U+200F</code>，分别看成0，1，2，3，4，extract出来是这样子的：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">data=<span class="built_in">open</span>(<span class="string">&#x27;realcheckin/msg&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>).read()</span><br><span class="line">hideset=[<span class="string">b&#x27;\xe2\x80\x8b&#x27;</span>,<span class="string">b&quot;\xe2\x80\x8c&quot;</span>,<span class="string">b&quot;\xe2\x80\x8d&quot;</span>,<span class="string">b&quot;\xe2\x80\x8e&quot;</span>,<span class="string">b&quot;\xe2\x80\x8f&quot;</span>]</span><br><span class="line">num=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(data)//<span class="number">3</span>):</span><br><span class="line">    <span class="keyword">if</span> data[<span class="number">3</span>*i:<span class="number">3</span>*i+<span class="number">3</span>] <span class="keyword">in</span> hideset:</span><br><span class="line">        print(hideset.index(data[<span class="number">3</span>*i:<span class="number">3</span>*i+<span class="number">3</span>]),end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">        num=num+<span class="built_in">str</span>(hideset.index(data[<span class="number">3</span>*i:<span class="number">3</span>*i+<span class="number">3</span>]))</span><br><span class="line">print(<span class="built_in">len</span>(num))</span><br><span class="line"><span class="comment">#0000234000023200002310000112000023000002340000313000011200003110000311000024300002330000112000014300003120000310000023000002330000233000024300003030000241</span></span><br><span class="line"><span class="comment">#154</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>&nbsp;<br>&nbsp;</p>
+    <h4 id="1-请分别从系统和用户的角度，阐述操作系统的主要功能？"><a href="#1-请分别从系统和用户的角度，阐述操作系统的主要功能？" class="headerlink" title="1. 请分别从系统和用户的角度，阐述操作系统的主要功能？"></a>1. 请分别从系统和用户的角度，阐述操作系统的主要功能？</h4><p><strong>从用户角度来说，OS主要功能有：</strong></p>
 <ul>
-<li><p><strong>五进制解码</strong></p>
-<p>可以看到上面的字符串基本都是4个0然后后面3位在变化，显然7个一组，类似ASCII，当成5进制稍微算一下第一个数就是69，刚好就是E的ASCII码，Okay，基本确定五进制，然后写个脚本extract一下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">strs=<span class="string">&quot;0000234000023200002310000112000023000002340000313000011200003110000311000024300002330000112000014300003120000310000023000002330000233000024300003030000241&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(strs)//<span class="number">7</span>):</span><br><span class="line">    num=strs[<span class="number">7</span>*i:<span class="number">7</span>*i+<span class="number">7</span>]</span><br><span class="line">    n=<span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">7</span>):</span><br><span class="line">        <span class="comment"># print(num[-j])</span></span><br><span class="line">        n=n+<span class="built_in">int</span>(num[-(j+<span class="number">1</span>)])*(<span class="number">5</span>**j)</span><br><span class="line">    print(<span class="built_in">chr</span>(n),end=<span class="string">&quot;&quot;</span>)</span><br><span class="line"><span class="comment">#output: ECB AES QQID 0RPADDING</span></span><br></pre></td></tr></table></figure>
-<p>&nbsp;<br>&nbsp;<br>好的，AES，加密，然后密钥KEY显然就是和你的QQ号有关，后面的<code>0RPADDING</code>就是拿<code>0R</code>什么的填充到密钥长度，不知道啥意思，    反正都试一下，最后发现是直接拿QQ号当成16进制的秘钥，后面填充全0（只能看第二个hint一个个试试运气吧）。解密结果如下：</p>
-<p><img src="/images/5进制decr.png" alt=""></p>
-<p>好家伙，这套娃，然后去天璇的公众号输入上面的字符串拿到flag</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MRCTF&#123;Let<span class="string">&#x27;s_Have_Fun!&#125; #有一说一这个flag也太好猜了</span></span><br></pre></td></tr></table></figure>
+<li>操作系统可以对计算机系统的各项资源开展调度工作，其中包括软硬件设备、数据信息等，运用操作系统可以减少人工资源分配的工作量，用户不必自己去分配各种资源，计算机的智能化得到提高。</li>
+</ul>
+<ul>
+<li>其次在资源管理方面，若有多个用户来管理一个计算机系统，那么在用户进行资源共享时可能存在冲突。而操作系统可以协调计算机的各个组成部分，对各个资源板块的使用效率和使用程度进行一个最优的调整，使得各个用户的需求都能够得到满足。</li>
+</ul>
+<ul>
+<li>最后，操作系统在计算机程序的辅助下，可以抽象处理计算系统资源提供的各项基础职能，以可视化的手段来向使用者展示操作系统功能，减低计算机的使用难度。<span id="more"></span>
+</li>
+</ul>
+<p><strong>从系统的角度来说，OS主要功能有：</strong></p>
+<ul>
+<li>操作系统是资源分配器：<br>管理计算机系统中的资源，能够有效而公平地处理冲突的资源请求。</li>
+<li>操作系统是控制程序：<br>管理用户程序的执行以防止计算机资源的错误使用或使用不当。</li>
+</ul>
+<p><strong>概括地说，OS主要功能有:</strong></p>
+<ul>
+<li><p>进程管理，主要是进程调度，在单用户单任务的情况下，处理器仅为一个用户的一个任务所独占， 进程管理的工作十分简单。但在多程序或多用户的情况下，组织多个作业或任务时，操作系统就要解决处理器的调度、分配和回收等问题 。</p>
+</li>
+<li><p>存储管理功能：包括存储分配、存储共享、存储保护 、存储扩张。</p>
+</li>
+<li><p>设备管理功能：合理进行设备分配、对设备传输进行控制 、保证设备的独立性。—&gt;</p>
+</li>
+<li><p>文件管理功能：文件存储空间的管理、目录管理 、文件操作管理、文件保护。—&gt;</p>
+</li>
+<li><p>作业管理功能：负责处理用户提交的任何要求。</p>
 </li>
 </ul>
 <p>&nbsp;<br>&nbsp;</p>
-<h2 id="RE-Real-Checkin"><a href="#RE-Real-Checkin" class="headerlink" title="RE-Real Checkin"></a>RE-Real Checkin</h2><p>这个就是真正的签到题了，发现加了<code>upx 3.91</code>壳，直接下个<code>upx</code>脱壳，然后放进IDA看程序逻辑：</p>
-<p><img src="QQ截图20210411231703.png" alt=""></p>
-<p>&nbsp;<br>&nbsp;<br>简单逻辑，甚至base64编码都写出来了，但是<code>wait</code>，把中那段比较的base64编码字符放进一般的base64解码，发现出来是乱码？然后仔细看下base64的encode函数，发现它的字符转换表如下：</p>
-<p><img src="QQ截图20210411231942.png" alt=""></p>
-<p>转换成字符发现它把一般的大小写字符串换了个位置。所以大小写字母转换一下，<code>TVJDVEZ7d0VsYzBNZV90MF9NUkNURl8ybzIxISEhfQ==</code>放进base64解码得到flag：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MRCTF&#123;wElc0Me_t0_MRCTF_2o21!!!&#125;</span><br></pre></td></tr></table></figure>
-<p>&nbsp;<br>就水了两个签到题，没想到最后rank 61，<strong>其他的签到题感觉都很离谱。</strong></p>
+<h4 id="2-解释什么是系统调用？阐述系统调用与-API-的逻辑关系。"><a href="#2-解释什么是系统调用？阐述系统调用与-API-的逻辑关系。" class="headerlink" title="2. 解释什么是系统调用？阐述系统调用与 API 的逻辑关系。"></a>2. 解释什么是系统调用？阐述系统调用与 API 的逻辑关系。</h4><hr>
+<p><strong>系统调用概念：</strong></p>
+<p>系统调用就是一种特殊的接口，通过这个接口，用户可以访问内核空间。并且系统调用规定了用户进程进入内核的具体位置。一般在<code>linux</code>系统中将程序运行空间分为内核与用户空间（内核态和用户态），逻辑上它们是相互隔离的，因此用户程序无法直接访问内核数据和调用内核函数，而有了系统调用，用户就可以通过：<u>用户进程-&gt;系统调用-&gt;内核-&gt;返回用户空间</u> 来访问内核空间。</p>
+<p><strong>系统调用和API的逻辑关系：</strong></p>
+<p>API(Application Programming Interface)：应用程序接口，是一些预先定义的函数，提供应用程序与开发人员基于某软件或硬件的以访问一组例程的能力，而又无需访问源码，或理解内部工作机制的细节。</p>
+<p><strong>逻辑联系如下：</strong></p>
+<ul>
+<li>一个API可能需要一个或者多个系统调用来完成其特定的功能，API是与程序员交互的，而系统调用是直接与内核交互的，其关系如下：<code>程序员&lt;--&gt;API&lt;--&gt;系统调用&lt;--&gt;内核空间</code>。</li>
+<li>因此系统调用是不与程序员进行交互的，它根据API函数，通过一个软中断机制向内核提交请求，以获取内核服务的接口。</li>
+<li>最后，API与系统调用的对应关系，一个API可能对应多个API，因为它可能会用到多个系统调用来实现其函数功能，甚至一个API也可能不需要系统调用。总之，如果一个API需要内核空间提供的服务来完成功能的话，它必须调用相应的系统函数。</li>
+</ul>
+<p><img src="/images/oshw.jpg" alt=""></p>
+<p>&nbsp;<br>&nbsp;</p>
+<h4 id="3-阐述-Dual-Mode-的工作机制，以及采用-Dual-Mode-的原因。"><a href="#3-阐述-Dual-Mode-的工作机制，以及采用-Dual-Mode-的原因。" class="headerlink" title="3. 阐述 Dual Mode 的工作机制，以及采用 Dual Mode 的原因。"></a>3. 阐述 Dual Mode 的工作机制，以及采用 Dual Mode 的原因。</h4><hr>
+<ul>
+<li><p><strong>工作机制</strong>：<br>分为用户模式和内核模式，在硬件中提供模式位(Mode bit)使得能够分辨系统是在运行那种模式；有一些指令被认为是特权的，只能在内核模式下执行；特别地，执行系统调用时会设置为内核模式（需要访问内核空间），而在系统返回时重置为用户模式。</p>
+</li>
+<li><p><strong>采用Dual Mode的原因：</strong><br>通过双模式的必要切换，允许操作系统保护自身和其他系统组件。</p>
+</li>
+</ul>
+<p>&nbsp;<br>&nbsp;</p>
+<h4 id="4-概述操作系统需要提供的服务有哪些？"><a href="#4-概述操作系统需要提供的服务有哪些？" class="headerlink" title="4. 概述操作系统需要提供的服务有哪些？"></a>4. 概述操作系统需要提供的服务有哪些？</h4><hr>
+<ul>
+<li><strong>处理器（进程）管理</strong>：对处理器的分配和和运行（以进程为单位）实施有效的管理，包括进程控制（负责进程的创建，撤销以及状态转换），进程同步（对并发执行的进程进行协调），进程通信（负责进程间的信息交流），进程调度（按一定算法进行处理器分配）。</li>
+<li><strong>存储器管理</strong>：对内存进行分配，保护和扩充，包括内存分配（按一定策略为每道程序分配内存），内存保护（保证各程序在自己的内存区域内运行而不相互干扰），内存扩充（为允许大型最作业或多作业的运行，必须借助虚拟存储技术去获得增加内存的效果）。</li>
+<li><strong>设备管理</strong>：对计算机系统内的所有设备进行管理。包括设备分配（根据一定的设备分配原则对设备进行分配），设备传输控制（实现物理的输入输出操作），设备独立性（用户程序中的设备与实际使用的物理设备无关)。</li>
+<li><strong>文件管理</strong>：操作系统中负责信息管理的部分称为文件系统，文件管理的主要任务包括文件存储空间的管理（存储空间的分配与回收），目录管理（提供按名存取的功能），文件操作管理（负责完成数据的读写），文件保护。</li>
+<li><strong>用户接口</strong>：方便用户使用操作系统，包括命令接口（包括联机命令接口和脱机命令接口），程序接口（也称系统调用），图形接口，处理用户的作业请求。</li>
+</ul>
+<p>&nbsp;<br>&nbsp;</p>
+<h4 id="5-分别阐述-Monolithic-结构，层次化结构，模块化结构和微内核-结构的特点和优劣。"><a href="#5-分别阐述-Monolithic-结构，层次化结构，模块化结构和微内核-结构的特点和优劣。" class="headerlink" title="5.分别阐述 Monolithic 结构，层次化结构，模块化结构和微内核 结构的特点和优劣。"></a>5.分别阐述 Monolithic 结构，层次化结构，模块化结构和微内核 结构的特点和优劣。</h4><hr>
+<ul>
+<li><p><strong>Monolithic 结构</strong><br>优点: 效率高。<br>缺点: 没有结构, 难以修改和维护。</p>
+</li>
+<li><p><strong>层次化结构</strong><br>优点: 简化设计实现, 隐藏底层实现, 方便调试维护。<br>缺点: 难以定义不同的层次, 性能较差。</p>
+</li>
+<li><p><strong>微内核结构</strong><br>优点: 容易拓展, 增加服务无需改动内核。<br>缺点: 用户空间和通信开销导致的性能开销较大。</p>
+</li>
+<li><p><strong>模块化结构</strong><br>优点:类似于分层结构，但更加灵活，也类似于微内核结构, 但效率更高。<br>缺点:需要保证设计使操咋系统各模块间耦合度低, 且无法找到一个可靠的模块开发顺序. 增加新的内容时可能产生系统碎片化和安全问题。</p>
+</li>
+</ul>
+<p>&nbsp;<br>&nbsp;</p>
+<h4 id="6-举例说明什么是机制与策略分离的设计原则。"><a href="#6-举例说明什么是机制与策略分离的设计原则。" class="headerlink" title="6.举例说明什么是机制与策略分离的设计原则。"></a>6.举例说明什么是机制与策略分离的设计原则。</h4><hr>
+<p>操作系统设计与实现的一个重要原则就是策略与机制的分离，其目的是为了提供系统（设计、使用）的灵活性。<strong>机制决定如何做（how），而策略决定做什么(what）</strong>。</p>
+<p>机制和策略必须分开以确保系统易于修改。没有两个系统安装是相同的，因此每个安装都可能需要调整操作系统以适合其需求。<strong>通过将机制和策略分开，可以在机制保持不变的情况下随意更改策略</strong>，这种安排提供了更灵活的系统 。</p>
+<p>例如，timer结构是一种保护CPU的机制，但是为特定用户设置多长时间的计时器是由策略决定。这样就适应了用户的不同需求。</p>
+<p>&nbsp;<br>&nbsp;</p>
+<h4 id="7-概述-multi-programming-和-multi-tasking-的概念及其设计目的。"><a href="#7-概述-multi-programming-和-multi-tasking-的概念及其设计目的。" class="headerlink" title="7.概述 multi-programming 和 multi-tasking 的概念及其设计目的。"></a>7.概述 multi-programming 和 multi-tasking 的概念及其设计目的。</h4><hr>
+<ul>
+<li><p><strong>Multi-programming</strong>：</p>
+<p>A computer running more than one program at a time (like running Excel and Firefox simultaneously)。</p>
+<p>即一个设备可以同时运行多个程序，具体地，把多个program放入系统中，当一个program在做I/O，其他的program可以用CPU，合理分配使用的时间，因为在计算机内，一旦一项作业（job）离开CPU并执行其他一些任务（例如I / O），CPU就会变得空闲。CPU一直在等待，直到该作业（之前正在执行的作业）返回并重新开始与CPU的执行。因此，CPU在这所有时间内都保持空闲状态。</p>
+<p><strong>muti-tasking的设计目的就是为了减少上述过程中的CPU浪费情况</strong>，主要思想是最大化CPU时间，显著地提高CPU的利用率。</p>
+</li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li><p><strong>Multi-tasking</strong>:  </p>
+<p>Tasks sharing a common resource (like 1 CPU)。</p>
+<p>多任务处理是指一次执行多个任务（例如，进程，程序，线程等）。在OS中，我们能够播放MP3音乐，在Microsoft Word中编辑文档，同时浏览Google Chrome，这是通过多任务处理来完成的。</p>
+<p>具体通过Time-Sharing实现，CPU划分n个小到几毫秒的时间区域，让已经加载到Memory中的program同时进行，因此，CPU使进程在它们之间共享时间片并相应地执行。只要一个进程的时间量到期，另一个进程就会开始执行，比如时间片设置为5ns，多任务切换非常快，以至于使得用户认为这些任务是“同时”进行的。</p>
+<p><strong>muti-tasking的设计目的是为了满足用户进行多任务处理的需求</strong>。通过Time-Sharing使得一个任务不必等待长时间才能执行。</p>
+</li>
+</ul>
 
     
 
@@ -316,11 +369,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">USTC</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">writeup</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">0S2021</a>
         		</li>
       		
 		</ul>
@@ -332,7 +385,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/CTF//" class="article-tag-list-link color4">CTF</a>
+        			<a href="/categories/OS-2021//" class="article-tag-list-link color3">OS 2021</a>
         		</li>
       		
 		</ul>
@@ -387,7 +440,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://tl2cents.github.io/2021/04/11/2021-MRCTF-WriteUp/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://tl2cents.github.io/2021/03/20/USTC%20OS%202021%20Spring%20HW1/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -402,18 +455,18 @@
 
 <nav id="article-nav">
   
-    <a href="/2021/04/13/USTC%20OS%202021%20Spring%20HW2/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/03/28/%E9%BA%BB%E8%A1%A3%E5%AD%A6%E5%A7%90%E7%9A%84%E7%A7%98%E5%AF%86/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          USTC OS 2021 Spring HW2
+          麻衣学姐的秘密
         
       </div>
     </a>
   
   
-    <a href="/2021/04/07/2021%E8%99%8E%E7%AC%A6CTF-Cubic%E5%AF%86%E7%A0%81%E9%A2%98%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">2021虎符CTF-Cubic密码题解</div>
+    <a href="/2021/03/20/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">博客搭建记录</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -440,7 +493,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MISC-Real-Checkin"><span class="toc-number">1.</span> <span class="toc-text">MISC-Real Checkin</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RE-Real-Checkin"><span class="toc-number">1.1.</span> <span class="toc-text">RE-Real Checkin</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E8%AF%B7%E5%88%86%E5%88%AB%E4%BB%8E%E7%B3%BB%E7%BB%9F%E5%92%8C%E7%94%A8%E6%88%B7%E7%9A%84%E8%A7%92%E5%BA%A6%EF%BC%8C%E9%98%90%E8%BF%B0%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">1. 请分别从系统和用户的角度，阐述操作系统的主要功能？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%A7%A3%E9%87%8A%E4%BB%80%E4%B9%88%E6%98%AF%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%EF%BC%9F%E9%98%90%E8%BF%B0%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E4%B8%8E-API-%E7%9A%84%E9%80%BB%E8%BE%91%E5%85%B3%E7%B3%BB%E3%80%82"><span class="toc-number">2.</span> <span class="toc-text">2. 解释什么是系统调用？阐述系统调用与 API 的逻辑关系。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E9%98%90%E8%BF%B0-Dual-Mode-%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6%EF%BC%8C%E4%BB%A5%E5%8F%8A%E9%87%87%E7%94%A8-Dual-Mode-%E7%9A%84%E5%8E%9F%E5%9B%A0%E3%80%82"><span class="toc-number">3.</span> <span class="toc-text">3. 阐述 Dual Mode 的工作机制，以及采用 Dual Mode 的原因。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%A6%82%E8%BF%B0%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%9C%80%E8%A6%81%E6%8F%90%E4%BE%9B%E7%9A%84%E6%9C%8D%E5%8A%A1%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-number">4.</span> <span class="toc-text">4. 概述操作系统需要提供的服务有哪些？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E5%88%86%E5%88%AB%E9%98%90%E8%BF%B0-Monolithic-%E7%BB%93%E6%9E%84%EF%BC%8C%E5%B1%82%E6%AC%A1%E5%8C%96%E7%BB%93%E6%9E%84%EF%BC%8C%E6%A8%A1%E5%9D%97%E5%8C%96%E7%BB%93%E6%9E%84%E5%92%8C%E5%BE%AE%E5%86%85%E6%A0%B8-%E7%BB%93%E6%9E%84%E7%9A%84%E7%89%B9%E7%82%B9%E5%92%8C%E4%BC%98%E5%8A%A3%E3%80%82"><span class="toc-number">5.</span> <span class="toc-text">5.分别阐述 Monolithic 结构，层次化结构，模块化结构和微内核 结构的特点和优劣。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E4%B8%BE%E4%BE%8B%E8%AF%B4%E6%98%8E%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%BA%E5%88%B6%E4%B8%8E%E7%AD%96%E7%95%A5%E5%88%86%E7%A6%BB%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99%E3%80%82"><span class="toc-number">6.</span> <span class="toc-text">6.举例说明什么是机制与策略分离的设计原则。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-%E6%A6%82%E8%BF%B0-multi-programming-%E5%92%8C-multi-tasking-%E7%9A%84%E6%A6%82%E5%BF%B5%E5%8F%8A%E5%85%B6%E8%AE%BE%E8%AE%A1%E7%9B%AE%E7%9A%84%E3%80%82"><span class="toc-number">7.</span> <span class="toc-text">7.概述 multi-programming 和 multi-tasking 的概念及其设计目的。</span></a></li></ol>
                     </div>
                 </span>
             </div>

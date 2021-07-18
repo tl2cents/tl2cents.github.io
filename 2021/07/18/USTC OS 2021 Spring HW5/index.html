@@ -9,29 +9,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://tl2cents.github.io">
-  <title>2021 MRCTF WriteUp | Bellin&#39;s blog</title>
+  <title>USTC OS 2021 Spring HW5 | Bellin&#39;s blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="MISC-Real Checkin 零宽字符隐写 MISC方向的签到题，不过很有意思。">
+  <meta name="description" content="Operating System Homework 51. RAIDConsider a RAID organization comprising five disks in total, how many blocks are accessed in order to perform the following operations for RAID-5 and RAID-6? a. An up">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2021 MRCTF WriteUp">
-<meta property="og:url" content="https://tl2cents.github.io/2021/04/11/2021-MRCTF-WriteUp/index.html">
+<meta property="og:title" content="USTC OS 2021 Spring HW5">
+<meta property="og:url" content="https://tl2cents.github.io/2021/07/18/USTC%20OS%202021%20Spring%20HW5/index.html">
 <meta property="og:site_name" content="Bellin&#39;s blog">
-<meta property="og:description" content="MISC-Real Checkin 零宽字符隐写 MISC方向的签到题，不过很有意思。">
+<meta property="og:description" content="Operating System Homework 51. RAIDConsider a RAID organization comprising five disks in total, how many blocks are accessed in order to perform the following operations for RAID-5 and RAID-6? a. An up">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tl2cents.github.io/images/MRCTF-checkin.png">
-<meta property="og:image" content="https://tl2cents.github.io/images/空白符.png">
-<meta property="og:image" content="https://tl2cents.github.io/images/5进制decr.png">
-<meta property="og:image" content="https://tl2cents.github.io/2021/04/11/2021-MRCTF-WriteUp/QQ截图20210411231703.png">
-<meta property="og:image" content="https://tl2cents.github.io/2021/04/11/2021-MRCTF-WriteUp/QQ截图20210411231942.png">
-<meta property="article:published_time" content="2021-04-11T14:35:51.000Z">
-<meta property="article:modified_time" content="2021-05-12T14:22:55.747Z">
+<meta property="og:image" content="https://tl2cents.github.io/2021/07/18/USTC%20OS%202021%20Spring%20HW5/image-20210609211842575.png">
+<meta property="og:image" content="https://tl2cents.github.io/2021/07/18/USTC%20OS%202021%20Spring%20HW5/image-20210609212354004.png">
+<meta property="article:published_time" content="2021-07-18T09:25:59.000Z">
+<meta property="article:modified_time" content="2021-07-18T09:46:37.516Z">
 <meta property="article:author" content="Bellin">
-<meta property="article:tag" content="CTF">
-<meta property="article:tag" content="writeup">
+<meta property="article:tag" content="USTC">
+<meta property="article:tag" content="0S2021">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tl2cents.github.io/images/MRCTF-checkin.png">
+<meta name="twitter:image" content="https://tl2cents.github.io/2021/07/18/USTC%20OS%202021%20Spring%20HW5/image-20210609211842575.png">
   
     <link rel="alternative" href="/atom.xml" title="Bellin&#39;s blog" type="application/atom+xml">
   
@@ -212,22 +209,22 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="blog-2021-MRCTF-WriteUp" class="article article-type-blog " itemscope itemprop="blogPost">
+            <article id="blog-USTC OS 2021 Spring HW5" class="article article-type-blog " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      2021 MRCTF WriteUp
+      USTC OS 2021 Spring HW5
     </h1>
   
 
 
   
   
-<a href="/2021/04/11/2021-MRCTF-WriteUp/" class="archive-article-date">
-        <time datetime="2021-04-11T14:35:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-11</time>
+<a href="/2021/07/18/USTC%20OS%202021%20Spring%20HW5/" class="archive-article-date">
+        <time datetime="2021-07-18T09:25:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-18</time>
 </a>
 
   
@@ -240,7 +237,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">791字</span>
+      <span class="post-count">1.8k字</span>
     </span>
   </span>
 
@@ -249,7 +246,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">3分</span>
+      <span class="post-count">11分</span>
     </span>
   </span>
 </div>
@@ -263,43 +260,267 @@
     
     <!-- newly added -->
     
-    <h1 id="MISC-Real-Checkin"><a href="#MISC-Real-Checkin" class="headerlink" title="MISC-Real Checkin"></a>MISC-Real Checkin</h1><ul>
-<li><p><strong>零宽字符隐写</strong></p>
-<p>MISC方向的签到题，不过很有意思。</p>
-<center><img style="margin: 0 auto;" width="65%" height="65%" src="/images/MRCTF-checkin.png" alt="MISC签到"/></center>
+    <h1 id="Operating-System-Homework-5"><a href="#Operating-System-Homework-5" class="headerlink" title="Operating System Homework 5"></a>Operating System Homework 5</h1><h2 id="1-RAID"><a href="#1-RAID" class="headerlink" title="1. RAID"></a>1. RAID</h2><p>Consider a RAID organization comprising five disks in total, how many blocks are accessed in order to perform the following operations for <strong>RAID-5 and RAID-6</strong>?</p>
+<p><strong>a. An update of one block of data</strong> </p>
+<p><strong>b. An update of seven continuous blocks of data. Assume that the seven contiguous blocks begin at a boundary of a stripe.</strong></p>
+<hr>
 <span id="more"></span>
-去比赛的QQ群@之后得到这样一串消息
-
-`@tl2cents 叮咚！你的好大儿zbr向你发送了签到码，请注意查收：‍‎‏‍‎‍‍‎‌‌‌‍‍‎‍‎‏‎‌‎‌‌‍‎‌‌‎‌‌‍‏‎‍‎‎‌‌‍‌‏‎‎‌‍‎‌‍‎‍‎‎‍‎‎‍‏‎‎‎‍‏‌Q9LimBaEBG9170WBI41KAfuRu6f9leWI7omgqq9yhBiUcpwPFGfREdjOsXWCNmRlPljq/33rj8ri2HDafqHrw5uzc3h4pYvfPjBAE2UJxU97CSuG9UlBZRiSQEpZzRnL`.
-
-貌似挺简单的，之前没有hint，直接复制后面base64的编码然后解码，发现是乱码。所以肯定有加密，不会这么白给的。那么我们仔细看一上面的消息，如下（发现是零宽字符隐写）：
-<center><img style="margin: 0 auto;" width="100%" height="100%" src="/images/空白符.png" alt="MISC签到"/></center>
-
-<p>仔细看下有哪些零宽字符，UE、Winhex什么的都行，或者直接去CyberChef看。有下面五个零宽字符：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hideset=[<span class="string">b&#x27;\xe2\x80\x8b&#x27;</span>,<span class="string">b&quot;\xe2\x80\x8c&quot;</span>,<span class="string">b&quot;\xe2\x80\x8d&quot;</span>,<span class="string">b&quot;\xe2\x80\x8e&quot;</span>,<span class="string">b&quot;\xe2\x80\x8f&quot;</span>]</span><br></pre></td></tr></table></figure>
-<p>直接去在线网站extract隐写的东西，发现都行不太通，那就看看隐写的这些字符特征，将<code>U+200B，U+200C，U+200D，U+200E，U+200F</code>，分别看成0，1，2，3，4，extract出来是这样子的：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">data=<span class="built_in">open</span>(<span class="string">&#x27;realcheckin/msg&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>).read()</span><br><span class="line">hideset=[<span class="string">b&#x27;\xe2\x80\x8b&#x27;</span>,<span class="string">b&quot;\xe2\x80\x8c&quot;</span>,<span class="string">b&quot;\xe2\x80\x8d&quot;</span>,<span class="string">b&quot;\xe2\x80\x8e&quot;</span>,<span class="string">b&quot;\xe2\x80\x8f&quot;</span>]</span><br><span class="line">num=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(data)//<span class="number">3</span>):</span><br><span class="line">    <span class="keyword">if</span> data[<span class="number">3</span>*i:<span class="number">3</span>*i+<span class="number">3</span>] <span class="keyword">in</span> hideset:</span><br><span class="line">        print(hideset.index(data[<span class="number">3</span>*i:<span class="number">3</span>*i+<span class="number">3</span>]),end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">        num=num+<span class="built_in">str</span>(hideset.index(data[<span class="number">3</span>*i:<span class="number">3</span>*i+<span class="number">3</span>]))</span><br><span class="line">print(<span class="built_in">len</span>(num))</span><br><span class="line"><span class="comment">#0000234000023200002310000112000023000002340000313000011200003110000311000024300002330000112000014300003120000310000023000002330000233000024300003030000241</span></span><br><span class="line"><span class="comment">#154</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><hr>
+<h4 id="a"><a href="#a" class="headerlink" title="a."></a>a.</h4><p><strong>RMW</strong></p>
+<p>RAID-5: 2 blocks, A<sub>i</sub> and A<sub>p</sub> .</p>
+<p>RAID-6: 3 blocks A<sub>i</sub> ,  A<sub>p</sub> and A<sub>q</sub>.</p>
+<p><strong>RRW</strong></p>
+<p>RAID-5: 5 blocks , read  A<sub>2</sub> , A<sub>3</sub> ,  A<sub>4</sub> , and write  A<sub>1</sub>  A<sub>p</sub> .</p>
+<p>RAID-6: 5 blocks , read  A<sub>2</sub> , A<sub>3</sub>  and write  A<sub>1</sub> , A<sub>p</sub> ,  A<sub>q</sub> .</p>
+<h4 id="b"><a href="#b" class="headerlink" title="b."></a>b.</h4><p><strong>Case1</strong> RAID-5 </p>
+<p>We assume that the blocks are like A<sub>1</sub> , A<sub>2</sub> , A<sub>3</sub> , A<sub>4</sub> , B<sub>1</sub> , B<sub>2</sub> , B<sub>3</sub> .</p>
+<p>RMW:  update every block and its check block. Total 2*7=14 blocks.</p>
+<p>RRW: 7 data blocks, block B<sub>4</sub> , A<sub>p</sub> , and B<sub>p</sub> .Total 10 blocks.</p>
+<p><strong>Case2</strong> RAID-6</p>
+<p>We assume that the blocks are like A<sub>1</sub> , A<sub>2</sub> , A<sub>3</sub> , B<sub>1</sub> , B<sub>2</sub> , B<sub>3</sub> , C<sub>1</sub> .</p>
+<p>RRW:  update every block and its two check blocks. Total 3*7=21 blocks.</p>
+<p>RMW: 7 data blocks and  A<sub>p</sub>  , A<sub>q</sub> , B<sub>p</sub>  , B<sub>q</sub> , C<sub>p</sub>  , C<sub>q</sub>  , C<sub>2</sub> , C<sub>3</sub> . Total 15 blocks.</p>
+<p>Best policy: RRW in A and B, RMW  in C. Total 5*2+3=13 blocks.</p>
 <p>&nbsp;<br>&nbsp;</p>
+<h2 id="2-The-disk-scheduling-algorithm"><a href="#2-The-disk-scheduling-algorithm" class="headerlink" title="2. The disk-scheduling algorithm"></a>2. The disk-scheduling algorithm</h2><p><strong>Suppose that a disk drive has 5,000 cylinders, numbered 0 to 4999. The drive is currently serving a request at cylinder 2150, and the previous request was at cylinder 1805. The queue of pending requests, in FIFO order, is: 2069, 1212, 2296, 2800, 544, 1618, 356, 1523, 4965, 3681 Starting from the current head position, what is the total distance (in cylinders) that the disk arm-moves to satisfy all the pending requests for each of the following disk-scheduling algorithms?</strong> </p>
+<p>a. FCFS </p>
+<p>b. SSTF </p>
+<p>c. SCAN </p>
+<p>d. LOOK </p>
+<p>e. C-SCAN </p>
+<p>f. C-LOOK</p>
+<hr>
+<h3 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution"></a>Solution</h3><hr>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Disk-scheduling algorithm</th>
+<th>Scheduling order</th>
+<th>Distances</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FCFS</td>
+<td>2150, 2069, 1212, 2296, 2800, 544, 1618, 356, 1523, 4965, 3681</td>
+<td>13011</td>
+</tr>
+<tr>
+<td>SSTF</td>
+<td>2150, 2069, 2296, 2800, 3681, 4965, 1618, 1523, 1212, 544, 356</td>
+<td>7586</td>
+</tr>
+<tr>
+<td>SCAN</td>
+<td>2150, 2296, 2800, 3681, 4965, (4999) , 2069, 1618, 1523, 1212, 544, 356</td>
+<td>7492</td>
+</tr>
+<tr>
+<td>LOOK</td>
+<td>2150, 2296, 2800, 3681, 4965, 2069, 1618, 1523, 1212, 544, 356</td>
+<td>7424</td>
+</tr>
+<tr>
+<td>C-SCAN</td>
+<td>2150, 2296, 2800, 3681, 4965, (4999),（0），356, 544, 1212, 1523, 1618, 2069</td>
+<td>9917</td>
+</tr>
+<tr>
+<td>C-LOOK</td>
+<td>2150, 2296, 2800, 3681, 4965 , 356, 544, 1212, 1523, 1618, 2069</td>
+<td>9137</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>&nbsp;<br>&nbsp;</p>
+<h2 id="3-Open-file-table"><a href="#3-Open-file-table" class="headerlink" title="3. Open-file table"></a>3. Open-file table</h2><p> <strong>Explain what open-file table is and why we need it.</strong></p>
+<hr>
+<h3 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution"></a>Solution</h3><hr>
+<p>To avoid constant searching, many systems require that an open() system call be made before a file is first used. The operating system keeps a table, called the <strong>open-file table,</strong> containing information about all open files. When a file operation is requested, the file is <strong>specified via an index into this table</strong>, so no searching is required. When the file is no longer being actively used, it is closed by the process, and the operating system removes its entry from the open-file table. create() and delete() are system calls that work with closed rather than open files.</p>
+<p>By open-file table, the open file information is cached in memory, and the file index is done by open-file table, avoiding the need for directory traversal for each visit, reducing IO overhead, and improving performance. On the other hand, the open-file table can maintain the open state of a file,  which  ensure operations such as deleting to be performed correctly.</p>
+<p>&nbsp;<br>&nbsp;</p>
+<h2 id="4-File-and-Directory"><a href="#4-File-and-Directory" class="headerlink" title="4. File and Directory"></a>4. File and Directory</h2><p><strong>Explain the concept of file and directory, and what does “755” mean for file permission?</strong></p>
+<hr>
+<h3 id="Solution-3"><a href="#Solution-3" class="headerlink" title="Solution"></a>Solution</h3><hr>
+<p><strong>Concepts :</strong></p>
+<p>The operating system abstracts from the physical properties of its storage devices to define a logical storage unit —- the <strong>file</strong>.</p>
+<p><strong>Directory</strong> is a storage unit that records information such as name, location, size, and type about a set of files, and it is also a file.</p>
+<p>The three octal numbers represent the owner’s , group members’, and others’ permissions of reading , writing and executing.</p>
+<p>755= 111 101 101 =&gt; The owner can read, write , and execute this file (111). The group member and others can read and execute this file (cannot read).(101).</p>
+<p>&nbsp;<br>&nbsp;</p>
+<h2 id="5-Continuous-Allocation"><a href="#5-Continuous-Allocation" class="headerlink" title="5. Continuous Allocation"></a>5. Continuous Allocation</h2><p><strong>Explain the problems of using continuous allocation for file system layout and how to solve them.</strong></p>
+<hr>
+<h3 id="Solution-4"><a href="#Solution-4" class="headerlink" title="Solution"></a>Solution</h3><hr>
+<p>Flaws:</p>
 <ul>
-<li><p><strong>五进制解码</strong></p>
-<p>可以看到上面的字符串基本都是4个0然后后面3位在变化，显然7个一组，类似ASCII，当成5进制稍微算一下第一个数就是69，刚好就是E的ASCII码，Okay，基本确定五进制，然后写个脚本extract一下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">strs=<span class="string">&quot;0000234000023200002310000112000023000002340000313000011200003110000311000024300002330000112000014300003120000310000023000002330000233000024300003030000241&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(strs)//<span class="number">7</span>):</span><br><span class="line">    num=strs[<span class="number">7</span>*i:<span class="number">7</span>*i+<span class="number">7</span>]</span><br><span class="line">    n=<span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">7</span>):</span><br><span class="line">        <span class="comment"># print(num[-j])</span></span><br><span class="line">        n=n+<span class="built_in">int</span>(num[-(j+<span class="number">1</span>)])*(<span class="number">5</span>**j)</span><br><span class="line">    print(<span class="built_in">chr</span>(n),end=<span class="string">&quot;&quot;</span>)</span><br><span class="line"><span class="comment">#output: ECB AES QQID 0RPADDING</span></span><br></pre></td></tr></table></figure>
-<p>&nbsp;<br>&nbsp;<br>好的，AES，加密，然后密钥KEY显然就是和你的QQ号有关，后面的<code>0RPADDING</code>就是拿<code>0R</code>什么的填充到密钥长度，不知道啥意思，    反正都试一下，最后发现是直接拿QQ号当成16进制的秘钥，后面填充全0（只能看第二个hint一个个试试运气吧）。解密结果如下：</p>
-<p><img src="/images/5进制decr.png" alt=""></p>
-<p>好家伙，这套娃，然后去天璇的公众号输入上面的字符串拿到flag</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MRCTF&#123;Let<span class="string">&#x27;s_Have_Fun!&#125; #有一说一这个flag也太好猜了</span></span><br></pre></td></tr></table></figure>
+<li>Continuous allocations produce external fragmentation, resulting in insufficient continuous space when creating large files</li>
+<li>It cannot deal with the growth of file size when we need add content to a file.</li>
+</ul>
+<p>Solutions :</p>
+<ul>
+<li>Break large files into small pieces and store them in fix-sized blocks.</li>
+<li>Use linked list to support dynamic growth.</li>
+</ul>
+<p>&nbsp;<br>&nbsp;</p>
+<h2 id="6-FAT-pros-and-cons"><a href="#6-FAT-pros-and-cons" class="headerlink" title="6. FAT (pros and cons)"></a>6. FAT (pros and cons)</h2><p><strong>What are the advantages of the variation of linked allocation that uses a FAT to chain together the blocks of a file? What is the major problem of FAT?</strong></p>
+<hr>
+<h3 id="Solution-5"><a href="#Solution-5" class="headerlink" title="Solution"></a>Solution</h3><hr>
+<p><strong>Advantages</strong></p>
+<p>Better random access performance. When accessing a block in the middle part of a file, look for pointers stored in the FAT to determine its location, rather than sequential access to all blocks of the file to find a pointer to the target block. Most FATs can be cached in memory, so you can determine pointers through memory access without having to access disk blocks.</p>
+<p><strong>Disadvantages</strong></p>
+<p>Partial caching is difficult to implement. A trade-off between space and time : caching FAT for better access performance results in a waste of memory space.</p>
+<p>&nbsp;<br>&nbsp;</p>
+<h2 id="7-Disk-I-O"><a href="#7-Disk-I-O" class="headerlink" title="7. Disk I/O"></a>7. Disk I/O</h2><p><strong>Consider a file system similar to the one used by UNIX with indexed allocation, and assume that every file uses only one block. How many disk I/O operations might be required to read the contents of a small local file at /a/b/c in the following two cases? Should provide the detailed workflow.</strong></p>
+<p><strong>a.</strong> Assume that none of the disk blocks and inodes is currently being cached. </p>
+<p><strong>b.</strong> Assume that none of the disk blocks is currently being cached but all inodes are in memory.</p>
+<hr>
+<h3 id="Solution-6"><a href="#Solution-6" class="headerlink" title="Solution"></a>Solution</h3><hr>
+<p><strong>a. Not cached</strong></p>
+<ol>
+<li>root directory</li>
+<li>inode for /a</li>
+<li>disk block for /a</li>
+<li>inode for /a/b</li>
+<li>disk block for /a/b</li>
+<li>inode for /a/b/c</li>
+<li>disk block for /a/b/c</li>
+</ol>
+<p>Total 7 times.</p>
+<p><strong>b.  Cached</strong></p>
+<p>The process is the same as a, but accessing i-node doesn’t need I/O operations. Total 4 times.</p>
+<p>&nbsp;<br>&nbsp;</p>
+<h2 id="8-Max-File-Size-in-FAT"><a href="#8-Max-File-Size-in-FAT" class="headerlink" title="8. Max File Size in FAT"></a>8. Max File Size in FAT</h2><p> <strong>Consider a file system that uses inodes to represent files. Disk blocks are 8-KB in size and a pointer to a disk block requires 4 bytes. This file system has 12 direct disk blocks, plus single, double, and triple indirect disk blocks. What is the maximum size of a file that can be stored in this file system?</strong></p>
+<hr>
+<h3 id="Solution-7"><a href="#Solution-7" class="headerlink" title="Solution"></a>Solution</h3><hr>
+<p>Every block can store 8kB/4B=2048 indexes. Thus, 12 direct blocks , 1  single, double, and triple indirect disk block.</p>
+<script type="math/tex; mode=display">
+MaxSize=(12 * 8 KB) + (2048 * 8 KB) + (2048 * 2048 * 8 KB) + (2048 * 2048 * 2048 * 8 KB) \approx 64 TB</script><p>&nbsp;<br>&nbsp;</p>
+<h2 id="9-Long-filename-in-FAT"><a href="#9-Long-filename-in-FAT" class="headerlink" title="9. Long filename in FAT"></a>9. Long filename in FAT</h2><p><strong>What is the 8+3 naming convention in FAT32 file system, and how to manage long filenames?</strong></p>
+<hr>
+<h3 id="Solution-8"><a href="#Solution-8" class="headerlink" title="Solution"></a>Solution</h3><hr>
+<p><strong>8+3 naming convention:</strong> </p>
+<p>8 characters for name + 3 characters for file extension</p>
+<p><strong>Long filenames:</strong></p>
+<p>If the filename is too long (more than 8 bytes), we add more entries to represent the filename. The first byte of the entry is the sequential number of file name and the terminating directory entry has the sequence number OR-ed with 0x40. Byte 11 of every entry is always 0x0F to indicate that is a LFN.</p>
+<p>&nbsp;<br>&nbsp;</p>
+<h2 id="10-Director-Entries"><a href="#10-Director-Entries" class="headerlink" title="10. Director Entries"></a>10. Director Entries</h2><p><strong>How are directory entries managed in FAT and Ext file systems？</strong></p>
+<hr>
+<h3 id="Solution-9"><a href="#Solution-9" class="headerlink" title="Solution"></a>Solution</h3><hr>
+<p><strong>The FAT file system directory entry</strong> is fixed in size and managed in an array. The entry stores a series of file-related property information, including: file name, extension, property, reserved word, most recent modification time,  first cluster number, file size.</p>
+<p><strong>The EXT  file system directory entry</strong>  varies in size and is managed in a link list. The entry stores the file name and index node.</p>
+<p>&nbsp;<br>&nbsp;</p>
+<h2 id="11-Hard-Symbolic-Link"><a href="#11-Hard-Symbolic-Link" class="headerlink" title="11. Hard/Symbolic Link"></a>11. Hard/Symbolic Link</h2><p><strong>What is the difference between hard link and symbolic link?</strong> </p>
+<hr>
+<h3 id="Solution-10"><a href="#Solution-10" class="headerlink" title="Solution"></a>Solution</h3><hr>
+<p><strong>Hard link</strong></p>
+<ul>
+<li>A hard link is a directory entry pointing to an existing file. No new file content is created!</li>
+<li>Conceptually speaking, this creates a file with two pathnames.</li>
+<li>Hard link entries and original entries  point to  the same inode and do not create new file content. (link count + 1)</li>
+</ul>
+<p><strong>Symbolic Link</strong></p>
+<ul>
+<li>A symbolic link is a file. Unlike the hard link, a new inode is created for each symbolic link.</li>
+<li>It stores the pathname (shortcut).</li>
+<li>The link count of the original file doesn’t change.</li>
+</ul>
+<p>&nbsp;<br>&nbsp;</p>
+<h2 id="12-Initial-Link-Counts"><a href="#12-Initial-Link-Counts" class="headerlink" title="12. Initial Link Counts"></a>12. Initial Link Counts</h2><p><strong>What are the initial link counts when a regular file or a directory is created? Why?</strong> </p>
+<hr>
+<h3 id="Solution-11"><a href="#Solution-11" class="headerlink" title="Solution"></a>Solution</h3><hr>
+<ul>
+<li>When a regular file is created, the link count is always 1. Only one inode (itself) points to it.</li>
+<li>When a directory is created, the initial link count is always 2. An extra hard link  “.” points to it.</li>
+</ul>
+<p>&nbsp;<br>&nbsp;</p>
+<h2 id="13-Data-Metadata-Journaling"><a href="#13-Data-Metadata-Journaling" class="headerlink" title="13. Data/Metadata Journaling"></a>13. Data/Metadata Journaling</h2><p><strong>What is the difference between data journaling and metadata journaling? Explain the operation  sequence for each of the two journaling methods.</strong> </p>
+<hr>
+<h3 id="Solution-12"><a href="#Solution-12" class="headerlink" title="Solution"></a>Solution</h3><hr>
+<ul>
+<li><p><strong>Data journaling.</strong></p>
+<p>The operation sequence is as follows :</p>
+</li>
+</ul>
+<p><img src="image-20210609211842575.png" alt="image-20210609211842575" style="zoom:67%;" /></p>
+<ol>
+<li><p>Journal write : Write the contents of the transaction (including TxB, metadata, and data) .</p>
+</li>
+<li><p>Journal commit : metadata, and data (including TxE) .</p>
+</li>
+<li><p>Checkpoint: Write the contents of the update to their on-disk locations.</p>
+</li>
+</ol>
+<ul>
+<li><p><strong>Metadata Journaling</strong> </p>
+<p>The operation sequence is as follows :</p>
+<p><img src="image-20210609212354004.png" alt="image-20210609212354004" style="zoom:67%;" /></p>
+<ol>
+<li><p>Journal write : Write the contents of the transaction (including TxB, metadata) .Write the contents of the update to their on-disk locations. The two writes can be issued in parallel.</p>
+</li>
+<li><p>Journal commit : Write TxE.</p>
+</li>
+<li><p>Checkpoint : Write the update of metadata to their on-disk locations.</p>
+</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p><strong>Difference</strong></p>
+<ol>
+<li><p><strong>Writing sequence</strong></p>
+<p>Data Journaling :  Write the logs before writing the file system.</p>
+<p>Metadata Journaling :  Write metadata to the log and data to the file system <strong>(in parallel).</strong> Waiting. After submitting the log, write metadata to the file system.</p>
+</li>
+<li><p><strong>The amount of data :</strong>  </p>
+<p>Data Journaling :  Write data twice.</p>
+<p>Metadata Journaling :  Write data once.</p>
+</li>
+</ol>
 </li>
 </ul>
 <p>&nbsp;<br>&nbsp;</p>
-<h2 id="RE-Real-Checkin"><a href="#RE-Real-Checkin" class="headerlink" title="RE-Real Checkin"></a>RE-Real Checkin</h2><p>这个就是真正的签到题了，发现加了<code>upx 3.91</code>壳，直接下个<code>upx</code>脱壳，然后放进IDA看程序逻辑：</p>
-<p><img src="QQ截图20210411231703.png" alt=""></p>
-<p>&nbsp;<br>&nbsp;<br>简单逻辑，甚至base64编码都写出来了，但是<code>wait</code>，把中那段比较的base64编码字符放进一般的base64解码，发现出来是乱码？然后仔细看下base64的encode函数，发现它的字符转换表如下：</p>
-<p><img src="QQ截图20210411231942.png" alt=""></p>
-<p>转换成字符发现它把一般的大小写字符串换了个位置。所以大小写字母转换一下，<code>TVJDVEZ7d0VsYzBNZV90MF9NUkNURl8ybzIxISEhfQ==</code>放进base64解码得到flag：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MRCTF&#123;wElc0Me_t0_MRCTF_2o21!!!&#125;</span><br></pre></td></tr></table></figure>
-<p>&nbsp;<br>就水了两个签到题，没想到最后rank 61，<strong>其他的签到题感觉都很离谱。</strong></p>
+<h2 id="14-I-O-control-methods"><a href="#14-I-O-control-methods" class="headerlink" title="14. I/O control methods"></a>14. I/O control methods</h2><p><strong>What are the three I/O control methods?</strong> </p>
+<hr>
+<h3 id="Solution-13"><a href="#Solution-13" class="headerlink" title="Solution:"></a>Solution:</h3><hr>
+<ul>
+<li>Polling.</li>
+<li>Interrupt.</li>
+<li>Direct Memory Access (DMA) .</li>
+</ul>
+<p>&nbsp;<br>&nbsp;</p>
+<h2 id="15-I-O-interface"><a href="#15-I-O-interface" class="headerlink" title="15. I/O interface"></a>15. I/O interface</h2><p><strong>List at least three kinds of I/O devices and explain how to provide a standard and uniform application I/O interface?</strong> </p>
+<hr>
+<h3 id="Solution-14"><a href="#Solution-14" class="headerlink" title="Solution"></a>Solution</h3><hr>
+<p>Keyboard, mouse, router, printer, etc.</p>
+<p>Implement a  standard and uniform application I/O interface: <strong>Abstraction, encapsulation, layering</strong> .</p>
+<p>&nbsp;<br>&nbsp;</p>
+<h2 id="16-I-O-Subsystem"><a href="#16-I-O-Subsystem" class="headerlink" title="16. I/O Subsystem"></a>16. I/O Subsystem</h2><p><strong>What services are provided by the kernel I/O subsystem ?</strong></p>
+<hr>
+<h3 id="Solution-15"><a href="#Solution-15" class="headerlink" title="Solution"></a>Solution</h3><ul>
+<li><p><strong>I/O scheduling</strong></p>
+<p>Maintain a per-device queue. </p>
+<p>Re-ordering the requests. </p>
+<p>Average waiting time, fairness, etc. </p>
+</li>
+<li><p><strong>Buffering</strong> </p>
+<p>Store data in memory while transferring between devices. </p>
+<p>To cope with device speed mismatch.</p>
+<p>To cope with device transfer size mismatch. </p>
+<p>To maintain “copy semantics” (e.g., copy from application’s buffer to kernel buffer)</p>
+</li>
+<li><p><strong>Caching</strong> </p>
+<p>Faster device holding copy of data.</p>
+</li>
+<li><p><strong>Spooling</strong> </p>
+<p>Hold output for a device</p>
+</li>
+<li><p><strong>Error handling and I/O protection</strong></p>
+</li>
+<li><p><strong>Power management, etc.</strong></p>
+</li>
+</ul>
 
     
 
@@ -316,11 +537,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">USTC</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">writeup</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">0S2021</a>
         		</li>
       		
 		</ul>
@@ -332,7 +553,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/CTF//" class="article-tag-list-link color4">CTF</a>
+        			<a href="/categories/OS-2021//" class="article-tag-list-link color3">OS 2021</a>
         		</li>
       		
 		</ul>
@@ -387,7 +608,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://tl2cents.github.io/2021/04/11/2021-MRCTF-WriteUp/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://tl2cents.github.io/2021/07/18/USTC%20OS%202021%20Spring%20HW5/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -402,18 +623,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2021/04/13/USTC%20OS%202021%20Spring%20HW2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          USTC OS 2021 Spring HW2
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/04/07/2021%E8%99%8E%E7%AC%A6CTF-Cubic%E5%AF%86%E7%A0%81%E9%A2%98%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">2021虎符CTF-Cubic密码题解</div>
+    <a href="/2021/07/18/USTC%20OS%202021%20Spring%20HW4/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">USTC OS 2021 Spring HW4</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -440,7 +652,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MISC-Real-Checkin"><span class="toc-number">1.</span> <span class="toc-text">MISC-Real Checkin</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RE-Real-Checkin"><span class="toc-number">1.1.</span> <span class="toc-text">RE-Real Checkin</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Operating-System-Homework-5"><span class="toc-number">1.</span> <span class="toc-text">Operating System Homework 5</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-RAID"><span class="toc-number">1.1.</span> <span class="toc-text">1. RAID</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution"><span class="toc-number">1.1.1.</span> <span class="toc-text">Solution</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#a"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">a.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#b"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">b.</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-The-disk-scheduling-algorithm"><span class="toc-number">1.2.</span> <span class="toc-text">2. The disk-scheduling algorithm</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Open-file-table"><span class="toc-number">1.3.</span> <span class="toc-text">3. Open-file table</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-2"><span class="toc-number">1.3.1.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-File-and-Directory"><span class="toc-number">1.4.</span> <span class="toc-text">4. File and Directory</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-3"><span class="toc-number">1.4.1.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Continuous-Allocation"><span class="toc-number">1.5.</span> <span class="toc-text">5. Continuous Allocation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-4"><span class="toc-number">1.5.1.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-FAT-pros-and-cons"><span class="toc-number">1.6.</span> <span class="toc-text">6. FAT (pros and cons)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-5"><span class="toc-number">1.6.1.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Disk-I-O"><span class="toc-number">1.7.</span> <span class="toc-text">7. Disk I&#x2F;O</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-6"><span class="toc-number">1.7.1.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-Max-File-Size-in-FAT"><span class="toc-number">1.8.</span> <span class="toc-text">8. Max File Size in FAT</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-7"><span class="toc-number">1.8.1.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-Long-filename-in-FAT"><span class="toc-number">1.9.</span> <span class="toc-text">9. Long filename in FAT</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-8"><span class="toc-number">1.9.1.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-Director-Entries"><span class="toc-number">1.10.</span> <span class="toc-text">10. Director Entries</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-9"><span class="toc-number">1.10.1.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-Hard-Symbolic-Link"><span class="toc-number">1.11.</span> <span class="toc-text">11. Hard&#x2F;Symbolic Link</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-10"><span class="toc-number">1.11.1.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-Initial-Link-Counts"><span class="toc-number">1.12.</span> <span class="toc-text">12. Initial Link Counts</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-11"><span class="toc-number">1.12.1.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-Data-Metadata-Journaling"><span class="toc-number">1.13.</span> <span class="toc-text">13. Data&#x2F;Metadata Journaling</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-12"><span class="toc-number">1.13.1.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-I-O-control-methods"><span class="toc-number">1.14.</span> <span class="toc-text">14. I&#x2F;O control methods</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-13"><span class="toc-number">1.14.1.</span> <span class="toc-text">Solution:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-I-O-interface"><span class="toc-number">1.15.</span> <span class="toc-text">15. I&#x2F;O interface</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-14"><span class="toc-number">1.15.1.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-I-O-Subsystem"><span class="toc-number">1.16.</span> <span class="toc-text">16. I&#x2F;O Subsystem</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-15"><span class="toc-number">1.16.1.</span> <span class="toc-text">Solution</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>

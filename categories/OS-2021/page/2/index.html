@@ -9,29 +9,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://tl2cents.github.io">
-  <title>2021 MRCTF WriteUp | Bellin&#39;s blog</title>
+  <title>Category: OS 2021 | Bellin&#39;s blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="MISC-Real Checkin 零宽字符隐写 MISC方向的签到题，不过很有意思。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="2021 MRCTF WriteUp">
-<meta property="og:url" content="https://tl2cents.github.io/2021/04/11/2021-MRCTF-WriteUp/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Bellin&#39;s blog">
+<meta property="og:url" content="https://tl2cents.github.io/categories/OS-2021/page/2/index.html">
 <meta property="og:site_name" content="Bellin&#39;s blog">
-<meta property="og:description" content="MISC-Real Checkin 零宽字符隐写 MISC方向的签到题，不过很有意思。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tl2cents.github.io/images/MRCTF-checkin.png">
-<meta property="og:image" content="https://tl2cents.github.io/images/空白符.png">
-<meta property="og:image" content="https://tl2cents.github.io/images/5进制decr.png">
-<meta property="og:image" content="https://tl2cents.github.io/2021/04/11/2021-MRCTF-WriteUp/QQ截图20210411231703.png">
-<meta property="og:image" content="https://tl2cents.github.io/2021/04/11/2021-MRCTF-WriteUp/QQ截图20210411231942.png">
-<meta property="article:published_time" content="2021-04-11T14:35:51.000Z">
-<meta property="article:modified_time" content="2021-05-12T14:22:55.747Z">
 <meta property="article:author" content="Bellin">
-<meta property="article:tag" content="CTF">
-<meta property="article:tag" content="writeup">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tl2cents.github.io/images/MRCTF-checkin.png">
   
     <link rel="alternative" href="/atom.xml" title="Bellin&#39;s blog" type="application/atom+xml">
   
@@ -212,254 +200,84 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="blog-2021-MRCTF-WriteUp" class="article article-type-blog " itemscope itemprop="blogPost">
-  <div class="article-inner">
+            
+  
+  
     
-      <header class="article-header">
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2021" class="archive-year">2021</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-blog">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	
+<a href="/2021/03/20/USTC%20OS%202021%20Spring%20HW1/" class="archive-article-date">
+        <time datetime="2021-03-20T12:42:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-20</time>
+</a>
+
+        </div>
+    	 
   
+    <h1 itemprop="name">
+	
+	  <a class="archive-article-title" href="/2021/03/20/USTC%20OS%202021%20Spring%20HW1/" target="_blank">USTC OS 2021 Spring HW1</a>
   
-    <h1 class="article-title" itemprop="name">
-      2021 MRCTF WriteUp
     </h1>
   
 
 
-  
-  
-<a href="/2021/04/11/2021-MRCTF-WriteUp/" class="archive-article-date">
-        <time datetime="2021-04-11T14:35:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-11</time>
-</a>
-
-  
-  
-    
-<div style="margin-top:10px;">
-  <span class="post-time">
-    <span class="post-meta-item-icon">
-      <!-- fonts.scss -->
-      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
-      <i class="icon-statistics"></i>
-      <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">791字</span>
-    </span>
-  </span>
-
-  <span class="post-time">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-      <i class="icon-book icon"></i>
-      <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">3分</span>
-    </span>
-  </span>
-</div>
-
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    <!-- newly added -->
-    
-    <!-- newly added -->
-    
-    <h1 id="MISC-Real-Checkin"><a href="#MISC-Real-Checkin" class="headerlink" title="MISC-Real Checkin"></a>MISC-Real Checkin</h1><ul>
-<li><p><strong>零宽字符隐写</strong></p>
-<p>MISC方向的签到题，不过很有意思。</p>
-<center><img style="margin: 0 auto;" width="65%" height="65%" src="/images/MRCTF-checkin.png" alt="MISC签到"/></center>
-<span id="more"></span>
-去比赛的QQ群@之后得到这样一串消息
-
-`@tl2cents 叮咚！你的好大儿zbr向你发送了签到码，请注意查收：‍‎‏‍‎‍‍‎‌‌‌‍‍‎‍‎‏‎‌‎‌‌‍‎‌‌‎‌‌‍‏‎‍‎‎‌‌‍‌‏‎‎‌‍‎‌‍‎‍‎‎‍‎‎‍‏‎‎‎‍‏‌Q9LimBaEBG9170WBI41KAfuRu6f9leWI7omgqq9yhBiUcpwPFGfREdjOsXWCNmRlPljq/33rj8ri2HDafqHrw5uzc3h4pYvfPjBAE2UJxU97CSuG9UlBZRiSQEpZzRnL`.
-
-貌似挺简单的，之前没有hint，直接复制后面base64的编码然后解码，发现是乱码。所以肯定有加密，不会这么白给的。那么我们仔细看一上面的消息，如下（发现是零宽字符隐写）：
-<center><img style="margin: 0 auto;" width="100%" height="100%" src="/images/空白符.png" alt="MISC签到"/></center>
-
-<p>仔细看下有哪些零宽字符，UE、Winhex什么的都行，或者直接去CyberChef看。有下面五个零宽字符：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hideset=[<span class="string">b&#x27;\xe2\x80\x8b&#x27;</span>,<span class="string">b&quot;\xe2\x80\x8c&quot;</span>,<span class="string">b&quot;\xe2\x80\x8d&quot;</span>,<span class="string">b&quot;\xe2\x80\x8e&quot;</span>,<span class="string">b&quot;\xe2\x80\x8f&quot;</span>]</span><br></pre></td></tr></table></figure>
-<p>直接去在线网站extract隐写的东西，发现都行不太通，那就看看隐写的这些字符特征，将<code>U+200B，U+200C，U+200D，U+200E，U+200F</code>，分别看成0，1，2，3，4，extract出来是这样子的：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">data=<span class="built_in">open</span>(<span class="string">&#x27;realcheckin/msg&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>).read()</span><br><span class="line">hideset=[<span class="string">b&#x27;\xe2\x80\x8b&#x27;</span>,<span class="string">b&quot;\xe2\x80\x8c&quot;</span>,<span class="string">b&quot;\xe2\x80\x8d&quot;</span>,<span class="string">b&quot;\xe2\x80\x8e&quot;</span>,<span class="string">b&quot;\xe2\x80\x8f&quot;</span>]</span><br><span class="line">num=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(data)//<span class="number">3</span>):</span><br><span class="line">    <span class="keyword">if</span> data[<span class="number">3</span>*i:<span class="number">3</span>*i+<span class="number">3</span>] <span class="keyword">in</span> hideset:</span><br><span class="line">        print(hideset.index(data[<span class="number">3</span>*i:<span class="number">3</span>*i+<span class="number">3</span>]),end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">        num=num+<span class="built_in">str</span>(hideset.index(data[<span class="number">3</span>*i:<span class="number">3</span>*i+<span class="number">3</span>]))</span><br><span class="line">print(<span class="built_in">len</span>(num))</span><br><span class="line"><span class="comment">#0000234000023200002310000112000023000002340000313000011200003110000311000024300002330000112000014300003120000310000023000002330000233000024300003030000241</span></span><br><span class="line"><span class="comment">#154</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>&nbsp;<br>&nbsp;</p>
-<ul>
-<li><p><strong>五进制解码</strong></p>
-<p>可以看到上面的字符串基本都是4个0然后后面3位在变化，显然7个一组，类似ASCII，当成5进制稍微算一下第一个数就是69，刚好就是E的ASCII码，Okay，基本确定五进制，然后写个脚本extract一下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">strs=<span class="string">&quot;0000234000023200002310000112000023000002340000313000011200003110000311000024300002330000112000014300003120000310000023000002330000233000024300003030000241&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(strs)//<span class="number">7</span>):</span><br><span class="line">    num=strs[<span class="number">7</span>*i:<span class="number">7</span>*i+<span class="number">7</span>]</span><br><span class="line">    n=<span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">7</span>):</span><br><span class="line">        <span class="comment"># print(num[-j])</span></span><br><span class="line">        n=n+<span class="built_in">int</span>(num[-(j+<span class="number">1</span>)])*(<span class="number">5</span>**j)</span><br><span class="line">    print(<span class="built_in">chr</span>(n),end=<span class="string">&quot;&quot;</span>)</span><br><span class="line"><span class="comment">#output: ECB AES QQID 0RPADDING</span></span><br></pre></td></tr></table></figure>
-<p>&nbsp;<br>&nbsp;<br>好的，AES，加密，然后密钥KEY显然就是和你的QQ号有关，后面的<code>0RPADDING</code>就是拿<code>0R</code>什么的填充到密钥长度，不知道啥意思，    反正都试一下，最后发现是直接拿QQ号当成16进制的秘钥，后面填充全0（只能看第二个hint一个个试试运气吧）。解密结果如下：</p>
-<p><img src="/images/5进制decr.png" alt=""></p>
-<p>好家伙，这套娃，然后去天璇的公众号输入上面的字符串拿到flag</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MRCTF&#123;Let<span class="string">&#x27;s_Have_Fun!&#125; #有一说一这个flag也太好猜了</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>&nbsp;<br>&nbsp;</p>
-<h2 id="RE-Real-Checkin"><a href="#RE-Real-Checkin" class="headerlink" title="RE-Real Checkin"></a>RE-Real Checkin</h2><p>这个就是真正的签到题了，发现加了<code>upx 3.91</code>壳，直接下个<code>upx</code>脱壳，然后放进IDA看程序逻辑：</p>
-<p><img src="QQ截图20210411231703.png" alt=""></p>
-<p>&nbsp;<br>&nbsp;<br>简单逻辑，甚至base64编码都写出来了，但是<code>wait</code>，把中那段比较的base64编码字符放进一般的base64解码，发现出来是乱码？然后仔细看下base64的encode函数，发现它的字符转换表如下：</p>
-<p><img src="QQ截图20210411231942.png" alt=""></p>
-<p>转换成字符发现它把一般的大小写字符串换了个位置。所以大小写字母转换一下，<code>TVJDVEZ7d0VsYzBNZV90MF9NUkNURl8ybzIxISEhfQ==</code>放进base64解码得到flag：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MRCTF&#123;wElc0Me_t0_MRCTF_2o21!!!&#125;</span><br></pre></td></tr></table></figure>
-<p>&nbsp;<br>就水了两个签到题，没想到最后rank 61，<strong>其他的签到题感觉都很离谱。</strong></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">USTC</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">writeup</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">0S2021</a>
         		</li>
       		
 		</ul>
 	</div>
 
-    
+          
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/CTF//" class="article-tag-list-link color4">CTF</a>
+        			<a href="/categories/OS-2021//" class="article-tag-list-link color3">OS 2021</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-    
-
-    
-    
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a> -->
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://tl2cents.github.io/2021/04/11/2021-MRCTF-WriteUp/" alt="微信分享二维码"> -->
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-
-    
-    <div class="clearfix"></div>
-  </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-
-<nav id="article-nav">
-  
-    <a href="/2021/04/13/USTC%20OS%202021%20Spring%20HW2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          USTC OS 2021 Spring HW2
-        
-      </div>
-    </a>
   
   
-    <a href="/2021/04/07/2021%E8%99%8E%E7%AC%A6CTF-Cubic%E5%AF%86%E7%A0%81%E9%A2%98%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">2021虎符CTF-Cubic密码题解</div>
-      <i class="icon-circle-right"></i>
-    </a>
+    </div></section>
   
-</nav>
 
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MISC-Real-Checkin"><span class="toc-number">1.</span> <span class="toc-text">MISC-Real Checkin</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RE-Real-Checkin"><span class="toc-number">1.1.</span> <span class="toc-text">RE-Real Checkin</span></a></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-
-
-
-
-
-
-
-
-
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/categories/OS-2021/">Prev page</a><a class="page-number" href="/categories/OS-2021/">1</a><span class="page-number current">2</span>
+    </nav>
+  
 
 
           </div>
@@ -488,10 +306,10 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
-		isCategory: false,
+		isCategory: true,
 		open_in_new: true,
 		toc_hide_index: true,
 		root: "/",
