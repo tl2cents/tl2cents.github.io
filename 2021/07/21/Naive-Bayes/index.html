@@ -9,17 +9,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://tl2cents.github.io">
-  <title>Archives | Bellin&#39;s blog</title>
+  <title>Naive Bayes | Bellin&#39;s blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Bellin&#39;s blog">
-<meta property="og:url" content="https://tl2cents.github.io/archives/page/4/index.html">
+  <meta name="description" content="Naive Bayes Realized By PythonAbout this problem , see the lecture on machine learning lecture of USTC : the course website is https:&#x2F;&#x2F;miralab.ai&#x2F;course&#x2F;ml_2021&#x2F;.  This exercise is taken from HW4. &amp;nb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Naive Bayes">
+<meta property="og:url" content="https://tl2cents.github.io/2021/07/21/Naive-Bayes/index.html">
 <meta property="og:site_name" content="Bellin&#39;s blog">
+<meta property="og:description" content="Naive Bayes Realized By PythonAbout this problem , see the lecture on machine learning lecture of USTC : the course website is https:&#x2F;&#x2F;miralab.ai&#x2F;course&#x2F;ml_2021&#x2F;.  This exercise is taken from HW4. &amp;nb">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tl2cents.github.io/2021/07/21/Naive-Bayes/QQ截图20210721183700.png">
+<meta property="article:published_time" content="2021-07-21T10:45:36.000Z">
+<meta property="article:modified_time" content="2021-07-21T11:01:40.359Z">
 <meta property="article:author" content="Bellin">
+<meta property="article:tag" content="USTC">
+<meta property="article:tag" content="Machine Learning">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tl2cents.github.io/2021/07/21/Naive-Bayes/QQ截图20210721183700.png">
   
     <link rel="alternative" href="/atom.xml" title="Bellin&#39;s blog" type="application/atom+xml">
   
@@ -200,215 +208,108 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="blog-Naive-Bayes" class="article article-type-blog " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-blog">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/03/28/DASCTF-WriteUp/" class="archive-article-date">
-        <time datetime="2021-03-28T15:47:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-28</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/03/28/DASCTF-WriteUp/" target="_blank">DASCTF2021-WriteUp</a>
   
+    <h1 class="article-title" itemprop="name">
+      Naive Bayes
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+<a href="/2021/07/21/Naive-Bayes/" class="archive-article-date">
+        <time datetime="2021-07-21T10:45:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-21</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">695字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">4分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    <!-- newly added -->
+    
+    <!-- newly added -->
+    
+    <h1 id="Naive-Bayes-Realized-By-Python"><a href="#Naive-Bayes-Realized-By-Python" class="headerlink" title="Naive Bayes Realized By Python"></a>Naive Bayes Realized By Python</h1><p>About this problem , see the lecture on machine learning lecture of USTC : the course website is <a target="_blank" rel="noopener" href="https://miralab.ai/course/ml_2021/">https://miralab.ai/course/ml_2021/</a>. </p>
+<p>This exercise is taken from <a target="_blank" rel="noopener" href="https://miralab.ai/courses/ML2021Spring/hw/HW04.pdf">HW4</a>.</p>
+<p>&nbsp;<br>&nbsp;</p>
+<h2 id="Exercise-3-Programming-Exercise-Naive-Bayes"><a href="#Exercise-3-Programming-Exercise-Naive-Bayes" class="headerlink" title="Exercise 3: Programming Exercise: Naive Bayes"></a>Exercise 3: Programming Exercise: Naive Bayes</h2><p>We provide you with a data set that contains spam and non-spam emails (“hw4 nb.zip”). Please use the Naive Bayes Classifier to detect the spam emails. Finish the following exercises by programming. You can use your favorite programming language. </p>
+<ol>
+<li>Remove all the tokens that contain non-alphabetic characters. </li>
+<li>Train the Naive Bayes Classifier on the training set according to <strong>Algorithm 1.</strong> </li>
+<li>Test the Naive Bayes Classifier on the test set according to <strong>Algorithm 2.</strong> </li>
+<li>Compute the confusion matrix, precision, recall, and F1 score. Please report your result.</li>
+</ol>
+<p><img src="QQ截图20210721183700.png" alt="QQ截图20210721183700"></p>
+<p>&nbsp;<br>&nbsp;</p>
+<h2 id="Remove-non-alphabelta-tokens"><a href="#Remove-non-alphabelta-tokens" class="headerlink" title="Remove non-alphabelta tokens"></a>Remove non-alphabelta tokens</h2><p> In this session, I simply split all the emails by delimiter “ “  and  “\n” , Thus, we get all the tokens, and we filter all the None characters ( since it is not meaningful for our classification). Finally , just skip all the tokens with non-alphabelta characters.</p>
+<p>&nbsp;<br>&nbsp;</p>
+<h2 id="Training-and-Testing"><a href="#Training-and-Testing" class="headerlink" title="Training and Testing"></a>Training and Testing</h2><p>All the codes are as follows</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> decimal</span><br><span class="line"></span><br><span class="line">FD = [<span class="string">&quot;test-mails&quot;</span>, <span class="string">&quot;train_mails&quot;</span>]</span><br><span class="line">charset = string.ascii_letters</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">remove_nonalphabelta_character</span>(<span class="params">folder</span>):</span></span><br><span class="line">    files = os.listdir(folder)</span><br><span class="line">    rm_path = folder+<span class="string">&quot;_RM&quot;</span></span><br><span class="line">    exist_fol = os.path.exists(rm_path)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> exist_fol:</span><br><span class="line">        os.makedirs(rm_path)</span><br><span class="line">    <span class="keyword">for</span> f <span class="keyword">in</span> files:</span><br><span class="line">        file_path = folder+<span class="string">&quot;\\&quot;</span>+f</span><br><span class="line">        f_in = <span class="built_in">open</span>(file_path, <span class="string">&quot;r&quot;</span>)</span><br><span class="line">        f_out = <span class="built_in">open</span>(rm_path+<span class="string">&quot;\\&quot;</span>+f, <span class="string">&quot;w&quot;</span>)</span><br><span class="line">        words = re.split(<span class="string">&quot;\n| &quot;</span>, f_in.read())</span><br><span class="line">        words = <span class="built_in">list</span>(<span class="built_in">filter</span>(<span class="literal">None</span>, words))[<span class="number">1</span>:]</span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">            flag = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> word:</span><br><span class="line">                <span class="keyword">if</span> i <span class="keyword">not</span> <span class="keyword">in</span> charset:</span><br><span class="line">                    flag = <span class="number">1</span></span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">if</span> flag:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            f_out.write(word+<span class="string">&quot; &quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train_naive_bayes</span>(<span class="params">folder</span>):</span></span><br><span class="line">    files = os.listdir(folder)</span><br><span class="line">    dic = []</span><br><span class="line">    spm_num = []</span><br><span class="line">    dic_num = []</span><br><span class="line">    sp = <span class="number">0</span></span><br><span class="line">    msg = <span class="number">0</span></span><br><span class="line">    D = <span class="built_in">len</span>(files)</span><br><span class="line">    <span class="keyword">for</span> f <span class="keyword">in</span> files:</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;spmsg&quot;</span> <span class="keyword">in</span> f:</span><br><span class="line">            sp = sp+<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            msg = msg+<span class="number">1</span></span><br><span class="line">        words = re.split(<span class="string">&quot;\n| &quot;</span>, <span class="built_in">open</span>(folder+<span class="string">&quot;//&quot;</span>+f, <span class="string">&quot;r&quot;</span>).read())</span><br><span class="line">        words = <span class="built_in">list</span>(<span class="built_in">filter</span>(<span class="literal">None</span>, words))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">            <span class="keyword">if</span> word <span class="keyword">not</span> <span class="keyword">in</span> dic:</span><br><span class="line">                dic.append(word)</span><br><span class="line">                dic_num.append(<span class="number">1</span>)</span><br><span class="line">                spm_num.append(<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                n = dic.index(word)</span><br><span class="line">                dic_num[n] = dic_num[n]+<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> <span class="string">&quot;spmsg&quot;</span> <span class="keyword">in</span> f:</span><br><span class="line">                spm_num[dic.index(word)] = spm_num[dic.index(word)]+<span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 0 label = spam</span></span><br><span class="line">    <span class="comment"># 1 label = msg</span></span><br><span class="line">    Pc0 = sp/D</span><br><span class="line">    Pc1 = msg/D</span><br><span class="line">    V_len = <span class="built_in">len</span>(dic)</span><br><span class="line">    p0k = [<span class="number">.0</span>]*V_len</span><br><span class="line">    p1k = [<span class="number">.0</span>]*V_len</span><br><span class="line">    V0 = <span class="built_in">sum</span>(spm_num)</span><br><span class="line">    V1 = <span class="built_in">sum</span>(dic_num)-V0</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(V_len):</span><br><span class="line">        p0k[i] = (spm_num[i]+<span class="number">1</span>)/(V0+V_len)</span><br><span class="line">        p1k[i] = (dic_num[i]-spm_num[i]+<span class="number">1</span>)/(V1+V_len)</span><br><span class="line">    <span class="keyword">return</span> Pc0, Pc1, dic, p0k, p1k</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_naive_bayes</span>(<span class="params">email, Pc0, Pc1, dic, p0k, p1k</span>):</span></span><br><span class="line">    f = re.split(<span class="string">&quot;\n| &quot;</span>, <span class="built_in">open</span>(email, <span class="string">&quot;r&quot;</span>).read())</span><br><span class="line">    I = []</span><br><span class="line">    x = <span class="built_in">list</span>(<span class="built_in">filter</span>(<span class="literal">None</span>, f))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> x:</span><br><span class="line">        <span class="keyword">if</span> i <span class="keyword">in</span> dic <span class="keyword">and</span> (i <span class="keyword">not</span> <span class="keyword">in</span> I):</span><br><span class="line">            I.append(i)</span><br><span class="line">    decimal.getcontext().prec = <span class="number">2048</span>  <span class="comment"># for &#x27;precise enough&#x27; floats</span></span><br><span class="line">    predict_0 = decimal.Decimal(Pc0)</span><br><span class="line">    predict_1 = decimal.Decimal(Pc1)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> I:</span><br><span class="line">        n = dic.index(i)</span><br><span class="line">        predict_0 = predict_0*decimal.Decimal(p0k[n])</span><br><span class="line">        predict_1 = predict_1*decimal.Decimal(p1k[n])</span><br><span class="line">    <span class="comment"># print(predict_0,predict_1)</span></span><br><span class="line">    <span class="keyword">return</span> predict_0 &gt; predict_1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># remove_nonalphabelta_character(&quot;train-mails&quot;)</span></span><br><span class="line"><span class="comment"># remove_nonalphabelta_character(&quot;test-mails&quot;)</span></span><br><span class="line"></span><br><span class="line">Pc0, Pc1, dic, p0k, p1k = train_naive_bayes(<span class="string">&quot;train-mails_RM&quot;</span>)</span><br><span class="line">files = os.listdir(<span class="string">&quot;test-mails_RM&quot;</span>)</span><br><span class="line">N = <span class="built_in">len</span>(files)</span><br><span class="line"></span><br><span class="line">false_negative = false_positive = <span class="number">0</span></span><br><span class="line">sp = msg = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> f <span class="keyword">in</span> files:</span><br><span class="line">    path = <span class="string">&quot;test-mails_RM//&quot;</span>+f</span><br><span class="line">    t = test_naive_bayes(path, Pc0, Pc1, dic, p0k, p1k)</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;spmsg&quot;</span> <span class="keyword">in</span> f:</span><br><span class="line">        sp = sp+<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> t != <span class="literal">True</span>:</span><br><span class="line">            print(<span class="literal">True</span>, t)</span><br><span class="line">            false_negative = false_negative+<span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        msg = msg+<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> t != <span class="literal">False</span>:</span><br><span class="line">            print(<span class="literal">False</span>, t)</span><br><span class="line">            false_positive = false_positive+<span class="number">1</span></span><br><span class="line">print(sp)</span><br><span class="line">precision = (sp-false_negative)/(sp-false_negative+false_positive)</span><br><span class="line">recall = (sp-false_negative)/sp</span><br><span class="line">F_score=<span class="number">2</span>/(<span class="number">1</span>/precision+<span class="number">1</span>/recall)</span><br><span class="line">print(precision,recall,F_score)</span><br><span class="line"><span class="comment"># output</span></span><br><span class="line"><span class="comment"># False True</span></span><br><span class="line"><span class="comment"># True False</span></span><br><span class="line"><span class="comment"># 49</span></span><br><span class="line"><span class="comment"># 0.9795918367346939 0.9795918367346939 0.979591836734694</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>&nbsp;<br>&nbsp;</p>
+<h2 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h2><p>As we can see, the results on the test sets are rather good. Only one spam email is classified as normal email and only one normal email is  incorrectly classified as spam.</p>
+<p>Thus the total result is as follows:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">output</span><br><span class="line">False True</span><br><span class="line">True False</span><br><span class="line"><span class="number">49</span></span><br><span class="line">precision		   recall 			  F_score</span><br><span class="line"><span class="number">0.9795918367346939</span> <span class="number">0.9795918367346939</span> <span class="number">0.979591836734694</span></span><br></pre></td></tr></table></figure>
+
+    
+
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          Bellin
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://tl2cents.github.io/2021/07/21/Naive-Bayes/" title="Naive Bayes" target="_blank">https://tl2cents.github.io/2021/07/21/Naive-Bayes/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">writeup</a>
-        		</li>
-      		
-		</ul>
-	</div>
+          遵循CC 4.0 BY-SA版权协议，转载请注明出处
+        </li>
+        
+      </ul>
+    </div>
+    
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/CTF//" class="article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
   </div>
-</article>
-  
+  <div class="article-info article-info-index">
     
     
-    <article class="archive-article archive-type-blog">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/03/28/Mai-senpai's%20Secret/" class="archive-article-date">
-        <time datetime="2021-03-28T15:47:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-28</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/03/28/Mai-senpai's%20Secret/" target="_blank">Mai-senpai&#39;s Secret</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MISC</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/CTF//" class="article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-blog">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/03/28/%E9%BA%BB%E8%A1%A3%E5%AD%A6%E5%A7%90%E7%9A%84%E7%A7%98%E5%AF%86/" class="archive-article-date">
-        <time datetime="2021-03-28T15:47:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-28</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/03/28/%E9%BA%BB%E8%A1%A3%E5%AD%A6%E5%A7%90%E7%9A%84%E7%A7%98%E5%AF%86/" target="_blank">麻衣学姐的秘密</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MISC</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/CTF//" class="article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-blog">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/03/20/USTC%20OS%202021%20Spring%20HW1/" class="archive-article-date">
-        <time datetime="2021-03-20T12:42:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-20</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/03/20/USTC%20OS%202021%20Spring%20HW1/" target="_blank">USTC OS 2021 Spring HW1</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -418,40 +319,146 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">0S2021</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/OS-2021//" class="article-tag-list-link color3">OS 2021</a>
+        			<a href="/categories/Machine-Learning//" class="article-tag-list-link color2">Machine Learning</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+    
 
     
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/3/">Prev page</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/page/5/">5</a><a class="extend next" rel="next" href="/archives/page/5/">Next page</a>
-    </nav>
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://tl2cents.github.io/2021/07/21/Naive-Bayes/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+
+<nav id="article-nav">
   
+    <a href="/2021/07/21/Logistic-Regression-and-Stochastic-Gradient-Descent/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Logistic Regression and Stochastic Gradient Descent
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/07/18/USTC%20OS%202021%20Spring%20HW5/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">USTC OS 2021 Spring HW5</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Naive-Bayes-Realized-By-Python"><span class="toc-number">1.</span> <span class="toc-text">Naive Bayes Realized By Python</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Exercise-3-Programming-Exercise-Naive-Bayes"><span class="toc-number">1.1.</span> <span class="toc-text">Exercise 3: Programming Exercise: Naive Bayes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Remove-non-alphabelta-tokens"><span class="toc-number">1.2.</span> <span class="toc-text">Remove non-alphabelta tokens</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Training-and-Testing"><span class="toc-number">1.3.</span> <span class="toc-text">Training and Testing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Results"><span class="toc-number">1.4.</span> <span class="toc-text">Results</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
           </div>
@@ -480,8 +487,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

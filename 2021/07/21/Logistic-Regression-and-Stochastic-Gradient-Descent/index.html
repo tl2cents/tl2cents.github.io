@@ -9,17 +9,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://tl2cents.github.io">
-  <title>Archives | Bellin&#39;s blog</title>
+  <title>Logistic Regression and Stochastic Gradient Descent | Bellin&#39;s blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Bellin&#39;s blog">
-<meta property="og:url" content="https://tl2cents.github.io/archives/page/4/index.html">
+  <meta name="description" content="Logistic Regression and Stochastic Gradient DescentExerciseWe provide you with a dataset of handwritten digits1 that contains a training set of 60000 examples and a test set of 2018 examples (“hw4 lr.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Logistic Regression and Stochastic Gradient Descent">
+<meta property="og:url" content="https://tl2cents.github.io/2021/07/21/Logistic-Regression-and-Stochastic-Gradient-Descent/index.html">
 <meta property="og:site_name" content="Bellin&#39;s blog">
+<meta property="og:description" content="Logistic Regression and Stochastic Gradient DescentExerciseWe provide you with a dataset of handwritten digits1 that contains a training set of 60000 examples and a test set of 2018 examples (“hw4 lr.">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tl2cents.github.io/2021/07/21/Logistic-Regression-and-Stochastic-Gradient-Descent/21.png">
+<meta property="og:image" content="https://tl2cents.github.io/2021/07/21/Logistic-Regression-and-Stochastic-Gradient-Descent/UNDER.png">
+<meta property="article:published_time" content="2021-07-21T10:55:45.000Z">
+<meta property="article:modified_time" content="2021-07-21T11:02:42.879Z">
 <meta property="article:author" content="Bellin">
+<meta property="article:tag" content="USTC">
+<meta property="article:tag" content="Machine Learning">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tl2cents.github.io/2021/07/21/Logistic-Regression-and-Stochastic-Gradient-Descent/21.png">
   
     <link rel="alternative" href="/atom.xml" title="Bellin&#39;s blog" type="application/atom+xml">
   
@@ -200,215 +209,129 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="blog-Logistic-Regression-and-Stochastic-Gradient-Descent" class="article article-type-blog " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-blog">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/03/28/DASCTF-WriteUp/" class="archive-article-date">
-        <time datetime="2021-03-28T15:47:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-28</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/03/28/DASCTF-WriteUp/" target="_blank">DASCTF2021-WriteUp</a>
   
+    <h1 class="article-title" itemprop="name">
+      Logistic Regression and Stochastic Gradient Descent
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+<a href="/2021/07/21/Logistic-Regression-and-Stochastic-Gradient-Descent/" class="archive-article-date">
+        <time datetime="2021-07-21T10:55:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-21</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">515字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">3分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    <!-- newly added -->
+    
+    <!-- newly added -->
+    
+    <h1 id="Logistic-Regression-and-Stochastic-Gradient-Descent"><a href="#Logistic-Regression-and-Stochastic-Gradient-Descent" class="headerlink" title="Logistic Regression and Stochastic Gradient Descent"></a>Logistic Regression and Stochastic Gradient Descent</h1><h2 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h2><p><strong>We provide you with a dataset of handwritten digits1 that contains a training set of 60000 examples and a test set of 2018 examples (“hw4 lr.zip”). Each image in this dataset has 28 × 28 pixels and the associated label is the handwritten digit—that is, an integer from the set {0, 1, · · · , 9}—in the image. In this exercise, you need to build a logistic regression classifier to predict if a given image has the handwritten digit 9 in it or not. You can use your favorite programming language to finish this exercise.</strong> </p>
+<ol>
+<li><p>(a) Choose a proper normalization method to process the data matrix. Please report the normalization method you use. </p>
+<p>(b) Find a Lipschitz constant of ∇L(w), where L(w) is the objective function of the logistic regression after normalizing and w is the model parameter to be estimated. Please report your result. </p>
+</li>
+<li><p>(a) Use GD and SGD to train the logistic regression classifier on the training set, respectively. Evaluate the classification accuracy on the training set after each iteration. Stop the iteration when Accuracy ≥ 90% or total steps are more than 5000. Please plot the accuracy of these two classifiers (the one trained by GD and the other trained by SGD) versus the iteration step on one graph. </p>
+<p>(b) Compare the total iteration counts and the total time cost of the two methods (GD and SGD), respectively. Please report your result.</p>
+<p>(c) Compare the confusion matrix, precision, recall and F1 score of the two classifiers (the one trained by GD and the other trained by SGD). Please report your result. </p>
+</li>
+<li><p>(a) The training set is imbalanced as the majority class has roughly ten times more images than the minority class. Imbalanced data can hurt the performance of the classifiers badly. Thus, please undersample the majority class such that the numbers of images in the two classes are roughly the same. </p>
+<p>(b) Use GD to train the logistic regression classifier on the new training set after undersampling. Stop the iteration when Accuracy ≥ 90% or total steps are more than 5000. </p>
+<p>(c) Evaluate the two classifiers (the one trained with GD on the original training set and the other trained on the new training set after undersampling) on the test set. Compare the confusion matrix, precision, recall and F1 score of the two classifiers. Please report your result.</p>
+</li>
+</ol>
+<p>&nbsp;<br>&nbsp;</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h3><h4 id="a"><a href="#a" class="headerlink" title="(a)."></a>(a).</h4><p>First ,the original data point is a pixel (28*28), I consider flattening all the graphs and then I get a vector (784,1).After this transformation, I get a input training data  matrix with size (60000，784）</p>
+<p>Since all the pixel values are in the range [0,255],  I just divide the data matrix X by 255 , and then insert one column (1,1,1,…,1).T into the matrix.<br>&nbsp;<br>&nbsp;</p>
+<h4 id="b"><a href="#b" class="headerlink" title="(b)"></a>(b)</h4><script type="math/tex; mode=display">
+∇^2L(w) = XΣ_wX,\, where\, Σ_w \,is \,a\, diagonal\, matrix \,with\, its\, i_{th} \,entry \,on\, its\, diagonal\, being\\ 
+h_i=\frac{exp(−w, \bar{x}_i)}{(1 + exp(−w, \bar{x}_i))^2}</script><p>Since h<sub>i</sub>&lt;=1  , we can get that </p>
+<script type="math/tex; mode=display">
+||∇^2L(w)||<\frac{||X^T*X||}{4}</script><p>As total function we use is L(w)/n, thus the Lipschitz constant can get is :</p>
+<script type="math/tex; mode=display">
+L=\frac{X^T*X}{4n}\\
+(Note: we \, use\quad \frac{L(w)}{n} \quad  as\, our \, target\,loss \,fuction )</script><p>The result we get is </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">9.77436284224097</span></span><br></pre></td></tr></table></figure>
+<p>&nbsp;<br>&nbsp;</p>
+<h3 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h3><p>Since in SGD it’s easy to jump to a extreme point(it’s easy to achieve accuracy 0.9, but it’s rather bad on the test sets), I let the stopping point be p &gt; 0.925.</p>
+<p>The output is as follows:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">the call <span class="title">GD_of_LR</span><span class="params">()</span>:</span></span><br><span class="line">start time is 2021-05-07 14:21:00.763145</span><br><span class="line">end time is <span class="number">2021</span><span class="number">-05</span><span class="number">-07</span> <span class="number">14</span>:<span class="number">25</span>:<span class="number">20.313422</span></span><br><span class="line">the total cost ：<span class="number">0</span>:<span class="number">04</span>:<span class="number">19.550277</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function">the call <span class="title">SGD_of_LR</span><span class="params">()</span>:</span></span><br><span class="line">start time is 2021-05-07 14:25:20.314141</span><br><span class="line">end time is <span class="number">2021</span><span class="number">-05</span><span class="number">-07</span> <span class="number">14</span>:<span class="number">25</span>:<span class="number">27.904874</span></span><br><span class="line">the total cost ：<span class="number">0</span>:<span class="number">00</span>:<span class="number">07.590733</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#	accuracy, 			precision, 			recall, 			F1_score,			steps</span></span><br><span class="line">GD (<span class="number">0.3736372646184341</span>, <span class="number">0.6104751994450226</span>, <span class="number">0.9258285113098369</span>, <span class="number">0.7357859531772576</span>) <span class="number">420</span></span><br><span class="line"></span><br><span class="line">SGD (<span class="number">0.2869177403369673</span>, <span class="number">0.5755395683453237</span>, <span class="number">0.9258285113098369</span>, <span class="number">0.7098205283323251</span>) <span class="number">303</span></span><br></pre></td></tr></table></figure>
+<p>We can see that SGD runs much faster than GD . Their effect on the training set is not much different(accuracy, precision, recall,F1_score).</p>
+<p>The iteration plot is as follows. The accuracy of GD increase almost all the time, but the accuracy of SGD fluctuates a lot.</p>
+<p><img src="21.png" alt="21"></p>
+<p>&nbsp;<br>&nbsp;</p>
+<h3 id="3"><a href="#3" class="headerlink" title="3."></a>3.</h3><p>In this session, I choose all the 5949 data points whose label is 9 and I randomly select other 5949 samples . Finally I use all the about 12000 data points to train my logistic regression model. The results I get are as follows:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">the call <span class="title">GD_of_LR</span><span class="params">()</span>:</span></span><br><span class="line">start time is 2021-05-07 14:50:16.691031</span><br><span class="line">end time is <span class="number">2021</span><span class="number">-05</span><span class="number">-07</span> <span class="number">14</span>:<span class="number">56</span>:<span class="number">39.733480</span></span><br><span class="line">the total cost ：<span class="number">0</span>:<span class="number">06</span>:<span class="number">23.042449</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function">the call <span class="title">SGD_of_LR</span><span class="params">()</span>:</span></span><br><span class="line">start time is 2021-05-07 14:56:39.733480</span><br><span class="line">end time is <span class="number">2021</span><span class="number">-05</span><span class="number">-07</span> <span class="number">14</span>:<span class="number">57</span>:<span class="number">33.642944</span></span><br><span class="line">the total cost ：<span class="number">0</span>:<span class="number">00</span>:<span class="number">53.909464</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#	accuracy, 			precision, 			recall, 			F1_score,			steps</span></span><br><span class="line">GD (<span class="number">0.5584737363726462</span>, <span class="number">0.7008750994431185</span>, <span class="number">0.9268805891635981</span>, <span class="number">0.7981879954699886</span>) <span class="number">2215</span></span><br><span class="line">SGD (<span class="number">0.5505450941526263</span>, <span class="number">0.6967537608867775</span>, <span class="number">0.9258285113098369</span>, <span class="number">0.7951208493336346</span>) <span class="number">10643</span></span><br></pre></td></tr></table></figure>
+<p>In this training model, its step size is small, and it cost a lot steps. From the point of the time cost , SGD is still rather faster than GD, and its steps are about five times of GD. We can see that SGD is really faster than GD in real application, but it’s not stable which means that SGD will not converge monotonously to the best solution (or even worse it won’t), but it’s effect is usually very good and we don’t want a overfitting model either.</p>
+<p>The plot of p with iterations are as follows:</p>
+<p><img src="UNDER.png" alt="UNDER"></p>
+<p>&nbsp;<br>&nbsp;</p>
+<h2 id="Codes"><a href="#Codes" class="headerlink" title="Codes"></a>Codes</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> wraps</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line">np.set_printoptions(threshold=np.inf)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">timer</span>(<span class="params">func</span>):</span></span><br><span class="line"><span class="meta">    @wraps(<span class="params">func</span>)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inner</span>(<span class="params">*args, **kwargs</span>):</span></span><br><span class="line">        start_time = datetime.now()</span><br><span class="line">        print(<span class="string">&#x27;the call %s():&#x27;</span> % func.__name__)</span><br><span class="line">        print(<span class="string">&quot;start time is &#123;&#125;&quot;</span>.<span class="built_in">format</span>(datetime.now()))</span><br><span class="line">        result = func(*args, **kwargs)</span><br><span class="line">        end_time = datetime.now()</span><br><span class="line">        print(<span class="string">&quot;end time is &#123;&#125;&quot;</span>.<span class="built_in">format</span>(datetime.now()))</span><br><span class="line">        print(<span class="string">&quot;the total cost ：&#123;&#125;&quot;</span>.<span class="built_in">format</span>(end_time - start_time))</span><br><span class="line">        print(<span class="string">&quot;\n\n&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> inner</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_data</span>(<span class="params">data_path=<span class="string">&quot;mnist.npy&quot;</span></span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;example for loading data&quot;&quot;&quot;</span></span><br><span class="line">    mnist_data = np.load(data_path, allow_pickle=<span class="literal">True</span>).item()</span><br><span class="line">    <span class="keyword">return</span> mnist_data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">logistic_func</span>(<span class="params">w, X, y</span>):</span></span><br><span class="line">    Y = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(X.shape[<span class="number">0</span>]):</span><br><span class="line">        t = X[i]@w</span><br><span class="line">        <span class="comment"># print(t.shape)</span></span><br><span class="line">        <span class="keyword">if</span> y[i] == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">if</span> t &lt; <span class="number">0</span>:</span><br><span class="line">                t1 = np.log(<span class="number">1</span>+np.exp(t))</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                t1 = -np.log(np.exp(-t)/(<span class="number">1</span>+np.exp(-t)))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> t &lt; <span class="number">0</span>:</span><br><span class="line">                t1 = -np.log(np.exp(t)/(<span class="number">1</span>+np.exp(t)))</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                t1 = np.log(<span class="number">1</span>+np.exp(-t))</span><br><span class="line">        Y = Y+t1</span><br><span class="line">    <span class="keyword">return</span> Y</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">logistic_der</span>(<span class="params">w, X, y</span>):</span></span><br><span class="line">    <span class="comment"># print(w.shape,X.shape,y.shape)</span></span><br><span class="line">    H = np.ones((X.shape[<span class="number">0</span>], <span class="number">1</span>))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(H.shape[<span class="number">0</span>]):</span><br><span class="line">        t = np.vdot(w.T, X[i])</span><br><span class="line">        <span class="keyword">if</span> t &gt; <span class="number">0</span>:</span><br><span class="line">            H[i] = <span class="number">1</span>/(<span class="number">1</span>+np.exp(-t))-y[i]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            H[i] = np.exp(t)/(<span class="number">1</span>+np.exp(t))-y[i]</span><br><span class="line">    <span class="keyword">return</span> X.T@H/X.shape[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">transform_X</span>(<span class="params">X</span>):</span></span><br><span class="line">    X = X/<span class="number">255</span></span><br><span class="line">    X = np.insert(X, <span class="number">0</span>, values=<span class="number">1</span>, axis=<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> X</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_Lipschitz</span>(<span class="params">X</span>):</span></span><br><span class="line">    L = np.linalg.norm(X.T@X)</span><br><span class="line">    <span class="comment"># for i in range(X.shape[0]):</span></span><br><span class="line">    <span class="comment"># np.linalg.norm(X.T@X)</span></span><br><span class="line">    <span class="keyword">return</span> L/X.shape[<span class="number">0</span>]/<span class="number">4</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@timer</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">GD_of_LR</span>(<span class="params">X, y, w0, stepsize, precesion=<span class="number">0.9</span></span>):</span></span><br><span class="line">    w = w0</span><br><span class="line">    p_arr = []</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="comment"># f=logistic_func(w,X,y)</span></span><br><span class="line">        <span class="comment"># print(&quot;f&quot;,f)</span></span><br><span class="line">        p = get_accurancy(w, X, y)</span><br><span class="line">        p_arr.append(p)</span><br><span class="line">        <span class="comment"># print(&#x27;p&#x27;, p)</span></span><br><span class="line">        <span class="keyword">if</span>(p &gt; precesion):</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        w = w-stepsize*logistic_der(w, X, y)</span><br><span class="line">        <span class="comment"># print(w)</span></span><br><span class="line">    <span class="keyword">return</span> w, p_arr</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@timer</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">SGD_of_LR</span>(<span class="params">X, y, w0, stepsize, precesion=<span class="number">0.9</span></span>):</span></span><br><span class="line">    w = w0</span><br><span class="line">    p_arr = []</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        p = get_accurancy(w, X, y)</span><br><span class="line">        p_arr.append(p)</span><br><span class="line">        <span class="comment"># print(&#x27;p&#x27;, p)</span></span><br><span class="line">        <span class="keyword">if</span> p &gt; precesion:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        num = np.random.randint(<span class="number">0</span>, X.shape[<span class="number">0</span>])</span><br><span class="line">        <span class="comment"># print(num)</span></span><br><span class="line">        t = np.vdot(w.T, X[num])</span><br><span class="line">        <span class="comment"># print(t)</span></span><br><span class="line">        <span class="keyword">if</span> t &gt; <span class="number">0</span>:</span><br><span class="line">            h = <span class="number">1</span>/(<span class="number">1</span>+math.exp(-t))-y[num]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            h = math.exp(t)/(<span class="number">1</span>+math.exp(t))-y[num]</span><br><span class="line">        <span class="comment"># print(X[num,:].shape,X.shape)</span></span><br><span class="line">        w = w-h*X[num].reshape(-<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> w, p_arr</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_all_measures</span>(<span class="params">w, X, y</span>):</span></span><br><span class="line">    y_head = np.multiply(X@w, <span class="number">2</span>*y-<span class="number">1</span>)</span><br><span class="line">    t = np.<span class="built_in">sum</span>(y &gt; <span class="number">0</span>)</span><br><span class="line">    num = np.<span class="built_in">sum</span>(y_head &gt; <span class="number">0</span>)</span><br><span class="line">    f_n = <span class="number">0</span></span><br><span class="line">    f_p = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(y_head.shape[<span class="number">0</span>]):</span><br><span class="line">        <span class="keyword">if</span> y_head[i] &gt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> y[i] == <span class="number">1</span>:</span><br><span class="line">                f_n = f_n+<span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                f_p = f_p+<span class="number">1</span></span><br><span class="line">    precision = (t-f_n)/(t-f_n+f_p)</span><br><span class="line">    recall = (t-f_n)/t</span><br><span class="line">    F_score = <span class="number">2</span>/(<span class="number">1</span>/precision+<span class="number">1</span>/recall)</span><br><span class="line">    <span class="keyword">return</span> num/y.shape[<span class="number">0</span>], precision, recall, F_score</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_accurancy</span>(<span class="params">w, X, y</span>):</span></span><br><span class="line">    y_head = np.multiply(X@w, <span class="number">2</span>*y-<span class="number">1</span>)</span><br><span class="line">    num = np.<span class="built_in">sum</span>(y_head &gt; <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> num/y.shape[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">undersample</span>(<span class="params">X, y</span>):</span></span><br><span class="line">    label = np.array(np.where(y == <span class="number">1</span>))</span><br><span class="line">    <span class="comment"># sample=X[y]</span></span><br><span class="line">    <span class="comment"># print(label.shape)</span></span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(label.shape[<span class="number">1</span>]):</span><br><span class="line">        num = np.random.randint(<span class="number">0</span>, X.shape[<span class="number">0</span>])</span><br><span class="line">        <span class="comment"># print(type(num),type(y))</span></span><br><span class="line">        <span class="keyword">while</span> num <span class="keyword">in</span> label:</span><br><span class="line">            num = np.random.randint(<span class="number">0</span>, X.shape[<span class="number">0</span>])</span><br><span class="line">        label = np.append(label, num)</span><br><span class="line">    <span class="comment"># print(label.shape)</span></span><br><span class="line">    sample = X[label]</span><br><span class="line">    sample_label = y[label]</span><br><span class="line">    <span class="keyword">return</span> sample, sample_label.reshape(-<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_p</span>(<span class="params">p1, p2</span>):</span></span><br><span class="line">    plt.figure(<span class="number">1</span>, figsize=(<span class="number">8</span>, <span class="number">5</span>))</span><br><span class="line">    <span class="comment"># print(p1.shape)</span></span><br><span class="line">    x = np.linspace(<span class="number">0</span>, <span class="built_in">len</span>(p1), num=<span class="built_in">len</span>(p1))</span><br><span class="line">    <span class="comment"># print(x)</span></span><br><span class="line">    plt.plot(x, p1, color=<span class="string">&quot;r&quot;</span>, label=<span class="string">&quot;GD training line&quot;</span>)</span><br><span class="line"></span><br><span class="line">    x = np.linspace(<span class="number">0</span>, <span class="built_in">len</span>(p2), num=<span class="built_in">len</span>(p2))</span><br><span class="line">    plt.plot(x, p2, color=<span class="string">&quot;b&quot;</span>, label=<span class="string">&quot;SGD training line&quot;</span>)</span><br><span class="line">    plt.tick_params(labelsize=<span class="number">15</span>)</span><br><span class="line">    <span class="comment"># 曲线风格，label样式</span></span><br><span class="line">    font = &#123;<span class="string">&#x27;family&#x27;</span>: <span class="string">&#x27;Times New Roman&#x27;</span>, <span class="string">&#x27;size&#x27;</span>: <span class="number">20</span>&#125;</span><br><span class="line">    plt.xlabel(<span class="string">&#x27;x/steps&#x27;</span>, font)</span><br><span class="line">    plt.ylabel(<span class="string">&#x27;y/accuracy&#x27;</span>, font, rotation=<span class="string">&#x27;horizontal&#x27;</span>)</span><br><span class="line">    plt.legend()</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    mnist_data = load_data()</span><br><span class="line">    <span class="keyword">for</span> key, value <span class="keyword">in</span> mnist_data.items():</span><br><span class="line">        print(<span class="string">f&quot;<span class="subst">&#123;key&#125;</span> shape: <span class="subst">&#123;value.shape&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="comment"># print(type(mnist_data))</span></span><br><span class="line">    train_img = mnist_data[<span class="string">&#x27;train_images&#x27;</span>]</span><br><span class="line">    <span class="comment"># print(type(train_img[0]),train_img[0].shape)</span></span><br><span class="line">    test_img = mnist_data[<span class="string">&#x27;test_images&#x27;</span>]</span><br><span class="line">    train_label = mnist_data[<span class="string">&#x27;train_labels&#x27;</span>]</span><br><span class="line">    test_label = mnist_data[<span class="string">&#x27;test_labels&#x27;</span>]</span><br><span class="line">    testdata = np.reshape(test_img, (-<span class="number">1</span>, <span class="number">28</span>*<span class="number">28</span>))</span><br><span class="line">    testlabel = test_label.reshape(-<span class="number">1</span>, <span class="number">1</span>)//<span class="number">9</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">        print(np.<span class="built_in">sum</span>(train_label == i))</span><br><span class="line">    X = np.reshape(train_img, (-<span class="number">1</span>, <span class="number">28</span>*<span class="number">28</span>))</span><br><span class="line">    X_head = transform_X(X)</span><br><span class="line">    L = get_Lipschitz(X_head)</span><br><span class="line">    print(L)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># w0 = np.ones([np.shape(X_head)[1], 1])</span></span><br><span class="line">    w0 = np.random.rand(np.shape(X_head)[<span class="number">1</span>], <span class="number">1</span>)</span><br><span class="line">    y = train_label//<span class="number">9</span></span><br><span class="line">    sample, sample_label = undersample(X_head, y)</span><br><span class="line">    <span class="comment"># GD</span></span><br><span class="line">    L = get_Lipschitz(sample)</span><br><span class="line">    w1, p1 = GD_of_LR(sample, sample_label, w0, <span class="number">1</span>/L, <span class="number">0.925</span>)</span><br><span class="line">    w2, p2 = SGD_of_LR(sample, sample_label, w0, <span class="number">1</span>/(<span class="number">12000</span>*L), <span class="number">0.925</span>)</span><br><span class="line">    <span class="comment"># w1, p1 = GD_of_LR(X_head, y.reshape(-1, 1), w0, 1/L, 0.925)</span></span><br><span class="line">    <span class="comment"># w2, p2 = SGD_of_LR(X_head, y.reshape(-1, 1), w0, 2/(L*600000), 0.925)</span></span><br><span class="line">    <span class="comment"># data = np.load(&quot;data.npz&quot;, allow_pickle=True)</span></span><br><span class="line">    <span class="comment"># w1 = data[&#x27;w1&#x27;]</span></span><br><span class="line">    <span class="comment"># w2 = data[&#x27;w2&#x27;]</span></span><br><span class="line">    <span class="comment"># p1 = data[&#x27;p1&#x27;]</span></span><br><span class="line">    <span class="comment"># p2 = data[&#x27;p2&#x27;]</span></span><br><span class="line">    np.savez(<span class="string">&quot;data&quot;</span>, w1=w1, p1=p1, w2=w2, p2=p2)</span><br><span class="line">    test = transform_X(testdata)</span><br><span class="line">    p = get_all_measures(w1, test, test_label.reshape(-<span class="number">1</span>, <span class="number">1</span>))</span><br><span class="line">    print(<span class="string">&quot;GD&quot;</span>, p, <span class="built_in">len</span>(p1))</span><br><span class="line">    p = get_all_measures(w2, test, test_label.reshape(-<span class="number">1</span>, <span class="number">1</span>))</span><br><span class="line">    print(<span class="string">&quot;SGD&quot;</span>, p, <span class="built_in">len</span>(p2))</span><br><span class="line">    plot_p(p1, p2)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+    
+
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          Bellin
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://tl2cents.github.io/2021/07/21/Logistic-Regression-and-Stochastic-Gradient-Descent/" title="Logistic Regression and Stochastic Gradient Descent" target="_blank">https://tl2cents.github.io/2021/07/21/Logistic-Regression-and-Stochastic-Gradient-Descent/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">writeup</a>
-        		</li>
-      		
-		</ul>
-	</div>
+          遵循CC 4.0 BY-SA版权协议，转载请注明出处
+        </li>
+        
+      </ul>
+    </div>
+    
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/CTF//" class="article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
   </div>
-</article>
-  
+  <div class="article-info article-info-index">
     
     
-    <article class="archive-article archive-type-blog">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/03/28/Mai-senpai's%20Secret/" class="archive-article-date">
-        <time datetime="2021-03-28T15:47:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-28</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/03/28/Mai-senpai's%20Secret/" target="_blank">Mai-senpai&#39;s Secret</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MISC</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/CTF//" class="article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-blog">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/03/28/%E9%BA%BB%E8%A1%A3%E5%AD%A6%E5%A7%90%E7%9A%84%E7%A7%98%E5%AF%86/" class="archive-article-date">
-        <time datetime="2021-03-28T15:47:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-28</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/03/28/%E9%BA%BB%E8%A1%A3%E5%AD%A6%E5%A7%90%E7%9A%84%E7%A7%98%E5%AF%86/" target="_blank">麻衣学姐的秘密</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MISC</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/CTF//" class="article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-blog">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/03/20/USTC%20OS%202021%20Spring%20HW1/" class="archive-article-date">
-        <time datetime="2021-03-20T12:42:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-20</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/03/20/USTC%20OS%202021%20Spring%20HW1/" target="_blank">USTC OS 2021 Spring HW1</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -418,40 +341,137 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">0S2021</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/OS-2021//" class="article-tag-list-link color3">OS 2021</a>
+        			<a href="/categories/Machine-Learning//" class="article-tag-list-link color2">Machine Learning</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+    
 
     
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/3/">Prev page</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/page/5/">5</a><a class="extend next" rel="next" href="/archives/page/5/">Next page</a>
-    </nav>
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://tl2cents.github.io/2021/07/21/Logistic-Regression-and-Stochastic-Gradient-Descent/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+
+<nav id="article-nav">
   
+  
+    <a href="/2021/07/21/Naive-Bayes/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Naive Bayes</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Logistic-Regression-and-Stochastic-Gradient-Descent"><span class="toc-number">1.</span> <span class="toc-text">Logistic Regression and Stochastic Gradient Descent</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Exercise"><span class="toc-number">1.1.</span> <span class="toc-text">Exercise</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">1.2.</span> <span class="toc-text">Solution</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#a"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">(a).</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#b"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">(b)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3"><span class="toc-number">1.2.3.</span> <span class="toc-text">3.</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Codes"><span class="toc-number">1.3.</span> <span class="toc-text">Codes</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
           </div>
@@ -480,8 +500,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
