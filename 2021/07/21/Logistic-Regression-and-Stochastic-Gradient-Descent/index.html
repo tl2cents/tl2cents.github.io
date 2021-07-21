@@ -9,21 +9,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://tl2cents.github.io">
-  <title>Logistic Regression and Stochastic Gradient Descent | Bellin&#39;s blog</title>
+  <title>SGD on LR | Bellin&#39;s blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="Logistic Regression and Stochastic Gradient DescentExerciseWe provide you with a dataset of handwritten digits1 that contains a training set of 60000 examples and a test set of 2018 examples (“hw4 lr.">
+  <meta name="description" content="Logistic Regression and Stochastic Gradient DescentSGD and GD on LRWe provide you with a dataset of handwritten digits1 that contains a training set of 60000 examples and a test set of 2018 examples (">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Logistic Regression and Stochastic Gradient Descent">
+<meta property="og:title" content="SGD on LR">
 <meta property="og:url" content="https://tl2cents.github.io/2021/07/21/Logistic-Regression-and-Stochastic-Gradient-Descent/index.html">
 <meta property="og:site_name" content="Bellin&#39;s blog">
-<meta property="og:description" content="Logistic Regression and Stochastic Gradient DescentExerciseWe provide you with a dataset of handwritten digits1 that contains a training set of 60000 examples and a test set of 2018 examples (“hw4 lr.">
+<meta property="og:description" content="Logistic Regression and Stochastic Gradient DescentSGD and GD on LRWe provide you with a dataset of handwritten digits1 that contains a training set of 60000 examples and a test set of 2018 examples (">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://tl2cents.github.io/2021/07/21/Logistic-Regression-and-Stochastic-Gradient-Descent/21.png">
 <meta property="og:image" content="https://tl2cents.github.io/2021/07/21/Logistic-Regression-and-Stochastic-Gradient-Descent/UNDER.png">
 <meta property="article:published_time" content="2021-07-21T10:55:45.000Z">
-<meta property="article:modified_time" content="2021-07-21T11:02:42.879Z">
+<meta property="article:modified_time" content="2021-07-21T11:18:36.444Z">
 <meta property="article:author" content="Bellin">
 <meta property="article:tag" content="USTC">
 <meta property="article:tag" content="Machine Learning">
@@ -216,7 +216,7 @@
   
   
     <h1 class="article-title" itemprop="name">
-      Logistic Regression and Stochastic Gradient Descent
+      SGD on LR
     </h1>
   
 
@@ -237,7 +237,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">515字</span>
+      <span class="post-count">519字</span>
     </span>
   </span>
 
@@ -260,7 +260,7 @@
     
     <!-- newly added -->
     
-    <h1 id="Logistic-Regression-and-Stochastic-Gradient-Descent"><a href="#Logistic-Regression-and-Stochastic-Gradient-Descent" class="headerlink" title="Logistic Regression and Stochastic Gradient Descent"></a>Logistic Regression and Stochastic Gradient Descent</h1><h2 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h2><p><strong>We provide you with a dataset of handwritten digits1 that contains a training set of 60000 examples and a test set of 2018 examples (“hw4 lr.zip”). Each image in this dataset has 28 × 28 pixels and the associated label is the handwritten digit—that is, an integer from the set {0, 1, · · · , 9}—in the image. In this exercise, you need to build a logistic regression classifier to predict if a given image has the handwritten digit 9 in it or not. You can use your favorite programming language to finish this exercise.</strong> </p>
+    <h1 id="Logistic-Regression-and-Stochastic-Gradient-Descent"><a href="#Logistic-Regression-and-Stochastic-Gradient-Descent" class="headerlink" title="Logistic Regression and Stochastic Gradient Descent"></a>Logistic Regression and Stochastic Gradient Descent</h1><h2 id="SGD-and-GD-on-LR"><a href="#SGD-and-GD-on-LR" class="headerlink" title="SGD and GD on LR"></a>SGD and GD on LR</h2><p><strong>We provide you with a dataset of handwritten digits1 that contains a training set of 60000 examples and a test set of 2018 examples (“hw4 lr.zip”). Each image in this dataset has 28 × 28 pixels and the associated label is the handwritten digit—that is, an integer from the set {0, 1, · · · , 9}—in the image. In this exercise, you need to build a logistic regression classifier to predict if a given image has the handwritten digit 9 in it or not. You can use your favorite programming language to finish this exercise.</strong><br><span id="more"></span></p>
 <ol>
 <li><p>(a) Choose a proper normalization method to process the data matrix. Please report the normalization method you use. </p>
 <p>(b) Find a Lipschitz constant of ∇L(w), where L(w) is the objective function of the logistic regression after normalizing and w is the model parameter to be estimated. Please report your result. </p>
@@ -275,7 +275,7 @@
 </li>
 </ol>
 <p>&nbsp;<br>&nbsp;</p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h3><h4 id="a"><a href="#a" class="headerlink" title="(a)."></a>(a).</h4><p>First ,the original data point is a pixel (28*28), I consider flattening all the graphs and then I get a vector (784,1).After this transformation, I get a input training data  matrix with size (60000，784）</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h3><h4 id="a"><a href="#a" class="headerlink" title="(a)."></a>(a).</h4><p>First ,the original data point is a pixel (28*28), I consider flattening all the graphs and then I get a vector (784,1).After this transformation, the input training data becomes a matrix with size (60000，784）</p>
 <p>Since all the pixel values are in the range [0,255],  I just divide the data matrix X by 255 , and then insert one column (1,1,1,…,1).T into the matrix.<br>&nbsp;<br>&nbsp;</p>
 <h4 id="b"><a href="#b" class="headerlink" title="(b)"></a>(b)</h4><script type="math/tex; mode=display">
 ∇^2L(w) = XΣ_wX,\, where\, Σ_w \,is \,a\, diagonal\, matrix \,with\, its\, i_{th} \,entry \,on\, its\, diagonal\, being\\ 
@@ -287,7 +287,7 @@ L=\frac{X^T*X}{4n}\\
 (Note: we \, use\quad \frac{L(w)}{n} \quad  as\, our \, target\,loss \,fuction )</script><p>The result we get is </p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">9.77436284224097</span></span><br></pre></td></tr></table></figure>
 <p>&nbsp;<br>&nbsp;</p>
-<h3 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h3><p>Since in SGD it’s easy to jump to a extreme point(it’s easy to achieve accuracy 0.9, but it’s rather bad on the test sets), I let the stopping point be p &gt; 0.925.</p>
+<h3 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h3><p>Since in SGD it’s easy to jump to an extreme point(it’s easy to achieve high accuracy such as 0.9, but it performs rather bad on the test sets), I let the stopping point be p &gt; 0.925.</p>
 <p>The output is as follows:</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">the call <span class="title">GD_of_LR</span><span class="params">()</span>:</span></span><br><span class="line">start time is 2021-05-07 14:21:00.763145</span><br><span class="line">end time is <span class="number">2021</span><span class="number">-05</span><span class="number">-07</span> <span class="number">14</span>:<span class="number">25</span>:<span class="number">20.313422</span></span><br><span class="line">the total cost ：<span class="number">0</span>:<span class="number">04</span>:<span class="number">19.550277</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function">the call <span class="title">SGD_of_LR</span><span class="params">()</span>:</span></span><br><span class="line">start time is 2021-05-07 14:25:20.314141</span><br><span class="line">end time is <span class="number">2021</span><span class="number">-05</span><span class="number">-07</span> <span class="number">14</span>:<span class="number">25</span>:<span class="number">27.904874</span></span><br><span class="line">the total cost ：<span class="number">0</span>:<span class="number">00</span>:<span class="number">07.590733</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#	accuracy, 			precision, 			recall, 			F1_score,			steps</span></span><br><span class="line">GD (<span class="number">0.3736372646184341</span>, <span class="number">0.6104751994450226</span>, <span class="number">0.9258285113098369</span>, <span class="number">0.7357859531772576</span>) <span class="number">420</span></span><br><span class="line"></span><br><span class="line">SGD (<span class="number">0.2869177403369673</span>, <span class="number">0.5755395683453237</span>, <span class="number">0.9258285113098369</span>, <span class="number">0.7098205283323251</span>) <span class="number">303</span></span><br></pre></td></tr></table></figure>
 <p>We can see that SGD runs much faster than GD . Their effect on the training set is not much different(accuracy, precision, recall,F1_score).</p>
@@ -315,7 +315,7 @@ L=\frac{X^T*X}{4n}\\
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://tl2cents.github.io/2021/07/21/Logistic-Regression-and-Stochastic-Gradient-Descent/" title="Logistic Regression and Stochastic Gradient Descent" target="_blank">https://tl2cents.github.io/2021/07/21/Logistic-Regression-and-Stochastic-Gradient-Descent/</a>
+          <a href="https://tl2cents.github.io/2021/07/21/Logistic-Regression-and-Stochastic-Gradient-Descent/" title="SGD on LR" target="_blank">https://tl2cents.github.io/2021/07/21/Logistic-Regression-and-Stochastic-Gradient-Descent/</a>
         </li>
         
         <li>
@@ -452,7 +452,7 @@ L=\frac{X^T*X}{4n}\\
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Logistic-Regression-and-Stochastic-Gradient-Descent"><span class="toc-number">1.</span> <span class="toc-text">Logistic Regression and Stochastic Gradient Descent</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Exercise"><span class="toc-number">1.1.</span> <span class="toc-text">Exercise</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">1.2.</span> <span class="toc-text">Solution</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#a"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">(a).</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#b"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">(b)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3"><span class="toc-number">1.2.3.</span> <span class="toc-text">3.</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Codes"><span class="toc-number">1.3.</span> <span class="toc-text">Codes</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Logistic-Regression-and-Stochastic-Gradient-Descent"><span class="toc-number">1.</span> <span class="toc-text">Logistic Regression and Stochastic Gradient Descent</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SGD-and-GD-on-LR"><span class="toc-number">1.1.</span> <span class="toc-text">SGD and GD on LR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">1.2.</span> <span class="toc-text">Solution</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#a"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">(a).</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#b"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">(b)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3"><span class="toc-number">1.2.3.</span> <span class="toc-text">3.</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Codes"><span class="toc-number">1.3.</span> <span class="toc-text">Codes</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
