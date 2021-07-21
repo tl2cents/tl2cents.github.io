@@ -13,26 +13,25 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="Operating System Homework 21. Including the initial parent process, how many processes are created by  the program shown in Figure 1?  Solution:First ,in the first circle, the main process split into">
+  <meta name="description" content="Operating System Homework 21. Including the initial parent process, how many processes are created by  the program shown in Figure 1?123456789#include&lt;stdio.h&gt;#include&lt;unistd.h&gt;int main()&amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="USTC OS 2021 Spring HW2">
 <meta property="og:url" content="https://tl2cents.github.io/2021/04/13/USTC%20OS%202021%20Spring%20HW2/index.html">
 <meta property="og:site_name" content="Bellin&#39;s blog">
-<meta property="og:description" content="Operating System Homework 21. Including the initial parent process, how many processes are created by  the program shown in Figure 1?  Solution:First ,in the first circle, the main process split into">
+<meta property="og:description" content="Operating System Homework 21. Including the initial parent process, how many processes are created by  the program shown in Figure 1?123456789#include&lt;stdio.h&gt;#include&lt;unistd.h&gt;int main()&amp;">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tl2cents.github.io/OS2021IMG/QQ截图20210404090658.png">
 <meta property="og:image" content="https://tl2cents.github.io/OS2021IMG/QQ截图20210413080141.png">
 <meta property="og:image" content="https://tl2cents.github.io/OS2021IMG/QQ截图20210404101324.png">
 <meta property="og:image" content="https://tl2cents.github.io/OS2021IMG/QQ截图20210404103825.png">
 <meta property="og:image" content="https://tl2cents.github.io/OS2021IMG/QQ截图20210404104826.png">
 <meta property="og:image" content="https://tl2cents.github.io/OS2021IMG/QQ截图20210404105726.png">
 <meta property="article:published_time" content="2021-04-12T23:52:22.000Z">
-<meta property="article:modified_time" content="2021-07-18T09:50:14.358Z">
+<meta property="article:modified_time" content="2021-07-21T11:33:36.403Z">
 <meta property="article:author" content="Bellin">
 <meta property="article:tag" content="USTC">
 <meta property="article:tag" content="0S2021">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tl2cents.github.io/OS2021IMG/QQ截图20210404090658.png">
+<meta name="twitter:image" content="https://tl2cents.github.io/OS2021IMG/QQ截图20210413080141.png">
   
     <link rel="alternative" href="/atom.xml" title="Bellin&#39;s blog" type="application/atom+xml">
   
@@ -264,9 +263,10 @@
     
     <!-- newly added -->
     
-    <h1 id="Operating-System-Homework-2"><a href="#Operating-System-Homework-2" class="headerlink" title="Operating System Homework 2"></a>Operating System Homework 2</h1><h2 id="1-Including-the-initial-parent-process-how-many-processes-are-created-by-the-program-shown-in-Figure-1"><a href="#1-Including-the-initial-parent-process-how-many-processes-are-created-by-the-program-shown-in-Figure-1" class="headerlink" title="1. Including the initial parent process, how many processes are created by  the program shown in Figure 1?"></a>1. Including the initial parent process, how many processes are created by  the program shown in Figure 1?</h2><center><img style="margin: 0 auto;" width="65%" height="65%" src="/OS2021IMG/QQ截图20210404090658.png" alt="OSHW2"/></center>
-
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution:"></a>Solution:</h2><p>First ,in the first circle, the main process split into two processes, and in the second circle, the two process split into 4 processes.<br><span id="more"></span><br>That is as follows</p>
+    <h1 id="Operating-System-Homework-2"><a href="#Operating-System-Homework-2" class="headerlink" title="Operating System Homework 2"></a>Operating System Homework 2</h1><h2 id="1-Including-the-initial-parent-process-how-many-processes-are-created-by-the-program-shown-in-Figure-1"><a href="#1-Including-the-initial-parent-process-how-many-processes-are-created-by-the-program-shown-in-Figure-1" class="headerlink" title="1. Including the initial parent process, how many processes are created by  the program shown in Figure 1?"></a>1. Including the initial parent process, how many processes are created by  the program shown in Figure 1?</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)</span><br><span class="line">        fork();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>&nbsp;</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution:"></a>Solution:</h2><p>First ,in the first circle, the main process split into two processes, and in the second circle, the two process split into 4 processes.<br>That is as follows</p>
 <center><img style="margin: 0 auto;" width="45%" height="45%" src="/OS2021IMG/QQ截图20210413080141.png" alt="OSHW2"/></center>
 
 <p>PS:  sub1 indicates that the value of i when the child process enters the loop next time is 1 and so on.</p>
