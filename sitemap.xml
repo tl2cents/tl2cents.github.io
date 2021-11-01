@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://tl2cents.github.io/2021/10/31/Hackgame2021/</loc>
+    
+    <lastmod>2021-11-01</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://tl2cents.github.io/2021/08/02/2021-DASCTF-July-WriteUp/</loc>
     
     <lastmod>2021-08-06</lastmod>
@@ -151,7 +158,7 @@
 
   <url>
     <loc>https://tl2cents.github.io/</loc>
-    <lastmod>2021-08-06</lastmod>
+    <lastmod>2021-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -159,63 +166,63 @@
   
   <url>
     <loc>https://tl2cents.github.io/tags/CTF/</loc>
-    <lastmod>2021-08-06</lastmod>
+    <lastmod>2021-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://tl2cents.github.io/tags/writeup/</loc>
-    <lastmod>2021-08-06</lastmod>
+    <lastmod>2021-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://tl2cents.github.io/tags/crypto/</loc>
-    <lastmod>2021-08-06</lastmod>
+    <lastmod>2021-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://tl2cents.github.io/tags/Writeup/</loc>
-    <lastmod>2021-08-06</lastmod>
+    <lastmod>2021-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://tl2cents.github.io/tags/MISC/</loc>
-    <lastmod>2021-08-06</lastmod>
+    <lastmod>2021-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://tl2cents.github.io/tags/USTC/</loc>
-    <lastmod>2021-08-06</lastmod>
+    <lastmod>2021-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://tl2cents.github.io/tags/0S2021/</loc>
-    <lastmod>2021-08-06</lastmod>
+    <lastmod>2021-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://tl2cents.github.io/tags/%E6%95%99%E7%A8%8B/</loc>
-    <lastmod>2021-08-06</lastmod>
+    <lastmod>2021-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://tl2cents.github.io/tags/Machine-Learning/</loc>
-    <lastmod>2021-08-06</lastmod>
+    <lastmod>2021-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -224,28 +231,28 @@
   
   <url>
     <loc>https://tl2cents.github.io/categories/CTF/</loc>
-    <lastmod>2021-08-06</lastmod>
+    <lastmod>2021-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://tl2cents.github.io/categories/OS-2021/</loc>
-    <lastmod>2021-08-06</lastmod>
+    <lastmod>2021-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://tl2cents.github.io/categories/HEXO/</loc>
-    <lastmod>2021-08-06</lastmod>
+    <lastmod>2021-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://tl2cents.github.io/categories/Machine-Learning/</loc>
-    <lastmod>2021-08-06</lastmod>
+    <lastmod>2021-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
