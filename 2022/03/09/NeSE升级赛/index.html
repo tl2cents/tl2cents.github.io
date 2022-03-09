@@ -9,20 +9,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://tl2cents.github.io">
-  <title>Bellin&#39;s blog</title>
+  <title>NeSE升级赛 | Bellin&#39;s blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-    
-    <!-- <meta name="keywords" content="">
-    <meta name="description" content=""> -->
-  
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Bellin&#39;s blog">
-<meta property="og:url" content="https://tl2cents.github.io/index.html">
+  <meta name="description" content="La Prairie 题解上周六（3.5）参加了NeSE乙升甲的升级赛，很幸运解出题通过了升级赛，以后就正式是NeSE主队队员了。接触CTF一年多，从萌新到会一点点密码学，这算是我参加CTF竞赛的又一个重要的开始节点。之后参加国际赛的次数可能也就多了起来，博客就随心情更吧，费心思去写详细的过程有时候虽然收获很多，但时间是真的不够用。最近还是老老实实忙正事，毕设还有大创都还有点云里雾里。特别是毕设大">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NeSE升级赛">
+<meta property="og:url" content="https://tl2cents.github.io/2022/03/09/NeSE%E5%8D%87%E7%BA%A7%E8%B5%9B/index.html">
 <meta property="og:site_name" content="Bellin&#39;s blog">
+<meta property="og:description" content="La Prairie 题解上周六（3.5）参加了NeSE乙升甲的升级赛，很幸运解出题通过了升级赛，以后就正式是NeSE主队队员了。接触CTF一年多，从萌新到会一点点密码学，这算是我参加CTF竞赛的又一个重要的开始节点。之后参加国际赛的次数可能也就多了起来，博客就随心情更吧，费心思去写详细的过程有时候虽然收获很多，但时间是真的不够用。最近还是老老实实忙正事，毕设还有大创都还有点云里雾里。特别是毕设大">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-09T12:08:33.000Z">
+<meta property="article:modified_time" content="2022-03-09T12:17:19.882Z">
 <meta property="article:author" content="Bellin">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="writeup">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Bellin&#39;s blog" type="application/atom+xml">
@@ -204,19 +206,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-
-  
-    <article id="blog-NeSE升级赛" class="article article-type-blog  article-index" itemscope itemprop="blogPost">
+            <article id="blog-NeSE升级赛" class="article article-type-blog " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/03/09/NeSE%E5%8D%87%E7%BA%A7%E8%B5%9B/" target="_blank">NeSE升级赛</a>
-  
+    <h1 class="article-title" itemprop="name">
+      NeSE升级赛
     </h1>
   
 
@@ -230,6 +227,27 @@
   
   
     
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">1.9k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">9分</span>
+    </span>
+  </span>
+</div>
+
 
   
   </header>
@@ -240,11 +258,94 @@
     <!-- newly added -->
     
     <h1 id="La-Prairie-题解"><a href="#La-Prairie-题解" class="headerlink" title="La Prairie 题解"></a>La Prairie 题解</h1><p>上周六（3.5）参加了NeSE乙升甲的升级赛，很幸运解出题通过了升级赛，以后就正式是NeSE主队队员了。接触CTF一年多，从萌新到会一点点密码学，这算是我参加CTF竞赛的又一个重要的开始节点。之后参加国际赛的次数可能也就多了起来，博客就随心情更吧，费心思去写详细的过程有时候虽然收获很多，但时间是真的不够用。最近还是老老实实忙正事，毕设还有大创都还有点云里雾里。特别是毕设大概率要从零开始学习java和安卓逆向了，但时今天还是在忙着摸鱼之际（bushi）抽空细写了这道和线性代数相关的密码学题解。</p>
-    
-    
+<span id="more"></span>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env sage</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> sha256</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> FLAG</span><br><span class="line"></span><br><span class="line">P, n, t = <span class="number">41</span>, <span class="number">64</span>, <span class="number">100</span></span><br><span class="line"></span><br><span class="line">F.&lt;x&gt; = PolynomialRing(GF(P))</span><br><span class="line">Q.&lt;x&gt; = F.quotient(x^(n // <span class="number">2</span>) - <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">G = GeneralDiscreteDistribution([<span class="number">0.5</span>] + [<span class="number">0.25</span>] * <span class="number">2</span>)</span><br><span class="line">password = random_vector(GF(P), n // <span class="number">2</span>).<span class="built_in">list</span>()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func_1</span>():</span></span><br><span class="line">    r, m, s = Q.random_element(), random_matrix(GF(P), n // <span class="number">2</span>, n), vector(GF(P), password + random_vector(GF(P), n // <span class="number">2</span>).<span class="built_in">list</span>())</span><br><span class="line">    b = [(r * F((m * s).<span class="built_in">list</span>()) + F([choice([-<span class="number">1</span>, <span class="number">1</span>]) * G.get_random_element() <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n // <span class="number">2</span>)])).<span class="built_in">list</span>() <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(t)]</span><br><span class="line">    print(<span class="built_in">str</span>(r.<span class="built_in">list</span>()) + <span class="string">&#x27;\n&#x27;</span> + <span class="built_in">str</span>(m.<span class="built_in">list</span>()) + <span class="string">&#x27;\n&#x27;</span> + <span class="built_in">str</span>(b))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func_2</span>():</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;&gt; &quot;</span>)) == <span class="built_in">int</span>(sha256(<span class="built_in">str</span>(password).encode()).hexdigest(), <span class="number">16</span>):</span><br><span class="line">        print(FLAG)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">&quot;[!] WRONG INPUT&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">menu</span>():</span></span><br><span class="line">    print(<span class="string">&quot;[1] GET SAMPLES\n[2] GET FLAG\n[3] EXIT&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2048</span>):</span><br><span class="line">        op = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;&gt; &quot;</span>))</span><br><span class="line">        <span class="keyword">if</span> op == <span class="number">1</span>:</span><br><span class="line">            func_1()</span><br><span class="line">        <span class="keyword">elif</span> op == <span class="number">2</span>:</span><br><span class="line">            func_2()</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">elif</span> op == <span class="number">3</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    menu()</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>最初分析会发现这是一道容错学习的问题（Learning With Errors），进而会发现这是定义在多项式环上的Module-LWE问题，去找相关论文和攻击，发现这方面的研究和现实里具体的攻击很少，之后干脆源码分析：</p>
+<script type="math/tex; mode=display">
+s= password+random\_vector(GF(P), n // 2).list()</script><p>其中password每一轮都是固定的。</p>
+<p>&nbsp;</p>
+<p>常量定义如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">P, n, t = <span class="number">41</span>, <span class="number">64</span>, <span class="number">100</span></span><br><span class="line">F.&lt;x&gt; = PolynomialRing(GF(P))</span><br><span class="line">Q.&lt;x&gt; = F.quotient(x^(n // <span class="number">2</span>) - <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<p>最主要的加密部分，已知r，m，b并且有如下关系：</p>
+<script type="math/tex; mode=display">
+b_i=r*F(m*s)+ error_i\\
+where \ r \in Q \quad and \quad i \in [1,2,...,t]
+\\
+Denote \quad \bar b= b_i-error=r*F(m*s)</script><p>&nbsp;</p>
+<p>注意到向量每个维度的error=[-1,-2,0,1,2]的概率分布是[1/8,1/8,1/2,1/8,1/8]，我们得到的加密结果向量b里面有一百次不同随机error的加密，故统计数组b内对应位置的数字的出现次数，出现次数最多的就是原来不带误差的值（这个占比高达50%）。因此可以通过统计特征恢复出<script type="math/tex">\bar b</script>。虽然这一步是最简单的，但最终卡在这个地方很久，因为不注意到概率分布的话，单纯用LWE的格去归约是算不出来的：模数p和误差error的上限相差有点小。</p>
+<p>&nbsp;</p>
+<p>恢复之后我们得到了一个多项式混合矩阵的乘法方程。当然我们可以先对b在Q上求逆得到<script type="math/tex">F(m*s)=\bar b^{-1}*r</script>,再转换一下系数，就变成了<script type="math/tex">m*s=vector(GF(p),\bar (b^{-1}*r).list())</script>一个矩阵表示的线性方程。只是我们线性方程的个数只有32个，而未知数有64个（password不变，其他32位每次会变）。虽然模<script type="math/tex">x^{32}-1</script>（非本原多项式）多项式环上的逆不一定存在，但这应该也是一种可行的思路。接下来介绍另一种思路：针对模多项式<script type="math/tex">x^{32}-1</script>上的等价矩阵。</p>
+<p>&nbsp;</p>
+<p>考虑题中<script type="math/tex">GF（41）上 模 x^{32}-1 的多项式环Q.<x></script>上的运算，如果我们先不考虑模多项式<script type="math/tex">x^{32}-1</script>，只在<script type="math/tex">F.<x></script>上运算，我们发现<script type="math/tex">x^{32} \equiv 1 \mod x^{32}-1,\ ...\ ,x^n \equiv x^{n \mod 32} \mod x^{32}-1</script>。也就是说如果我们在Q上计算<script type="math/tex">r*q</script>，也就等价于下面矩阵相乘</p>
+<script type="math/tex; mode=display">
+let \quad r = [r_1,r_2,r_{32}] \\
+Then \quad define \quad
+M_r=
+ \left[
+ \begin{matrix}
+   r_{1} & r_{2} & ... & r_{32} \\
+   r_{32} & r_{1} & ... & r_{31} \\
+   ... & ... & ... & ... \\
+   r_{2}& r_3 & ... & r_1
+  \end{matrix}
+  \right] 
+  \in GF(p)^{32 \times 32}
+  \\
+  \\
+  r*q \iff vectror(GF(p),q.list())*M_r
+  \\ where \quad r \quad and\quad  q \quad  defined \quad in \quad  Q.<x></script><p>注意到<script type="math/tex">m*s</script>只有32维，<script type="math/tex">F(m*s)</script>也等价于是定义在Q(x)上的，从而利用在Q(x)上的乘法<script type="math/tex">r*q</script>的矩阵形式转换到GF(p)上的矩阵运算，也就是：</p>
+<script type="math/tex; mode=display">
+M_r^T*m*s=\bar b 
+\iff M*s=\bar b \\
+where\quad M=M_r^T*m \in GF(p)^{32*64}</script><p>到这里就又回到了线性代数里<strong>线性方程的求解</strong>，已知<script type="math/tex">M，\bar b</script>，和方程<script type="math/tex">M*s=\bar b</script>，其中M是32×64的矩阵，s是64维的向量：前面32维固定为password，后面32维为随机向量。由于前面32位password是固定的，我们将M拆开看：<script type="math/tex">M=A||B</script>，其中A,B都是32×32的矩阵，原方程就拆分为下面问题：</p>
+<script type="math/tex; mode=display">
+M*s=A*password+B*random\_vector=\bar b</script><p>其中我们每进行一次sample请求，可以得到一组<script type="math/tex">(A_i,B_i,\bar b_i)</script>，最多可以得到2048组：</p>
+<ul>
+<li><p>如果B满秩，我们得不到任何有用信息。</p>
+</li>
+<li><p>如果B非满秩，也就是说存在<strong>非零向量</strong><script type="math/tex">y \in GF(p)^{32}</script>，使得<script type="math/tex">y*B=0</script>（B的左核空间，维数是32-rank（B））：</p>
+<script type="math/tex; mode=display">
+y * \bar b=(y*A)*password+(y*B)*random\_vector=(y*A)*password</script><p>&nbsp;</p>
+<p>也就是如果B不满秩（非奇异），我们能得完全到password的<script type="math/tex">(32-rank(B))</script>个线性组合，<strong>一个线性组合就是一组方程！！！</strong></p>
+</li>
+</ul>
+<p>&nbsp;</p>
+<p>不断收集这样的<script type="math/tex">(y_i*A_i,y_i*\bar b_i)</script>，直到所有<script type="math/tex">y_i*A_i</script>向量构成的矩阵的秩达到32，也就可以通过解方程完全得到password。由此，整个问题得到解决。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2 id="解题脚本"><a href="#解题脚本" class="headerlink" title="解题脚本"></a>解题脚本</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sage 9.2</span></span><br><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> sha256</span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">recvline</span>(<span class="params">st</span>):</span></span><br><span class="line">    x = st.recv(<span class="number">1</span>)</span><br><span class="line">    data = <span class="string">b&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">while</span> x != <span class="string">b&#x27;\n&#x27;</span>:</span><br><span class="line">        data += x</span><br><span class="line">        x = st.recv(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sendline</span>(<span class="params">st, data</span>):</span></span><br><span class="line">    st.send(data+<span class="string">b&#x27;\n&#x27;</span>)</span><br><span class="line"></span><br><span class="line">P, n, t = <span class="number">41</span>, <span class="number">64</span>, <span class="number">100</span></span><br><span class="line"></span><br><span class="line">F.&lt;x&gt; = PolynomialRing(GF(P))</span><br><span class="line">Q.&lt;x&gt; = F.quotient(x^(n // <span class="number">2</span>) - <span class="number">1</span>)</span><br><span class="line">p=<span class="number">41</span></span><br><span class="line">st = socket.socket()</span><br><span class="line"><span class="comment"># nc xxx.xxx.xxx.xxx xxx</span></span><br><span class="line">st.connect((<span class="string">&#x27;xxx.xxx.xxx.xxx&#x27;</span>,xxx))</span><br><span class="line">recvline(st)</span><br><span class="line">recvline(st)</span><br><span class="line">recvline(st)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_data</span>():</span></span><br><span class="line">    sendline(st,<span class="string">b&quot;1&quot;</span>)</span><br><span class="line">    rl=Q(<span class="built_in">eval</span>(recvline(st).decode().strip(<span class="string">&quot;&gt;&quot;</span>)))</span><br><span class="line">    <span class="comment"># m=eval(recvline(st).decode().strip(&quot;&gt;&quot;))</span></span><br><span class="line">    m=matrix(GF(p),<span class="number">32</span>,<span class="number">64</span> ,<span class="built_in">eval</span>(recvline(st).decode().strip(<span class="string">&quot;&gt;&quot;</span>)))</span><br><span class="line">    b=<span class="built_in">eval</span>(recvline(st).decode().strip(<span class="string">&quot;&gt;&quot;</span>))</span><br><span class="line">    st.recv(<span class="number">2</span>) <span class="comment"># &quot;&gt; &quot;</span></span><br><span class="line">    <span class="keyword">return</span> rl,m,b</span><br><span class="line"></span><br><span class="line">r,m,b=get_data()</span><br><span class="line">G = GeneralDiscreteDistribution([<span class="number">0.5</span>] + [<span class="number">0.25</span>] * <span class="number">2</span>)</span><br><span class="line">password = random_vector(GF(P), n // <span class="number">2</span>).<span class="built_in">list</span>()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func_1</span>():</span></span><br><span class="line">    r, m, s = Q.random_element(), random_matrix(GF(P), n // <span class="number">2</span>, n), vector(GF(P), password + random_vector(GF(P), n // <span class="number">2</span>).<span class="built_in">list</span>())</span><br><span class="line">    b = [(r * F((m * s).<span class="built_in">list</span>()) + F([choice([-<span class="number">1</span>, <span class="number">1</span>]) * G.get_random_element() <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n // <span class="number">2</span>)])).<span class="built_in">list</span>() <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(t)]</span><br><span class="line">    <span class="comment"># print(str(r.list()) + &#x27;\n&#x27; + str(m.list()) + &#x27;\n&#x27; + str(b))</span></span><br><span class="line">    <span class="keyword">return</span> r,m,s,b</span><br><span class="line"></span><br><span class="line"><span class="comment"># 统计特征恢复b</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">recover_b</span>(<span class="params">b</span>):</span></span><br><span class="line">    b_dict=[<span class="built_in">dict</span>() <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">32</span>)]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">100</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">32</span>):</span><br><span class="line">            <span class="keyword">if</span> b[i][j] <span class="keyword">in</span> b_dict[j]:</span><br><span class="line">                b_dict[j][b[i][j]]+=<span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                b_dict[j].setdefault(b[i][j],<span class="number">1</span>)</span><br><span class="line">    real_b=[]</span><br><span class="line">    <span class="keyword">for</span> b_counts <span class="keyword">in</span> b_dict:</span><br><span class="line">        clist= b_counts.items()</span><br><span class="line">        real_b.append(<span class="built_in">max</span>(clist,key=<span class="keyword">lambda</span> x: x[<span class="number">1</span>])[<span class="number">0</span>])</span><br><span class="line">    <span class="keyword">return</span> vector(GF(p),real_b)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 得到Q上r的等价矩阵</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_equal_mat</span>(<span class="params">r</span>):</span></span><br><span class="line">    rl=r.<span class="built_in">list</span>()</span><br><span class="line">    res=[]</span><br><span class="line">    nl=<span class="built_in">len</span>(rl)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(nl):</span><br><span class="line">        v=rl[(nl-i):]+rl[:(nl-i)]</span><br><span class="line">        res.append(v)</span><br><span class="line">    <span class="keyword">return</span> matrix(GF(p),res)</span><br><span class="line"></span><br><span class="line">known = []</span><br><span class="line">target = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2048</span>):</span><br><span class="line">    <span class="comment"># r,m,s,b=func_1()</span></span><br><span class="line">    <span class="keyword">if</span> i%<span class="number">200</span>==<span class="number">0</span>:</span><br><span class="line">        print(<span class="string">&quot;rounds &quot;</span>,i)</span><br><span class="line">    r,m,b=get_data()</span><br><span class="line">    nl=<span class="number">32</span></span><br><span class="line">    p=<span class="number">41</span></span><br><span class="line">    MP=get_equal_mat(r).transpose()*m</span><br><span class="line">    A = MP[:nl,:nl]</span><br><span class="line">    B = MP[:nl,nl:n]</span><br><span class="line">    c = recover_b(b)</span><br><span class="line">    <span class="comment"># assert A*vector(GF(p),s[:32])+B*vector(GF(p),s[32:])==c</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> B.rank() != <span class="number">32</span>:</span><br><span class="line">        <span class="keyword">for</span> ker <span class="keyword">in</span> B.left_kernel().matrix():</span><br><span class="line">            known.append(ker * A)</span><br><span class="line">            target.append(ker * c)</span><br><span class="line">            print(<span class="string">&quot;rank is &quot;</span>,matrix(GF(p),known).rank())</span><br><span class="line">            <span class="keyword">if</span> matrix(known).rank() &gt;= <span class="number">32</span>:</span><br><span class="line">                sol = matrix(GF(p), known).solve_right(vector(GF(p), target))</span><br><span class="line">                print(<span class="string">&quot;got pwd&quot;</span>)</span><br><span class="line">                print(sol)</span><br><span class="line">                sol=vector(GF(p),sol).<span class="built_in">list</span>()</span><br><span class="line">                sendline(st,<span class="string">b&quot;2&quot;</span>)</span><br><span class="line">                sendline(st,<span class="built_in">str</span>(<span class="built_in">int</span>(sha256(<span class="built_in">str</span>(sol).encode()).hexdigest(), <span class="number">16</span>)).encode())</span><br><span class="line">                print(recvline(st))</span><br><span class="line">                print(recvline(st))</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 
     
 
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          Bellin
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://tl2cents.github.io/2022/03/09/NeSE升级赛/" title="NeSE升级赛" target="_blank">https://tl2cents.github.io/2022/03/09/NeSE升级赛/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
+          
+          遵循CC 4.0 BY-SA版权协议，转载请注明出处
+        </li>
+        
+      </ul>
+    </div>
     
 
   </div>
@@ -280,16 +381,76 @@
 
 
     
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/03/09/NeSE%E5%8D%87%E7%BA%A7%E8%B5%9B/">阅读全文 >></a>
-    </p>
+
     
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://tl2cents.github.io/2022/03/09/NeSE%E5%8D%87%E7%BA%A7%E8%B5%9B/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
 
     
     <div class="clearfix"></div>
   </div>
   </div>
 </article>
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2022/03/01/SUSCTF2022-crypto-writeup/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SUSCTF2022 Crypto Writeup</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -304,330 +465,33 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="blog-SUSCTF2022-crypto-writeup" class="article article-type-blog  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/03/01/SUSCTF2022-crypto-writeup/" target="_blank">SUSCTF2022 Crypto Writeup</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2022/03/01/SUSCTF2022-crypto-writeup/" class="archive-article-date">
-        <time datetime="2022-03-01T08:17:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-01</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    <!-- newly added -->
-    
-    <!-- newly added -->
-    
-    <h1 id="2020-SUSCTF-nebula战队-crypto部分题解"><a href="#2020-SUSCTF-nebula战队-crypto部分题解" class="headerlink" title="2020 SUSCTF nebula战队 crypto部分题解"></a>2020 SUSCTF nebula战队 crypto部分题解</h1>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">writeup</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/CTF//" class="article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/03/01/SUSCTF2022-crypto-writeup/">阅读全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#La-Prairie-%E9%A2%98%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text">La Prairie 题解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BA%90%E7%A0%81"><span class="toc-number">1.1.</span> <span class="toc-text">源码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90"><span class="toc-number">1.2.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98%E8%84%9A%E6%9C%AC"><span class="toc-number">1.3.</span> <span class="toc-text">解题脚本</span></a></li></ol></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
 
-  
-    <article id="blog-VNCTF2022-Crypto-WriteUp" class="article article-type-blog  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/02/12/VNCTF2022-Crypto-WriteUp/" target="_blank">VNCTF2022 Crypto WriteUp</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2022/02/12/VNCTF2022-Crypto-WriteUp/" class="archive-article-date">
-        <time datetime="2022-02-12T13:15:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-12</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    <!-- newly added -->
-    
-    <!-- newly added -->
-    
-    <h1 id="VNCTF2022-Crypto-WriteUp"><a href="#VNCTF2022-Crypto-WriteUp" class="headerlink" title="VNCTF2022 Crypto WriteUp"></a>VNCTF2022 Crypto WriteUp</h1><p>寒假无聊摸鱼，月赛题没有crypto，就随便写了misc来看看VN的题，下午写完两道crypto就没看了，后面发现VN的题质量还挺不错。</p>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">writeup</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/CTF//" class="article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/02/12/VNCTF2022-Crypto-WriteUp/">阅读全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
 
 
 
 
-  
-    <article id="blog-Hitcon2021-Crypto-Writeup" class="article article-type-blog  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/12/14/Hitcon2021-Crypto-Writeup/" target="_blank">Hitcon2021 Crypto Writeup</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/12/14/Hitcon2021-Crypto-Writeup/" class="archive-article-date">
-        <time datetime="2021-12-14T14:32:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-14</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    <!-- newly added -->
-    
-    <!-- newly added -->
-    
-    <h1 id="Hitcon-2021-Crypto-writeup"><a href="#Hitcon-2021-Crypto-writeup" class="headerlink" title="Hitcon 2021 Crypto writeup"></a>Hitcon 2021 Crypto writeup</h1><p>第一次和Tea Deliverers打比赛，被zzh学长带飞了，这次crypto方向的题目还是比较友好的，但是我写题和exp写的是真慢。td最后总排名第三。这里简单记录一下crypto方向所有题目的解法和exp。hitcon不愧是国内重量级的CTF赛事，总体赛题质量还是非常顶的。<br>&nbsp;<br>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">writeup</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/CTF//" class="article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/12/14/Hitcon2021-Crypto-Writeup/">阅读全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
 
 
 
 
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next page</a>
-    </nav>
-  
 
 
           </div>
@@ -655,8 +519,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
