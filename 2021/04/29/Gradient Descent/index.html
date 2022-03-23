@@ -9,21 +9,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://tl2cents.github.io">
-  <title>Gradient Descent | tl2cents blog</title>
+  <title>Gradient Descent and Strongly Covex Optimization Problem | tl2cents blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="Gradient Descent and Strongly Covex Optimization ProblemWe provide you with a data set, where the number of samples n is 16087 and the number of features d is 10013. Suppose that X ∈ R n×d is the inpu">
+  <meta name="description" content="We provide you with a data set, where the number of samples n is 16087 and the number of features d is 10013. Suppose that X ∈ R n×d is the input feature matrix and y ∈ R n is the corresponding respon">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Gradient Descent">
+<meta property="og:title" content="Gradient Descent and Strongly Covex Optimization Problem">
 <meta property="og:url" content="https://tl2cents.github.io/2021/04/29/Gradient%20Descent/index.html">
 <meta property="og:site_name" content="tl2cents blog">
-<meta property="og:description" content="Gradient Descent and Strongly Covex Optimization ProblemWe provide you with a data set, where the number of samples n is 16087 and the number of features d is 10013. Suppose that X ∈ R n×d is the inpu">
+<meta property="og:description" content="We provide you with a data set, where the number of samples n is 16087 and the number of features d is 10013. Suppose that X ∈ R n×d is the input feature matrix and y ∈ R n is the corresponding respon">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://tl2cents.github.io/2021/04/29/Gradient%20Descent/1.png">
 <meta property="og:image" content="https://tl2cents.github.io/2021/04/29/Gradient%20Descent/page.png">
 <meta property="article:published_time" content="2021-04-29T12:47:41.000Z">
-<meta property="article:modified_time" content="2021-05-12T14:23:43.303Z">
+<meta property="article:modified_time" content="2022-03-23T02:20:11.502Z">
 <meta property="article:author" content="tl2cents">
 <meta property="article:tag" content="USTC">
 <meta property="article:tag" content="Machine Learning">
@@ -232,7 +232,7 @@
   
   
     <h1 class="article-title" itemprop="name">
-      Gradient Descent
+      Gradient Descent and Strongly Covex Optimization Problem
     </h1>
   
 
@@ -276,7 +276,7 @@
     
     <!-- newly added -->
     
-    <h1 id="Gradient-Descent-and-Strongly-Covex-Optimization-Problem"><a href="#Gradient-Descent-and-Strongly-Covex-Optimization-Problem" class="headerlink" title="Gradient Descent and Strongly Covex Optimization Problem"></a>Gradient Descent and Strongly Covex Optimization Problem</h1><p>We provide you with a data set, where the number of samples n is 16087 and the number of features d is 10013. Suppose that X ∈ R <sup>n×d </sup>is the input feature matrix and y ∈ R <sup>n</sup> is the corresponding response vector. We use the linear model to fit the data, and thus we can formulate the optimization problem as</p>
+    <p>We provide you with a data set, where the number of samples n is 16087 and the number of features d is 10013. Suppose that X ∈ R <sup>n×d </sup>is the input feature matrix and y ∈ R <sup>n</sup> is the corresponding response vector. We use the linear model to fit the data, and thus we can formulate the optimization problem as</p>
 <script type="math/tex; mode=display">
 \arg\min_{\textbf{w}}f(\textbf{w}) = \frac{1}{n}\|\textbf{y}-\bar{\textbf{X}}\textbf{w}\|_2^2</script><p>where X = (1, X) ∈ R <sup>n×(d+1)</sup> and w = (w<sub>0</sub>, w<sub>1</sub>, . . . , w<sub>d</sub>) &gt; ∈ R <sup>d+1</sup>.<br><span id="more"></span><br><a href="hw3.mat">training data</a></p>
 <p>&nbsp;<br>&nbsp;</p>
@@ -366,7 +366,7 @@ w_k=(X^T*X)^{-1}*X^T*Z*U</script><p>The code is as follows :</p>
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://tl2cents.github.io/2021/04/29/Gradient Descent/" title="Gradient Descent" target="_blank">https://tl2cents.github.io/2021/04/29/Gradient Descent/</a>
+          <a href="https://tl2cents.github.io/2021/04/29/Gradient Descent/" title="Gradient Descent and Strongly Covex Optimization Problem" target="_blank">https://tl2cents.github.io/2021/04/29/Gradient Descent/</a>
         </li>
         
         <li>
@@ -512,7 +512,7 @@ w_k=(X^T*X)^{-1}*X^T*Z*U</script><p>The code is as follows :</p>
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Gradient-Descent-and-Strongly-Covex-Optimization-Problem"><span class="toc-number">1.</span> <span class="toc-text">Gradient Descent and Strongly Covex Optimization Problem</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Normalization"><span class="toc-number">1.1.</span> <span class="toc-text">Normalization:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GET-the-Lipschitz-Constant"><span class="toc-number">1.2.</span> <span class="toc-text">GET the Lipschitz Constant</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Closed-Solution"><span class="toc-number">1.3.</span> <span class="toc-text">Closed Solution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-GD-Algorithm"><span class="toc-number">1.4.</span> <span class="toc-text">The GD Algorithm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Training-results"><span class="toc-number">1.5.</span> <span class="toc-text">Training results</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Training-plot"><span class="toc-number">1.6.</span> <span class="toc-text">The  Training plot</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Recover-w-k-from-u-k"><span class="toc-number">1.7.</span> <span class="toc-text">Recover w_k from u_k</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#All-Codes-and-Output"><span class="toc-number">1.8.</span> <span class="toc-text">All Codes and Output</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Normalization"><span class="toc-number">1.</span> <span class="toc-text">Normalization:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GET-the-Lipschitz-Constant"><span class="toc-number">2.</span> <span class="toc-text">GET the Lipschitz Constant</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Closed-Solution"><span class="toc-number">3.</span> <span class="toc-text">Closed Solution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-GD-Algorithm"><span class="toc-number">4.</span> <span class="toc-text">The GD Algorithm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Training-results"><span class="toc-number">5.</span> <span class="toc-text">Training results</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Training-plot"><span class="toc-number">6.</span> <span class="toc-text">The  Training plot</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Recover-w-k-from-u-k"><span class="toc-number">7.</span> <span class="toc-text">Recover w_k from u_k</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#All-Codes-and-Output"><span class="toc-number">8.</span> <span class="toc-text">All Codes and Output</span></a></li></ol>
                     </div>
                 </span>
             </div>

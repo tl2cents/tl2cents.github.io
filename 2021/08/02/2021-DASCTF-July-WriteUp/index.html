@@ -13,12 +13,12 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="2021DASCTF实战精英夏令营暨DASCTF July X CBCTF 题解本来想看看reverse，结果没啥基础题，就只能摸鱼打比赛了。几道MISC纯脑洞，一点提示没有，真没意思。 CRYPTO第一个签到，后面两个挺难的，分组密码算法的具体分析，太耗时间了。&amp;nbsp; BlockTrick服务器源码 (自己改了py3的本地环境跑)：">
+  <meta name="description" content="本来想看看reverse，结果没啥基础题，就只能摸鱼打比赛了。几道MISC过于脑洞。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2021-DASCTF-July-WriteUp">
 <meta property="og:url" content="https://tl2cents.github.io/2021/08/02/2021-DASCTF-July-WriteUp/index.html">
 <meta property="og:site_name" content="tl2cents blog">
-<meta property="og:description" content="2021DASCTF实战精英夏令营暨DASCTF July X CBCTF 题解本来想看看reverse，结果没啥基础题，就只能摸鱼打比赛了。几道MISC纯脑洞，一点提示没有，真没意思。 CRYPTO第一个签到，后面两个挺难的，分组密码算法的具体分析，太耗时间了。&amp;nbsp; BlockTrick服务器源码 (自己改了py3的本地环境跑)：">
+<meta property="og:description" content="本来想看看reverse，结果没啥基础题，就只能摸鱼打比赛了。几道MISC过于脑洞。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://tl2cents.github.io/2021/08/02/2021-DASCTF-July-WriteUp/QQ截图20210731124321.png">
 <meta property="og:image" content="https://tl2cents.github.io/2021/08/02/2021-DASCTF-July-WriteUp/image-20210802150153284.png">
@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://tl2cents.github.io/2021/08/02/2021-DASCTF-July-WriteUp/image-20210806171149399.png">
 <meta property="og:image" content="https://tl2cents.github.io/2021/08/02/2021-DASCTF-July-WriteUp/image-20210803095628409.png">
 <meta property="article:published_time" content="2021-08-02T05:58:12.000Z">
-<meta property="article:modified_time" content="2022-03-01T08:31:37.855Z">
+<meta property="article:modified_time" content="2022-03-23T02:32:47.866Z">
 <meta property="article:author" content="tl2cents">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="writeup">
@@ -261,7 +261,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">2.5k字</span>
+      <span class="post-count">2.4k字</span>
     </span>
   </span>
 
@@ -284,9 +284,9 @@
     
     <!-- newly added -->
     
-    <h1 id="2021DASCTF实战精英夏令营暨DASCTF-July-X-CBCTF-题解"><a href="#2021DASCTF实战精英夏令营暨DASCTF-July-X-CBCTF-题解" class="headerlink" title="2021DASCTF实战精英夏令营暨DASCTF July X CBCTF 题解"></a>2021DASCTF实战精英夏令营暨DASCTF July X CBCTF 题解</h1><p>本来想看看reverse，结果没啥基础题，就只能摸鱼打比赛了。几道MISC纯脑洞，一点提示没有，真没意思。</p>
-<h2 id="CRYPTO"><a href="#CRYPTO" class="headerlink" title="CRYPTO"></a>CRYPTO</h2><p>第一个签到，后面两个挺难的，分组密码算法的具体分析，太耗时间了。<br>&nbsp;</p>
-<h3 id="BlockTrick"><a href="#BlockTrick" class="headerlink" title="BlockTrick"></a>BlockTrick</h3><p>服务器源码 (自己改了py3的本地环境跑)：<br><span id="more"></span><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pad</span>(<span class="params">a</span>):</span></span><br><span class="line">    size = (<span class="number">16</span>-<span class="built_in">len</span>(a) % <span class="number">16</span>) % <span class="number">16</span></span><br><span class="line">    a += <span class="built_in">bytes</span>([size])*size</span><br><span class="line">    print(a)</span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">iv = os.urandom(<span class="number">16</span>)</span><br><span class="line">key = os.urandom(<span class="number">16</span>)</span><br><span class="line">enc = AES.new(key, AES.MODE_CBC, iv)</span><br><span class="line">print(iv.<span class="built_in">hex</span>())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">    trick = <span class="built_in">input</span>().strip(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">    trick = pad(<span class="built_in">bytes</span>.fromhex(trick))</span><br><span class="line">    print(trick)</span><br><span class="line">    cipher = enc.encrypt(trick)</span><br><span class="line">    <span class="keyword">if</span> trick == cipher <span class="keyword">and</span> trick != <span class="string">b&quot;&quot;</span>:</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;flag.txt&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">            print(f.read())</span><br><span class="line">            exit()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(cipher.<span class="built_in">hex</span>())</span><br><span class="line">        print(<span class="string">&quot;Try again&quot;</span>)</span><br></pre></td></tr></table></figure></p>
+    <p>本来想看看reverse，结果没啥基础题，就只能摸鱼打比赛了。几道MISC过于脑洞。</p>
+<span id="more"></span>
+<h2 id="BlockTrick"><a href="#BlockTrick" class="headerlink" title="BlockTrick"></a>BlockTrick</h2><p>服务器源码 (自己改了py3的本地环境跑)：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pad</span>(<span class="params">a</span>):</span></span><br><span class="line">    size = (<span class="number">16</span>-<span class="built_in">len</span>(a) % <span class="number">16</span>) % <span class="number">16</span></span><br><span class="line">    a += <span class="built_in">bytes</span>([size])*size</span><br><span class="line">    print(a)</span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">iv = os.urandom(<span class="number">16</span>)</span><br><span class="line">key = os.urandom(<span class="number">16</span>)</span><br><span class="line">enc = AES.new(key, AES.MODE_CBC, iv)</span><br><span class="line">print(iv.<span class="built_in">hex</span>())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">    trick = <span class="built_in">input</span>().strip(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">    trick = pad(<span class="built_in">bytes</span>.fromhex(trick))</span><br><span class="line">    print(trick)</span><br><span class="line">    cipher = enc.encrypt(trick)</span><br><span class="line">    <span class="keyword">if</span> trick == cipher <span class="keyword">and</span> trick != <span class="string">b&quot;&quot;</span>:</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;flag.txt&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">            print(f.read())</span><br><span class="line">            exit()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(cipher.<span class="built_in">hex</span>())</span><br><span class="line">        print(<span class="string">&quot;Try again&quot;</span>)</span><br></pre></td></tr></table></figure></p>
 <p>注意这里CBC模式下，你两次加密也会是一样地按照CBC模式，第二次的IV是上一次的密文结果。分组加密相关的trick，CBC模式下，前一段加密输出的密文会作为后一段明文的异或向量，随后再进行AES加密。首先我们输入给出的iv初始值即可，这样异或后AES加密的值时全0，得到AES对’\x00’* 16的加密。随后我们再将这个输出作为输入，与’\x0O’的密文相互异或，由于我们的输入也是’\x00’的密文，因此再次得到一组’\x00’，随后送入AES进行加密得到’\x00’的密文，而我们的输入正是’\x00’的密文。简单来说，复读即可，操作如下：</p>
 <p><img src="QQ截图20210731124321.png" alt="QQ截图20210731124321"></p>
 <p>&nbsp;<br>&nbsp;</p>
@@ -465,14 +465,14 @@
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Hackgame2021
+          Hacker Game 2021 Writeup
         
       </div>
     </a>
   
   
     <a href="/2021/07/21/Logistic-Regression-and-Stochastic-Gradient-Descent/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">SGD on LR</div>
+      <div class="article-nav-title">Logistic Regression and Stochastic Gradient Descent</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -499,7 +499,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2021DASCTF%E5%AE%9E%E6%88%98%E7%B2%BE%E8%8B%B1%E5%A4%8F%E4%BB%A4%E8%90%A5%E6%9A%A8DASCTF-July-X-CBCTF-%E9%A2%98%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text">2021DASCTF实战精英夏令营暨DASCTF July X CBCTF 题解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CRYPTO"><span class="toc-number">1.1.</span> <span class="toc-text">CRYPTO</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BlockTrick"><span class="toc-number">1.1.1.</span> <span class="toc-text">BlockTrick</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MISC"><span class="toc-number">1.2.</span> <span class="toc-text">MISC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#red-vs-blue"><span class="toc-number">1.2.1.</span> <span class="toc-text">red_vs_blue</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#funny-maze"><span class="toc-number">1.2.2.</span> <span class="toc-text">funny_maze</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ezSteganography"><span class="toc-number">1.2.3.</span> <span class="toc-text">ezSteganography</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Just-A-GIF"><span class="toc-number">1.2.4.</span> <span class="toc-text">Just A GIF</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WEB"><span class="toc-number">1.3.</span> <span class="toc-text">WEB</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cat-flag"><span class="toc-number">1.3.1.</span> <span class="toc-text">cat flag</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#BlockTrick"><span class="toc-number">1.</span> <span class="toc-text">BlockTrick</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MISC"><span class="toc-number">2.</span> <span class="toc-text">MISC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#red-vs-blue"><span class="toc-number">2.1.</span> <span class="toc-text">red_vs_blue</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#funny-maze"><span class="toc-number">2.2.</span> <span class="toc-text">funny_maze</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ezSteganography"><span class="toc-number">2.3.</span> <span class="toc-text">ezSteganography</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Just-A-GIF"><span class="toc-number">2.4.</span> <span class="toc-text">Just A GIF</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WEB"><span class="toc-number">3.</span> <span class="toc-text">WEB</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cat-flag"><span class="toc-number">3.1.</span> <span class="toc-text">cat flag</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>

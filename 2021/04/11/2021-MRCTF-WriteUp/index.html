@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://tl2cents.github.io/2021/04/11/2021-MRCTF-WriteUp/QQ截图20210411231703.png">
 <meta property="og:image" content="https://tl2cents.github.io/2021/04/11/2021-MRCTF-WriteUp/QQ截图20210411231942.png">
 <meta property="article:published_time" content="2021-04-11T14:35:51.000Z">
-<meta property="article:modified_time" content="2021-05-12T14:22:55.747Z">
+<meta property="article:modified_time" content="2022-03-23T02:16:30.341Z">
 <meta property="article:author" content="tl2cents">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="writeup">
@@ -256,7 +256,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">791字</span>
+      <span class="post-count">764字</span>
     </span>
   </span>
 
@@ -279,11 +279,11 @@
     
     <!-- newly added -->
     
-    <h1 id="MISC-Real-Checkin"><a href="#MISC-Real-Checkin" class="headerlink" title="MISC-Real Checkin"></a>MISC-Real Checkin</h1><ul>
+    <h2 id="MISC-Real-Checkin"><a href="#MISC-Real-Checkin" class="headerlink" title="MISC-Real Checkin"></a>MISC-Real Checkin</h2><ul>
 <li><p><strong>零宽字符隐写</strong></p>
 <p>MISC方向的签到题，不过很有意思。</p>
 <center><img style="margin: 0 auto;" width="65%" height="65%" src="/images/MRCTF-checkin.png" alt="MISC签到"/></center>
-<span id="more"></span>
+ <span id="more"></span>
 去比赛的QQ群@之后得到这样一串消息
 
 `@tl2cents 叮咚！你的好大儿zbr向你发送了签到码，请注意查收：‍‎‏‍‎‍‍‎‌‌‌‍‍‎‍‎‏‎‌‎‌‌‍‎‌‌‎‌‌‍‏‎‍‎‎‌‌‍‌‏‎‎‌‍‎‌‍‎‍‎‎‍‎‎‍‏‎‎‎‍‏‌Q9LimBaEBG9170WBI41KAfuRu6f9leWI7omgqq9yhBiUcpwPFGfREdjOsXWCNmRlPljq/33rj8ri2HDafqHrw5uzc3h4pYvfPjBAE2UJxU97CSuG9UlBZRiSQEpZzRnL`.
@@ -315,7 +315,7 @@
 <p><img src="QQ截图20210411231942.png" alt=""></p>
 <p>转换成字符发现它把一般的大小写字符串换了个位置。所以大小写字母转换一下，<code>TVJDVEZ7d0VsYzBNZV90MF9NUkNURl8ybzIxISEhfQ==</code>放进base64解码得到flag：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MRCTF&#123;wElc0Me_t0_MRCTF_2o21!!!&#125;</span><br></pre></td></tr></table></figure>
-<p>&nbsp;<br>就水了两个签到题，没想到最后rank 61，<strong>其他的签到题感觉都很离谱。</strong></p>
+<p>&nbsp;</p>
 
     
 
@@ -476,7 +476,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MISC-Real-Checkin"><span class="toc-number">1.</span> <span class="toc-text">MISC-Real Checkin</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RE-Real-Checkin"><span class="toc-number">1.1.</span> <span class="toc-text">RE-Real Checkin</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MISC-Real-Checkin"><span class="toc-number">1.</span> <span class="toc-text">MISC-Real Checkin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RE-Real-Checkin"><span class="toc-number">2.</span> <span class="toc-text">RE-Real Checkin</span></a></li></ol>
                     </div>
                 </span>
             </div>
