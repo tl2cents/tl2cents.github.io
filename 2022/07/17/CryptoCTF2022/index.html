@@ -9,16 +9,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://tl2cents.github.io">
-  <title>Archives | tl2cents blog</title>
+  <title>Crypto CTF 2022 WriteUp By tl2cents | tl2cents blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="tl2cents blog">
-<meta property="og:url" content="https://tl2cents.github.io/archives/page/4/index.html">
+  <meta name="description" content="It’s my first time to participate such a pure crypto competition this year. Too many crypto challenges tucked into a game within 24 hours are driving me a little unconsciousness. By the way, the time">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Crypto CTF 2022 WriteUp By tl2cents">
+<meta property="og:url" content="https://tl2cents.github.io/2022/07/17/CryptoCTF2022/index.html">
 <meta property="og:site_name" content="tl2cents blog">
+<meta property="og:description" content="It’s my first time to participate such a pure crypto competition this year. Too many crypto challenges tucked into a game within 24 hours are driving me a little unconsciousness. By the way, the time">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-07-17T07:40:39.000Z">
+<meta property="article:modified_time" content="2022-07-17T07:55:31.453Z">
 <meta property="article:author" content="tl2cents">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="writeup">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="tl2cents blog" type="application/atom+xml">
@@ -216,157 +222,123 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="blog-CryptoCTF2022" class="article article-type-blog " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-blog">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/07/18/USTC%20OS%202021%20Spring%20HW5/" class="archive-article-date">
-        <time datetime="2021-07-18T09:25:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-18</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/07/18/USTC%20OS%202021%20Spring%20HW5/" target="_blank">USTC OS 2021 Spring HW5</a>
   
+    <h1 class="article-title" itemprop="name">
+      Crypto CTF 2022 WriteUp By tl2cents
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+<a href="/2022/07/17/CryptoCTF2022/" class="archive-article-date">
+        <time datetime="2022-07-17T07:40:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-17</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">2.4k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">14分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    <!-- newly added -->
+    
+    <!-- newly added -->
+    
+    <p>It’s my first time to participate such a pure crypto competition this year. Too many crypto challenges tucked into a game within 24 hours are driving me a little unconsciousness. By the way, the time schedule is totally unfriendly to me in China time zone which keeps me out of the first blood. I spent about 9 hours working on the crypto challenges and finally solved 8 (checkin not included) of them with rank 51. There are various math tricks for those challenges. However, I have to mention that the descriptions of some challenges are vague and confusing, and I guess that’s why there are so few solutions to an easy challenge (not solved by me either, emmm). I’ve been moyuing for half month at home, so I decide to update this writeup in my blog. Due to time constraints, I didn’t even browse all the challenges of this competition, and I will review it later when I’m spare… Take a rain check, haha.</p>
+<span id="more"></span>
+<p>&nbsp;</p>
+<h2 id="Diploma-medium-68-solves"><a href="#Diploma-medium-68-solves" class="headerlink" title="Diploma (medium, 68 solves)"></a>Diploma (medium, 68 solves)</h2><p>Given a modular p and a matrix M with shape  <script type="math/tex">n \times n</script>, we are supposed to find the min k such that : <script type="math/tex">M^k= E</script>  in <script type="math/tex">MatrixSpace(GF(p),n)</script>, where <script type="math/tex">E</script> is the identity matrix.</p>
+<p>It’s an challenge about matrix group and its order. It’s easy if you’re familiar with the <code>GL</code> or <code>MatrixSpace</code> api in sage.  For more info, refer to <a target="_blank" rel="noopener" href="https://doc.sagemath.org/html/en/reference/groups/sage/groups/matrix_gps/linear.html">Linear Groups</a>. Here is my exp:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sage 9.2</span></span><br><span class="line"><span class="keyword">import</span> telnetlib</span><br><span class="line"></span><br><span class="line">io = telnetlib.Telnet(<span class="string">&#x27;08.cr.yp.toc.tf&#x27;</span>, <span class="string">&#x27;37313&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readline</span>():</span></span><br><span class="line">    <span class="keyword">return</span> io.read_until(<span class="string">b&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">writeline</span>(<span class="params">l</span>):</span></span><br><span class="line">    io.write(l+<span class="string">b&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">100</span>):</span><br><span class="line">    print(<span class="string">f&quot;[+] rounds :<span class="subst">&#123;i+<span class="number">1</span>&#125;</span>&quot;</span>)</span><br><span class="line">    io.read_until(<span class="string">b&#x27;Generating the parameters for p =&#x27;</span>)</span><br><span class="line">    p = <span class="built_in">int</span>(io.read_until(<span class="string">b&#x27;\n&#x27;</span>).split(<span class="string">b&quot;,&quot;</span>)[<span class="number">0</span>])</span><br><span class="line">    io.read_until(<span class="string">b&#x27;M =&#x27;</span>)</span><br><span class="line">    readline()</span><br><span class="line"></span><br><span class="line">    line=readline().decode()</span><br><span class="line">    M=[]</span><br><span class="line">    <span class="keyword">while</span> <span class="string">&quot;Send the order of matrix M&quot;</span> <span class="keyword">not</span> <span class="keyword">in</span> line:</span><br><span class="line">        L=[<span class="built_in">int</span>(i) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">filter</span>(<span class="literal">None</span>,line.strip().strip(<span class="string">&quot;[&quot;</span>).strip(<span class="string">&quot;]&quot;</span>).strip().split(<span class="string">&quot; &quot;</span>))]</span><br><span class="line">        M.append(L)</span><br><span class="line">        line=readline().decode()</span><br><span class="line"></span><br><span class="line">    print(<span class="string">f&quot;[+] Matrix info: p = <span class="subst">&#123;p&#125;</span> , n = <span class="subst">&#123;<span class="built_in">len</span>(M)&#125;</span>&quot;</span>)</span><br><span class="line">    G=GL(<span class="built_in">len</span>(M),GF(p))</span><br><span class="line">    m=G(M)</span><br><span class="line">    O=<span class="built_in">int</span>(m.order())</span><br><span class="line">    writeline(<span class="built_in">str</span>(O).encode())</span><br><span class="line">    res=readline()</span><br><span class="line">    print(res)</span><br><span class="line">    <span class="keyword">if</span> <span class="string">b&quot;CCTF&quot;</span> <span class="keyword">in</span> res:</span><br><span class="line">            <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<h2 id="SOTS-medium-easy-113-solves"><a href="#SOTS-medium-easy-113-solves" class="headerlink" title="SOTS (medium easy, 113 solves)"></a>SOTS (medium easy, 113 solves)</h2><p>It’s all about math trick. Therefore, I turn to google for help. After a long boring search, I found this Q&amp;A in math.stackexchange :  <a target="_blank" rel="noopener" href="https://math.stackexchange.com/questions/5877/efficiently-finding-two-squares-which-sum-to-a-prime">Efficiently finding two squares which sum to a prime</a>. This is exactly in line with our challenge. </p>
+<p>In our scene, we’re given an integer $n$ which is not a prime and we aim to find $a,b$ such that : <script type="math/tex">n=a^2+b^2</script>.  After several tries, I’m confirmed that $n$ is in form of <script type="math/tex">p*q*r</script> where <script type="math/tex">p,q,r \equiv 1 \mod 4</script> and can be factored in sagemath.  By <a target="_blank" rel="noopener" href="https://planetmath.org/proofofthueslemma">Thue’s Lemma</a>, we can find <script type="math/tex">a,b,c,d,e,f</script> such that <script type="math/tex">p=a^a+b^2,q=c^d+d^2,r=e^2+f^2</script> in polynomial time. Therefore, by the identity : <script type="math/tex">(a^2+b^2)(x^2+y^2)=(ax+by)^2+(ay-bx)^2</script>, we can find the two squares which sums to $n$.  Here is my final exp in sage :</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sage 9.2</span></span><br><span class="line"><span class="comment"># ‍nc 05.cr.yp.toc.tf 37331</span></span><br><span class="line"><span class="keyword">import</span> telnetlib</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mods</span>(<span class="params">a, n</span>):</span></span><br><span class="line">    <span class="keyword">if</span> n &lt;= <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;negative modulus&quot;</span></span><br><span class="line">    a = a % n</span><br><span class="line">    <span class="keyword">if</span> (<span class="number">2</span> * a &gt; n):</span><br><span class="line">        a -= n</span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">powmods</span>(<span class="params">a, r, n</span>):</span></span><br><span class="line">    out = <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> r &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">if</span> (r % <span class="number">2</span>) == <span class="number">1</span>:</span><br><span class="line">            r -= <span class="number">1</span></span><br><span class="line">            out = mods(out * a, n)</span><br><span class="line">        r //= <span class="number">2</span></span><br><span class="line">        a = mods(a * a, n)</span><br><span class="line">    <span class="keyword">return</span> out</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quos</span>(<span class="params">a, n</span>):</span></span><br><span class="line">    <span class="keyword">if</span> n &lt;= <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;negative modulus&quot;</span></span><br><span class="line">    <span class="keyword">return</span> (a - mods(a, n))//n</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">grem</span>(<span class="params">w, z</span>):</span></span><br><span class="line">    <span class="comment"># remainder in Gaussian integers when dividing w by z</span></span><br><span class="line">    (w0, w1) = w</span><br><span class="line">    (z0, z1) = z</span><br><span class="line">    n = z0 * z0 + z1 * z1</span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;division by zero&quot;</span></span><br><span class="line">    u0 = quos(w0 * z0 + w1 * z1, n)</span><br><span class="line">    u1 = quos(w1 * z0 - w0 * z1, n)</span><br><span class="line">    <span class="keyword">return</span>(w0 - z0 * u0 + z1 * u1,</span><br><span class="line">           w1 - z0 * u1 - z1 * u0)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ggcd</span>(<span class="params">w, z</span>):</span></span><br><span class="line">    <span class="keyword">while</span> z != (<span class="number">0</span>,<span class="number">0</span>):</span><br><span class="line">        w, z = z, grem(w, z)</span><br><span class="line">    <span class="keyword">return</span> w</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">root4</span>(<span class="params">p</span>):</span></span><br><span class="line">    <span class="comment"># 4th root of 1 modulo p</span></span><br><span class="line">    <span class="keyword">if</span> p &lt;= <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;too small&quot;</span></span><br><span class="line">    <span class="keyword">if</span> (p % <span class="number">4</span>) != <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;not congruent to 1&quot;</span></span><br><span class="line">    k = p//<span class="number">4</span></span><br><span class="line">    j = <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        a = powmods(j, k, p)</span><br><span class="line">        b = mods(a * a, p)</span><br><span class="line">        <span class="keyword">if</span> b == -<span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> a</span><br><span class="line">        <span class="keyword">if</span> b != <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;not prime&quot;</span></span><br><span class="line">        j += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sq2</span>(<span class="params">p</span>):</span></span><br><span class="line">    a = root4(p)</span><br><span class="line">    <span class="keyword">return</span> ggcd((p,<span class="number">0</span>),(a,<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge</span>(<span class="params">a,b,x,y</span>):</span></span><br><span class="line">    <span class="keyword">return</span> a*x+b*y,a*y-b*x</span><br><span class="line"></span><br><span class="line">io = telnetlib.Telnet(<span class="string">&#x27;05.cr.yp.toc.tf&#x27;</span>,<span class="string">&#x27;37331&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readline</span>():</span></span><br><span class="line">    <span class="keyword">return</span> io.read_until(<span class="string">b&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">writeline</span>(<span class="params">l</span>):</span></span><br><span class="line">    io.write(l+<span class="string">b&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_sum</span>():</span></span><br><span class="line">    io.read_until(<span class="string">b&quot;[Q]uit\n&quot;</span>)</span><br><span class="line">    writeline(<span class="string">b&quot;G&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">int</span>(readline().decode().strip().split(<span class="string">&quot;=&quot;</span>)[-<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solve</span>(<span class="params">x,y</span>):</span></span><br><span class="line">    io.read_until(<span class="string">b&quot;[Q]uit\n&quot;</span>)</span><br><span class="line">    writeline(<span class="string">b&quot;S&quot;</span>)</span><br><span class="line">    writeline(<span class="string">f&quot;<span class="subst">&#123;x&#125;</span>,<span class="subst">&#123;y&#125;</span>&quot;</span>.encode())</span><br><span class="line"></span><br><span class="line">n=get_sum()</span><br><span class="line"></span><br><span class="line">print(<span class="string">f&quot;[+]Start to factor <span class="subst">&#123;n&#125;</span>&quot;</span>)</span><br><span class="line">rl=<span class="built_in">list</span>(factor(n))</span><br><span class="line">p1,p2,p3=rl[<span class="number">0</span>][<span class="number">0</span>],rl[<span class="number">1</span>][<span class="number">0</span>],rl[<span class="number">2</span>][<span class="number">0</span>]</span><br><span class="line">print(<span class="string">f&quot;[+]Successfully factored: <span class="subst">&#123;rl&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">a,b=sq2(p1)</span><br><span class="line">c,d=sq2(p2)</span><br><span class="line">e,f=sq2(p3)</span><br><span class="line"></span><br><span class="line">x,y=merge(a,b,c,d)</span><br><span class="line">x,y=merge(x,y,e,f)</span><br><span class="line"></span><br><span class="line"><span class="keyword">assert</span> x^<span class="number">2</span>+y^<span class="number">2</span>==n</span><br><span class="line"></span><br><span class="line">solve(x,y)</span><br><span class="line">print(readline())</span><br><span class="line">print(readline())</span><br><span class="line">print(readline())</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<h2 id="polyRSA-medium-easy-145-solves"><a href="#polyRSA-medium-easy-145-solves" class="headerlink" title="polyRSA (medium easy, 145 solves)"></a>polyRSA (medium easy, 145 solves)</h2><p>The most easy challenges at all. Focus on equations :</p>
+<script type="math/tex; mode=display">
+p = k^6 + 7*k^4 - 40*k^3 + 12*k^2 - 114*k + 31377\\q = k^5 - 8*k^4 + 19*k^3- 313*k^2 - 14*k + 14011</script><p>Considering <script type="math/tex">k</script> as  variable in polynomial of IntegerRing, let <script type="math/tex">f=p(k)*q(k)-n</script>. Therefore, we only have to find <script type="math/tex">f.roots()</script> in IntegerRing.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">n = <span class="number">44538727182858207226040251762322467288176239968967952269350336889655421753182750730773886813281253762528207970314694060562016861614492626112150259048393048617529867598499261392152098087985858905944606287003243</span></span><br><span class="line">enc = <span class="number">37578889436345667053409195986387874079577521081198523844555524501835825138236698001996990844798291201187483119265306641889824719989940722147655181198458261772053545832559971159703922610578530282146835945192532</span></span><br><span class="line"></span><br><span class="line">P.&lt;k&gt;=PolynomialRing(ZZ)</span><br><span class="line">f1=(k**<span class="number">6</span> + <span class="number">7</span>*k**<span class="number">4</span> - <span class="number">40</span>*k**<span class="number">3</span> + <span class="number">12</span>*k**<span class="number">2</span> - <span class="number">114</span>*k + <span class="number">31377</span>)</span><br><span class="line">f2=(k**<span class="number">5</span> - <span class="number">8</span>*k**<span class="number">4</span> + <span class="number">19</span>*k**<span class="number">3</span> - <span class="number">313</span>*k**<span class="number">2</span> - <span class="number">14</span>*k + <span class="number">14011</span>)</span><br><span class="line">f=f1*f2-n</span><br><span class="line">print(f.roots())</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="comment"># [(9291098683758154336, 1)]</span></span><br><span class="line">r=<span class="number">9291098683758154336</span></span><br><span class="line">p=f1(r)</span><br><span class="line">q=f2(r)</span><br><span class="line">phi=(p-<span class="number">1</span>)*(q-<span class="number">1</span>)</span><br><span class="line">e=<span class="number">31337</span></span><br><span class="line">d=ZZ(inverse_mod(e,phi))</span><br><span class="line">flag=long_to_bytes(<span class="built_in">int</span>(<span class="built_in">pow</span>(enc,d,n)))</span><br><span class="line">print(flag)</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<h2 id="Starter-ECC-medium-43-solves"><a href="#Starter-ECC-medium-43-solves" class="headerlink" title="Starter ECC (medium, 43 solves)"></a>Starter ECC (medium, 43 solves)</h2><p>It takes me a lot of time to solve this challenge since there’s something wrong with the <script type="math/tex">nth\_root</script> function when it comes to <script type="math/tex">GF(p^k)</script>. </p>
+<p>Actually, this challenge has little to do with ECC. We’re given parameters <script type="math/tex">n,a,b</script> of <script type="math/tex">EllipticCurve(Zmod(n), [a, b])</script> and are supposed to find the correct <script type="math/tex">y</script> corresponding to a given coordinate <script type="math/tex">x</script>. We can factor $n$ quickly in factorDB：</p>
+<script type="math/tex; mode=display">
+n=2^{63}*690712633549859897233^6*651132262883189171676209466993073^5</script><p>By the ECC polynomial: <script type="math/tex">y^2=x^3+ax+b</script>, we try to sqrt <script type="math/tex">x^3+ax+b</script> in <script type="math/tex">Zmod(2^{63})...</script> There are totally <script type="math/tex">2*2*2=8</script> solutions for this equation. In sage, if you try to find <script type="math/tex">nth\_root</script> of prime power modular like <script type="math/tex">p^k</script> in <script type="math/tex">GF(p^k)</script>, it will return the results in <script type="math/tex">Zmod(p)</script> instead of  <script type="math/tex">Zmod(p^k)</script>！I was stuck here for hours.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sage 9.2</span></span><br><span class="line"><span class="keyword">from</span> factordb.factordb <span class="keyword">import</span> FactorDB</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line">x = <span class="number">10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046477020617917601884853827611232355455223966039590143622792803800879186033924150173912925208583</span></span><br><span class="line">a = <span class="number">31337</span></span><br><span class="line">b = <span class="number">66826418568487077181425396984743905464189470072466833884636947306507380342362386488703702812673327367379386970252278963682939080502468506452884260534949120967338532068983307061363686987539408216644249718950365322078643067666802845720939111758309026343239779555536517718292754561631504560989926785152983649035</span></span><br><span class="line">n = <span class="number">117224988229627436482659673624324558461989737163733991529810987781450160688540001366778824245275287757373389887319739241684244545745583212512813949172078079042775825145312900017512660931667853567060810331541927568102860039898116182248597291899498790518105909390331098630690977858767670061026931938152924839936</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># y^2=x^3+a*x+b</span></span><br><span class="line"><span class="comment"># f=FactorDB(n)</span></span><br><span class="line"><span class="comment"># f.connect()</span></span><br><span class="line"><span class="comment"># pl=f.get_factor_list()</span></span><br><span class="line"></span><br><span class="line">modulus=[<span class="number">2</span>^<span class="number">63</span>,<span class="number">690712633549859897233</span>^<span class="number">6</span>,<span class="number">651132262883189171676209466993073</span>^<span class="number">5</span>]</span><br><span class="line">Gp0=Zmod(modulus[<span class="number">0</span>])</span><br><span class="line">Gp1=Zmod(modulus[<span class="number">1</span>])</span><br><span class="line">Gp2=Zmod(modulus[<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line">y2=(x^<span class="number">3</span>+a*x+b)%n</span><br><span class="line">res1=Gp0(y2).nth_root(<span class="number">2</span>,<span class="built_in">all</span>=<span class="literal">True</span>)</span><br><span class="line">res2=Gp1(y2).nth_root(<span class="number">2</span>,<span class="built_in">all</span>=<span class="literal">True</span>)</span><br><span class="line">res3=Gp2(y2).nth_root(<span class="number">2</span>,<span class="built_in">all</span>=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">E = EllipticCurve(Zmod(n), [a, b])</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> r1 <span class="keyword">in</span> res1:</span><br><span class="line">    <span class="keyword">for</span> r2 <span class="keyword">in</span> res2:</span><br><span class="line">        <span class="keyword">for</span> r3 <span class="keyword">in</span> res3:</span><br><span class="line">            y=<span class="built_in">int</span>(CRT([ZZ(r1),ZZ(r2),ZZ(r3)],modulus))</span><br><span class="line">            <span class="keyword">assert</span> (y^<span class="number">2</span>-x^<span class="number">3</span> - a*x-b)%n == <span class="number">0</span></span><br><span class="line">            G = E(x, y)</span><br><span class="line">            print(long_to_bytes(<span class="built_in">int</span>(CRT([ZZ(r1),ZZ(r2),ZZ(r3)],modulus))))</span><br></pre></td></tr></table></figure>
+<p>&nbsp; &nbsp;</p>
+<h2 id="DBB-medium-43-solves"><a href="#DBB-medium-43-solves" class="headerlink" title="DBB (medium, 43 solves)"></a>DBB (medium, 43 solves)</h2><p>Similar to the starter ECC challenge, this time we are supposed to compute the discrete logarithm in ECC. However, there is also something worthy of attention with the <script type="math/tex">discret\_log</script> api in sage when it comes to <script type="math/tex">Zmod(n)</script> with a given smooth order. I’m really speechless for my unconsciousness.</p>
+<p>First, just factor n in sage and n is in form of <script type="math/tex">p*q*r</script>. Therefore we try to compute the discrete logarithms in <script type="math/tex">GF(p),GF(q),GF(r)</script> and combine them with Chinese Reminder Theorem. Luckily, we find the order <script type="math/tex">O_p,O_q,O_r</script> are all smooth (<script type="math/tex">O_n=O_p*O_q*O_r</script>). It’s rather easy in sage. However, when you want to use the <script type="math/tex">ord</script> parameter in <script type="math/tex">discrete\_log</script> , you have to use the order of base element instead of the curve’s order. Also, in the CRT process, the modular is also the order of the base element.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sage</span></span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">n = <span class="number">34251514713797768233812437040287772542697202020425182292607025836827373815449</span></span><br><span class="line"><span class="comment"># print(factor(n))</span></span><br><span class="line">p,q,r=<span class="number">11522256336953175349</span> , <span class="number">14624100800238964261</span> , <span class="number">203269901862625480538481088870282608241</span></span><br><span class="line"><span class="keyword">assert</span> p*q*r==n</span><br><span class="line">BASE_POINT_x = <span class="number">7331</span></span><br><span class="line">PX,PY = (<span class="number">10680461779722115247262931380341483368049926186118123639977587326958923276962</span>, <span class="number">4003189979292111789806553325182843073711756529590890801151565205419771496727</span>)</span><br><span class="line">P = (PX,PY)</span><br><span class="line">A=<span class="number">31337</span></span><br><span class="line"></span><br><span class="line">B= (PY^<span class="number">2</span> - PX^<span class="number">3</span>-A*PX) % n</span><br><span class="line"></span><br><span class="line">Ep = EllipticCurve(GF(p), [A, B])</span><br><span class="line">Eq = EllipticCurve(GF(q), [A, B])</span><br><span class="line">Er = EllipticCurve(GF(r), [A, B])</span><br><span class="line">E = EllipticCurve(IntegerModRing(n), [A, B])</span><br><span class="line">Op,Oq,Or=Ep.order(),Eq.order(),Er.order()</span><br><span class="line">order=Op*Oq*Or</span><br><span class="line">Y=E(P)</span><br><span class="line"></span><br><span class="line"><span class="comment"># y^2 = x^3 + A*x + B</span></span><br><span class="line"><span class="comment"># Smooth</span></span><br><span class="line">print(factor(Ep.order()))</span><br><span class="line">print(factor(Eq.order()))</span><br><span class="line">print(factor(Er.order()))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_y</span>(<span class="params">a,b,p,x</span>):</span></span><br><span class="line">    G=GF(p)</span><br><span class="line">    y2=G((x^<span class="number">3</span>+a*x+b)%p)</span><br><span class="line">    roots=y2.nth_root(<span class="number">2</span>,<span class="built_in">all</span>=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">return</span> roots</span><br><span class="line"></span><br><span class="line">x1= BASE_POINT_x % p</span><br><span class="line">y1= get_y(A,B,p,x1)</span><br><span class="line">x2= BASE_POINT_x % q</span><br><span class="line">y2= get_y(A,B,q,x2)</span><br><span class="line">x3= BASE_POINT_x % r</span><br><span class="line">y3= get_y(A,B,r,x3)</span><br><span class="line"></span><br><span class="line">P0=Ep((x1,y1[<span class="number">0</span>]))</span><br><span class="line">P1=Ep((x1,y1[<span class="number">1</span>]))</span><br><span class="line">P_ =Ep(P)</span><br><span class="line">Q0=Eq((x2,y2[<span class="number">0</span>]))</span><br><span class="line">Q1=Eq((x2,y2[<span class="number">1</span>]))</span><br><span class="line">Q_ =Eq(P)</span><br><span class="line">R0=Er((x3,y3[<span class="number">0</span>]))</span><br><span class="line">R1=Er((x3,y3[<span class="number">1</span>]))</span><br><span class="line">R_ =Er(P)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> Bp <span class="keyword">in</span> [P0,P1]:</span><br><span class="line">    dlp1=discrete_log(P_, Bp, operation=<span class="string">&quot;+&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> Bq <span class="keyword">in</span> [Q0,Q1]:</span><br><span class="line">        dlp2=discrete_log(Q_, Bq, operation=<span class="string">&quot;+&quot;</span>)</span><br><span class="line">        <span class="keyword">for</span> Br <span class="keyword">in</span> [R0,R1]:            </span><br><span class="line">            dlp3=discrete_log(R_, Br, operation=<span class="string">&quot;+&quot;</span>)</span><br><span class="line">            Base = E((BASE_POINT_x,CRT([ZZ(Bp.xy()[<span class="number">1</span>]),ZZ(Bq.xy()[<span class="number">1</span>]),ZZ(Br.xy()[<span class="number">1</span>])],[p,q,r])))</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                dlp=CRT([ZZ(dlp1),ZZ(dlp2),ZZ(dlp3)],[Bp.order(),Bq.order(),Br.order()])</span><br><span class="line">                <span class="keyword">assert</span> dlp*Base == Y</span><br><span class="line">            <span class="keyword">except</span>:</span><br><span class="line">                print([dlp1,dlp2,dlp3])</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            print(long_to_bytes(<span class="built_in">int</span>(dlp)))</span><br></pre></td></tr></table></figure>
+<p> &nbsp;</p>
+<h2 id="Sparse-medium-hard-38-solves"><a href="#Sparse-medium-hard-38-solves" class="headerlink" title="Sparse (medium hard, 38 solves)"></a>Sparse (medium hard, 38 solves)</h2><p>I think it’s an easy challenge or maybe my solution is unexpected. Notice that <script type="math/tex">q=p-\sum_{i=1}^{5}C_i*2^{P_i}</script> where <script type="math/tex">C_i</script> is randomly selected form {0,-1} and <script type="math/tex">P_i</script> is randomly selected from [3,417-3] ( p is 417-bit ). In some cases, p and q are close and from sqrt(n) we can derive p’s most MSBs and factor n by coppersmith method. In this challenge, it’s not applicable. Therefore, I just brute force the <script type="math/tex">P_i</script> supposing that at least half of $C_i$s are zero and try to find the roots of $f=x*(x-2^i-2^j)-n$.  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br><span class="line"></span><br><span class="line">n = <span class="number">9414488751374453868165784485658398569090305537640057017037183720072422731495734803684706936655253125445176582486308241015430205703156336248578475428712275706238423997982248462635972817633320331030484841129628650918661036694615254018290264619628335177</span></span><br><span class="line">c = <span class="number">80250313885079761377138486357617323555591919111371649902793873860183455237161293320577683249054725852540874552433031133240624696119120378419135912301004715004977978507247634217071922495893934816945961054193052791946557226599493364850793396744903765857</span></span><br><span class="line"></span><br><span class="line">P.&lt;x&gt;=PolynomialRing(ZZ)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> tqdm(<span class="built_in">range</span>(<span class="number">3</span>,<span class="number">417</span>-<span class="number">3</span>)):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>,<span class="number">417</span>-<span class="number">3</span>):</span><br><span class="line">         <span class="comment"># for k in range(3,417-3):</span></span><br><span class="line">        f=x*(x-<span class="number">2</span>**i-<span class="number">2</span>**j)-n</span><br><span class="line">        roots=f.roots()</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(roots)!=<span class="number">0</span>:</span><br><span class="line">            print(roots)</span><br><span class="line"><span class="comment"># Get roots</span></span><br><span class="line">p=<span class="number">306830388836804329141962887303478929481030609690558681791188661267432264489154832486621075592202056601614588786165284573906787</span></span><br><span class="line">q=n//p</span><br><span class="line"></span><br><span class="line">print(long_to_bytes(<span class="built_in">int</span>(<span class="built_in">pow</span>(c,inverse(<span class="number">65537</span>,(p-<span class="number">1</span>)*(q-<span class="number">1</span>)),n))))</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<h2 id="Cantilever-medium-60-solves"><a href="#Cantilever-medium-60-solves" class="headerlink" title="Cantilever (medium, 60 solves)"></a>Cantilever (medium, 60 solves)</h2><p>This challenge is a classic smooth prime problem and related to two famous algorithm: Pollard’s p-1 algorithm for integer factorization and Pohlig Hellman algorithm for discrete logarithm. Just implementing the two algorithms is enough for this challenge. Lately, I’m also designing crypto challenges related to the two algorithms, so this challenge makes me feel very familiar.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">n = <span class="number">7069789930583271525053215046247773438899869283661158227309691853515987055334306019600324056376312479212090202373516405860759222837585952590589336295698718699890424169542280710721069784487366121478569760563045886361884895363592898476736269784284754788133722060718026577238640218755539268465317292713320841554802703379684173485217045274942603346947299152498798736808975912326592689302969859834957202716983626393365387411319175917999258829839695189774082810459527737342402920881184864625678296442001837072332161966439361793009893108796934406114288057583563496587655548536011677451960307597573257032154009427010069578913</span></span><br><span class="line">c_1 = <span class="number">488692928085934899944055554857568564903346089951134051486941368561567330884363274156339625953702601270565654444836193796061118053575538224794730472032345171432952984560662218697488844007827176184413713651118743456250147472678673801728916283759932987216388378211555067885210167894310696549664382751443669387953644382833924884208966436685137553434532738845959014828804809425096115758364136546390809453200055265653531950423111482644330073443545410319576097902472017235065047191133112557289289189187696092145850680765843608118584107829268136014912479701945735063525799796920293418182776436767911172221104640501952880057</span></span><br><span class="line">c_2 = <span class="number">109770827223661560471527567179288748906402603483328748683689436879660543465776899146036833470531024202351087008847594392666852763100570391337823820240726499421306887565697452868723849092658743267256316770223643723095601213088336064635680075206929620159782416078143076506249031972043819429093074684182845530529249907297736582589125917235222921623698038868900282049587768700860009877737045693722732170123306528145661683416808514556360429554775212088169626620488741903267154641722293484797745665402402381445609873333905772582972140944493849645600529147490903067975300304532955461710562911203871840101407995813072692212</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pollard_pm1</span>(<span class="params">N,B=<span class="number">0</span></span>):</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> B: B=ceil(sqrt(N))</span><br><span class="line">    a = Integers(N).random_element()</span><br><span class="line">    b = a</span><br><span class="line">    <span class="keyword">for</span> ell <span class="keyword">in</span> tqdm(primes(B)):</span><br><span class="line">        q = <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> q &lt; N:</span><br><span class="line">            q *= ell</span><br><span class="line">        b = b^q</span><br><span class="line">        <span class="keyword">if</span> b == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        d = gcd(b.lift()-<span class="number">1</span>,N)</span><br><span class="line">        <span class="keyword">if</span> d &gt; <span class="number">1</span>: <span class="keyword">return</span> d</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">p=pollard_pm1(n,<span class="number">2</span>^<span class="number">19</span>))</span><br><span class="line">q=n//p</span><br><span class="line"><span class="keyword">assert</span> p*q==n</span><br><span class="line">e = <span class="number">0x10001</span></span><br><span class="line">flag1=long_to_bytes(<span class="built_in">int</span>(<span class="built_in">pow</span>(c_1,inverse(e,(p-<span class="number">1</span>)*(q-<span class="number">1</span>)),n)))</span><br><span class="line">print(flag1)</span><br><span class="line"></span><br><span class="line">Gp=GF(p)</span><br><span class="line">c_2=Gp(c_2)</span><br><span class="line">flag2 = long_to_bytes(<span class="built_in">int</span>(c_2.log(Gp(e))))</span><br><span class="line"></span><br><span class="line">print(flag1+flag2)</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<h2 id="Baphomet-easy-93-solves"><a href="#Baphomet-easy-93-solves" class="headerlink" title="Baphomet (easy, 93 solves)"></a>Baphomet (easy, 93 solves)</h2><p>Classic xor tricks. By the encrypted flag length, we get the key length by <script type="math/tex">len(flag)//8=6</script>. Therefore by the flag format <code>b64encode(b&quot;CCTF&#123;&quot;)</code>, we can get the 6-byte <script type="math/tex">xor\_key</script> and it’s all done.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> base64 <span class="keyword">import</span> b64encode,b64decode</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">xor</span>(<span class="params">b1,b2</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">bytes</span>([x^y <span class="keyword">for</span> x,y <span class="keyword">in</span> <span class="built_in">zip</span>(b1,b2)])</span><br><span class="line"></span><br><span class="line">encflag=<span class="built_in">open</span>(<span class="string">&quot;./flag.enc&quot;</span>,<span class="string">&quot;rb&quot;</span>).read()</span><br><span class="line">key_len=<span class="built_in">len</span>(encflag)//<span class="number">8</span></span><br><span class="line"><span class="comment"># ken_len = 6</span></span><br><span class="line">prefix = b64encode(<span class="string">b&quot;CCTF&#123;&quot;</span>)[:key_len].decode(<span class="string">&quot;utf8&quot;</span>)</span><br><span class="line">known_prefix=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> b <span class="keyword">in</span> prefix:</span><br><span class="line">    <span class="keyword">if</span> b.islower():</span><br><span class="line">        known_prefix += b.upper()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        known_prefix += b.lower()</span><br><span class="line">        </span><br><span class="line">print(known_prefix)</span><br><span class="line">key = xor(known_prefix.encode(),encflag[:key_len])</span><br><span class="line"></span><br><span class="line">msg=<span class="string">b&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(encflag)//key_len):</span><br><span class="line">    msg+=xor(encflag[i*<span class="number">6</span>:i*<span class="number">6</span>+<span class="number">6</span>],key)</span><br><span class="line">print(msg)</span><br><span class="line"></span><br><span class="line">flag=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> b <span class="keyword">in</span> msg.decode():</span><br><span class="line">    <span class="keyword">if</span> b.islower():</span><br><span class="line">        flag += b.upper()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        flag += b.lower()</span><br><span class="line"></span><br><span class="line">print(b64decode(flag.encode()))</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+
+    
+
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          tl2cents
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://tl2cents.github.io/2022/07/17/CryptoCTF2022/" title="Crypto CTF 2022 WriteUp By tl2cents" target="_blank">https://tl2cents.github.io/2022/07/17/CryptoCTF2022/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">USTC</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">0S2021</a>
-        		</li>
-      		
-		</ul>
-	</div>
+          遵循CC 4.0 BY-SA版权协议，转载请注明出处
+        </li>
+        
+      </ul>
+    </div>
+    
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/OS-2021//" class="article-tag-list-link color3">OS 2021</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
   </div>
-</article>
-  
+  <div class="article-info article-info-index">
     
     
-    <article class="archive-article archive-type-blog">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/07/18/USTC%20OS%202021%20Spring%20HW4/" class="archive-article-date">
-        <time datetime="2021-07-18T09:24:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-18</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/07/18/USTC%20OS%202021%20Spring%20HW4/" target="_blank">USTC OS 2021 Spring HW4</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">USTC</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">0S2021</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/OS-2021//" class="article-tag-list-link color3">OS 2021</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-blog">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/06/15/2021%E5%BC%BA%E7%BD%91%E6%9D%AFNEBULA%E6%88%98%E9%98%9FWriteup/" class="archive-article-date">
-        <time datetime="2021-06-15T03:18:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-15</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/06/15/2021%E5%BC%BA%E7%BD%91%E6%9D%AFNEBULA%E6%88%98%E9%98%9FWriteup/" target="_blank">2021强网杯Nebula战队Writeup</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -382,7 +354,7 @@
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -395,79 +367,118 @@
 	</div>
 
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://tl2cents.github.io/2022/07/17/CryptoCTF2022/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-blog">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/05/12/USTC%20OS%202021%20Spring%20HW3/" class="archive-article-date">
-        <time datetime="2021-05-12T13:24:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-12</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/2022/03/27/SageMath%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SageMath简明教程</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/05/12/USTC%20OS%202021%20Spring%20HW3/" target="_blank">USTC OS 2021 Spring HW3</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">USTC</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">0S2021</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/OS-2021//" class="article-tag-list-link color3">OS 2021</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Diploma-medium-68-solves"><span class="toc-number">1.</span> <span class="toc-text">Diploma (medium, 68 solves)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SOTS-medium-easy-113-solves"><span class="toc-number">2.</span> <span class="toc-text">SOTS (medium easy, 113 solves)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#polyRSA-medium-easy-145-solves"><span class="toc-number">3.</span> <span class="toc-text">polyRSA (medium easy, 145 solves)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Starter-ECC-medium-43-solves"><span class="toc-number">4.</span> <span class="toc-text">Starter ECC (medium, 43 solves)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DBB-medium-43-solves"><span class="toc-number">5.</span> <span class="toc-text">DBB (medium, 43 solves)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sparse-medium-hard-38-solves"><span class="toc-number">6.</span> <span class="toc-text">Sparse (medium hard, 38 solves)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cantilever-medium-60-solves"><span class="toc-number">7.</span> <span class="toc-text">Cantilever (medium, 60 solves)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Baphomet-easy-93-solves"><span class="toc-number">8.</span> <span class="toc-text">Baphomet (easy, 93 solves)</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+        
+    </div>
+</aside>
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/3/">Prev page</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/page/5/">5</a><a class="page-number" href="/archives/page/6/">6</a><a class="page-number" href="/archives/page/7/">7</a><a class="extend next" rel="next" href="/archives/page/5/">Next page</a>
-    </nav>
-  
+
+
+
+
+
+
+
+
+
+
+
 
 
           </div>
@@ -496,8 +507,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
