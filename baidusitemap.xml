@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://tl2cents.github.io/2022/09/05/2022-BalsnCTF-Crypto-Writeup/</loc>
+    <lastmod>2022-09-05</lastmod>
+  </url>
+  <url>
     <loc>https://tl2cents.github.io/2022/07/25/2022DASCTF7%E6%9C%88%E8%B5%8B%E8%83%BD%E8%B5%9BCryptoWriteup/</loc>
     <lastmod>2022-07-25</lastmod>
   </url>
