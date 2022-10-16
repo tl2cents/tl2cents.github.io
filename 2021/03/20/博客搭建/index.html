@@ -51,9 +51,6 @@
   
 
   
-    
- 	  <script src="/lib/clickLove.js"></script>
-  
   
 
 <script>
@@ -115,11 +112,11 @@
 		<nav class="header-smart-menu">
 			
 				
-					<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">文章目录</a>
+					<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">Toc</a>
 				
 			
 				
-					<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+					<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">Friends</a>
 				
 			
 				
@@ -6851,23 +6848,6 @@
 
 <!--  -->
 
-<script>
-  /* 标签页标题切换 */
-  var originTitle = document.title;
-  var titleTime;
-  document.addEventListener("visibilitychange", function () {
-    if (document.hidden) {
-      document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
-      clearTimeout(titleTime);
-    } else {
-      document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
-      titleTime = setTimeout(function () {
-        document.title = originTitle;
-      }, 2000);
-    }
-  });
-</script>
-
 
     
 <div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
@@ -6892,11 +6872,11 @@
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">文章目录</a></li>
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">Toc</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">Friends</a></li>
       
         
       

@@ -9,16 +9,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://tl2cents.github.io">
-  <title>Category: CTF | tl2cents blog</title>
+  <title>ASISCTF 2022 Quals Crypto Writeup | tl2cents blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="tl2cents blog">
-<meta property="og:url" content="https://tl2cents.github.io/categories/CTF/page/4/index.html">
+  <meta name="description" content="An enjoyable CTF competition！Never Stop Exploiting got the 4th place in the end. We solved all the six crypto challenges and here are the writeups by tl2cents.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ASISCTF 2022 Quals Crypto Writeup">
+<meta property="og:url" content="https://tl2cents.github.io/2022/10/16/ASISCTF-2022-Quals-Crypto-Writeup/index.html">
 <meta property="og:site_name" content="tl2cents blog">
+<meta property="og:description" content="An enjoyable CTF competition！Never Stop Exploiting got the 4th place in the end. We solved all the six crypto challenges and here are the writeups by tl2cents.">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-10-16T11:06:12.000Z">
+<meta property="article:modified_time" content="2022-10-16T11:30:40.583Z">
 <meta property="article:author" content="tl2cents">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="writeup">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="tl2cents blog" type="application/atom+xml">
@@ -40,9 +46,6 @@
 
   
 
-  
-    
- 	  <script src="/lib/clickLove.js"></script>
   
   
 
@@ -105,11 +108,11 @@
 		<nav class="header-smart-menu">
 			
 				
-					<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">文章目录</a>
+					<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">Toc</a>
 				
 			
 				
-					<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+					<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">Friends</a>
 				
 			
 				
@@ -216,215 +219,165 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="blog-ASISCTF-2022-Quals-Crypto-Writeup" class="article article-type-blog " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-blog">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/05/11/Red-Hat-Cup-2021-Writeup/" class="archive-article-date">
-        <time datetime="2021-05-11T01:37:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-11</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/05/11/Red-Hat-Cup-2021-Writeup/" target="_blank">Red Hat Cup 2021(红帽杯) Writeup</a>
   
+    <h1 class="article-title" itemprop="name">
+      ASISCTF 2022 Quals Crypto Writeup
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+<a href="/2022/10/16/ASISCTF-2022-Quals-Crypto-Writeup/" class="archive-article-date">
+        <time datetime="2022-10-16T11:06:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-10-16</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">2.8k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">17分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    <!-- newly added -->
+    
+    <!-- newly added -->
+    
+    <p>An enjoyable CTF competition！Never Stop Exploiting got the 4th place in the end. We solved all the six crypto challenges and here are the writeups by tl2cents.</p>
+<span id="more"></span>
+<p>&nbsp;</p>
+<h2 id="Binned-126-solves-45-pts"><a href="#Binned-126-solves-45-pts" class="headerlink" title="Binned, 126 solves, 45 pts"></a>Binned, 126 solves, 45 pts</h2><p>&nbsp;</p>
+<h3 id="Source-code"><a href="#Source-code" class="headerlink" title="Source code"></a>Source code</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> gensafeprime <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> flag <span class="keyword">import</span> flag</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">keygen</span>(<span class="params">nbit</span>):</span></span><br><span class="line">	p, q = [generate(nbit) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>)]</span><br><span class="line">	<span class="keyword">return</span> (p, q)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encrypt</span>(<span class="params">m, pubkey</span>):</span></span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">pow</span>(pubkey + <span class="number">1</span>, m, pubkey ** <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">p, q = keygen(<span class="number">512</span>)</span><br><span class="line">n = p * q</span><br><span class="line"></span><br><span class="line">flag = bytes_to_long(flag)</span><br><span class="line">enc = encrypt(flag, n)</span><br><span class="line"></span><br><span class="line">print(<span class="string">f&#x27;pubkey = <span class="subst">&#123;n&#125;</span>&#x27;</span>)</span><br><span class="line">print(<span class="string">f&#x27;enc = <span class="subst">&#123;enc&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>The encryption is : <script type="math/tex">enc = (n+1)^{flag} \mod n^3</script> where <script type="math/tex">n=p*q</script>. It seems like a discrete logarithm problem but the solution is far away from that. The order of <script type="math/tex">n+1</script> with modulo <script type="math/tex">n^3</script> is <script type="math/tex">n^2</script> preventing any kind of smooth attack and subgroup attack. The trick is binomial expansion of <script type="math/tex">(n+1)^{flag}</script>  and the left part is the first three terms in <script type="math/tex">Zmod(n^3)</script> or the first two terms in <script type="math/tex">Zmod(n^2)</script> . Just solve the equation in integer ring!</p>
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sage</span></span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line">pubkey = <span class="number">125004899806380680278294077957993138206121343727674199724251084023100054797391533591150992663742497532376954423241741439218367086541339504325939051995057848301514908377941815605487168789148131591458301036686411659334843972203243490288676763861925647147178902977362125434420265824374952540259396010995154324589</span></span><br><span class="line">enc = <span class="number">789849126571263315208956108629196540107771075292285804732934458641661099043398300667318883764744131397353851782194467024270666326116745519739176492710750437625345677766980300328542459318943175684941281413218985938348407537978884988013947538034827562329111515306723274989323212194585378159386585826998838542734955059450048745917640814983343040930383529332576453845724747105810109832978045135562492851617884175410194781236450629682032219153517122695586503298477875749138129517477339813480115293124316913331705913455692462482942654717828006590051944205639923326375814299624264826939725890226430388059890231323791398412019416647826367964048142887158552454494856771139750458462334678907791079639005383932256589768726730285409763583606927779418528562990619985840033479201147509241313757191997545174262930707521451438204766627975109619779824255444258160</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encrypt</span>(<span class="params">m, pubkey</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">pow</span>(pubkey + <span class="number">1</span>, m, pubkey ** <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">P.&lt;x&gt; = PolynomialRing(ZZ)</span><br><span class="line">f =  x*pubkey +<span class="number">1</span> - (enc%(pubkey^<span class="number">2</span>))</span><br><span class="line"><span class="comment"># (n+1)^flag = enc mod n^3</span></span><br><span class="line">flag = f.roots()[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">print(long_to_bytes(<span class="built_in">int</span>(flag)))</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<h2 id="Chaffymasking-66-solves-73-pts"><a href="#Chaffymasking-66-solves-73-pts" class="headerlink" title="Chaffymasking, 66 solves, 73 pts"></a>Chaffymasking, 66 solves, 73 pts</h2><p>Just reverse the <code>chaffy_mask</code> function and find that the keys are given with a reversible encryption（<code>xor</code>） which might not be intended solution after seeing the flag.</p>
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># python</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"><span class="keyword">import</span> os, sys</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pad</span>(<span class="params">inp, length</span>):</span></span><br><span class="line">	result = inp + os.urandom(length - <span class="built_in">len</span>(inp))</span><br><span class="line">	<span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">byte_xor</span>(<span class="params">a, b</span>):</span></span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">bytes</span>(_a ^ _b <span class="keyword">for</span> _a,_b <span class="keyword">in</span> <span class="built_in">zip</span>(a,b)) </span><br><span class="line">m, n = <span class="number">512</span>, <span class="number">64</span> </span><br><span class="line">IVK = <span class="comment"># omit</span></span><br><span class="line"></span><br><span class="line">LTC = np.zeros([n, m], dtype=(<span class="built_in">int</span>))</span><br><span class="line">LTC[<span class="number">0</span>,:] = IVK</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(m // n + <span class="number">1</span>):</span><br><span class="line">        LTC[i,j*n:(j+<span class="number">1</span>)*n] = np.roll(IVK[j*n:(j+<span class="number">1</span>)*n], i)</span><br><span class="line">salt = os.urandom(m//<span class="number">8</span>).<span class="built_in">hex</span>().encode()</span><br><span class="line">m, n = <span class="number">512</span>, <span class="number">64</span> </span><br><span class="line">q = n ** <span class="number">2</span></span><br><span class="line">half1_salt = salt[:m // <span class="number">8</span>]</span><br><span class="line">half2_salt = salt[m // <span class="number">8</span>:]</span><br><span class="line">xor_salts = <span class="built_in">int</span>.from_bytes(byte_xor(half1_salt, half2_salt), <span class="string">&quot;big&quot;</span>)</span><br><span class="line"><span class="keyword">assert</span> xor_salts != <span class="number">0</span></span><br><span class="line">half1_binStr = <span class="string">&quot;&#123;:08b&#125;&quot;</span>.<span class="built_in">format</span>(<span class="built_in">int</span>(half1_salt.<span class="built_in">hex</span>(),<span class="number">16</span>))</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">len</span>(half1_binStr) &lt; m):</span><br><span class="line">    half1_binStr = <span class="string">&quot;0&quot;</span> * (m - <span class="built_in">len</span>(half1_binStr)%m) + half1_binStr</span><br><span class="line">half2_binStr = <span class="string">&quot;&#123;:08b&#125;&quot;</span>.<span class="built_in">format</span>(<span class="built_in">int</span>(half2_salt.<span class="built_in">hex</span>(),<span class="number">16</span>))</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">len</span>(half2_binStr) &lt; m):</span><br><span class="line">    half2_binStr = <span class="string">&quot;0&quot;</span> * (m - <span class="built_in">len</span>(half2_binStr)%m) + half2_binStr</span><br><span class="line"></span><br><span class="line">vec_1 = np.array(<span class="built_in">list</span>(half1_binStr), dtype=<span class="built_in">int</span>)</span><br><span class="line">vec_1 = np.reshape(vec_1, (m,<span class="number">1</span>))</span><br><span class="line">vec_2 = np.array(<span class="built_in">list</span>(half2_binStr), dtype=<span class="built_in">int</span>)</span><br><span class="line">vec_2 = np.reshape(vec_2, (m,<span class="number">1</span>))</span><br><span class="line">out_1 = LTC.dot(vec_1) % q</span><br><span class="line">out_2 = LTC.dot(vec_2) % q</span><br><span class="line"></span><br><span class="line">io = remote(<span class="string">&#x27;65.21.255.31&#x27;</span>,<span class="number">31377</span>)</span><br><span class="line">io.sendlineafter(<span class="string">b&quot;Give me your salt: &quot;</span>,salt)</span><br><span class="line">io.recvuntil(<span class="string">b&quot;masked_flag = &quot;</span>)</span><br><span class="line">masked_flag= io.recvline().decode().strip()[<span class="number">2</span>:]</span><br><span class="line"></span><br><span class="line">enc = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">    enc.append(<span class="built_in">int</span>(masked_flag[<span class="number">2</span>*i:<span class="number">2</span>*i+<span class="number">2</span>],<span class="number">16</span>))</span><br><span class="line">enc_vec = np.reshape(enc,(n,<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">flagV = (enc_vec^out_1^out_2) % <span class="number">256</span></span><br><span class="line">print(<span class="string">f&quot;[+] flagV <span class="subst">&#123;<span class="built_in">bytes</span>(<span class="built_in">list</span>(flagV.reshape(-<span class="number">1</span>)))&#125;</span>&quot;</span>)</span><br><span class="line"><span class="comment"># ASIS&#123;Lattice_based_hash_collision_it_was_sooooooooooooooo_easY!&#125;</span></span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<h2 id="Desired-curve-19-solves-194-pts"><a href="#Desired-curve-19-solves-194-pts" class="headerlink" title="Desired curve, 19 solves, 194 pts"></a>Desired curve, 19 solves, 194 pts</h2><p>&nbsp;</p>
+<h3 id="Source-code-1"><a href="#Source-code-1" class="headerlink" title="Source code"></a>Source code</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env sage</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> flag <span class="keyword">import</span> flag</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">die</span>(<span class="params">*args</span>):</span></span><br><span class="line">	pr(*args)</span><br><span class="line">	quit()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pr</span>(<span class="params">*args</span>):</span></span><br><span class="line">	s = <span class="string">&quot; &quot;</span>.join(<span class="built_in">map</span>(<span class="built_in">str</span>, args))</span><br><span class="line">	sys.stdout.write(s + <span class="string">&quot;\n&quot;</span>)</span><br><span class="line">	sys.stdout.flush()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sc</span>():</span></span><br><span class="line">	<span class="keyword">return</span> sys.stdin.buffer.readline()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">	border = <span class="string">&quot;|&quot;</span></span><br><span class="line">	pr(border*<span class="number">72</span>)</span><br><span class="line">	pr(border, <span class="string">&quot;Hi all, now it&#x27;s time to solve a relatively simple challenge about  &quot;</span>, border)</span><br><span class="line">	pr(border, <span class="string">&quot;relatively elliptic curves! We will generate an elliptic curve with &quot;</span>, border)</span><br><span class="line">	pr(border, <span class="string">&quot;your desired parameters, are you ready!?                            &quot;</span>, border)</span><br><span class="line">	pr(border*<span class="number">72</span>)</span><br><span class="line"></span><br><span class="line">	nbit = <span class="number">256</span></span><br><span class="line">	q = getPrime(nbit)</span><br><span class="line">	F = GF(q)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">		pr(border, <span class="string">&quot;Send the `y&#x27; element of two points in your desired elliptic curve:  &quot;</span>)</span><br><span class="line">		ans = sc()</span><br><span class="line">		<span class="keyword">try</span>:</span><br><span class="line">			y1, y2 = [<span class="built_in">int</span>(_) % q <span class="keyword">for</span> _ <span class="keyword">in</span> ans.split(<span class="string">b&#x27;,&#x27;</span>)]</span><br><span class="line">		<span class="keyword">except</span>:</span><br><span class="line">			die(border, <span class="string">&quot;Your parameters are not valid! Bye!!&quot;</span>)</span><br><span class="line">		A = (y1**<span class="number">2</span> - y2**<span class="number">2</span> - <span class="number">1337</span>**<span class="number">3</span> + <span class="number">31337</span>**<span class="number">3</span>) * inverse(-<span class="number">30000</span>, q) % q</span><br><span class="line">		B = (y1**<span class="number">2</span> - <span class="number">1337</span>**<span class="number">3</span> - A * <span class="number">1337</span>) % q</span><br><span class="line">		E = EllipticCurve(GF(q), [A, B])</span><br><span class="line">		G = E.random_point()</span><br><span class="line"></span><br><span class="line">		m = bytes_to_long(flag)</span><br><span class="line">		<span class="keyword">assert</span> m &lt; q</span><br><span class="line">		C = m * G</span><br><span class="line">		pr(border, <span class="string">f&#x27;The parameters and encrypted flag are:&#x27;</span>)</span><br><span class="line">		pr(border, <span class="string">f&#x27;q = <span class="subst">&#123;q&#125;</span>&#x27;</span>)</span><br><span class="line">		pr(border, <span class="string">f&#x27;G = (<span class="subst">&#123;G.xy()[<span class="number">0</span>]&#125;</span>, <span class="subst">&#123;G.xy()[<span class="number">1</span>]&#125;</span>)&#x27;</span>)</span><br><span class="line">		pr(border, <span class="string">f&#x27;m * G = (<span class="subst">&#123;C.xy()[<span class="number">0</span>]&#125;</span>, <span class="subst">&#123;C.xy()[<span class="number">1</span>]&#125;</span>)&#x27;</span>)</span><br><span class="line"></span><br><span class="line">		pr(border, <span class="string">f&#x27;Now find the flag :P&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">	main()</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<h3 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution"></a>Solution</h3><p>We can choose <script type="math/tex">y1</script> and <script type="math/tex">y2</script> to control <script type="math/tex">a</script> and <script type="math/tex">b</script> , parameters of ecc curve <script type="math/tex">E</script> and the flag is encrypted by <script type="math/tex">mG=m*G</script>. Maybe there is a way to obtain a pair of <script type="math/tex">(a,b)</script> such that <script type="math/tex">E.order</script> is smooth (by brute forcing or something tricky). I simply implemented the subgroup attack. Observe that every time there are small factors of <script type="math/tex">G.order</script>. Transform <script type="math/tex">G</script> and <script type="math/tex">mG</script> into the subgroup with order <script type="math/tex">O</script> by multiplying <script type="math/tex">d = \frac{G.order}{O}</script> where <script type="math/tex">O</script> is smooth with its prime factors from <script type="math/tex">G.order</script>. Then solve the subgroup discrete logarithm: <script type="math/tex">discrete\_log(d*G,d*mG)</script> and we obtain <script type="math/tex">sub\_dlp = m \mod O</script>. Continue until you fully recover the flag with <script type="math/tex">CRT</script>.</p>
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sage</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line">io = remote(<span class="string">&#x27;65.21.255.31&#x27;</span>, <span class="number">10101</span>)</span><br><span class="line">io.sendlineafter(<span class="string">b&quot;Send the `y&#x27; element of two points in your desired elliptic curve:  &quot;</span>,<span class="string">b&quot;1,1&quot;</span>)</span><br><span class="line">io.recvline()</span><br><span class="line">io.recvline()</span><br><span class="line"></span><br><span class="line">sub_results = []</span><br><span class="line">sub_mods = []</span><br><span class="line"></span><br><span class="line">q = <span class="built_in">int</span>(io.recvline().decode().split(<span class="string">&quot;=&quot;</span>)[-<span class="number">1</span>].strip())</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sub_group_cracker</span>():</span></span><br><span class="line">    y1 = randint(<span class="number">1</span>,q)</span><br><span class="line">    y2 = randint(<span class="number">1</span>,q)</span><br><span class="line">    io.sendlineafter(<span class="string">b&quot;Send the `y&#x27; element of two points in your desired elliptic curve:  &quot;</span>,<span class="string">f&quot;<span class="subst">&#123;y1&#125;</span>,<span class="subst">&#123;y2&#125;</span>&quot;</span>.encode())</span><br><span class="line">    io.recvline()</span><br><span class="line">    io.recvline()</span><br><span class="line">    </span><br><span class="line">    q_ = <span class="built_in">int</span>(io.recvline().decode().split(<span class="string">&quot;=&quot;</span>)[-<span class="number">1</span>].strip())</span><br><span class="line">    <span class="keyword">assert</span> q_ == q</span><br><span class="line">    print(<span class="string">f&quot;[+] q = <span class="subst">&#123;q&#125;</span>&quot;</span>)</span><br><span class="line">    G = [<span class="built_in">int</span>(i.strip().strip(<span class="string">&quot;()&quot;</span>)) <span class="keyword">for</span> i <span class="keyword">in</span> io.recvline().decode().split(<span class="string">&quot;=&quot;</span>)[-<span class="number">1</span>].split(<span class="string">&quot;,&quot;</span>)]</span><br><span class="line">    print(<span class="string">f&quot;[+] G = <span class="subst">&#123;G&#125;</span>&quot;</span>)</span><br><span class="line">    mG = [<span class="built_in">int</span>(i.strip().strip(<span class="string">&quot;()&quot;</span>)) <span class="keyword">for</span> i <span class="keyword">in</span> io.recvline().decode().split(<span class="string">&quot;=&quot;</span>)[-<span class="number">1</span>].split(<span class="string">&quot;,&quot;</span>)]</span><br><span class="line">    print(<span class="string">f&quot;[+] mG = <span class="subst">&#123;mG&#125;</span>&quot;</span>)</span><br><span class="line">    E = EllipticCurve(GF(q), [A(y1,y2), B(y1,y2)])</span><br><span class="line">    <span class="comment"># order_ls = factor(E.order())</span></span><br><span class="line">    g_order = E(G).order()</span><br><span class="line">    order_ls = factor(g_order)</span><br><span class="line">    print(<span class="string">f&quot;[+] G order <span class="subst">&#123;order_ls&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    sub_group_order = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> p,e <span class="keyword">in</span> order_ls:</span><br><span class="line">        <span class="keyword">if</span> p.nbits() &lt;= <span class="number">40</span>:</span><br><span class="line">            sub_group_order*= (p^e)</span><br><span class="line">    expon = g_order//sub_group_order</span><br><span class="line">    mm = discrete_log(expon*E(mG),expon*E(G),<span class="built_in">ord</span> = sub_group_order,operation = <span class="string">&quot;+&quot;</span>)</span><br><span class="line">    <span class="comment"># compute dlp in subgroup </span></span><br><span class="line">    print(<span class="string">&quot;[+] subgroup dlp (m mod sub_group_order) = &quot;</span>, mm)</span><br><span class="line">    <span class="keyword">return</span> mm , sub_group_order</span><br><span class="line"></span><br><span class="line"><span class="comment"># with good luck, it&#x27;s quick to get flag</span></span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">20</span>):</span><br><span class="line">    mm,sub_mod = sub_group_cracker()</span><br><span class="line">    sub_results.append(ZZ(mm))</span><br><span class="line">    sub_mods.append(ZZ(sub_mod))</span><br><span class="line">    m = crt(sub_results,sub_mods)</span><br><span class="line">    flag = long_to_bytes(<span class="built_in">int</span>(m))</span><br><span class="line">    <span class="keyword">if</span> <span class="string">b&quot;ASIS&quot;</span> <span class="keyword">in</span> flag:</span><br><span class="line">        print(flag)</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<h2 id="Disinvolute-7-solves-334-pts"><a href="#Disinvolute-7-solves-334-pts" class="headerlink" title="Disinvolute, 7 solves, 334 pts"></a>Disinvolute, 7 solves, 334 pts</h2><p>Fascinating! <strong>Safe primes are not safe this time</strong>! There two ways to solve this challenge. This challenge is similar to <code>Cycling</code> of Google CTF 2022 quals and there are some <a target="_blank" rel="noopener" href="https://groups.google.com/g/google-ctf/c/BQG1LP8vuZ4">writeups</a>. I came up two solutions for this challenge.</p>
+<p>Challenge info:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">test@tl2cents:~$ nc <span class="number">65.21</span><span class="number">.255</span><span class="number">.31</span> <span class="number">12431</span></span><br><span class="line">||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||</span><br><span class="line">|  Welcome to disinvolute challenge, <span class="keyword">with</span> respet you should solve a    |</span><br><span class="line">|  very hard nested DLP problem! For this I have used safe primes to   |</span><br><span class="line">|  insure that secuirty <span class="keyword">is</span> MAX! This <span class="keyword">is</span> an impossible mission! YES!!!  |</span><br><span class="line">||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||</span><br><span class="line">| Options:</span><br><span class="line">|       [E]ncrypted flag!</span><br><span class="line">|       [F]acts</span><br><span class="line">|       [Q]uit</span><br><span class="line">f</span><br><span class="line">| e = <span class="number">65537</span></span><br><span class="line">| g = <span class="number">19</span></span><br><span class="line">| G = <span class="number">7</span></span><br><span class="line">| n = <span class="number">148267061058508140521771844336357309638193892680830195994160435155477469086917454039271500259436678115087207606317117102876682845930891594642648585082452526513788285554286522281479430636699137451087982039394834852230409441379845133453897324929887574781827710609261015600756331507149838295821831013983881738389</span></span><br><span class="line">| x = <span class="number">4762228865112713933680901686312365438129543465633308131394213429335503949565244481709257174336654854804801415429822876318871430932962637771832260779974221594549081075526225455803075556244759773424025448602402416296738408795507100015745114555257736736093818152570949549787743320873704496070532836113256737166</span></span><br><span class="line">| y = <span class="number">1108860751796709331344647906028326950754821659277541482354358602643335344374460647577034423609942879025016135867349727283942882622507736748361346004160798320992095814111122298279112119647096302425446695751072628908811645869472412699194693577438376762025200214230041011993884089216839121719313852986953023723173686</span></span><br><span class="line">| m = bytes_to_long(flag)</span><br><span class="line">| <span class="built_in">pow</span>(g, <span class="built_in">pow</span>(G, x), n) == <span class="built_in">pow</span>(g, <span class="built_in">pow</span>(G, y), n)</span><br><span class="line">| Options:</span><br><span class="line">|       [E]ncrypted flag!</span><br><span class="line">|       [F]acts</span><br><span class="line">|       [Q]uit</span><br><span class="line">e</span><br><span class="line">| <span class="built_in">pow</span>(m, e, n) = <span class="number">105605841738961983417577860678752974932535437666329804651842025661498876678103379117144657722045837391523737156819410348181082826864098784246794477942656416786047722500499494659365335093851833727146241282145989311890111537596263118905768162627976192397364757993978612885949454870746076488102879019056734690608</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<h3 id="Solution-1-Safe-primes-structure-Intended"><a href="#Solution-1-Safe-primes-structure-Intended" class="headerlink" title="Solution 1: Safe primes structure(Intended)"></a>Solution 1: Safe primes structure(Intended)</h3><p>We obtain a nested power equation : <script type="math/tex">pow(g,G^x,n) = pow(g,G^y,n)</script>. The first power of <script type="math/tex">g</script> gives : <script type="math/tex">G^x \equiv G^y \mod \varphi(\varphi(n))</script>, and the second power of <script type="math/tex">G</script> gives <script type="math/tex">y \equiv x \mod \varphi(\varphi(n))</script> where <script type="math/tex">\varphi</script> is Euler function. From above equation, we have:</p>
+<script type="math/tex; mode=display">
+(y - x) | \varphi(\varphi(n)) \implies y-x = k*\varphi(\varphi(n)),\  k\in\Z \tag{1}</script><p>This situation is corresponding to the <strong><a target="_blank" rel="noopener" href="https://crypto.stackexchange.com/questions/1572/cycle-attack-on-rsa">RSA cycling</a></strong> attack if <script type="math/tex">e</script> is deliberately selected such that <script type="math/tex">ord(e)</script> in <script type="math/tex">Zmod(\varphi(n))</script> is small. I’ll introduce two general attacks with information of <script type="math/tex">ord(e)</script> or <script type="math/tex">\varphi (\varphi(n))</script> leaked.</p>
+<ul>
+<li><strong>cycling attack</strong> : If <script type="math/tex">ord(e)</script> is small, we can simply encrypt the cipher text <script type="math/tex">ord(e)-1</script> times and get plaintext ：<script type="math/tex">c^{e^{ord(e)-1}} \equiv m^{e^{ord(e)}} \equiv m \mod n</script>.  </li>
+<li><strong>recovering <script type="math/tex">k\varphi(n)</script> from factorization of <script type="math/tex">\varphi(\varphi(n))</script> </strong>: this attack can performs well if the factorization of <script type="math/tex">\varphi(\varphi(n))</script> is given (or can be easily obtained by <code>factor</code> , <code>factorDB</code>) and the number of prime factors is small. The core idea is reversing the Euler function and obtain all the possible prime factors of <script type="math/tex">\varphi(n)</script>. The detailed process can be found here: <a target="_blank" rel="noopener" href="https://ur4ndom.dev/posts/2022-07-04-gctf-cycling/">Cycling Writeup of Google CTF 2022</a>.</li>
+</ul>
+<p>The scenario of this challenge is similar to the challenge<code>Cycling</code> of Google CTF 2022 quals, but in this challenge, we’re not given the exact value of <script type="math/tex">\varphi(\varphi(n))</script> and we can’t factorize <script type="math/tex">y-x</script> either. Notice that : “<strong>I have used safe primes to insure that security is MAX</strong>“, we focus on the <strong>expression of <script type="math/tex">\varphi(\varphi(n))</script> in the safe prime case.</strong></p>
+<script type="math/tex; mode=display">
+\left\{
+\begin{aligned}
+p & = 2p_0+1 \\
+q & = 2q_0+1
+\end{aligned}
+\right.\tag{2}</script><p>Applying (2) into expression of n and <script type="math/tex">\varphi(\varphi(n))</script> :</p>
+<script type="math/tex; mode=display">
+n = (2p_0+1)(2q_0+1) = 4p_0q_0+2(p_0+q_0) +1 \implies p_0q_0 = \frac{n-2(p_0+q_0)-1}{4} \tag{3}</script><script type="math/tex; mode=display">
+\varphi(\varphi(n)) = \varphi(4q_0p_0) = 2(p_0-1)(q_0-1)=2p_0q_0-2(p_0+q_0)+1 \tag{4}</script><p>Plugging (3) into (4), we obtain an expression of <script type="math/tex">\varphi(\varphi(n))</script> with <script type="math/tex">p_0+q_0</script> ：</p>
+<script type="math/tex; mode=display">
+2\varphi(\varphi(n)) = n - 6(p_0+q_0)+3 \tag{5}</script><p>By (2), we also have <script type="math/tex">p_0+q_0 = \frac{p+q-2}{2}</script> and replace <script type="math/tex">p_0+q_0</script> in (5):</p>
+<script type="math/tex; mode=display">
+2\varphi(\varphi(n)) = n- 3(p+q)+9 \tag{6}</script><p>Hence, if  <script type="math/tex">p,q</script> are strong primes, given the exact value of <script type="math/tex">\varphi(\varphi(n))</script>, we can easily recover <script type="math/tex">p+q</script> by (6) and solve the quadratic equation <script type="math/tex">x^2 - (p+q)x + n</script> to factor <script type="math/tex">n=pq</script>.</p>
+<p>In this challenge <script type="math/tex">y-x = k\varphi(\varphi(n))</script>, and k is small (about <script type="math/tex">2^{20}</script>) by analyzing the data samples, so brute-forcing is enough to recover  <script type="math/tex">\varphi(\varphi(n))</script>.</p>
+<p>remote data</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> factordb.factordb <span class="keyword">import</span> FactorDB</span><br><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br><span class="line"></span><br><span class="line">context.log_level = <span class="string">&#x27;error&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">obtain_new_data</span>():</span></span><br><span class="line">    io = remote(<span class="string">&#x27;65.21.255.31&#x27;</span>, <span class="number">12431</span>)</span><br><span class="line">    io.sendlineafter(<span class="string">b&quot;[Q]uit\n&quot;</span>,<span class="string">b&quot;f&quot;</span>)</span><br><span class="line">    e = <span class="built_in">int</span>(io.recvline().decode().split(<span class="string">&quot;=&quot;</span>)[-<span class="number">1</span>].strip())</span><br><span class="line">    g = <span class="built_in">int</span>(io.recvline().decode().split(<span class="string">&quot;=&quot;</span>)[-<span class="number">1</span>].strip())</span><br><span class="line">    G = <span class="built_in">int</span>(io.recvline().decode().split(<span class="string">&quot;=&quot;</span>)[-<span class="number">1</span>].strip())   </span><br><span class="line">    n = <span class="built_in">int</span>(io.recvline().decode().split(<span class="string">&quot;=&quot;</span>)[-<span class="number">1</span>].strip())</span><br><span class="line">    x = <span class="built_in">int</span>(io.recvline().decode().split(<span class="string">&quot;=&quot;</span>)[-<span class="number">1</span>].strip())</span><br><span class="line">    y = <span class="built_in">int</span>(io.recvline().decode().split(<span class="string">&quot;=&quot;</span>)[-<span class="number">1</span>].strip())</span><br><span class="line">    io.sendlineafter(<span class="string">b&quot;[Q]uit\n&quot;</span>,<span class="string">b&quot;e&quot;</span>)</span><br><span class="line">    enc = <span class="built_in">int</span>(io.recvline().decode().split(<span class="string">&quot;=&quot;</span>)[-<span class="number">1</span>].strip())</span><br><span class="line">    io.close()</span><br><span class="line">    print(y-x)</span><br><span class="line">    <span class="keyword">return</span> enc,n,x,y,e,g,G</span><br></pre></td></tr></table></figure>
+<p>Solver</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sage</span></span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br><span class="line">enc,n,x,y,e,g,G = obtain_new_data()</span><br><span class="line">small_factors = factor(ZZ(y-x),limit = <span class="number">2</span>^<span class="number">30</span>)</span><br><span class="line">factor_list = [ p <span class="keyword">for</span> p,_ <span class="keyword">in</span> small_factors]</span><br><span class="line">kphiphin =ZZ(y-x)</span><br><span class="line"></span><br><span class="line">PR.&lt;x&gt; = PolynomialRing(ZZ)</span><br><span class="line">all_possible_phi_n_factors = []</span><br><span class="line"></span><br><span class="line">print(kphiphin.nbits())</span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> tqdm(<span class="built_in">range</span>(<span class="number">2</span>,<span class="number">2</span>**<span class="number">24</span>)):</span><br><span class="line">    <span class="keyword">if</span> kphiphin % k!=<span class="number">0</span>:</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    f = n - <span class="number">6</span>*x + <span class="number">3</span> - <span class="number">2</span>*(kphiphin//k)</span><br><span class="line">    root = f.roots()</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(root)&gt;<span class="number">0</span> <span class="keyword">and</span> ZZ(root[<span class="number">0</span>][<span class="number">0</span>]).nbits() &lt; <span class="number">600</span>:</span><br><span class="line">        print(root)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">p_q = root[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">p0q0 = (n-<span class="number">2</span>*p_q-<span class="number">1</span>)//<span class="number">4</span></span><br><span class="line">f = x^<span class="number">2</span> - p_q*x + p0q0</span><br><span class="line">r = f.roots()</span><br><span class="line">p0,q0 = r[<span class="number">0</span>][<span class="number">0</span>],r[<span class="number">1</span>][<span class="number">0</span>]</span><br><span class="line"><span class="keyword">assert</span> is_prime(p0)</span><br><span class="line"><span class="keyword">assert</span> is_prime(q0)</span><br><span class="line"></span><br><span class="line">p = <span class="number">2</span>*p0+<span class="number">1</span></span><br><span class="line">q = <span class="number">2</span>*q0+<span class="number">1</span></span><br><span class="line"><span class="keyword">assert</span> is_prime(p)</span><br><span class="line"><span class="keyword">assert</span> is_prime(q)</span><br><span class="line"></span><br><span class="line">phi = (p-<span class="number">1</span>)*(q-<span class="number">1</span>)</span><br><span class="line">print(long_to_bytes(<span class="built_in">int</span>(<span class="built_in">pow</span>(enc,inverse(<span class="number">65537</span>,phi),n))))</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<h3 id="Solution-2-RSA-Broadcast-Attack-Unintended"><a href="#Solution-2-RSA-Broadcast-Attack-Unintended" class="headerlink" title="Solution 2: RSA Broadcast Attack(Unintended)"></a>Solution 2: RSA Broadcast Attack(Unintended)</h3><p>Every time, we connect to server and obtain a new encrypted data samples <script type="math/tex">c_i = m^{65537} \mod n_i</script>. At most, we need 65537 data samples <script type="math/tex">(c_i,n_i)</script> to fully recover <script type="math/tex">m</script> by RSA Broadcast Attack: collect enough samples until we can calculate the 65537-th root of <script type="math/tex">C = crt(c\_list,n\_list)</script> in integer ring! The connection times : <script type="math/tex">T = \frac{65537*flag.nbits()}{1024}</script> and the time cost is about 6 hours. I guess that’s why the organizers added another server for this challenge halfway through the game.</p>
+<p>&nbsp;</p>
+<h2 id="Mariana-59-solves-80-pts"><a href="#Mariana-59-solves-80-pts" class="headerlink" title="Mariana, 59 solves, 80 pts"></a>Mariana, 59 solves, 80 pts</h2><p>Math trick! We need to input x such that:</p>
+<script type="math/tex; mode=display">
+pow(g, x, p) \equiv x \mod p</script><p>By the Euler theorem：</p>
+<script type="math/tex; mode=display">
+g^{-(p-1)} \equiv (g^{p-1})^{-1} \equiv 1^{-1} \equiv 1  \equiv -(p-1) \mod p</script><p>&nbsp;</p>
+<h2 id="Mindseat-33-solves-128-pts"><a href="#Mindseat-33-solves-128-pts" class="headerlink" title="Mindseat, 33 solves, 128 pts"></a>Mindseat, 33 solves, 128 pts</h2><p>Factorize RSA modulo and then compute subgroup discrete logarithm.</p>
+<h3 id="Source-code-2"><a href="#Source-code-2" class="headerlink" title="Source code"></a>Source code</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> params, flag</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">keygen</span>(<span class="params">nbit, k</span>):</span> <span class="comment"># Pubkey function</span></span><br><span class="line">	_p = <span class="number">1</span></span><br><span class="line">	<span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">		p, q = [_p + (getRandomNBitInteger(nbit - k) &lt;&lt; k) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="string">&#x27;01&#x27;</span>]</span><br><span class="line">		<span class="keyword">if</span> isPrime(p) <span class="keyword">and</span> isPrime(q):</span><br><span class="line">			<span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">				s = getRandomRange(<span class="number">2</span>, p * q)</span><br><span class="line">				<span class="keyword">if</span> <span class="built_in">pow</span>(s, (p - <span class="number">1</span>) // <span class="number">2</span>, p) * <span class="built_in">pow</span>(s, (q - <span class="number">1</span>) // <span class="number">2</span>, q) == (p - <span class="number">1</span>) * (q - <span class="number">1</span>):</span><br><span class="line">					pubkey = p * q, s</span><br><span class="line">					<span class="keyword">return</span> pubkey</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encrypt</span>(<span class="params">pubkey, m</span>):</span></span><br><span class="line">	n, s = pubkey</span><br><span class="line">	r = getRandomRange(<span class="number">2</span>, n)</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">pow</span>(s, m, n) * <span class="built_in">pow</span>(r, <span class="number">2</span> ** k, n) % n</span><br><span class="line"></span><br><span class="line">flag = flag.lstrip(<span class="string">b&#x27;ASIS&#123;&#x27;</span>).rstrip(<span class="string">b&#x27;&#125;&#x27;</span>)</span><br><span class="line">nbit, k = params</span><br><span class="line">PUBKEYS = [keygen(nbit, k) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>)]</span><br><span class="line">flag = [bytes_to_long(flag[i*<span class="number">8</span>:i*<span class="number">8</span> + <span class="number">8</span>]) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>)]</span><br><span class="line">ENCS = [encrypt(PUBKEYS[_], flag[_]) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>)]</span><br><span class="line"></span><br><span class="line">print(<span class="string">f&#x27;PUBKEYS = <span class="subst">&#123;PUBKEYS&#125;</span>&#x27;</span>)</span><br><span class="line">print(<span class="string">f&#x27;ENCS = <span class="subst">&#123;ENCS&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<h3 id="Factorize-RSA-modulo"><a href="#Factorize-RSA-modulo" class="headerlink" title="Factorize RSA modulo"></a>Factorize RSA modulo</h3><p>The primes are generated with backdoor : <script type="math/tex">p = ph>>k + 1</script>. In this case, if k is more than half of <code>p.nbits()</code>, we can use the coppersmith method to factorize the RSA modulo <script type="math/tex">n=pq</script>. How to extract k? Observe that : </p>
+<script type="math/tex; mode=display">
+n = pq = (ph*2^k +1)(qh*2^k+1) \equiv 1 \mod 2^k  \tag{1}</script><p>Find the max k of each modulo n and choose the smallest one as the final k parameter. Here, I choose k = 134.</p>
+<p>Coppersmith cracker</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">small_roots</span>(<span class="params">n,k=<span class="number">134</span></span>):</span></span><br><span class="line">    Zn.&lt;x&gt; = PolynomialRing(Zmod(n))</span><br><span class="line">    unknown_bit = n.nbits()//<span class="number">2</span> - k</span><br><span class="line">    print(<span class="string">f&quot;[+] unknown bit number : <span class="subst">&#123;unknown_bit&#125;</span>&quot;</span>)</span><br><span class="line">    f = x*<span class="number">2</span>**k + <span class="number">1</span></span><br><span class="line">    root = f.monic().small_roots(X = <span class="number">2</span>^(unknown_bit+<span class="number">1</span>), beta = <span class="number">0.4</span>)</span><br><span class="line">    print(root)</span><br><span class="line">    <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<h3 id="Discrete-Logarithm"><a href="#Discrete-Logarithm" class="headerlink" title="Discrete Logarithm"></a>Discrete Logarithm</h3><p>The encryption process is :</p>
+<script type="math/tex; mode=display">
+c \equiv s^m * r^{2 ^ k} \mod n \tag{2}</script><p>Notice the the order of <script type="math/tex">s</script> contains the prime power factor : <script type="math/tex">2^k</script>  because <script type="math/tex">s^{\frac{p-1}{2}} \equiv -1 \mod p</script> and the the order of <script type="math/tex">r^{2^k}</script> doesn’t contain the prime power factor: <script type="math/tex">2^k</script>, we can transform (2) into the following discrete logarithm problem in subgroup with order <script type="math/tex">2^k</script>:</p>
+<script type="math/tex; mode=display">
+c^{\frac{p-1}{2^k}} \equiv (s^{\frac{p-1}{2^k}})^m *r^{p-1} \equiv (s^{\frac{p-1}{2^k}})^m \mod p \tag{3}</script><p>In the previous section, <script type="math/tex">k = 134 > 64 = m.nbits()</script>. Now we can fully recover m by computing the discrete logarithm in (3).</p>
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">ns = PUBKEYS</span><br><span class="line"><span class="keyword">for</span> pub <span class="keyword">in</span> PUBKEYS:</span><br><span class="line">    ns.append(pub[<span class="number">0</span>])</span><br><span class="line">    ss.append(pub[<span class="number">1</span>])</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">small_roots</span>(<span class="params">n,k</span>):</span></span><br><span class="line">    Zn.&lt;x&gt; = PolynomialRing(Zmod(n))</span><br><span class="line">    unknown_bit = n.nbits()//<span class="number">2</span> - k</span><br><span class="line">    print(<span class="string">f&quot;[+] unknown bit number : <span class="subst">&#123;unknown_bit&#125;</span>&quot;</span>)</span><br><span class="line">    f = x*<span class="number">2</span>**k + <span class="number">1</span></span><br><span class="line">    root = f.monic().small_roots(X = <span class="number">2</span>^(unknown_bit+<span class="number">1</span>), beta = <span class="number">0.4</span>)</span><br><span class="line">    print(root)</span><br><span class="line">    <span class="keyword">return</span> root</span><br><span class="line"></span><br><span class="line">ps,qs = [],[]</span><br><span class="line">k = <span class="number">134</span></span><br><span class="line"><span class="keyword">for</span> n,s <span class="keyword">in</span> <span class="built_in">zip</span>(ns,ss):</span><br><span class="line">    ph,qh = small_roots(n,k)</span><br><span class="line">    p = ZZ(ph*<span class="number">2</span>**k+<span class="number">1</span>)</span><br><span class="line">    q = ZZ(qh*<span class="number">2</span>**k+<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">assert</span> p*q == n</span><br><span class="line">    ps.append(p)</span><br><span class="line">    qs.append(q)</span><br><span class="line">    </span><br><span class="line"><span class="keyword">for</span> p,q,s,enc <span class="keyword">in</span> <span class="built_in">zip</span>(ps,qs,ss,ENCS):</span><br><span class="line">    Gp = GF(p)</span><br><span class="line">    fs = factor(p-<span class="number">1</span>)</span><br><span class="line">    pd = (p-<span class="number">1</span>)//<span class="number">2</span>**<span class="number">134</span></span><br><span class="line">    flag = <span class="built_in">int</span>(discrete_log(Gp(enc)^pd,Gp(s)^pd))</span><br><span class="line">    print(long_to_bytes(flag).decode(),end=<span class="string">&quot;&quot;</span>)</span><br><span class="line"><span class="comment"># N3w_CTF_nEW_Joye_Libert_CrYpt0_5</span></span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+
+    
+
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          tl2cents
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://tl2cents.github.io/2022/10/16/ASISCTF-2022-Quals-Crypto-Writeup/" title="ASISCTF 2022 Quals Crypto Writeup" target="_blank">https://tl2cents.github.io/2022/10/16/ASISCTF-2022-Quals-Crypto-Writeup/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Writeup</a>
-        		</li>
-      		
-		</ul>
-	</div>
+          遵循CC 4.0 BY-SA版权协议，转载请注明出处
+        </li>
+        
+      </ul>
+    </div>
+    
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/CTF//" class="article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
   </div>
-</article>
-  
+  <div class="article-info article-info-index">
     
     
-    <article class="archive-article archive-type-blog">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/04/11/2021-MRCTF-WriteUp/" class="archive-article-date">
-        <time datetime="2021-04-11T14:35:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-11</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/04/11/2021-MRCTF-WriteUp/" target="_blank">2021 MRCTF WriteUp</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">writeup</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/CTF//" class="article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-blog">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/04/07/2021%E8%99%8E%E7%AC%A6CTF-Cubic%E5%AF%86%E7%A0%81%E9%A2%98%E8%A7%A3/" class="archive-article-date">
-        <time datetime="2021-04-07T08:58:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-07</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/04/07/2021%E8%99%8E%E7%AC%A6CTF-Cubic%E5%AF%86%E7%A0%81%E9%A2%98%E8%A7%A3/" target="_blank">2021虎符CTF-Cubic密码题解</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/CTF//" class="article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-blog">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/03/28/DASCTF-WriteUp/" class="archive-article-date">
-        <time datetime="2021-03-28T15:47:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-28</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/03/28/DASCTF-WriteUp/" target="_blank">DASCTF2021-png隐写WriteUp</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -440,7 +393,7 @@
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -453,21 +406,118 @@
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+    
 
     
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/categories/CTF/page/3/">Prev page</a><a class="page-number" href="/categories/CTF/">1</a><a class="page-number" href="/categories/CTF/page/2/">2</a><a class="page-number" href="/categories/CTF/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/categories/CTF/page/5/">5</a><a class="extend next" rel="next" href="/categories/CTF/page/5/">Next page</a>
-    </nav>
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://tl2cents.github.io/2022/10/16/ASISCTF-2022-Quals-Crypto-Writeup/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+
+<nav id="article-nav">
   
+  
+    <a href="/2022/09/05/2022-BalsnCTF-Crypto-Writeup/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">2022 BalsnCTF Crypto Writeup</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Binned-126-solves-45-pts"><span class="toc-number">1.</span> <span class="toc-text">Binned, 126 solves, 45 pts</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Source-code"><span class="toc-number">1.1.</span> <span class="toc-text">Source code</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution"><span class="toc-number">1.2.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chaffymasking-66-solves-73-pts"><span class="toc-number">2.</span> <span class="toc-text">Chaffymasking, 66 solves, 73 pts</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Desired-curve-19-solves-194-pts"><span class="toc-number">3.</span> <span class="toc-text">Desired curve, 19 solves, 194 pts</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Source-code-1"><span class="toc-number">3.1.</span> <span class="toc-text">Source code</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-1"><span class="toc-number">3.2.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Disinvolute-7-solves-334-pts"><span class="toc-number">4.</span> <span class="toc-text">Disinvolute, 7 solves, 334 pts</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-1-Safe-primes-structure-Intended"><span class="toc-number">4.1.</span> <span class="toc-text">Solution 1: Safe primes structure(Intended)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-2-RSA-Broadcast-Attack-Unintended"><span class="toc-number">4.2.</span> <span class="toc-text">Solution 2: RSA Broadcast Attack(Unintended)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mariana-59-solves-80-pts"><span class="toc-number">5.</span> <span class="toc-text">Mariana, 59 solves, 80 pts</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mindseat-33-solves-128-pts"><span class="toc-number">6.</span> <span class="toc-text">Mindseat, 33 solves, 128 pts</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Source-code-2"><span class="toc-number">6.1.</span> <span class="toc-text">Source code</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Factorize-RSA-modulo"><span class="toc-number">6.2.</span> <span class="toc-text">Factorize RSA modulo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Discrete-Logarithm"><span class="toc-number">6.3.</span> <span class="toc-text">Discrete Logarithm</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
           </div>
@@ -496,10 +546,10 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
 		root: "/",
@@ -6863,23 +6913,6 @@
 
 <!--  -->
 
-<script>
-  /* 标签页标题切换 */
-  var originTitle = document.title;
-  var titleTime;
-  document.addEventListener("visibilitychange", function () {
-    if (document.hidden) {
-      document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
-      clearTimeout(titleTime);
-    } else {
-      document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
-      titleTime = setTimeout(function () {
-        document.title = originTitle;
-      }, 2000);
-    }
-  });
-</script>
-
 
     
 <div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
@@ -6904,11 +6937,11 @@
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">文章目录</a></li>
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">Toc</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">Friends</a></li>
       
         
       
