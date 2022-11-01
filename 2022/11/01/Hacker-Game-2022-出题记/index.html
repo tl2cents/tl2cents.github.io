@@ -9,21 +9,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://tl2cents.github.io">
-  <title>tl2cents blog</title>
+  <title>HackerGame 2022 出题记 | tl2cents blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-    
-    <!-- <meta name="keywords" content="">
-    <meta name="description" content=""> -->
-  
-  <meta property="og:type" content="website">
-<meta property="og:title" content="tl2cents blog">
-<meta property="og:url" content="https://tl2cents.github.io/page/2/index.html">
+  <meta name="description" content="出题人の碎碎念打了两年HackerGame之后从USTC毕业了，然后今年第一次参加出题，整了两道比较传统的密码题：不可加密的异世界（200+200+250）和置换魔群（200+200+300），大概是math分类里面最接近传统CTF的CRYPTO分类的题了，因为很早就出好了，所以文案稍微整了整活：不可加密的异世界的flag和文案是魔改自经典韩剧《鬼怪》的经典台词的（只不过好像不太明显orz）；另外">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HackerGame 2022 出题记">
+<meta property="og:url" content="https://tl2cents.github.io/2022/11/01/Hacker-Game-2022-%E5%87%BA%E9%A2%98%E8%AE%B0/index.html">
 <meta property="og:site_name" content="tl2cents blog">
+<meta property="og:description" content="出题人の碎碎念打了两年HackerGame之后从USTC毕业了，然后今年第一次参加出题，整了两道比较传统的密码题：不可加密的异世界（200+200+250）和置换魔群（200+200+300），大概是math分类里面最接近传统CTF的CRYPTO分类的题了，因为很早就出好了，所以文案稍微整了整活：不可加密的异世界的flag和文案是魔改自经典韩剧《鬼怪》的经典台词的（只不过好像不太明显orz）；另外">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tl2cents.github.io/2022/11/01/Hacker-Game-2022-%E5%87%BA%E9%A2%98%E8%AE%B0/CBC_encryption.svg.png">
+<meta property="article:published_time" content="2022-11-01T02:04:01.000Z">
+<meta property="article:modified_time" content="2022-11-01T03:13:06.050Z">
 <meta property="article:author" content="tl2cents">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="writeup">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tl2cents.github.io/2022/11/01/Hacker-Game-2022-%E5%87%BA%E9%A2%98%E8%AE%B0/CBC_encryption.svg.png">
   
     <link rel="alternative" href="/atom.xml" title="tl2cents blog" type="application/atom+xml">
   
@@ -217,32 +221,48 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-
-  
-    <article id="blog-SUSCTF2022-crypto-writeup" class="article article-type-blog  article-index" itemscope itemprop="blogPost">
+            <article id="blog-Hacker-Game-2022-出题记" class="article article-type-blog " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/03/01/SUSCTF2022-crypto-writeup/" target="_blank">SUSCTF2022 Crypto Writeup</a>
-  
+    <h1 class="article-title" itemprop="name">
+      HackerGame 2022 出题记
     </h1>
   
 
 
   
   
-<a href="/2022/03/01/SUSCTF2022-crypto-writeup/" class="archive-article-date">
-        <time datetime="2022-03-01T08:17:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-01</time>
+<a href="/2022/11/01/Hacker-Game-2022-%E5%87%BA%E9%A2%98%E8%AE%B0/" class="archive-article-date">
+        <time datetime="2022-11-01T02:04:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-01</time>
 </a>
 
   
   
     
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">5.9k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">22分</span>
+    </span>
+  </span>
+</div>
+
 
   
   </header>
@@ -252,8 +272,116 @@
     
     <!-- newly added -->
     
-    <p>2022 SUSCTF nebula战队 crypto部分题解</p>
-    
+    <h1 id="出题人の碎碎念"><a href="#出题人の碎碎念" class="headerlink" title="出题人の碎碎念"></a>出题人の碎碎念</h1><p>打了两年HackerGame之后从USTC毕业了，然后今年第一次参加出题，整了两道比较传统的密码题：<a target="_blank" rel="noopener" href="https://github.com/USTC-Hackergame/hackergame2022-writeups/tree/master/official/%E4%B8%8D%E5%8F%AF%E5%8A%A0%E5%AF%86%E7%9A%84%E5%BC%82%E4%B8%96%E7%95%8C">不可加密的异世界</a>（200+200+250）和<a target="_blank" rel="noopener" href="https://github.com/USTC-Hackergame/hackergame2022-writeups/tree/master/official/%E7%BD%AE%E6%8D%A2%E9%AD%94%E7%BE%A4">置换魔群</a>（200+200+300），大概是math分类里面最接近传统CTF的CRYPTO分类的题了，因为很早就出好了，所以文案稍微整了整活：不可加密的异世界的flag和文案是魔改自经典韩剧《鬼怪》的经典台词的（<del>只不过好像不太明显orz</del>）；另外一题置换魔群是出题人看了<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Classification_of_finite_simple_groups">有限单群的分类</a>历史后，改的文案，最令我叹为观止的是数学家们能证明宇宙里面存在的单群结构居然有限的，以及<strong>魔群月光猜想</strong>及其衍生的<strong>伴影月光猜想</strong>与<strong>弦论</strong>之间千丝万缕的联系。</p>
+<p>回到这两道题本身，这两道题都不算很难，特别是前两问都是送分的，其实出完题目再看，不可加密的异世界前面两问完全可以写成一问的，因为完全卡不住人，这算是出题人的一个失误；另外第三问逆CRC这题，还是出的简单了，导致了很多非预期，如果对输入消息的明文加一些限制——前后缀、字符集，会有趣很多。置换魔群这题第三问，我出题时候的贪心策略的次优解相比最优解还是差了1~2个数量级，所以这题被很多OI爷们打穿了。但是总体而言，出题体验还是蛮好的，明年再见。</p>
+<span id="more"></span>
+<p>后面大概讲一讲不可加密的异世界、置换魔群两题的预期解，所有题目的官方题解参考：<a target="_blank" rel="noopener" href="https://github.com/USTC-Hackergame/hackergame2022-writeups">hackergame2022-writeups</a>。</p>
+<p>&nbsp;</p>
+<h1 id="碎碎念：关于魔群和群论的发展"><a href="#碎碎念：关于魔群和群论的发展" class="headerlink" title="碎碎念：关于魔群和群论的发展"></a>碎碎念：关于魔群和群论的发展</h1><p>出到置换魔群是因为出题人最近看了看有限单群的分类历史，觉得很有意义，捣鼓了一阵子发现最好出题的还是置换群——直观、并且容易实现，另一方面就是任何有限群都可以嵌入到某个置换群上，所以置换群可以体现很多典型的群结构。</p>
+<p>群论是数学对现实的抽象，比如人类发明数字，实际上是把一切的：三颗树、三块钱、三朵云全部抽象为3；定义的加减乘除都来自于现实：三棵树砍了一棵树就变成了两颗树，这就是 3-2=1 的实际意义。从根本上来说，3-1=2 这个等式这体现了宇宙本身的逻辑，即使我们遇见了某个外星文明，我们用某种方式表达出这样的一个数学等式，他们也会认同这个结论。数字符号的发明可以说是人类群论发展的起源，之后人们又根据对称性、置换等等抽象出一系列现实中存在的群。宇宙是逻辑的必然，只是人类对这个终极逻辑的了解还只是冰山一角。</p>
+<p>现代群论的一个重大进展是有限单群的分类，有限单群，英文名叫“finite simple group”，从名字就能猜出来它的性质了：有限单群，它没有内部结构，不能分解成更基本的群的直乘形式，并且元素个数也是有限的。也许你会认为宇宙无穷无尽，从这里面可以抽象出无数种有限单群结构吧，但是数学家们用了100年、近10000页期刊告诉我们整个宇宙上的有限单群只有下面几类：素数阶循环群、置换群(5阶以上)、16种李型群、26种散在单群！在2012年绘制出了类似化学上的元素周期表（<a target="_blank" rel="noopener" href="https://irandrus.files.wordpress.com/2012/06/periodic-table-of-groups.pdf">图源</a>）。巧合的是，有限单群分为18个族类，这与化学周期表的18族刚刚好相等，但是有限单群更复杂的是它还存在26种散在单群，也被称为孤儿群，因为它们就像被宇宙抛弃了一样，无法归类，其中最大的散在单群就是魔群（大魔群）。元素周期表告诉我们宇宙的粒子种类是有限的（目前是），而有限单群分类定理证明了，这个<strong>宇宙的群结构居然也是有限的</strong>，并且结果相当简洁，这让人不禁怀疑宇宙是不是经过精心设计的一个世界——宇宙存在着其最终极的逻辑，而这个逻辑衍生了我们整个世界。</p>
+<p>另外一个很有意思的点就是，群论在某种程度上可以统一当今科学的研究分支。前面说到过，群论是数学对现实事物结构的抽象，比如物品的对称性，因此由群论引申出很多的物理上的定理都令人拍案叫绝。比如诺特定理——理论物理的中心结果之一：每个连续的对称性都有着相应的守恒定理，浅显地说，物理上的能量守恒定律、动量守恒定律都对应了一个群论上抽象出来的群。<strong>这些普适的物理定理居然存在群的结构里面</strong>！这就是群论的魅力所在：群结构从实际事物中抽象出来，但却能揭示更深层次的宇宙逻辑。</p>
+<p>也许从上面群论的分类结果看来，宇宙的逻辑好像也没有那么复杂了？但是我们前面提到过，有限单群有基本的18个族群，但还存在着其他26个散在的单群，就好像宇宙是随意设计的一样，这26个群与其他所有群都截然不同。单独拆开一个个群去看，你就会发现宇宙也远远没有那么简单。难以想象的是宇宙存在一个包含808017424794512875886459904961710757005754368000000000个元素的大魔群——散在单群里面最大的群。这个数字比地球上所有原子的1000倍还要多，更加难以想象的是数学家们是怎么构造出这样一个复杂的单群的。</p>
+<p>为什么要特别提这样一个数字呢？因为这个数字与我们的宇宙息息相关，是很特别的一个数字，这就要提到现代赫赫有名的“<strong>魔群月光猜想</strong>”，它揭示着“<strong>魔群也许就代表着我们这个宇宙终极的对称性</strong>”。魔群把群论与完全不相干的另一个数学领域里的J函数关联了起来：汤普森教授发现J函数的傅里叶展开系数与魔群的阶息息相关，某项系数即为魔群阶的最小素因子加一，并且之后又发现了更多的“巧合”，但是数学家们难以发现这种巧合的实际意义。直到魔群的结构与研究宇宙起源的弦理论关联了起来：上世界90年代弦论物理学家博赫兹通过一个特定的弦理论模型让魔群、J函数、弦论完美结合了起来。在这个弦理论模型中，J函数和魔群同时起到了作用——J函数的系数决定着弦在每个能级（energy level）上振动方式的数目，而魔群则约束着模型在这些能级上的对称性。</p>
+<p>魔群月光猜想的证实揭示了一个很重要的事情：这些<strong>散在单群可不是宇宙随意生成</strong>的，它可以体现在宇宙的具体事物上：在“魔群月光”观测到的弦理论中指出，194个可被自然归类的普通群对应着194种不同类型的黑洞！所以，群论、J函数、弦论、黑洞，这些看似不相干的东西，本质上是联系在一起的，即使是魔群这样复杂的结构里，却也惊人地体现了宇宙的统一性。</p>
+<p>如今，现代数学、物理学（尤其是弦论物理学）的一个热点聚焦到了宇宙里面孤零零不成族群的26个散在单群上面，由魔群月光猜想引申到了其他散在单群的“<strong>伴影月光猜想</strong>”被众多科学家们研究，这些猜想的一系列数学证据在2015年<code>arxiv.org</code>上发表，需要完全研究出这一系列散在单群的核心内涵，可能还需要很长的一段路程，但可以肯定地是这些群的研究会让人类对宇宙的终极逻辑有更进一步的了解。</p>
+<p>&nbsp;</p>
+<h1 id="不可加密的异世界"><a href="#不可加密的异世界" class="headerlink" title="不可加密的异世界"></a>不可加密的异世界</h1><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>这题的出题的思路就是通过一些小trick使得加密后的密文与明文相同。前面两道题的预期解都是利用CBC模式下的IV的冗余，不需要任何爆破，就可以指定任意一个密文分组的值为我们预期的值，详情参见第二部分。</p>
+<p>最后一问主要是两个点：crc类哈希都是可逆的以及DES的弱密钥；做到了第三问，你会发现前面两问好像DES用不用都一样，DES也就是为了第三问加进来的，AES是目前最流行的对称加密体制，没有任何已知的有效攻击；而DES是存在诸多问题的，差分攻击、彩虹表、弱密钥等等。而最后一问我们是要求<strong>加密两次</strong>恢复到原明文，这比加密一次恢复到原明文的条件更弱，因此只要使用DES的弱密钥（在Feistel结构下可以直接用该加密密钥作为解密密钥，不需要逆序使用子密钥），就可以两次加密（实际上等价于加密+解密）恢复明文。由于crc哈希是可逆的（见第三节），我们就可以直接把一个DES弱密钥当哈希逆向得到我们的消息，提交该消息即可。</p>
+<p>完整题解和 exp 见附件 <a target="_blank" rel="noopener" href="https://github.com/USTC-Hackergame/hackergame2022-writeups/blob/master/official/不可加密的异世界/unencryptable-exp.ipynb">unencryptable-exp.ipynb</a>。</p>
+<p>&nbsp;</p>
+<h2 id="非预期"><a href="#非预期" class="headerlink" title="非预期"></a>非预期</h2><ol>
+<li><code>0xffffffffffffffffffffffffffffffff</code> 是一个解，因为这玩意 <code>crc128</code> 出来就是它本身，并且这是一个 <code>des</code> 弱密钥。（<a target="_blank" rel="noopener" href="https://github.com/USTC-Hackergame/hackergame2022-writeups/issues/28">issue</a>）</li>
+<li>python居然有轮子：<a target="_blank" rel="noopener" href="https://pypi.org/project/crcsolver/">crcsolver</a>（来自榜一的<a target="_blank" rel="noopener" href="https://pypi.org/project/crcsolver/">writeup</a>）。</li>
+</ol>
+<p>&nbsp;</p>
+<h2 id="CBC模式指定任意密文分组"><a href="#CBC模式指定任意密文分组" class="headerlink" title="CBC模式指定任意密文分组"></a>CBC模式指定任意密文分组</h2><p>CBC模式的字节反转攻击算是CTF中老生常谈的考点了，这里也是稍微利用了一下CBC的模式特征：<br><img src="CBC_encryption.svg.png" alt="image.png"></p>
+<p>如果在CBC分组加密模式下，我们可以选择IV并且已知Key的值的话，那么IV这16个字节的冗余可以转移到任意一个密文分组：也就是说我们可以任意指定一个密文分组的值，从而反推出所有密文分组的值以及IV的值。特别地，当明文长度就是一个分组时，我们可以控制整个密文的值。原理如下, 假设我们指定密文分组  $C_i$ 为原来的明文  $m_i$：</p>
+<ul>
+<li>$C_{i}$之后的密文：按CBC模式加密即可，初始IV就是 $C_i$, 密钥为Key（这部分按标准CBC加密即可）。</li>
+<li><script type="math/tex">C_i</script>之前的密文： <script type="math/tex">C_{i-1} = Dec(C_i) \oplus M_i</script>，以此类推，直到IV的值确定。</li>
+</ul>
+<p>第一问根据提示，我们只要控制明文长度不超过16字节即可，因此随便输入单个字母，然后往前面推一步，就得到了IV值，第二问就是第一问的一个拓展，我们每次指定一个分组加密后为明文即可，主要的攻击代码写出来如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">block_size=<span class="number">16</span></span><br><span class="line">key_size=<span class="number">16</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pad</span>(<span class="params">msg:<span class="built_in">bytes</span>,block_size = <span class="number">16</span></span>):</span></span><br><span class="line">    n = AES.block_size - <span class="built_in">len</span>(msg) % AES.block_size</span><br><span class="line">    <span class="keyword">return</span> msg + <span class="built_in">bytes</span>([n]) * n</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">unpad</span>(<span class="params">msg, block_size = <span class="number">16</span></span>):</span></span><br><span class="line">    <span class="keyword">return</span> msg[: -msg[-<span class="number">1</span>]]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">xor</span>(<span class="params">b1:<span class="built_in">bytes</span>, b2:<span class="built_in">bytes</span></span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">bytes</span>([x ^^ y <span class="keyword">for</span> x, y <span class="keyword">in</span> <span class="built_in">zip</span>(b1, b2)])</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">split_block</span>(<span class="params">text:<span class="built_in">bytes</span></span>):</span></span><br><span class="line">    <span class="keyword">assert</span> <span class="built_in">len</span>(text)%block_size==<span class="number">0</span>,<span class="string">&#x27;Invalid length&#x27;</span></span><br><span class="line">    <span class="keyword">return</span> [text[i*block_size:(i+<span class="number">1</span>)*block_size] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(text)//block_size)]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">AES_CBC_chosen_ciphertext</span>(<span class="params">AES_key:<span class="built_in">bytes</span>,plaintext:<span class="built_in">bytes</span>,chosen_ciphertext:<span class="built_in">bytes</span>,pos=<span class="literal">None</span></span>):</span></span><br><span class="line">    <span class="comment"># pos = None the iv will be set as chosen ciphertext</span></span><br><span class="line">    <span class="comment"># pos = -1 : the last block will be set as ciphertext</span></span><br><span class="line">    <span class="comment"># pos = i : the ith (from 0) block will be set as ciphertext    </span></span><br><span class="line">    <span class="keyword">if</span> pos==<span class="literal">None</span>:</span><br><span class="line">        iv=chosen_ciphertext</span><br><span class="line">        aes_cbc=AES.new(AES_key,AES.MODE_CBC,iv)</span><br><span class="line">        <span class="keyword">return</span> iv,aes_cbc.encrypt(msg)</span><br><span class="line">    </span><br><span class="line">    iv=os.urandom(block_size)</span><br><span class="line">    aes_cbc=AES.new(AES_key,AES.MODE_CBC,iv)</span><br><span class="line">    aes_ecb=AES.new(AES_key,AES.MODE_ECB)</span><br><span class="line">    cipher=aes_cbc.encrypt(msg)</span><br><span class="line">    msg_blocks=split_block(msg)</span><br><span class="line">    cipher_blocks=split_block(cipher)</span><br><span class="line">    cipher_blocks[pos]=chosen_ciphertext</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(pos-<span class="number">1</span>,-<span class="number">1</span>,-<span class="number">1</span>):</span><br><span class="line">        cipher_blocks[i]=xor(aes_ecb.decrypt(cipher_blocks[i+<span class="number">1</span>]),msg_blocks[i+<span class="number">1</span>])</span><br><span class="line">    </span><br><span class="line">    iv=xor(aes_ecb.decrypt(cipher_blocks[<span class="number">0</span>]),msg_blocks[<span class="number">0</span>])</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(pos+<span class="number">1</span>,<span class="built_in">len</span>(cipher_blocks)):</span><br><span class="line">        cipher_blocks[i]=aes_ecb.encrypt(xor(cipher_blocks[i-<span class="number">1</span>],msg_blocks[i]))</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> iv, <span class="string">b&quot;&quot;</span>.join(cipher_blocks)</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<h2 id="逆CRC128哈希"><a href="#逆CRC128哈希" class="headerlink" title="逆CRC128哈希"></a>逆CRC128哈希</h2><p>Hacker Game之前也出过<code>crc128</code>类似的题：<a target="_blank" rel="noopener" href="https://github.com/USTC-Hackergame/hackergame2020-writeups/tree/master/official/%E4%B8%AD%E9%97%B4%E4%BA%BA">HakcerGame2020中间人</a>，更进一步可以找到TCTF的这道题：<a target="_blank" rel="noopener" href="https://hxp.io/blog/51/0CTF-Quals-2019-fixed-point-writeup/">fixed ponit</a>。无一例外，它们都利用了crc128的仿射函数性质：Affine Function in  $GF(2^{128})$，其中TCFT这题的writeup还介绍了基于多项式的crc的表示方式，这个方式也可以直接求逆，这里介绍另外一种用矩阵的方式写出crc的表达式。crc仿射函数最容易验证的性质就是： $crc(\Delta \oplus a)\oplus crc(\Delta \oplus  b) = const\quad  \forall \Delta$. 也就是说只要两个明文的差分是一样的，那么它们crc哈希后的差分就是一个固定值。这个固定值是可以写出来的，定义 <script type="math/tex">\_crc(x) = crc(x) \oplus crc(0^l)</script>，其中 $0^l$代表与x等长的<code>&quot;\x00&quot;</code>字节流。对于任意<strong>等长的输入</strong>就有: </p>
+<script type="math/tex; mode=display">
+\_crc(\Delta \oplus a)\oplus \_crc(\Delta \oplus  b) = \_crc(a \oplus b)\\
+Generally \implies \forall x_i, n \quad \oplus_1^n \_crc(x_i) =  \_crc(\oplus_1^n x_i) \tag{1}</script><p>其中 $\oplus$ 等价于 $GF(2)^{k}(\forall k \in Z)$ 上的加法，所以（1）式在 $GF(2)$ 上可记为： </p>
+<script type="math/tex; mode=display">
+\forall x_i \in GF(2)^l, l \in Z ,n \in Z\quad \sum\limits_1^{n} \_crc(x_i) =  \_crc(\sum\limits_1^{n} x_i)  \quad + \ defined \ in \ GF(2)^k\tag{2}</script><p>有了这个性质，对于$ GF(2)$ 上的128维的向量空间，取一组基底如下：  $v_i = (0,..,1,…,0)$ ， $i \in {1,2,3,…,128}$，第i个位置为1其余均为0的标准正交基，我们记这一组标准正交基的 <script type="math/tex">\_crc</script> 哈希值的对应的向量为，<script type="math/tex">V_i =\_crc(v_i) \quad i \in \{1,2,3,...,128\}</script> ，用 $V_i$ 构建一个在 $GF(2)$ 上的128×128的矩阵： </p>
+<script type="math/tex; mode=display">
+let \quad M^T = \begin{bmatrix} 
+V_1 \\
+V_2 \\
+...\\
+V_{128}
+\end{bmatrix} ,  
+\forall \vec x =(x_1,...,x_n) \in GF(2)^{128}\\
+\implies
+\ x*M^T 
+= \sum\limits_{i=0}^{128} x_iV_i 
+= \_crc(\sum\limits_{i=0}^{128}x_i*v_i)
+= \_crc(x)
+= crc(x) + crc(0^{128}) \quad in \ GF(2)^{128}</script><p>从上面我们就得到了<strong>定长</strong>为128比特的输入做crc哈希时在 $GF(2)$ 上的等价矩阵表示（Affine Function）（其他长度的输入换一下矩阵M和 $crc(0^l)$ 的值即可）,  为了和代码保持一致，我们把 $M^T$ 再转置回来： </p>
+<script type="math/tex; mode=display">
+crc(x) = x*M^T + crc(0^{128}) \implies 
+crc(x)^T = M*x^T + C \quad where \ C =   crc(0^{128})^T
+\tag{3}</script><p>有了上面的矩阵表示，给定crc128的值，求它对应的一个明文，只需要解一个在GF(2)上的方程组即可 $x^T = M^{-1}*(crc(x)^T+C)$ ，这样我们就实现了一个完整的<code>crc_128_reverse</code>函数，这是最基础版本的推导，但是解决这题就够用了。一个简单的sage demo如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">crc128</span>(<span class="params">data, poly=<span class="number">0x883ddfe55bba9af41f47bd6e0b0d8f8f</span></span>):</span></span><br><span class="line">    crc = (<span class="number">1</span> &lt;&lt; <span class="number">128</span>) - <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> b <span class="keyword">in</span> data:</span><br><span class="line">        crc ^^= b</span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">8</span>):</span><br><span class="line">            crc = (crc &gt;&gt; <span class="number">1</span>) ^^ (poly &amp; -(crc &amp; <span class="number">1</span>))</span><br><span class="line">    <span class="keyword">return</span> crc ^^ ((<span class="number">1</span> &lt;&lt; <span class="number">128</span>) - <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">equivalent_affine_crc</span>(<span class="params">crc = crc128, crc_bits = <span class="number">128</span>, target_bytes = <span class="number">16</span></span>):</span></span><br><span class="line">    zero_crc = crc(target_bytes*<span class="string">b&quot;\x00&quot;</span>)</span><br><span class="line">    target_bits = <span class="number">8</span> * target_bytes</span><br><span class="line">    v2n = <span class="keyword">lambda</span> v: <span class="built_in">int</span>(<span class="string">&#x27;&#x27;</span>.join(<span class="built_in">map</span>(<span class="built_in">str</span>, v)), <span class="number">2</span>)</span><br><span class="line">    n2v = <span class="keyword">lambda</span> n: vector(GF(<span class="number">2</span>), <span class="built_in">bin</span>(n)[<span class="number">2</span>:].zfill(crc_bits))</span><br><span class="line">    <span class="comment"># n2v_t = lambda n: vector(GF(2), bin(n)[2:].zfill(target_bits))</span></span><br><span class="line">    Affine_Matrix = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(target_bits):</span><br><span class="line">        v = vector(GF(<span class="number">2</span>), (j == i <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(target_bits)))</span><br><span class="line">        value = crc(long_to_bytes(v2n(v),target_bytes)) ^^ zero_crc</span><br><span class="line">        Affine_Matrix.append(n2v(value))</span><br><span class="line">    <span class="comment"># crc affine function: crc_128(x) = M*x+ C</span></span><br><span class="line">    <span class="keyword">return</span> matrix(GF(<span class="number">2</span>),Affine_Matrix).transpose(), n2v(zero_crc)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">crc_128_reverse</span>(<span class="params">crc_value</span>):</span></span><br><span class="line">    M , C = equivalent_affine_crc()</span><br><span class="line">    <span class="comment"># crc affine function: crc_128(x) = M*x+ C</span></span><br><span class="line">    v2n = <span class="keyword">lambda</span> v: <span class="built_in">int</span>(<span class="string">&#x27;&#x27;</span>.join(<span class="built_in">map</span>(<span class="built_in">str</span>, v)), <span class="number">2</span>)</span><br><span class="line">    n2v = <span class="keyword">lambda</span> n: vector(GF(<span class="number">2</span>), <span class="built_in">bin</span>(n)[<span class="number">2</span>:].zfill(<span class="number">128</span>))</span><br><span class="line">    res = M.solve_right(n2v(crc_value)+C)</span><br><span class="line">    <span class="keyword">return</span> long_to_bytes(v2n(res),<span class="number">16</span>)</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<h1 id="置换魔群"><a href="#置换魔群" class="headerlink" title="置换魔群"></a>置换魔群</h1><h2 id="出题想法"><a href="#出题想法" class="headerlink" title="出题想法"></a>出题想法</h2><p>置换群是结构很有趣的一个群，$A_n$的最大素数阶子群也就是n以内的最大素数，如果我们要构造求解离散对数困难的置换群$A_n$，按照一般的安全性需要，n必须要大于$2^{160}$，想要无压缩的表示这个群上面的元素，需要至少$2^{319}$比特，这导致一般可存储的置换群$A_n$上的子群都是光滑的，也就是离散对数求解简单的，并且由于置换群的标准形式特别容易<strong>看出来离散对数的解</strong>（真”看出来”），用这个群来阐述光滑阶群的<code>Pohlig Hellman</code>离散对数求解算法就特别直观。所以这题前面两问有CTF经验的大手子们理解理解题意都能秒了，甚至熟悉sage接口的话，可以直接用sagemath上的<code>SymmetricGroup/PermutationGroup</code>类和<code>discrete_log</code>之类的轮子直接求离散对数，因为我自己用python写的<code>permutation_group</code>类是直接仿照<code>SymmetricGroup</code>来写的，所以要改的地方几乎没有。写代码的时候把元素的order函数都写了，这样的话，第一题就完全是送分的题。</p>
+<p>第三问是开放式的一题，这一问的思路很清晰：找到两个 <script type="math/tex">A_n</script> 上的元素，使得它们阶的最大公倍数最大<script type="math/tex">MAX_{g_1,g_2 \in A_n} lcm(g_1.order(),g_2.order())</script>，如果只有一个元素，那就是求 $A_n$ 上的最大阶 $f(n)$ ，这个问题是有专门研究过的，称为Landau’s function，详细的研究可以参考<a target="_blank" rel="noopener" href="http://oeis.org/A000793">A000793</a>，<a target="_blank" rel="noopener" href="http://arxiv.org/abs/0803.2160">Landau’s function for one million billions</a>，当然，这个问题摊开来就是一个动态规划的问题（01背包）。由于网上都有现成的脚本和结果，这里直接出单个元素形式的解法就可以Google做出来，所以放弃了这么出题。但是，如果扩展到两个元素，我在网上也没有找到确定性的研究结论，因此题目里面给的界只是出题人用贪心算法和动态规划求解出来的一个最大界（肯定不是理论上的最大上界），写writeup的时候又把这个界扩大了一点，如果谁研究出了更大的上界欢迎和我交流讨论。</p>
+<p>附注：经过企鹅拼盘（这题用的就是 $A_{15}$ 交错群）出题人的提醒后发现题目文案有些数学上的不严谨，<strong>全程提的都是置换群，而没有交错群</strong>，交错群是置换群里面所有偶置换的形成的子群，元素个数为： $\frac{n!}{2}$ ；<del>由于出题人没有全文替换之前写的置乱、交错等，导致部分叙述出现了交错群/置乱群</del>， $A_n$ 一般表示交错群， $S_n, P_n$ 都可以用来表示该题的置换群。 最后，感谢zzh、djh、tky等学长们对于本题出题的意见和帮助。</p>
+<p>&nbsp;</p>
+<h2 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h2><p>第一题的RSA，只要你对群的阶有一个基本的了解，这题就很简单了，我们加密了一个置换g： $c = g^{e}$，类比RSA，对应的私钥就很容易算了： $d = inverse(e,g.order())$，或者求 $e = 65537$模$n!$的逆也可以，总之： </p>
+<script type="math/tex; mode=display">
+c^d = g^{e*d} =g^{k*g.order()+1} = 1^k *g =g</script><p>第二题就是求解离散对数了，本来想糊一个DH密钥的标准交换过程，最后还是直接搞<code>dlp</code>。由于置换群的光滑性质，就可以直接用sage的 <script type="math/tex">discrete\_log</script> 出了（盲猜多数解法都会用sage的轮子直接跑了），由于置换群特别容易分解为不相关的子群（子置换），所以<code>Pohlig Hellman</code>光滑阶离散对数算法在置换群上特别直观，怎么自己写轮子参考第三节、代码参考纯python写的exp。</p>
+<p>第三题是开放式的一题（<del>因为出题人也没找到最大的上界，雾</del>），最后一节详细介绍了题目里最大阶的贪心构造方法，出题人写writeup的时候又想到了更直观的想法，求解两个元素联合起来的最大阶，只需要在不改变物品的情况下把原来背包问题的容量扩展到 $2n$即可，之后对阶O素因子分解得到的子集，求解一个<code>approximate subset sum</code>，目标和为 $n$，由此得到两个 $O_1,O_2$作为两个生成元的阶，该方法比我之前得到的最大上界平均大了一个数量级（1~100倍）。</p>
+<p>纯 Python 解法（完善了 permutation group 类）参考 <a target="_blank" rel="noopener" href="https://github.com/USTC-Hackergame/hackergame2022-writeups/blob/master/official/置换魔群/python-exp">python-exp</a>，SageMath 脚本参考 <a target="_blank" rel="noopener" href="https://github.com/USTC-Hackergame/hackergame2022-writeups/blob/master/official/置换魔群/sage-exp">sage-exp</a>。</p>
+<p>&nbsp;</p>
+<h2 id="置换群上的Pohlig-Hellman算法"><a href="#置换群上的Pohlig-Hellman算法" class="headerlink" title="置换群上的Pohlig Hellman算法"></a>置换群上的Pohlig Hellman算法</h2><p>我们首先来看$A_5$上简单的例子， $A = (1,3)(2,4,5)$，对于位置不变的置换，我们将缺省，比如单位置换（不变置换）:  $A =(1)(2)(3)(4)(5)=() $，考虑e = 1，2，3，4，5，6  </p>
+<script type="math/tex; mode=display">
+A^1 = (1,3)(2,4,5) \\
+A^2 = (2,5,4)\\
+A^3 = (1,3) \\
+A^4 = (2,4,5)\\
+A^5 = (1,3)(2,5,4) \\
+A^6 = ()</script><p>我们单独观察单个的小置换可以发现，(1,3)的周期为2，(2,4,5)的周期为3，所以A的阶是6：</p>
+<ul>
+<li>对于初始的A，1置换到3， $A^2$置换就变成1置换3再置换到1，也即是1置换到1，周而复始；</li>
+<li>对于初始的A，2置换到4， $A^2$置换就变成2置换4再置换到5，也就是2置换到5， $A^3$就变成2置换到2，周而复始。</li>
+</ul>
+<p>因此，一般性的结论就是，我们考虑A每个长度为  <script type="math/tex">l_i</script> 小置换 <script type="math/tex">(x_1,x_2,...,x_{l_i})</script> ， <script type="math/tex">A^e</script> 结果为：<script type="math/tex">(x_1,x_j,...)</script>，则  <script type="math/tex">e\equiv j-1 \mod l_i</script> ，对于每个小置换我们都能得到这样一个式子，最后对所有关于 <script type="math/tex">l_i</script> 的方程用中国剩余定理求解出来，我们就得到了 <script type="math/tex">e \mod lcm(l_1,l_2,..,l_k) = order(g)</script>，也就是我们能够得到的关于e的最大的信息量了，如果  <script type="math/tex">e>order(g)</script> ，我们是没法完全恢复出e的。</p>
+<p>上面的方法也就是<code>Pohlig Hellman</code>算法的核心思想，不过在一般有限域 <script type="math/tex">Z_p</script> 上面，子群（相当于A里面的小置换）是不好区分的，需要我们自己去构造。详细算法可以参考<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Pohlig%E2%80%93Hellman_algorithm">wiki</a>。</p>
+<p>当然，由于题目里面的每个小子群的阶不超过2000，因此直接对每一个小子群进行打表，计算下面的式子:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[(e, sub_element**e) <span class="keyword">for</span> sub_element <span class="keyword">in</span> g.standard_tuple <span class="keyword">for</span> e <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(sub_element))]</span><br></pre></td></tr></table></figure>
+<p>这样把结果里面的y对应的小置换直接查表得到对应的e即可，也就得到了 <script type="math/tex">x \equiv e\mod suborder</script>。</p>
+<p>&nbsp;</p>
+<h2 id="A-n-上的最大阶元素（Two-Generator）"><a href="#A-n-上的最大阶元素（Two-Generator）" class="headerlink" title="$A_n$上的最大阶元素（Two-Generator）"></a>$A_n$上的最大阶元素（Two-Generator）</h2><h3 id="Landau’s-function"><a href="#Landau’s-function" class="headerlink" title="Landau’s function"></a>Landau’s function</h3><p>考虑 <script type="math/tex">A_n</script>上一个置乱的阶，从互不相关小置乱的乘积的标准形式来看是最清晰的，我们只考虑小置乱的长度，记置乱A的长度数组为： <script type="math/tex">[l_1,l_2,..,l_k]</script>，那么求 <script type="math/tex">A_n</script> 的最大置乱阶的问题就等价于下面问题（lcm：最大公倍数）： </p>
+<script type="math/tex; mode=display">
+Landu(n) =Maxmize \quad lcm(l_1,l_2,...,l_k)\\
+s.t. \quad \sum l_i = n, l_i,k \in Z^+</script><p> 最优解有下面两种性质几种情况：</p>
+<ul>
+<li><script type="math/tex">l_i</script> 是不是非素数的次幂之外的合数，否则： <script type="math/tex">l_i = a*b</script>（非平凡分解），由于 <script type="math/tex">b^a,a^b\ge a*b,a,b>=2</script> 恒成立，并且在于其他数做LCM时， <script type="math/tex">a^b,b^a</script> 之一的结果肯定不小于 <script type="math/tex">a*b</script> 的结果，因此最优解里面一定不存在上述合数。</li>
+<li><script type="math/tex">Landu(n)</script> 一定可以表示为 <script type="math/tex">Landu(n)= MAX_{p^k<n} lcm(p^k,Landu(n-p^k))</script> （最优子结构）</li>
+</ul>
+<p>有了上面的结论就可以类似01背包问题愉快地动态规划了，背包的容量是n，里面可以塞的东西就是小于n的所有素数次幂， <script type="math/tex">[p,p^2,..,p^k]</script>被归为一组，并且每一组内只能取一个元素。这样就可以用动态规划一次性解出所有小于等于n的最大阶。这是<a target="_blank" rel="noopener" href="http://oeis.org/A000793">A000793</a>上给出的python动态规划代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">aupton</span>(<span class="params">N</span>):</span> <span class="comment"># compute terms a(0)..a(N)</span></span><br><span class="line">    V = [<span class="number">1</span> <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(N+<span class="number">1</span>)]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> primerange(<span class="number">2</span>, N+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(N, i-<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">            hi = V[j]</span><br><span class="line">            pp = i</span><br><span class="line">            <span class="keyword">while</span> pp &lt;= j:</span><br><span class="line">                hi = <span class="built_in">max</span>((pp <span class="keyword">if</span> j==pp <span class="keyword">else</span> V[j-pp]*pp), hi)</span><br><span class="line">                pp *= i</span><br><span class="line">            V[j] = hi</span><br><span class="line">    <span class="keyword">return</span> V</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<h3 id="贪婪策略"><a href="#贪婪策略" class="headerlink" title="贪婪策略"></a>贪婪策略</h3><p>题目中上界的的生成方法，思路就是不管三七二十一，先产生 $A_n$ 上的一个最大阶为 $O_1$ 的元素 $g_1$ ，由于 $g_1$用到了n以内的某些素数、素数的次幂，所以我们第二次找最大阶元素的时候，需要重新更新一个物品(素数、素数次幂)的价值（权重），价值的更新策略如下：如果 $O_1$ 里面包含了素因子 $p^k$ （k取最大的那个），那么:</p>
+<ul>
+<li>$\forall\ i\le k：Value(p^i) = 1$</li>
+<li>$\forall\ i\gt k：Value(p^i) = p^{i-k}$</li>
+</ul>
+<p>更新物品价值后，再求解一次背包问题，得到第二个元素的最大阶 $O_2$ ，根据 $O_2$ 产生基底 $g_2$。纯粹的贪婪策略，最后为了防止直接分解这个上界得到泄露结果，最终的bound经过下面盲化处理：<code>bound = lcm(O1,O2) + randint(1, lcm(O1,O2)//100)</code>。连续通过15轮的概率是 $0.99^{15} \approx 0.87$ 。</p>
+<p>代码如下（之前用c写的，抄过来有点丑）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sage 9.5</span></span><br><span class="line"><span class="comment"># For python you can use the `factorint` from sympy instead of `factor`</span></span><br><span class="line"><span class="comment"># from sympy import factorint</span></span><br><span class="line"><span class="comment"># factor = lambda x: list(factorint(x).items())</span></span><br><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> sqrt,gcd</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> sympy <span class="keyword">import</span> nextprime</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">PrimeN</span>(<span class="params">n</span>):</span></span><br><span class="line">    a = [<span class="number">0</span>]*(n+<span class="number">1</span>)</span><br><span class="line">    a[<span class="number">0</span>] = a[<span class="number">1</span>] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i  <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>,n+<span class="number">1</span>):</span><br><span class="line">        a[i] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>,<span class="built_in">int</span>(sqrt(n)+<span class="number">1</span>)):</span><br><span class="line">        mul = <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> (a[i] == <span class="number">0</span>):</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">while</span> (i * mul &lt;= n):</span><br><span class="line">            a[i * mul] = <span class="number">0</span></span><br><span class="line">            mul+=<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">max_order_element_combine</span>(<span class="params">n,nums=<span class="number">1</span></span>):</span></span><br><span class="line">    <span class="comment">#MX = [1]*(n+1)</span></span><br><span class="line">    prime = PrimeN(n)</span><br><span class="line">    prime_pows = &#123;&#125;</span><br><span class="line">    <span class="comment"># init item values</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n,-<span class="number">1</span>,-<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> prime[i]:<span class="keyword">continue</span></span><br><span class="line">        k = i*i</span><br><span class="line">        prime_pows.setdefault(i,i)</span><br><span class="line">        <span class="keyword">while</span> (k &lt;= n):</span><br><span class="line">            prime[i]+=<span class="number">1</span></span><br><span class="line">            prime_pows.setdefault(k,k)</span><br><span class="line">            k *= i</span><br><span class="line">    res = [] <span class="comment"># store the results</span></span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(nums):</span><br><span class="line">        MX = [<span class="number">1</span>]*(n+<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>,n+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> prime[i]:<span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(n,<span class="number">1</span>,-<span class="number">1</span>):</span><br><span class="line">                temp = i</span><br><span class="line">                <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,prime[i]+<span class="number">1</span>):</span><br><span class="line">                    <span class="keyword">if</span> (j - temp &gt;= <span class="number">0</span> <span class="keyword">and</span> MX[j] &lt; MX[j - temp] * prime_pows[temp]):</span><br><span class="line">                        MX[j] = MX[j - temp] * prime_pows[temp]</span><br><span class="line">                    temp *= i</span><br><span class="line">                    </span><br><span class="line">        res.append(MX[-<span class="number">1</span>])</span><br><span class="line">        res_facts = factor(res[-<span class="number">1</span>])</span><br><span class="line">        <span class="comment"># renew the item weights</span></span><br><span class="line">        <span class="keyword">for</span> f <span class="keyword">in</span> res_facts:</span><br><span class="line">            p_f =f[<span class="number">0</span>]**f[<span class="number">1</span>]</span><br><span class="line">            j = f[<span class="number">0</span>]</span><br><span class="line">            <span class="keyword">while</span> j &lt; n:</span><br><span class="line">                <span class="keyword">if</span> j &lt;= p_f:</span><br><span class="line">                    prime_pows[j] = <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    prime_pows[j] = <span class="built_in">min</span>(j//p_f,prime_pows[j])</span><br><span class="line">                j*=f[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<h3 id="背包扩容策略"><a href="#背包扩容策略" class="headerlink" title="背包扩容策略"></a>背包扩容策略</h3><p>思路就是扩容背包，不扩大物品（素数幂）的选择范围；我们把背包容量扩大两倍，由此得到的最大阶O以及其标准素因子分解 <script type="math/tex">num\_set = [p_1^{k_1},...,p_l^{k_l}]</script> ，肯定有 :  $\sum_i p_i^{k^i} \le 2* and \ \forall \ p_i^{k_i}\le n$ 成立。之后我们以 <script type="math/tex">num\_set</script> 为总的数集，以 $n$为目标和，求解最接近子集和问题，如果基于此对 <script type="math/tex">num\_set</script> 划分的两个子集和都小于等于n，就可以构造符合条件的两个基底了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sage 9.5</span></span><br><span class="line"><span class="comment"># python version in python exp</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">aupton_2</span>(<span class="params">N</span>):</span> <span class="comment"># compute terms a(0)..a(N)</span></span><br><span class="line">    V = [<span class="number">1</span> <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>*N+<span class="number">1</span>)]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> primerange(<span class="number">2</span>, N+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>*N, i-<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">            hi = V[j]</span><br><span class="line">            pp = i</span><br><span class="line">            <span class="keyword">while</span> pp &lt;= j:</span><br><span class="line">                hi = <span class="built_in">max</span>((pp <span class="keyword">if</span> j==pp <span class="keyword">else</span> V[j-pp]*pp), hi)</span><br><span class="line">                pp *= i</span><br><span class="line">            V[j] = hi</span><br><span class="line">    <span class="keyword">return</span> V</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">Wikipedia subset sum approximation algorithm</span></span><br><span class="line"><span class="string">http://en.wikipedia.org/wiki/Subset_sum_problem#Polynomial_time_approximate_algorithm</span></span><br><span class="line"><span class="string">from https://github.com/saltycrane/subset-sum/blob/master/subsetsum/wikipedia.py</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> operator</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">approx_with_accounting_and_duplicates</span>(<span class="params">x_list,s</span>):</span></span><br><span class="line">    c = <span class="number">.01</span>              <span class="comment"># fraction error (constant)</span></span><br><span class="line">    N = <span class="built_in">len</span>(x_list)      <span class="comment"># number of values</span></span><br><span class="line"></span><br><span class="line">    S = [(<span class="number">0</span>, [])]</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">sorted</span>(x_list):</span><br><span class="line">        T = []</span><br><span class="line">        <span class="keyword">for</span> y, y_list <span class="keyword">in</span> S:</span><br><span class="line">            T.append((x + y, y_list + [x]))</span><br><span class="line">        U = T + S</span><br><span class="line">        U = <span class="built_in">sorted</span>(U, key=operator.itemgetter(<span class="number">0</span>))</span><br><span class="line">        y, y_list = U[<span class="number">0</span>]</span><br><span class="line">        S = [(y, y_list)]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> z, z_list <span class="keyword">in</span> U:</span><br><span class="line">            lower_bound = (<span class="built_in">float</span>(y) + c * <span class="built_in">float</span>(s) / <span class="built_in">float</span>(N))</span><br><span class="line">            <span class="keyword">if</span> lower_bound &lt; z &lt;= s:</span><br><span class="line">                y = z</span><br><span class="line">                S.append((z, z_list))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> sort_by_col(S, <span class="number">0</span>)[-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">split_2n</span>(<span class="params">n,order</span>):</span></span><br><span class="line">    num_set = <span class="built_in">set</span>([p^e <span class="keyword">for</span> p,e <span class="keyword">in</span> factor(order)])</span><br><span class="line">    target_sum = n</span><br><span class="line">    sum1,prime_list1 = approx_with_accounting_and_duplicates(num_set,target_sum)</span><br><span class="line">    prime_list2 = num_set - <span class="built_in">set</span>(prime_list1)</span><br><span class="line">    sum2 = <span class="built_in">sum</span>(prime_list2)</span><br><span class="line">    <span class="keyword">if</span> sum1 &lt;=  target_sum <span class="keyword">and</span> sum2 &lt;= target_sum:</span><br><span class="line">        <span class="keyword">return</span> prod(prime_list1),prod(prime_list2)</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Landu_expand</span>(<span class="params">n</span>):</span></span><br><span class="line">    order = aupton_2(n)[-<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> split_2n(n,order)</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+
     
 
     
@@ -293,16 +421,76 @@
 
 
     
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/03/01/SUSCTF2022-crypto-writeup/">阅读全文 >></a>
-    </p>
+
     
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://tl2cents.github.io/2022/11/01/Hacker-Game-2022-%E5%87%BA%E9%A2%98%E8%AE%B0/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
 
     
     <div class="clearfix"></div>
   </div>
   </div>
 </article>
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2022/10/16/ASISCTF-2022-Quals-Crypto-Writeup/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ASISCTF 2022 Quals Crypto Writeup</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -317,748 +505,33 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="blog-VNCTF2022-Crypto-WriteUp" class="article article-type-blog  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/02/12/VNCTF2022-Crypto-WriteUp/" target="_blank">VNCTF2022 Crypto WriteUp</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2022/02/12/VNCTF2022-Crypto-WriteUp/" class="archive-article-date">
-        <time datetime="2022-02-12T13:15:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-12</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    <!-- newly added -->
-    
-    <!-- newly added -->
-    
-    <p>寒假无聊摸鱼，月赛题没有crypto，就随便写了misc来看看VN的题，下午写完两道crypto就没看了，后面发现VN的题质量还挺不错。</p>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">writeup</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/CTF//" class="article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/02/12/VNCTF2022-Crypto-WriteUp/">阅读全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%BA%E9%A2%98%E4%BA%BA%E3%81%AE%E7%A2%8E%E7%A2%8E%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">出题人の碎碎念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A2%8E%E7%A2%8E%E5%BF%B5%EF%BC%9A%E5%85%B3%E4%BA%8E%E9%AD%94%E7%BE%A4%E5%92%8C%E7%BE%A4%E8%AE%BA%E7%9A%84%E5%8F%91%E5%B1%95"><span class="toc-number">2.</span> <span class="toc-text">碎碎念：关于魔群和群论的发展</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%8D%E5%8F%AF%E5%8A%A0%E5%AF%86%E7%9A%84%E5%BC%82%E4%B8%96%E7%95%8C"><span class="toc-number">3.</span> <span class="toc-text">不可加密的异世界</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="toc-number">3.1.</span> <span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E9%A2%84%E6%9C%9F"><span class="toc-number">3.2.</span> <span class="toc-text">非预期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CBC%E6%A8%A1%E5%BC%8F%E6%8C%87%E5%AE%9A%E4%BB%BB%E6%84%8F%E5%AF%86%E6%96%87%E5%88%86%E7%BB%84"><span class="toc-number">3.3.</span> <span class="toc-text">CBC模式指定任意密文分组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%86CRC128%E5%93%88%E5%B8%8C"><span class="toc-number">3.4.</span> <span class="toc-text">逆CRC128哈希</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BD%AE%E6%8D%A2%E9%AD%94%E7%BE%A4"><span class="toc-number">4.</span> <span class="toc-text">置换魔群</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BA%E9%A2%98%E6%83%B3%E6%B3%95"><span class="toc-number">4.1.</span> <span class="toc-text">出题想法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF-1"><span class="toc-number">4.2.</span> <span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%AE%E6%8D%A2%E7%BE%A4%E4%B8%8A%E7%9A%84Pohlig-Hellman%E7%AE%97%E6%B3%95"><span class="toc-number">4.3.</span> <span class="toc-text">置换群上的Pohlig Hellman算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#A-n-%E4%B8%8A%E7%9A%84%E6%9C%80%E5%A4%A7%E9%98%B6%E5%85%83%E7%B4%A0%EF%BC%88Two-Generator%EF%BC%89"><span class="toc-number">4.4.</span> <span class="toc-text">$A_n$上的最大阶元素（Two-Generator）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Landau%E2%80%99s-function"><span class="toc-number">4.4.1.</span> <span class="toc-text">Landau’s function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%AA%E5%A9%AA%E7%AD%96%E7%95%A5"><span class="toc-number">4.4.2.</span> <span class="toc-text">贪婪策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%83%8C%E5%8C%85%E6%89%A9%E5%AE%B9%E7%AD%96%E7%95%A5"><span class="toc-number">4.4.3.</span> <span class="toc-text">背包扩容策略</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
 
-  
-    <article id="blog-Hitcon2021-Crypto-Writeup" class="article article-type-blog  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/12/14/Hitcon2021-Crypto-Writeup/" target="_blank">Hitcon2021 Crypto Writeup</a>
-  
-    </h1>
-  
 
 
-  
-  
-<a href="/2021/12/14/Hitcon2021-Crypto-Writeup/" class="archive-article-date">
-        <time datetime="2021-12-14T14:32:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-14</time>
-</a>
 
-  
-  
-    
 
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    <!-- newly added -->
-    
-    <!-- newly added -->
-    
-    <p>第一次和Tea Deliverers打比赛，被zzh学长带飞了，这次crypto方向的题目还是比较友好的，但是我写题和exp写的是真慢。td最后总排名第三。这里简单记录一下crypto方向所有题目的解法和exp。hitcon不愧是国内重量级的CTF赛事，总体赛题质量还是非常顶的。<br>&nbsp;<br>
-    
-    
 
-    
 
-    
 
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">writeup</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/CTF//" class="article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/12/14/Hitcon2021-Crypto-Writeup/">阅读全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="bllog-CRYPTO2021" class="article article-type-bllog  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/11/26/CRYPTO2021/" target="_blank">CRYPTO2021</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/11/26/CRYPTO2021/" class="archive-article-date">
-        <time datetime="2021-11-26T04:10:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-26</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    <!-- newly added -->
-    
-    <!-- newly added -->
-    
-    <p>最近打的CTF比赛有一点多，需要好好复盘，记录一下crypto方面的题解。这篇博客简要复盘一下2021 ByteCTF初赛，2021 KQCTF，2021 L3HCTF，2021 陇原杯， 2021 西湖论剑以及2021 N1CTF密码学方向的题解。原题存档于<a target="_blank" rel="noopener" href="https://github.com/tl2cents/CTF-Archive">github仓库</a>。</p>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">writeup</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/CTF//" class="article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/11/26/CRYPTO2021/">阅读全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="blog-Hackgame2021" class="article article-type-blog  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/10/31/Hackgame2021/" target="_blank">Hacker Game 2021 Writeup</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/10/31/Hackgame2021/" class="archive-article-date">
-        <time datetime="2021-10-31T15:03:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-31</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    <!-- newly added -->
-    
-    <!-- newly added -->
-    
-    <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>大四党最后一次在校内组打Hacker Game（<del>然而一共也就参加了两次</del>），如图所示，今年对crypto太不友好了，就只有一道RSA，其他都不算是传统的crypto，刚开始还在打柏鹭杯，后面没啥时间了索性就都没看了，这次就只更一些个人觉得有趣的题吧。意外的是我web小白，居然ak了web，今年web确实出得很照顾新手。</p>
-<p><img src="/images/image-20211031230742968.png" alt="image-20211031230742968"></p>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">writeup</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/CTF//" class="article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/31/Hackgame2021/">阅读全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="blog-2021-DASCTF-July-WriteUp" class="article article-type-blog  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/08/02/2021-DASCTF-July-WriteUp/" target="_blank">2021-DASCTF-July-WriteUp</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/08/02/2021-DASCTF-July-WriteUp/" class="archive-article-date">
-        <time datetime="2021-08-02T05:58:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-02</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    <!-- newly added -->
-    
-    <!-- newly added -->
-    
-    <p>本来想看看reverse，结果没啥基础题，就只能摸鱼打比赛了。几道MISC过于脑洞。</p>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">writeup</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/CTF//" class="article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/08/02/2021-DASCTF-July-WriteUp/">阅读全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="blog-Logistic-Regression-and-Stochastic-Gradient-Descent" class="article article-type-blog  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/07/21/Logistic-Regression-and-Stochastic-Gradient-Descent/" target="_blank">Logistic Regression and Stochastic Gradient Descent</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/07/21/Logistic-Regression-and-Stochastic-Gradient-Descent/" class="archive-article-date">
-        <time datetime="2021-07-21T10:55:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-21</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    <!-- newly added -->
-    
-    <!-- newly added -->
-    
-    <h2 id="SGD-and-GD-on-LR"><a href="#SGD-and-GD-on-LR" class="headerlink" title="SGD and GD on LR"></a>SGD and GD on LR</h2><p><strong>We provide you with a dataset of handwritten digits1 that contains a training set of 60000 examples and a test set of 2018 examples (“hw4 lr.zip”). Each image in this dataset has 28 × 28 pixels and the associated label is the handwritten digit—that is, an integer from the set {0, 1, · · · , 9}—in the image. In this exercise, you need to build a logistic regression classifier to predict if a given image has the handwritten digit 9 in it or not. You can use your favorite programming language to finish this exercise.</strong><br>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">USTC</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Machine-Learning//" class="article-tag-list-link color2">Machine Learning</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/07/21/Logistic-Regression-and-Stochastic-Gradient-Descent/">阅读全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="blog-Naive-Bayes" class="article article-type-blog  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/07/21/Naive-Bayes/" target="_blank">Naive Bayes Realized By Python</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/07/21/Naive-Bayes/" class="archive-article-date">
-        <time datetime="2021-07-21T10:45:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-21</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    <!-- newly added -->
-    
-    <!-- newly added -->
-    
-    <p>About this problem , see the lecture in <a target="_blank" rel="noopener" href="https://miralab.ai/course/ml_2021/">machine learning course of USTC</a>.<br>This exercise is taken from <a target="_blank" rel="noopener" href="https://miralab.ai/courses/ML2021Spring/hw/HW04.pdf">HW4</a>.</p>
-<h2 id="Programming-Exercise-Naive-Bayes"><a href="#Programming-Exercise-Naive-Bayes" class="headerlink" title="Programming Exercise: Naive Bayes"></a>Programming Exercise: Naive Bayes</h2><p>We provide you with a data set that contains spam and non-spam emails (“hw4 nb.zip”). Please use the Naive Bayes Classifier to detect the spam emails. Finish the following exercises by programming. You can use your favorite programming language.<br>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">USTC</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Machine Learning</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Machine-Learning//" class="article-tag-list-link color2">Machine Learning</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/07/21/Naive-Bayes/">阅读全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">Prev page</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next page</a>
-    </nav>
-  
 
 
           </div>
@@ -1086,8 +559,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
