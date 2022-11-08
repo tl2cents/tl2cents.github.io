@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://tl2cents.github.io/2022/11/08/N1CTF-2022-Crypto-Writeups-By-tl2cents/</loc>
+    <lastmod>2022-11-08</lastmod>
+  </url>
+  <url>
     <loc>https://tl2cents.github.io/2022/11/01/Hacker-Game-2022-%E5%87%BA%E9%A2%98%E8%AE%B0/</loc>
     <lastmod>2022-11-01</lastmod>
   </url>
