@@ -9,17 +9,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://tl2cents.github.io">
-  <title>Archives | tl2cents blog</title>
+  <title>VNCTF 2023 Crypto Writeups | tl2cents blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="tl2cents blog">
-<meta property="og:url" content="https://tl2cents.github.io/archives/page/2/index.html">
+  <meta name="description" content="VNCTF 2023 Crypto 赛道的所有题解，包含了特殊 Sbox 下 AES 的差分分析、DLPwAI 等问题，题目质量很好，记录一下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VNCTF 2023 Crypto Writeups">
+<meta property="og:url" content="https://tl2cents.github.io/2023/02/19/VNCTF-2023-Crypto-Writeups/index.html">
 <meta property="og:site_name" content="tl2cents blog">
+<meta property="og:description" content="VNCTF 2023 Crypto 赛道的所有题解，包含了特殊 Sbox 下 AES 的差分分析、DLPwAI 等问题，题目质量很好，记录一下。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tl2cents.github.io/2023/02/19/VNCTF-2023-Crypto-Writeups/image-20230218231329738.png">
+<meta property="article:published_time" content="2023-02-19T14:19:26.000Z">
+<meta property="article:modified_time" content="2023-02-19T14:58:50.616Z">
 <meta property="article:author" content="tl2cents">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="writeup">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tl2cents.github.io/2023/02/19/VNCTF-2023-Crypto-Writeups/image-20230218231329738.png">
   
     <link rel="alternative" href="/atom.xml" title="tl2cents blog" type="application/atom+xml">
   
@@ -213,41 +221,119 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="blog-VNCTF-2023-Crypto-Writeups" class="article article-type-blog " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-blog">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2022/09/05/2022-BalsnCTF-Crypto-Writeup/" class="archive-article-date">
-        <time datetime="2022-09-05T12:47:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-05</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2022/09/05/2022-BalsnCTF-Crypto-Writeup/" target="_blank">2022 BalsnCTF Crypto Writeup</a>
   
+    <h1 class="article-title" itemprop="name">
+      VNCTF 2023 Crypto Writeups
     </h1>
   
 
 
-        <div class="article-info info-on-right">
-          
+  
+  
+<a href="/2023/02/19/VNCTF-2023-Crypto-Writeups/" class="archive-article-date">
+        <time datetime="2023-02-19T14:19:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-19</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">3.2k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">18分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    <!-- newly added -->
+    
+    <!-- newly added -->
+    
+    <p>VNCTF 2023 Crypto 赛道的所有题解，包含了特殊 Sbox 下 AES 的差分分析、DLPwAI 等问题，题目质量很好，记录一下。</p>
+<span id="more"></span>
+<p>&nbsp;</p>
+<h2 id="crypto-sign-in-1"><a href="#crypto-sign-in-1" class="headerlink" title="crypto-sign-in-1"></a>crypto-sign-in-1</h2><p>&nbsp;</p>
+<h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><p>源码存档于：<a href="./chall1.py">source link</a></p>
+<p>&nbsp;</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>求ecc上的dlp，我们可以选择 <script type="math/tex">y_1,y_2</script> 来确定 ecc 曲线的 <script type="math/tex">E:y^2 = x^3 + ax+b</script> 中的 <script type="math/tex">a,b</script> 值，由于 q 不太大，随机选择 <script type="math/tex">y_1,y_2</script>，多试几次，每次分解 ecc 的阶 <script type="math/tex">O(E)</script> ，如果其所有素因子不大于 <script type="math/tex">2^{42}</script> ，即光滑阶的情况下，就可以快速求解 ECDLP 问题。这题和 2022 ASISCTF 中 Desired Curve 考点类似。</p>
+<p>&nbsp;</p>
+<h3 id="EXP"><a href="#EXP" class="headerlink" title="EXP"></a>EXP</h3><p>Sage EXP</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> product</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> sha256</span><br><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> getrandbits</span><br><span class="line"><span class="keyword">from</span> ast <span class="keyword">import</span> literal_eval</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"></span><br><span class="line">table = string.ascii_letters+string.digits</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_connect_proof</span>():</span></span><br><span class="line">    io=remote(<span class="string">&quot;node4.buuoj.cn&quot;</span>,<span class="number">27980</span>)</span><br><span class="line">    io.recvuntil(<span class="string">b&quot;sha256(XXXX+&quot;</span>)</span><br><span class="line">    alphabet = string.ascii_letters + string.digits</span><br><span class="line">    lattar_part=io.recv(<span class="number">16</span>).decode(<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line">    io.recvuntil(<span class="string">b&#x27;== &#x27;</span>)</span><br><span class="line">    h=io.recvline().strip().decode(<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line">    <span class="comment"># print(h)</span></span><br><span class="line">    io.recvuntil(<span class="string">b&#x27;[+] Plz Tell Me XXXX :&#x27;</span>)</span><br><span class="line">    bruteforce=[ <span class="string">&#x27;&#x27;</span>.join(prefix)+lattar_part  <span class="keyword">for</span> prefix <span class="keyword">in</span> product(alphabet,repeat=<span class="number">4</span>)]</span><br><span class="line">    <span class="keyword">for</span> proof <span class="keyword">in</span> bruteforce:</span><br><span class="line">        <span class="keyword">if</span> sha256(proof.encode()).hexdigest()==h:</span><br><span class="line">            io.sendline(proof.encode()[:<span class="number">4</span>])</span><br><span class="line">            print(<span class="string">&quot;proof done&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span> io</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    io = set_connect_proof()</span><br><span class="line">    io.recvuntil(<span class="string">b&quot;Send 2 `y&#x27; elements to me:  &quot;</span>)</span><br><span class="line">    y1,y2 = getrandbits(<span class="number">128</span>),getrandbits(<span class="number">128</span>)</span><br><span class="line">    io.sendline(<span class="string">f&#x27;<span class="subst">&#123;<span class="built_in">str</span>(y1)&#125;</span>,<span class="subst">&#123;<span class="built_in">str</span>(y2)&#125;</span>&#x27;</span>.encode())</span><br><span class="line">    q = <span class="built_in">int</span>(io.recvline_contains(<span class="string">b&#x27;q = &#x27;</span>).decode().strip()[<span class="number">4</span>:])</span><br><span class="line">    G = literal_eval(io.recvline_contains(<span class="string">b&quot;G = &quot;</span>).decode().strip()[<span class="number">4</span>:])</span><br><span class="line">    mG = literal_eval(io.recvline_contains(<span class="string">b&quot;m * G = &quot;</span>).decode().strip()[<span class="number">8</span>:])</span><br><span class="line">    encflag = io.recvline_contains(<span class="string">b&#x27;encrypt flag = &#x27;</span>).decode().strip()[<span class="built_in">len</span>(<span class="string">b&#x27;encrypt flag = &#x27;</span>):]</span><br><span class="line"></span><br><span class="line">    AA = (y1**<span class="number">2</span> - y2**<span class="number">2</span> - <span class="number">2022</span>**<span class="number">3</span> + <span class="number">2023</span>**<span class="number">3</span>) * inverse(-<span class="number">1</span>, q) % q</span><br><span class="line">    BB = (y1**<span class="number">2</span> - <span class="number">2022</span>**<span class="number">3</span> - AA * <span class="number">2022</span>) % q</span><br><span class="line"></span><br><span class="line">    E = EllipticCurve(GF(q), [AA, BB])</span><br><span class="line">    g_order = E(G).order()</span><br><span class="line">    order_ls = factor(g_order)</span><br><span class="line">    print(<span class="string">f&quot;[+] G order <span class="subst">&#123;order_ls&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    sub_group_order = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> p,e <span class="keyword">in</span> order_ls:</span><br><span class="line">        <span class="keyword">if</span> p.nbits() &lt;= <span class="number">42</span>:</span><br><span class="line">            sub_group_order*= (p^e)</span><br><span class="line">    expon = g_order//sub_group_order</span><br><span class="line">    print(<span class="string">f&quot;[+] <span class="subst">&#123;sub_group_order.nbits() = &#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> sub_group_order.nbits() &lt; <span class="number">120</span>:</span><br><span class="line">        io.close()</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    mm = discrete_log(expon*E(mG),expon*E(G),<span class="built_in">ord</span> = sub_group_order,operation = <span class="string">&quot;+&quot;</span>)</span><br><span class="line">    <span class="comment"># compute dlp in subgroup </span></span><br><span class="line">    print(<span class="string">f&quot;[+] subgroup dlp (m mod <span class="subst">&#123;sub_group_order&#125;</span>) = &quot;</span>, mm)</span><br><span class="line">    io.close()</span><br><span class="line">    <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">aes = AES.new(<span class="built_in">int</span>(mm).to_bytes(<span class="number">16</span>, <span class="string">&#x27;big&#x27;</span>), AES.MODE_CBC, <span class="built_in">bytes</span>(<span class="number">16</span>))</span><br><span class="line"><span class="comment"># or brute a few bits</span></span><br><span class="line">flag = aes.decrypt(<span class="built_in">bytes</span>.fromhex(encflag))</span><br><span class="line">print(flag)</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<h2 id="crypto-sign-in-2"><a href="#crypto-sign-in-2" class="headerlink" title="crypto-sign-in-2"></a>crypto-sign-in-2</h2><p>&nbsp;</p>
+<h3 id="源码-1"><a href="#源码-1" class="headerlink" title="源码"></a>源码</h3><p>源码存档于：<a href="./chall2.zip">source link</a></p>
+<p>&nbsp;</p>
+<h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><p>sbox 放 sage 简单分析一下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sage 9.5</span></span><br><span class="line"><span class="keyword">from</span> sage.crypto.sbox <span class="keyword">import</span> SBox</span><br><span class="line">sbox = [<span class="number">15</span>, <span class="number">47</span>, <span class="number">79</span>, <span class="number">111</span>, <span class="number">143</span>, <span class="number">175</span>, <span class="number">207</span>, <span class="number">239</span>, <span class="number">44</span>, <span class="number">12</span>, <span class="number">108</span>, <span class="number">76</span>, <span class="number">172</span>, <span class="number">140</span>, <span class="number">236</span>, <span class="number">204</span>, <span class="number">73</span>, <span class="number">105</span>, <span class="number">9</span>, <span class="number">41</span>, <span class="number">201</span>, <span class="number">233</span>, <span class="number">137</span>, <span class="number">169</span>, <span class="number">106</span>, <span class="number">74</span>, <span class="number">42</span>, <span class="number">10</span>, <span class="number">234</span>, <span class="number">202</span>, <span class="number">170</span>, <span class="number">138</span>, <span class="number">131</span>, <span class="number">163</span>, <span class="number">195</span>, <span class="number">227</span>, <span class="number">3</span>, <span class="number">35</span>, <span class="number">67</span>, <span class="number">99</span>, <span class="number">160</span>, <span class="number">128</span>, <span class="number">224</span>, <span class="number">192</span>, <span class="number">32</span>, <span class="number">0</span>, <span class="number">96</span>, <span class="number">64</span>, <span class="number">197</span>, <span class="number">229</span>, <span class="number">133</span>, <span class="number">165</span>, <span class="number">69</span>, <span class="number">101</span>, <span class="number">5</span>, <span class="number">37</span>, <span class="number">230</span>, <span class="number">198</span>, <span class="number">166</span>, <span class="number">134</span>, <span class="number">102</span>, <span class="number">70</span>, <span class="number">38</span>, <span class="number">6</span>, <span class="number">52</span>, <span class="number">20</span>, <span class="number">116</span>, <span class="number">84</span>, <span class="number">180</span>, <span class="number">148</span>, <span class="number">244</span>, <span class="number">212</span>, <span class="number">23</span>, <span class="number">55</span>, <span class="number">87</span>, <span class="number">119</span>, <span class="number">151</span>, <span class="number">183</span>, <span class="number">215</span>, <span class="number">247</span>, <span class="number">114</span>, <span class="number">82</span>, <span class="number">50</span>, <span class="number">18</span>, <span class="number">242</span>, <span class="number">210</span>, <span class="number">178</span>, <span class="number">146</span>, <span class="number">81</span>, <span class="number">113</span>, <span class="number">17</span>, <span class="number">49</span>, <span class="number">209</span>, <span class="number">241</span>, <span class="number">145</span>, <span class="number">177</span>, <span class="number">184</span>, <span class="number">152</span>, <span class="number">248</span>, <span class="number">216</span>, <span class="number">56</span>, <span class="number">24</span>, <span class="number">120</span>, <span class="number">88</span>, <span class="number">155</span>, <span class="number">187</span>, <span class="number">219</span>, <span class="number">251</span>, <span class="number">27</span>, <span class="number">59</span>, <span class="number">91</span>, <span class="number">123</span>, <span class="number">254</span>, <span class="number">222</span>, <span class="number">190</span>, <span class="number">158</span>, <span class="number">126</span>, <span class="number">94</span>, <span class="number">62</span>, <span class="number">30</span>, <span class="number">221</span>, <span class="number">253</span>, <span class="number">157</span>, <span class="number">189</span>, <span class="number">93</span>, <span class="number">125</span>, <span class="number">29</span>, <span class="number">61</span>, <span class="number">121</span>, <span class="number">89</span>, <span class="number">57</span>, <span class="number">25</span>, <span class="number">249</span>, <span class="number">217</span>, <span class="number">185</span>, <span class="number">153</span>, <span class="number">90</span>, <span class="number">122</span>, <span class="number">26</span>, <span class="number">58</span>, <span class="number">218</span>, <span class="number">250</span>, <span class="number">154</span>, <span class="number">186</span>, <span class="number">63</span>, <span class="number">31</span>, <span class="number">127</span>, <span class="number">95</span>, <span class="number">191</span>, <span class="number">159</span>, <span class="number">255</span>, <span class="number">223</span>, <span class="number">28</span>, <span class="number">60</span>, <span class="number">92</span>, <span class="number">124</span>, <span class="number">156</span>, <span class="number">188</span>, <span class="number">220</span>, <span class="number">252</span>, <span class="number">245</span>, <span class="number">213</span>, <span class="number">181</span>, <span class="number">149</span>, <span class="number">117</span>, <span class="number">85</span>, <span class="number">53</span>, <span class="number">21</span>, <span class="number">214</span>, <span class="number">246</span>, <span class="number">150</span>, <span class="number">182</span>, <span class="number">86</span>, <span class="number">118</span>, <span class="number">22</span>, <span class="number">54</span>, <span class="number">179</span>, <span class="number">147</span>, <span class="number">243</span>, <span class="number">211</span>, <span class="number">51</span>, <span class="number">19</span>, <span class="number">115</span>, <span class="number">83</span>, <span class="number">144</span>, <span class="number">176</span>, <span class="number">208</span>, <span class="number">240</span>, <span class="number">16</span>, <span class="number">48</span>, <span class="number">80</span>, <span class="number">112</span>, <span class="number">66</span>, <span class="number">98</span>, <span class="number">2</span>, <span class="number">34</span>, <span class="number">194</span>, <span class="number">226</span>, <span class="number">130</span>, <span class="number">162</span>, <span class="number">97</span>, <span class="number">65</span>, <span class="number">33</span>, <span class="number">1</span>, <span class="number">225</span>, <span class="number">193</span>, <span class="number">161</span>, <span class="number">129</span>, <span class="number">4</span>, <span class="number">36</span>, <span class="number">68</span>, <span class="number">100</span>, <span class="number">132</span>, <span class="number">164</span>, <span class="number">196</span>, <span class="number">228</span>, <span class="number">39</span>, <span class="number">7</span>, <span class="number">103</span>, <span class="number">71</span>, <span class="number">167</span>, <span class="number">135</span>, <span class="number">231</span>, <span class="number">199</span>, <span class="number">206</span>, <span class="number">238</span>, <span class="number">142</span>, <span class="number">174</span>, <span class="number">78</span>, <span class="number">110</span>, <span class="number">14</span>, <span class="number">46</span>, <span class="number">237</span>, <span class="number">205</span>, <span class="number">173</span>, <span class="number">141</span>, <span class="number">109</span>, <span class="number">77</span>, <span class="number">45</span>, <span class="number">13</span>, <span class="number">136</span>, <span class="number">168</span>, <span class="number">200</span>, <span class="number">232</span>, <span class="number">8</span>, <span class="number">40</span>, <span class="number">72</span>, <span class="number">104</span>, <span class="number">171</span>, <span class="number">139</span>, <span class="number">235</span>, <span class="number">203</span>, <span class="number">43</span>, <span class="number">11</span>, <span class="number">107</span>, <span class="number">75</span>]</span><br><span class="line">sbox =  SBox(sbox)</span><br><span class="line">print(sbox.difference_distribution_table())</span><br></pre></td></tr></table></figure>
+<p>发现，给定差分输入，其对应的差分输入是固定的，<strong>也就是该sbox对差分而言可逆。</strong>因此，在AES的框架内，使用该sbox，则 <script type="math/tex">\textsf{subBytes}</script>、<script type="math/tex">\textsf{mixColumns}</script>、<script type="math/tex">\textsf{shiftRows}</script>、<script type="math/tex">\textsf{addRoundKey}</script> 都是差分可逆的，可以直接写逆，根据已知明文 noise 恢复 flag：算noise密文和flag密文的差分，恢复出noise和flag的明文差分，然后和noise异或就得到flag的明文。</p>
+<p>实际上，AES 的所有操作中只有 <script type="math/tex">\textsf{mixColumns}</script> 是包含非线性运算的，而这题的 Sbox 是线性的，那么 AES 整个过程就是线性的，而线性的密码非常脆弱，参考 Hill Cipher 的例子，因此 Sbox 在对称加密体制中非常重要， Sbox 不能是线性或者仿射的，也不能拥有可分析（高概率）的差分特征。</p>
+<p>回到题目本身，noise是32字节，利用恢复的差分输入就可以恢复前面32字节，然后利用 cbc 模式的trick推算出不同位置的输入差分（明文与前一个密文或者 IV 异或，而前一个密文是已知的），这样就可以恢复出任意分组的字节。具体地：EXP中用到了noise第二个分组和flag其他分组的差分来恢复所有明文。</p>
+<p>&nbsp;</p>
+<h3 id="EXP-1"><a href="#EXP-1" class="headerlink" title="EXP"></a>EXP</h3><p>Python EXP</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">s_sbox = [<span class="number">15</span>, <span class="number">47</span>, <span class="number">79</span>, <span class="number">111</span>, <span class="number">143</span>, <span class="number">175</span>, <span class="number">207</span>, <span class="number">239</span>, <span class="number">44</span>, <span class="number">12</span>, <span class="number">108</span>, <span class="number">76</span>, <span class="number">172</span>, <span class="number">140</span>, <span class="number">236</span>, <span class="number">204</span>, <span class="number">73</span>, <span class="number">105</span>, <span class="number">9</span>, <span class="number">41</span>, <span class="number">201</span>, <span class="number">233</span>, <span class="number">137</span>, <span class="number">169</span>, <span class="number">106</span>, <span class="number">74</span>, <span class="number">42</span>, <span class="number">10</span>, <span class="number">234</span>, <span class="number">202</span>, <span class="number">170</span>, <span class="number">138</span>, <span class="number">131</span>, <span class="number">163</span>, <span class="number">195</span>, <span class="number">227</span>, <span class="number">3</span>, <span class="number">35</span>, <span class="number">67</span>, <span class="number">99</span>, <span class="number">160</span>, <span class="number">128</span>, <span class="number">224</span>, <span class="number">192</span>, <span class="number">32</span>, <span class="number">0</span>, <span class="number">96</span>, <span class="number">64</span>, <span class="number">197</span>, <span class="number">229</span>, <span class="number">133</span>, <span class="number">165</span>, <span class="number">69</span>, <span class="number">101</span>, <span class="number">5</span>, <span class="number">37</span>, <span class="number">230</span>, <span class="number">198</span>, <span class="number">166</span>, <span class="number">134</span>, <span class="number">102</span>, <span class="number">70</span>, <span class="number">38</span>, <span class="number">6</span>, <span class="number">52</span>, <span class="number">20</span>, <span class="number">116</span>, <span class="number">84</span>, <span class="number">180</span>, <span class="number">148</span>, <span class="number">244</span>, <span class="number">212</span>, <span class="number">23</span>, <span class="number">55</span>, <span class="number">87</span>, <span class="number">119</span>, <span class="number">151</span>, <span class="number">183</span>, <span class="number">215</span>, <span class="number">247</span>, <span class="number">114</span>, <span class="number">82</span>, <span class="number">50</span>, <span class="number">18</span>, <span class="number">242</span>, <span class="number">210</span>, <span class="number">178</span>, <span class="number">146</span>, <span class="number">81</span>, <span class="number">113</span>, <span class="number">17</span>, <span class="number">49</span>, <span class="number">209</span>, <span class="number">241</span>, <span class="number">145</span>, <span class="number">177</span>, <span class="number">184</span>, <span class="number">152</span>, <span class="number">248</span>, <span class="number">216</span>, <span class="number">56</span>, <span class="number">24</span>, <span class="number">120</span>, <span class="number">88</span>, <span class="number">155</span>, <span class="number">187</span>, <span class="number">219</span>, <span class="number">251</span>, <span class="number">27</span>, <span class="number">59</span>, <span class="number">91</span>, <span class="number">123</span>, <span class="number">254</span>, <span class="number">222</span>, <span class="number">190</span>, <span class="number">158</span>, <span class="number">126</span>, <span class="number">94</span>, <span class="number">62</span>, <span class="number">30</span>, <span class="number">221</span>, <span class="number">253</span>, <span class="number">157</span>, <span class="number">189</span>, <span class="number">93</span>, <span class="number">125</span>, <span class="number">29</span>, <span class="number">61</span>, <span class="number">121</span>, <span class="number">89</span>, <span class="number">57</span>, <span class="number">25</span>, <span class="number">249</span>, <span class="number">217</span>, <span class="number">185</span>, <span class="number">153</span>, <span class="number">90</span>, <span class="number">122</span>, <span class="number">26</span>, <span class="number">58</span>, <span class="number">218</span>, <span class="number">250</span>, <span class="number">154</span>, <span class="number">186</span>, <span class="number">63</span>, <span class="number">31</span>, <span class="number">127</span>, <span class="number">95</span>, <span class="number">191</span>, <span class="number">159</span>, <span class="number">255</span>, <span class="number">223</span>, <span class="number">28</span>, <span class="number">60</span>, <span class="number">92</span>, <span class="number">124</span>, <span class="number">156</span>, <span class="number">188</span>, <span class="number">220</span>, <span class="number">252</span>, <span class="number">245</span>, <span class="number">213</span>, <span class="number">181</span>, <span class="number">149</span>, <span class="number">117</span>, <span class="number">85</span>, <span class="number">53</span>, <span class="number">21</span>, <span class="number">214</span>, <span class="number">246</span>, <span class="number">150</span>, <span class="number">182</span>, <span class="number">86</span>, <span class="number">118</span>, <span class="number">22</span>, <span class="number">54</span>, <span class="number">179</span>, <span class="number">147</span>, <span class="number">243</span>, <span class="number">211</span>, <span class="number">51</span>, <span class="number">19</span>, <span class="number">115</span>, <span class="number">83</span>, <span class="number">144</span>, <span class="number">176</span>, <span class="number">208</span>, <span class="number">240</span>, <span class="number">16</span>, <span class="number">48</span>, <span class="number">80</span>, <span class="number">112</span>, <span class="number">66</span>, <span class="number">98</span>, <span class="number">2</span>, <span class="number">34</span>, <span class="number">194</span>, <span class="number">226</span>, <span class="number">130</span>, <span class="number">162</span>, <span class="number">97</span>, <span class="number">65</span>, <span class="number">33</span>, <span class="number">1</span>, <span class="number">225</span>, <span class="number">193</span>, <span class="number">161</span>, <span class="number">129</span>, <span class="number">4</span>, <span class="number">36</span>, <span class="number">68</span>, <span class="number">100</span>, <span class="number">132</span>, <span class="number">164</span>, <span class="number">196</span>, <span class="number">228</span>, <span class="number">39</span>, <span class="number">7</span>, <span class="number">103</span>, <span class="number">71</span>, <span class="number">167</span>, <span class="number">135</span>, <span class="number">231</span>, <span class="number">199</span>, <span class="number">206</span>, <span class="number">238</span>, <span class="number">142</span>, <span class="number">174</span>, <span class="number">78</span>, <span class="number">110</span>, <span class="number">14</span>, <span class="number">46</span>, <span class="number">237</span>, <span class="number">205</span>, <span class="number">173</span>, <span class="number">141</span>, <span class="number">109</span>, <span class="number">77</span>, <span class="number">45</span>, <span class="number">13</span>, <span class="number">136</span>, <span class="number">168</span>, <span class="number">200</span>, <span class="number">232</span>, <span class="number">8</span>, <span class="number">40</span>, <span class="number">72</span>, <span class="number">104</span>, <span class="number">171</span>, <span class="number">139</span>, <span class="number">235</span>, <span class="number">203</span>, <span class="number">43</span>, <span class="number">11</span>, <span class="number">107</span>, <span class="number">75</span>]</span><br><span class="line">BLOCK_SIZE = <span class="number">16</span></span><br><span class="line">ROUNDS = <span class="number">20</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">xor</span>(<span class="params">a,b</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">bytes</span>([i^j <span class="keyword">for</span> i,j <span class="keyword">in</span> <span class="built_in">zip</span>(a,b)])</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">difference_distribution_table</span>(<span class="params">sbox</span>):</span></span><br><span class="line">    box_size = <span class="built_in">len</span>(sbox)</span><br><span class="line">    table = np.zeros((box_size, box_size), dtype=<span class="built_in">int</span>)</span><br><span class="line">    <span class="keyword">for</span> input_diff <span class="keyword">in</span> <span class="built_in">range</span>(box_size):</span><br><span class="line">        <span class="keyword">for</span> x_1 <span class="keyword">in</span> <span class="built_in">range</span>(box_size):</span><br><span class="line">            x_2 = x_1 ^ input_diff</span><br><span class="line">            out_diff = s_sbox[x_1] ^ s_sbox[x_2]</span><br><span class="line">            table[input_diff, out_diff] += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> table</span><br><span class="line">            </span><br><span class="line">t = difference_distribution_table(s_sbox)</span><br><span class="line">sbox_diff_dic = &#123;&#125;</span><br><span class="line">inv_sbox_diff_dic = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">256</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">256</span>):</span><br><span class="line">        <span class="keyword">if</span> t[i,j] == <span class="number">256</span>:</span><br><span class="line">            sbox_diff_dic.setdefault(i,j)</span><br><span class="line">            inv_sbox_diff_dic.setdefault(j,i)</span><br><span class="line"></span><br><span class="line"><span class="comment"># compute differential output of differential input</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ToyCBC_Diff</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, sbox = s_sbox</span>):</span></span><br><span class="line">        self.sbox = sbox <span class="keyword">if</span> sbox <span class="keyword">else</span> S_BOX</span><br><span class="line">        self.key = <span class="string">b&quot;\x00&quot;</span>*<span class="number">16</span> <span class="comment"># no use in this differential setting</span></span><br><span class="line">        self.iv = <span class="string">b&quot;\x00&quot;</span>*<span class="number">16</span> <span class="comment"># no use in this differential setting</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">subBytes</span>(<span class="params">self, block</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">bytes</span>([sbox_diff_dic[i] <span class="keyword">for</span> i <span class="keyword">in</span> block])</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inv_subBytes</span>(<span class="params">self, block</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">bytes</span>([inv_sbox_diff_dic[i] <span class="keyword">for</span> i <span class="keyword">in</span> block])</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mixColumns</span>(<span class="params">self, block</span>):</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">mul</span>(<span class="params">x, i</span>):</span></span><br><span class="line">            ans, res = <span class="number">0</span>, x</span><br><span class="line">            <span class="keyword">while</span> i:</span><br><span class="line">                <span class="keyword">if</span> i &amp; <span class="number">1</span>: ans = ans ^ res</span><br><span class="line">                res &lt;&lt;= <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> res &amp; <span class="number">0x100</span>: res ^= <span class="number">0b100011011</span></span><br><span class="line">                i &gt;&gt;= <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">bytes</span>(<span class="built_in">sum</span>([[</span><br><span class="line">                mul(block[i], <span class="number">0x02</span>) ^ mul(block[i + <span class="number">1</span>], <span class="number">0x03</span>) ^ mul(block[i + <span class="number">2</span>], <span class="number">0x01</span>) ^ mul(block[i + <span class="number">3</span>], <span class="number">0x01</span>),</span><br><span class="line">                mul(block[i], <span class="number">0x01</span>) ^ mul(block[i + <span class="number">1</span>], <span class="number">0x02</span>) ^ mul(block[i + <span class="number">2</span>], <span class="number">0x03</span>) ^ mul(block[i + <span class="number">3</span>], <span class="number">0x01</span>),</span><br><span class="line">                mul(block[i], <span class="number">0x01</span>) ^ mul(block[i + <span class="number">1</span>], <span class="number">0x01</span>) ^ mul(block[i + <span class="number">2</span>], <span class="number">0x02</span>) ^ mul(block[i + <span class="number">3</span>], <span class="number">0x03</span>),</span><br><span class="line">                mul(block[i], <span class="number">0x03</span>) ^ mul(block[i + <span class="number">1</span>], <span class="number">0x01</span>) ^ mul(block[i + <span class="number">2</span>], <span class="number">0x01</span>) ^ mul(block[i + <span class="number">3</span>], <span class="number">0x02</span>)</span><br><span class="line">            ] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">16</span>, <span class="number">4</span>)], []))</span><br><span class="line">            </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inv_mixColumns</span>(<span class="params">self, block</span>):</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">mul</span>(<span class="params">x, i</span>):</span></span><br><span class="line">            ans, res = <span class="number">0</span>, x</span><br><span class="line">            <span class="keyword">while</span> i:</span><br><span class="line">                <span class="keyword">if</span> i &amp; <span class="number">1</span>: ans = ans ^ res</span><br><span class="line">                res &lt;&lt;= <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> res &amp; <span class="number">0x100</span>: res ^= <span class="number">0b100011011</span></span><br><span class="line">                i &gt;&gt;= <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> ans        </span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">bytes</span>(<span class="built_in">sum</span>([[</span><br><span class="line">                mul(block[i], <span class="number">0x0e</span>) ^ mul(block[i + <span class="number">1</span>], <span class="number">0x0b</span>) ^ mul(block[i + <span class="number">2</span>], <span class="number">0x0d</span>) ^ mul(block[i + <span class="number">3</span>], <span class="number">0x09</span>),</span><br><span class="line">                mul(block[i], <span class="number">0x09</span>) ^ mul(block[i + <span class="number">1</span>], <span class="number">0x0e</span>) ^ mul(block[i + <span class="number">2</span>], <span class="number">0x0b</span>) ^ mul(block[i + <span class="number">3</span>], <span class="number">0x0d</span>),</span><br><span class="line">                mul(block[i], <span class="number">0x0d</span>) ^ mul(block[i + <span class="number">1</span>], <span class="number">0x09</span>) ^ mul(block[i + <span class="number">2</span>], <span class="number">0x0e</span>) ^ mul(block[i + <span class="number">3</span>], <span class="number">0x0b</span>),</span><br><span class="line">                mul(block[i], <span class="number">0x0b</span>) ^ mul(block[i + <span class="number">1</span>], <span class="number">0x0d</span>) ^ mul(block[i + <span class="number">2</span>], <span class="number">0x09</span>) ^ mul(block[i + <span class="number">3</span>], <span class="number">0x0e</span>)</span><br><span class="line">            ] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">16</span>, <span class="number">4</span>)], []))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">shiftRows</span>(<span class="params">self, block, tag=<span class="number">1</span></span>):</span></span><br><span class="line">        <span class="comment"># permutation p</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">bytes</span>([</span><br><span class="line">                block[<span class="number">0</span>], block[<span class="number">4</span>], block[<span class="number">8</span>], block[<span class="number">12</span>],</span><br><span class="line">                block[<span class="number">5</span>], block[<span class="number">9</span>], block[<span class="number">13</span>], block[<span class="number">1</span>],</span><br><span class="line">                block[<span class="number">10</span>], block[<span class="number">14</span>], block[<span class="number">2</span>], block[<span class="number">6</span>],</span><br><span class="line">                block[<span class="number">15</span>], block[<span class="number">3</span>], block[<span class="number">7</span>], block[<span class="number">11</span>]</span><br><span class="line">            ])</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inv_shiftRows</span>(<span class="params">self, block, tag=<span class="number">1</span></span>):</span></span><br><span class="line">        <span class="comment"># inv_p = [0, 7, 10, 13, 1, 4, 11, 14, 2, 5, 8, 15, 3, 6, 9, 12] </span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">bytes</span>([block[i] <span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0</span>, <span class="number">7</span>, <span class="number">10</span>, <span class="number">13</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">11</span>, <span class="number">14</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">15</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">9</span>, <span class="number">12</span>]])</span><br><span class="line">       </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">genRoundKeys</span>(<span class="params">self, key</span>):</span></span><br><span class="line">        roundkeys = [key]</span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(ROUNDS):</span><br><span class="line">            roundkeys += [self.shiftRows(self.subBytes(roundkeys[-<span class="number">1</span>]))]</span><br><span class="line">        <span class="keyword">return</span> roundkeys</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">addRoundKey</span>(<span class="params">self, block, roundkey = <span class="literal">None</span></span>):</span></span><br><span class="line">        <span class="comment"># differential not changed</span></span><br><span class="line">        <span class="keyword">return</span> block</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pad</span>(<span class="params">self, plaintext</span>):</span></span><br><span class="line">        <span class="keyword">return</span> plaintext + os.urandom(BLOCK_SIZE - <span class="built_in">len</span>(plaintext) % BLOCK_SIZE)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">blockEncrypt</span>(<span class="params">self, block</span>):</span></span><br><span class="line">        roundkeys = self.genRoundKeys(self.key)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(ROUNDS):</span><br><span class="line">            block = self.subBytes(block)</span><br><span class="line">            block = self.shiftRows(block)</span><br><span class="line">            block = self.mixColumns(block)</span><br><span class="line">            block = self.addRoundKey(block, roundkeys[i])</span><br><span class="line">        block = self.subBytes(block)</span><br><span class="line">        block = self.shiftRows(block)</span><br><span class="line">        block = self.addRoundKey(block, roundkeys[-<span class="number">1</span>])</span><br><span class="line">        <span class="keyword">return</span> block</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">blockDecrypt</span>(<span class="params">self, block</span>):</span></span><br><span class="line">        roundkeys = self.genRoundKeys(self.key)</span><br><span class="line">        block = self.addRoundKey(block, roundkeys[-<span class="number">1</span>])</span><br><span class="line">        block = self.inv_shiftRows(block)</span><br><span class="line">        block = self.inv_subBytes(block)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(ROUNDS):</span><br><span class="line">            block = self.addRoundKey(block, roundkeys[i])</span><br><span class="line">            block = self.inv_mixColumns(block)</span><br><span class="line">            block = self.inv_shiftRows(block)</span><br><span class="line">            block = self.inv_subBytes(block)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> block</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">encrypt</span>(<span class="params">self, pt</span>):</span></span><br><span class="line">        pt = self.pad(pt)</span><br><span class="line">        blocks = [pt[i:i + BLOCK_SIZE] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(pt), BLOCK_SIZE)]</span><br><span class="line">        ct = <span class="string">b&#x27;&#x27;</span></span><br><span class="line">        cbcMask = <span class="string">b&quot;\x00&quot;</span>*BLOCK_SIZE</span><br><span class="line">        <span class="keyword">for</span> block <span class="keyword">in</span> blocks:</span><br><span class="line">            res = [block[i] ^ cbcMask[i] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(BLOCK_SIZE)]</span><br><span class="line">            res = self.blockEncrypt(res)</span><br><span class="line">            ct += res</span><br><span class="line">            cbcMask = res</span><br><span class="line">        <span class="keyword">return</span> ct</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">decrypt</span>(<span class="params">self, pt</span>):</span></span><br><span class="line">        pt = self.pad(pt)</span><br><span class="line">        blocks = [pt[i:i + BLOCK_SIZE] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(pt), BLOCK_SIZE)]</span><br><span class="line">        ct = <span class="string">b&#x27;&#x27;</span></span><br><span class="line">        cbcMask = <span class="string">b&quot;\x00&quot;</span>*BLOCK_SIZE</span><br><span class="line">        <span class="keyword">for</span> block <span class="keyword">in</span> blocks:</span><br><span class="line">            res = [block[i] ^ cbcMask[i] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(BLOCK_SIZE)]</span><br><span class="line">            res = self.blockDecrypt(res)</span><br><span class="line">            ct += res</span><br><span class="line">        <span class="keyword">return</span> ct</span><br><span class="line">    </span><br><span class="line">enc1 = <span class="built_in">bytes</span>.fromhex(<span class="string">&#x27;fedca0ccdb5a125445609beafe9e40a792a3b454fd85188456c4b17f2500a330227cae0b8942b3f46084011a1e7ec8482f6ca6894ced646b334ade64be093ca9&#x27;</span>)</span><br><span class="line">enc2 = <span class="built_in">bytes</span>.fromhex(<span class="string">&#x27;1af90348006ec43b8983e9e44a6550fe2cdbf86fdb931ab61438c6535a786ee68a4b3a789f3047e712422124fa91d74c&#x27;</span>)</span><br><span class="line">cipher = ToyCBC_Diff(sbox=s_sbox)</span><br><span class="line">noise = <span class="built_in">bytes</span>.fromhex(<span class="string">&#x27;4d8514f7de400dfabfd33cc6a7c46f7c293b0c1f38ac02dff40554bd92b67e93&#x27;</span>)</span><br><span class="line"></span><br><span class="line">d1 = xor(enc2[:<span class="number">16</span>],enc1[:<span class="number">16</span>])</span><br><span class="line">D1 = cipher.decrypt(xor(enc2[:<span class="number">16</span>],enc1[:<span class="number">16</span>]))</span><br><span class="line">d2 = xor(enc2[:<span class="number">16</span>],enc1[<span class="number">16</span>:<span class="number">32</span>])</span><br><span class="line">D2 = cipher.decrypt(xor(enc2[<span class="number">16</span>:<span class="number">32</span>],enc1[<span class="number">16</span>:<span class="number">32</span>]))</span><br><span class="line">d3 = xor(enc2[:<span class="number">16</span>],enc1[<span class="number">32</span>:<span class="number">48</span>])</span><br><span class="line">D3 = cipher.decrypt(xor(enc2[<span class="number">16</span>:<span class="number">32</span>],enc1[<span class="number">32</span>:<span class="number">48</span>]))</span><br><span class="line">D4 = cipher.decrypt(xor(enc2[<span class="number">16</span>:<span class="number">32</span>],enc1[<span class="number">48</span>:<span class="number">64</span>]))</span><br><span class="line"></span><br><span class="line">f1 = xor(noise[:<span class="number">16</span>],D1)</span><br><span class="line">f2 = xor(xor(noise[<span class="number">16</span>:<span class="number">32</span>],D2),d1)</span><br><span class="line">f3 = xor(xor(noise[<span class="number">16</span>:<span class="number">32</span>],D3),d2) </span><br><span class="line">f4 = xor(xor(noise[<span class="number">16</span>:<span class="number">32</span>],D4),d3)</span><br><span class="line">print(f1+f2+f3+f4)</span><br><span class="line">                    </span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<h2 id="crypto-sign-in-3"><a href="#crypto-sign-in-3" class="headerlink" title="crypto-sign-in-3"></a>crypto-sign-in-3</h2><p>&nbsp;</p>
+<h3 id="源码-2"><a href="#源码-2" class="headerlink" title="源码"></a>源码</h3><p>源码存档于：<a href="./chall3.sage">source link</a></p>
+<p>&nbsp;</p>
+<h3 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h3><p>整个函数过程给出了四组方程：</p>
+<script type="math/tex; mode=display">
+ell1 = A1^2*x1^2 + C^2*y1^2 - (A1*C)^2 =0\\
+ell2 = A1^2*x0^2 + C^2*y0^2 - (A1*C)^2 =0\\
+para1 = A2*x1^2 + D*x1 + E*y1 + F = 0\\
+para2 = A2*x0^2 + D*x0 + E*y0 + F = 0\\</script><p>根据提示，我们知道 secret 不超过 392 比特，即 x0 是小根，消元，得到 x0 的方程求coppersmith小根即可。</p>
+<p>&nbsp;</p>
+<h3 id="EXP-2"><a href="#EXP-2" class="headerlink" title="EXP"></a>EXP</h3><p>Sage EXP</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> bytes_to_long,getPrime</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> inverse</span><br><span class="line"></span><br><span class="line">N = <span class="number">0x5da08737d91b4845151da8e22d4d591c82dc7247015a314ae41cc8283496102c5121f8c6cd1e6cba7cd1b982be45f9692085330c7f35fd632d638f8de2cd544f278ee4f4a9043db668a15d088284f60d63f9320bc23164f07cb4ada050d26993cf31161ea42bc4ecddf8244d26eff338669ca43bae6b26a6296c4dd6a3771f7ee3aade8a2752d1daecf0d476f1a9c92cf933effb2e811a67d5cae1a370fd7d96088c895ad6496fe0fc9709209301a58b131d9ef97804fb01578309c6c0bcdfbe71430cffaa9f53d272b194e6d3d981f8a4a6ba7b98d0f63745b30b89d3cd549babd7b9a15a1a1b6344b7057a0b499319311182879bec0d6fb8e694a98c990eb9</span></span><br><span class="line">x1 = <span class="number">0x17ad784481184d91239601adbb358489c241fa70b9938fd8adcca5eaaaab44f3c707d6a0595acaf43f35c03e226d965d62e7b53403b5610df9c0d3863768714a3264f1e0b09f8a5dbc37c5fa9dc34ad86875917a0d0805d9520cf0d34fd3851880aed1d0a93240555643b14652f592416de5acfee4c49c93f3f777c6654b82d3a10d50a612db1416600c34408e64d3a53424132fa87aed6f47dcce07dd467f00b1d3f8138fbe2cf404a6764aea2e64dd6c48ab4f8c66b0495cfde2cdfc9d8ed98bfa41ead86bfa10a6d7db2dbbae1d24f10be02ac42a631679097ac665a1436071748b56527e74cabdeded41f85bff18ceeafa2fcb692fa5959af952663b1137</span></span><br><span class="line">C = <span class="number">0x57754258622da2566497ed635f8c25a898c9fc95e8571e113074d6fe874cf75c8e722beb7eba0dc86913cf647447591ec8888b617548f088992d5eb4cb84e90ca7b4eb950fb0d7b8d4c5c64904db968721ae9af263c7ddd47955da7056444f558ec5db233cb1381c9fe1f0dc935d686e689d0f6ec9c98f74b988332a092267c1152801b5ca618e3efc066fce916f6d522c8619b2b9cdc341ecd7124d247890c9af90d1d4c526a6c77a634f9aa39ca941b876ff539a91df5c029a7b08e5f13be1dd72c600bf51e34b91736012f5e9aa68e0e21f770c57c576976186a5dfbe4c374c0b08950720396bfb16c64ae4213ea519b8f27f8747f763abeff001f5010a41</span></span><br><span class="line">F = <span class="number">0x5da08737d91b4845151da8e22d4d591c82dc7247015a314ae41cc8283496102c5121f8c6cd1e6cba7cd1b982be45f9692085330c7f35fd632d638f8de2cd544f278ee4f4a9043db668a15d088284f60d63f9320bc23164f07cb4ada050d26993cf31161ea42bc4ecddf814c1073fd8e50b7f5491bfa9fae2df3233e9f4220f04e6a47876d6e347f18f018310e973e06b782c67949d73d0c4d5a77e2685d6aaa92d5afdc28961e41dcd9242dcaa51a8b9ac2e42ba19320f933ae2aba5aa2642664f0a13d19a939c320417108ffbcc6fc5a50bba55f157cabfdf51ca37a73c2b3e3c65b2e3ad0666e2cacbdfe1d2e8f91e23bf128f714f390bdb992058b06107de</span> </span><br><span class="line">A1 = bytes_to_long(<span class="string">b&#x27;? uoy lliw .em nodnaba ,meht ekil eb lliw uoy ,os&#x27;</span>)</span><br><span class="line">A2 = bytes_to_long(<span class="string">b&#x27;a me no o to yu ri no ka o ri pu ra i do no ta ka sa&#x27;</span>)</span><br><span class="line">D = bytes_to_long(<span class="string">b&#x27;mu shi ta me ka na su ko e de ka i ka ba n ki ta na i ku tsu&#x27;</span>) </span><br><span class="line">P.&lt;y1,x0,y0,E&gt; = PolynomialRing(Zmod(N))</span><br><span class="line"></span><br><span class="line">ell1 = A1^<span class="number">2</span>*x1^<span class="number">2</span> + C^<span class="number">2</span>*y1^<span class="number">2</span> - (A1*C)^<span class="number">2</span></span><br><span class="line">ell2 = A1^<span class="number">2</span>*x0^<span class="number">2</span> + C^<span class="number">2</span>*y0^<span class="number">2</span> - (A1*C)^<span class="number">2</span></span><br><span class="line"><span class="comment"># F_poly1 = F + (A2 * x0 ^ 2 + D * x0 + E * y0 )</span></span><br><span class="line"><span class="comment"># F_poly2 = F + (A2 * x1 ^ 2 + D * x1 + E * y1 )</span></span><br><span class="line">para1 = A2*x1^<span class="number">2</span> + D*x1 + E*y1 + F</span><br><span class="line">para2 = A2*x0^<span class="number">2</span> + D*x0 + E*y0 + F</span><br><span class="line">C_m2 = inverse(C^<span class="number">2</span>,N)</span><br><span class="line"><span class="comment"># y1_poly = -y1*E - (A2 * x1 ^ 2 + D * x1 + F)</span></span><br><span class="line">y1_2 = ( (A1*C)^<span class="number">2</span> -A1^<span class="number">2</span>*x1^<span class="number">2</span> ) * C_m2 % N</span><br><span class="line">E2  = (A2*x1^<span class="number">2</span> + D*x1 + F)^<span class="number">2</span> * inverse(y1_2,N) % N</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line">P.&lt;z&gt; = PolynomialRing(Zmod(N))</span><br><span class="line"></span><br><span class="line">tf = E2*((A1^<span class="number">2</span>*C^<span class="number">2</span> - A1^<span class="number">2</span>*z^<span class="number">2</span>)*C_m2) - (A2*z^<span class="number">2</span> + D*z + F)^<span class="number">2</span></span><br><span class="line">f = tf.monic()</span><br><span class="line">r = <span class="built_in">int</span>(f.small_roots(X=<span class="number">2</span>^<span class="number">392</span>,epsilon = <span class="number">0.05</span>)[<span class="number">0</span>])</span><br><span class="line">print(long_to_bytes(r))</span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+<h2 id="crypto-sign-in-4"><a href="#crypto-sign-in-4" class="headerlink" title="crypto-sign-in-4"></a>crypto-sign-in-4</h2><p>&nbsp;</p>
+<h3 id="源码-3"><a href="#源码-3" class="headerlink" title="源码"></a>源码</h3><p>源码存档于：<a href="./chall4.sage">source link</a></p>
+<p>&nbsp;</p>
+<h3 id="分析-3"><a href="#分析-3" class="headerlink" title="分析"></a>分析</h3><p>该类问题 <script type="math/tex">\textsf{DLP with auxiliary input (DLPwAI)}</script> 的一个算法</p>
+<p><img src="./image-20230218231329738.png" alt="image-20230218231329738"></p>
+<p>具体细节推导参考论文：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://eprint.iacr.org/2008/300.pdf">https://eprint.iacr.org/2008/300.pdf</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jstage.jst.go.jp/article/imt/6/4/6_4_1175/_pdf/-char/en">https://www.jstage.jst.go.jp/article/imt/6/4/6_4_1175/_pdf/-char/en</a></li>
+</ul>
+<p>实现上述类似两次bsgs的算法即可，显然 <script type="math/tex">d = \sqrt q</script> 时时间复杂度最小，大概 <script type="math/tex">2^{23}</script> 时间复杂度。</p>
+<p>&nbsp;</p>
+<h3 id="EXP-3"><a href="#EXP-3" class="headerlink" title="EXP"></a>EXP</h3><p>Sage EXP</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">DLPwAI</span>(<span class="params">g,g_a,g_ad,d,p,r</span>):</span></span><br><span class="line">    <span class="keyword">assert</span> is_prime(p) <span class="keyword">and</span> is_prime(r) <span class="keyword">and</span> (r-<span class="number">1</span>)%d == <span class="number">0</span></span><br><span class="line">    Z_r = GF(r)</span><br><span class="line">    Z_p = GF(p)</span><br><span class="line">    zeta = Z_r.primitive_element()</span><br><span class="line">    zeta_d = zeta^d</span><br><span class="line">    d_prime = ZZ((r-<span class="number">1</span>)//d)</span><br><span class="line">    k1,k2 = <span class="literal">None</span>,<span class="literal">None</span></span><br><span class="line">    d1 = d_prime.nth_root(<span class="number">2</span>, truncate_mode = <span class="number">1</span>)[<span class="number">0</span>]</span><br><span class="line">    d2 = ZZ(d).nth_root(<span class="number">2</span>, truncate_mode = <span class="number">1</span>)[<span class="number">0</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># compute k1 with bsgs</span></span><br><span class="line">    <span class="comment"># step 1 baby step</span></span><br><span class="line">    table = <span class="built_in">dict</span>()       <span class="comment"># will hold pairs (zeta_d^(-u1) * gad,u1) for u1 in range(d1)</span></span><br><span class="line">    zeta_d_m = ZZ(zeta_d^(-<span class="number">1</span>))</span><br><span class="line">    d = Z_p(g_ad)</span><br><span class="line">    print(<span class="string">f&quot;&gt; log : loop 1 length <span class="subst">&#123;d1 = &#125;</span> <span class="subst">&#123;d1.nbits() = &#125;</span>&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(d1):</span><br><span class="line">        table[d] = i</span><br><span class="line">        d = d^ZZ(zeta_d_m)</span><br><span class="line">    </span><br><span class="line">    print(<span class="string">f&quot;&gt; log : loop 1 table done&quot;</span>)</span><br><span class="line">    print(<span class="string">f&quot;&gt; log : loop 1 search begin&quot;</span>)</span><br><span class="line">    <span class="comment"># step 2 giant step</span></span><br><span class="line">    zeta_d_d1 = (zeta_d^d1)     <span class="comment"># this is zeta_d ^ (v1*d1)G</span></span><br><span class="line">    d = Z_p(g)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> tqdm(<span class="built_in">range</span>(d1)):</span><br><span class="line">        j = table.get(d)</span><br><span class="line">        <span class="keyword">if</span> j <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>: </span><br><span class="line">            k1 = ZZ(i*d1 + j)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        d = d^ZZ(zeta_d_d1)</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">if</span> k1 == <span class="literal">None</span>:</span><br><span class="line">        print(<span class="string">&quot;error&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    print(<span class="string">f&quot;&gt; log : <span class="subst">&#123;k1 = &#125;</span>&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># compute k2 with bsgs</span></span><br><span class="line">    <span class="comment"># step 1 baby step</span></span><br><span class="line">    table = <span class="built_in">dict</span>()       <span class="comment"># will hold pairs (zeta_d^(-u2*d_prime),u2) for u1 in range(d2)</span></span><br><span class="line">    print(<span class="string">f&quot;&gt; log : loop 2 length <span class="subst">&#123;d2 = &#125;</span> <span class="subst">&#123;d2.nbits() = &#125;</span>&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    zeta_m = ZZ(zeta^(-d_prime))</span><br><span class="line">    d = Z_p(g_a)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(d2):</span><br><span class="line">        table[d] = i</span><br><span class="line">        d = d^ZZ(zeta_m)</span><br><span class="line">        </span><br><span class="line">    print(<span class="string">f&quot;&gt; log : loop 2 table done&quot;</span>)</span><br><span class="line">    print(<span class="string">f&quot;&gt; log : loop 2 search begin&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># step 2 giant step</span></span><br><span class="line">    zeta_d2dp = (zeta^(d2*d_prime))    <span class="comment"># this is zeta ^ (k1+ v2*d2*d_prime)G</span></span><br><span class="line">    expon = (zeta^(k1))</span><br><span class="line">    d0 = Z_p(g)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> tqdm(<span class="built_in">range</span>(d2)):</span><br><span class="line">        d = d0^ZZ(expon)</span><br><span class="line">        expon = expon * zeta_d2dp</span><br><span class="line">        j = table.get(d)</span><br><span class="line">        <span class="keyword">if</span> j <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>: </span><br><span class="line">            k2 = ZZ(i*d2 + j)</span><br><span class="line">            <span class="keyword">return</span> zeta^(k1+k2*(d_prime))      </span><br><span class="line">    print(<span class="string">f&quot;&gt; log: no solutions&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> </span><br><span class="line">    </span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    io = remote(<span class="string">&#x27;1.14.107.229&#x27;</span>, <span class="number">9999</span>)</span><br><span class="line">    io.recvuntil(<span class="string">b&quot;OOOOOOh!I will give you something useful!\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">    a = <span class="built_in">int</span>(io.recvline().decode().strip().split(<span class="string">&quot;=&quot;</span>)[-<span class="number">1</span>])</span><br><span class="line">    p = <span class="built_in">int</span>(io.recvline().decode().strip().split(<span class="string">&quot;=&quot;</span>)[-<span class="number">1</span>])</span><br><span class="line">    order = GF(p)(a).multiplicative_order()</span><br><span class="line">    fs = factor(order-<span class="number">1</span>)</span><br><span class="line">    max_f = fs[-<span class="number">1</span>][<span class="number">0</span>]</span><br><span class="line">    print(fs)</span><br><span class="line">    <span class="keyword">if</span> max_f.nbits() &lt;= <span class="number">45</span>:</span><br><span class="line">        m = max_f</span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> (m*fs[i][<span class="number">0</span>]^fs[i][<span class="number">1</span>]).nbits() &lt; <span class="number">46</span> :</span><br><span class="line">            m *= fs[i][<span class="number">0</span>]^fs[i][<span class="number">1</span>]</span><br><span class="line">            i+=<span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> m.nbits() <span class="keyword">not</span> <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">42</span>,<span class="number">48</span>):</span><br><span class="line">        io.close()</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">        </span><br><span class="line">    io.sendlineafter(<span class="string">b&quot;Please give me your choice:&quot;</span>,<span class="built_in">str</span>(m).encode())</span><br><span class="line">    io.recvuntil(<span class="string">b&quot;OK,here is my gift.\n&quot;</span>)</span><br><span class="line">    c1 = <span class="built_in">int</span>(io.recvline().decode().strip().split(<span class="string">&quot;=&quot;</span>)[-<span class="number">1</span>])</span><br><span class="line">    c2 = <span class="built_in">int</span>(io.recvline().decode().strip().split(<span class="string">&quot;=&quot;</span>)[-<span class="number">1</span>])</span><br><span class="line">    g,g_a,g_ad = a,c1,c2</span><br><span class="line">    r = GF(p)(a).multiplicative_order()</span><br><span class="line">    d = m</span><br><span class="line">    s = DLPwAI(g,g_a,g_ad,d,p,r)</span><br><span class="line">    io.sendlineafter(<span class="string">b&quot;Please give me the secret:&quot;</span>,<span class="built_in">str</span>(<span class="built_in">int</span>(s)).encode())</span><br><span class="line">    print(io.recvline())</span><br><span class="line">    print(io.recvline())    </span><br><span class="line">    io.close()</span><br><span class="line">    <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -263,7 +349,7 @@
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -276,427 +362,118 @@
 	</div>
 
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://tl2cents.github.io/2023/02/19/VNCTF-2023-Crypto-Writeups/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-blog">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2022/07/25/2022DASCTF7%E6%9C%88%E8%B5%8B%E8%83%BD%E8%B5%9BCryptoWriteup/" class="archive-article-date">
-        <time datetime="2022-07-25T07:04:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-25</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/2023/02/04/2022%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91Crypto%E9%A2%98%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">2022西湖论剑-初赛 Crypto 题解</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2022/07/25/2022DASCTF7%E6%9C%88%E8%B5%8B%E8%83%BD%E8%B5%9BCryptoWriteup/" target="_blank">2022DASCTF7月赋能赛CryptoWriteup</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">writeup</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/CTF//" class="article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#crypto-sign-in-1"><span class="toc-number">1.</span> <span class="toc-text">crypto-sign-in-1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BA%90%E7%A0%81"><span class="toc-number">1.1.</span> <span class="toc-text">源码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90"><span class="toc-number">1.2.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EXP"><span class="toc-number">1.3.</span> <span class="toc-text">EXP</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#crypto-sign-in-2"><span class="toc-number">2.</span> <span class="toc-text">crypto-sign-in-2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BA%90%E7%A0%81-1"><span class="toc-number">2.1.</span> <span class="toc-text">源码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90-1"><span class="toc-number">2.2.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EXP-1"><span class="toc-number">2.3.</span> <span class="toc-text">EXP</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#crypto-sign-in-3"><span class="toc-number">3.</span> <span class="toc-text">crypto-sign-in-3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BA%90%E7%A0%81-2"><span class="toc-number">3.1.</span> <span class="toc-text">源码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90-2"><span class="toc-number">3.2.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EXP-2"><span class="toc-number">3.3.</span> <span class="toc-text">EXP</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#crypto-sign-in-4"><span class="toc-number">4.</span> <span class="toc-text">crypto-sign-in-4</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BA%90%E7%A0%81-3"><span class="toc-number">4.1.</span> <span class="toc-text">源码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90-3"><span class="toc-number">4.2.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EXP-3"><span class="toc-number">4.3.</span> <span class="toc-text">EXP</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-blog">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2022/07/17/CryptoCTF2022/" class="archive-article-date">
-        <time datetime="2022-07-17T07:40:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-17</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2022/07/17/CryptoCTF2022/" target="_blank">Crypto CTF 2022 WriteUp By tl2cents</a>
-  
-    </h1>
-  
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">writeup</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/CTF//" class="article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-blog">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2022/03/27/SageMath%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/" class="archive-article-date">
-        <time datetime="2022-03-27T15:25:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-27</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2022/03/27/SageMath%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/" target="_blank">SageMath简明教程</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/SageMath//" class="article-tag-list-link color4">SageMath</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-blog">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2022/03/22/Crypto-writeup-for-zer0pts-2022/" class="archive-article-date">
-        <time datetime="2022-03-22T11:26:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-22</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2022/03/22/Crypto-writeup-for-zer0pts-2022/" target="_blank">Crypto writeup for zer0pts 2022</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">writeup</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/CTF//" class="article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-blog">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2022/03/09/NeSE%E5%8D%87%E7%BA%A7%E8%B5%9B/" class="archive-article-date">
-        <time datetime="2022-03-09T12:08:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-09</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2022/03/09/NeSE%E5%8D%87%E7%BA%A7%E8%B5%9B/" target="_blank">NeSE升级赛</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">writeup</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/CTF//" class="article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-blog">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2022/03/01/SUSCTF2022-crypto-writeup/" class="archive-article-date">
-        <time datetime="2022-03-01T08:17:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-01</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2022/03/01/SUSCTF2022-crypto-writeup/" target="_blank">SUSCTF2022 Crypto Writeup</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">writeup</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/CTF//" class="article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-blog">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2022/02/12/VNCTF2022-Crypto-WriteUp/" class="archive-article-date">
-        <time datetime="2022-02-12T13:15:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-12</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2022/02/12/VNCTF2022-Crypto-WriteUp/" target="_blank">VNCTF2022 Crypto WriteUp</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">writeup</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/CTF//" class="article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">Prev page</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><a class="extend next" rel="next" href="/archives/page/3/">Next page</a>
-    </nav>
-  
 
 
           </div>
@@ -725,8 +502,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
