@@ -9,17 +9,52 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://tl2cents.github.io">
-  <title>Tag: MISC | tl2cents blog</title>
+  <title>TFHE Deep Dive - An Overview | tl2cents blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="tl2cents blog">
-<meta property="og:url" content="https://tl2cents.github.io/tags/MISC/index.html">
+  <meta name="description" content="TFHE Deep Dive 系列的博客出自Ilaria Chillotti （即 TFHE 方案的第一作者）在 zara 上发布的一系列的技术博客， 并进行了报告，感兴趣的读者可以自行探索。 该篇博客是笔者学习 TFHE 算法总结性的 notes。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TFHE Deep Dive - An Overview">
+<meta property="og:url" content="https://tl2cents.github.io/2023/02/23/TFHE-Overview/index.html">
 <meta property="og:site_name" content="tl2cents blog">
+<meta property="og:description" content="TFHE Deep Dive 系列的博客出自Ilaria Chillotti （即 TFHE 方案的第一作者）在 zara 上发布的一系列的技术博客， 并进行了报告，感兴趣的读者可以自行探索。 该篇博客是笔者学习 TFHE 算法总结性的 notes。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://assets-global.website-files.com/622ef9de9152c97467eac748/626beffc06ae641cb1dc6078_GLWE_encryption.png">
+<meta property="og:image" content="https://assets-global.website-files.com/622ef9de9152c97467eac748/626bf01306ae64175cdc611a_GLWE_decryption.png">
+<meta property="og:image" content="https://assets-global.website-files.com/622ef9de9152c97467eac748/62714a600330c8813512e5a7_GLev1.png">
+<meta property="og:image" content="https://assets-global.website-files.com/622ef9de9152c97467eac748/62714a975b12e58f4b875b23_GGSW1.png">
+<meta property="og:image" content="https://assets-global.website-files.com/622ef9de9152c97467eac748/626bf05d2022d97acdd0a295_LWE_encoding_msb.png">
+<meta property="og:image" content="https://assets-global.website-files.com/622ef9de9152c97467eac748/62754bb1ef9624a94d127443_LWE_encoding_real.png">
+<meta property="og:image" content="https://assets-global.website-files.com/622ef9de9152c97467eac748/62754c6f2ccafdc356f14ed0_LWE_torus_visualization_alternative.png">
+<meta property="og:image" content="https://assets-global.website-files.com/622ef9de9152c97467eac748/62754c95f2602ec170074b64_GLWE_torus_visualization.png">
+<meta property="og:image" content="https://assets-global.website-files.com/622ef9de9152c97467eac748/6275465c21a8e4092a5f6e34_GLWE_addition_noise.png">
+<meta property="og:image" content="https://assets-global.website-files.com/622ef9de9152c97467eac748/6275486ed4a76988f53e8213_GLWE_scalar_multiplication_noise.png">
+<meta property="og:image" content="https://assets-global.website-files.com/622ef9de9152c97467eac748/62820858aaaae93660dea46f_mult_large_constant.png">
+<meta property="og:image" content="https://assets-global.website-files.com/622ef9de9152c97467eac748/628209e1025b555d27a7ec7e_mult_large_constant_2.png">
+<meta property="og:image" content="https://assets-global.website-files.com/622ef9de9152c97467eac748/62820c4c1c9a9ce781dd48fe_KS.png">
+<meta property="og:image" content="https://assets-global.website-files.com/622ef9de9152c97467eac748/62820df3479d0920f04c1993_external_product.png">
+<meta property="og:image" content="https://assets-global.website-files.com/622ef9de9152c97467eac748/62820f2a29ac692fdd69fa02_internal_product.png">
+<meta property="og:image" content="https://assets-global.website-files.com/622ef9de9152c97467eac748/628210141c9a9c3b91dd67a3_Mux.png">
+<meta property="og:image" content="https://assets-global.website-files.com/622ef9de9152c97467eac748/6282171b1d51fdd6f3def78e_CMux.png">
+<meta property="og:image" content="https://assets-global.website-files.com/622ef9de9152c97467eac748/62989869a548471e050a2aa3_modulus_switching.png">
+<meta property="og:image" content="https://assets-global.website-files.com/622ef9de9152c97467eac748/629899303cd8b9a3ebdf73fa_sample_extraction.png">
+<meta property="og:image" content="https://assets-global.website-files.com/622ef9de9152c97467eac748/62989af8a0c758623f683f89_rotate_clear_clear.png">
+<meta property="og:image" content="https://assets-global.website-files.com/622ef9de9152c97467eac748/62989b25f035da93e0196dc4_rotate_encrypt_clear.png">
+<meta property="og:image" content="https://assets-global.website-files.com/622ef9de9152c97467eac748/62989cec514630c344a20545_blind_rotate.png">
+<meta property="og:image" content="https://assets-global.website-files.com/622ef9de9152c97467eac748/62989d043cd8b95289df965f_blind_rotate_long.png">
+<meta property="og:image" content="https://assets-global.website-files.com/622ef9de9152c97467eac748/62989f87e9cc4cd6f7c4c4ad_bootstrapping_LUT.png">
+<meta property="og:image" content="https://assets-global.website-files.com/622ef9de9152c97467eac748/6298a030afd0f52af31fe6de_bootstrap_LUT_rotate.png">
+<meta property="og:image" content="https://assets-global.website-files.com/622ef9de9152c97467eac748/6298a08f5a6e94c3b9dae194_negaciclicity.png">
+<meta property="og:image" content="https://assets-global.website-files.com/622ef9de9152c97467eac748/6298a111518d8891a5583ae8_bootstrap_blind_rotate.png">
+<meta property="og:image" content="https://assets-global.website-files.com/622ef9de9152c97467eac748/6298a297244c280f455f901f_PBS.png">
+<meta property="og:image" content="https://assets-global.website-files.com/622ef9de9152c97467eac748/6298abcd70be9d7ee2625dec_Screenshot%202022-06-02%20at%2014.23.08.png">
+<meta property="og:image" content="https://assets-global.website-files.com/622ef9de9152c97467eac748/6298a348a0c75850f0688c83_NAND_bootstrap.png">
+<meta property="article:published_time" content="2023-02-23T01:43:26.000Z">
+<meta property="article:modified_time" content="2023-02-23T03:29:12.290Z">
 <meta property="article:author" content="tl2cents">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://assets-global.website-files.com/622ef9de9152c97467eac748/626beffc06ae641cb1dc6078_GLWE_encryption.png">
   
     <link rel="alternative" href="/atom.xml" title="tl2cents blog" type="application/atom+xml">
   
@@ -213,138 +248,639 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="blog-TFHE-Overview" class="article article-type-blog " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-blog">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/03/28/Mai-senpai's%20Secret/" class="archive-article-date">
-        <time datetime="2021-03-28T15:47:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-28</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/03/28/Mai-senpai's%20Secret/" target="_blank">Mai-senpai&#39;s Secret</a>
   
+    <h1 class="article-title" itemprop="name">
+      TFHE Deep Dive - An Overview
     </h1>
   
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MISC</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/CTF//" class="article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-blog">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/03/28/%E9%BA%BB%E8%A1%A3%E5%AD%A6%E5%A7%90%E7%9A%84%E7%A7%98%E5%AF%86/" class="archive-article-date">
-        <time datetime="2021-03-28T15:47:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-28</time>
+  
+<a href="/2023/02/23/TFHE-Overview/" class="archive-article-date">
+        <time datetime="2023-02-23T01:43:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-23</time>
 </a>
 
-        </div>
-    	 
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/03/28/%E9%BA%BB%E8%A1%A3%E5%AD%A6%E5%A7%90%E7%9A%84%E7%A7%98%E5%AF%86/" target="_blank">麻衣学姐的秘密</a>
   
-    </h1>
-  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">4.2k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">24分</span>
+    </span>
+  </span>
+</div>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MISC</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/CTF//" class="article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
+  </header>
   
-    </div></section>
-  
+  <div class="article-entry" itemprop="articleBody">
+    <!-- newly added -->
+    
+    <!-- newly added -->
+    
+    <p>TFHE Deep Dive 系列的博客出自Ilaria Chillotti （即 TFHE 方案的第一作者）在 <code>zara</code> 上发布的一系列的技术博客， 并进行了<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=npoHSR6-oRw">报告</a>，感兴趣的读者可以自行探索。 该篇博客是笔者学习 TFHE 算法总结性的 notes。<br><span id="more"></span><br>本文的 Markmap：</p>
+<p><iframe src="/asserts/TFHE-Overview.html" height="600px" width="100%" scrolling="auto" frameborder="0" style="box-shadow: 0px 0px 20px -10px #888;">
+</iframe></p>
+<center>Markmap of TFHE</center>
+
+<p>&nbsp;</p>
+<p>References :  by the 1st  author of TFHE , <script type="math/tex">\textsf{Ilaria Chillotti}</script>, TFHE Deep Dive Series posted in 2022:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.zama.ai/post/tfhe-deep-dive-part-1">TFHE Deep Dive - Part I - Ciphertext types</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.zama.ai/post/tfhe-deep-dive-part-2">TFHE Deep Dive - Part II - Encodings and linear leveled operations</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.zama.ai/post/tfhe-deep-dive-part-3">TFHE Deep Dive - Part III - Key switching and leveled multiplications</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.zama.ai/post/tfhe-deep-dive-part-4">TFHE Deep Dive - Part IV - Programmable Bootstrapping</a></li>
+</ul>
+<p>&nbsp;</p>
+<h2 id="Notions-Before-TFHE"><a href="#Notions-Before-TFHE" class="headerlink" title="Notions Before TFHE"></a>Notions Before TFHE</h2><p>Remarks：</p>
+<ol>
+<li><script type="math/tex">\mathcal{R}=\mathbb{Z}[X] /\left(X^N+1\right)</script> the ring of integer polynomials modulo the cyclotomic polynomial <script type="math/tex">X^N+1</script>, with <script type="math/tex">N</script> power of 2 . （定义在整数环上的多项式商环：模多项式为 <script type="math/tex">X^N+1</script> ）</li>
+<li><script type="math/tex">\mathcal{R}_q=(\mathbb{Z} / q \mathbb{Z})[X] /\left(X^N+1\right)</script>, i.e., the same ring of integers <script type="math/tex">\mathcal{R}</script> as above, but this time the coefficients are modulo $q$. Observe that we often note $\mathbb{Z} / q \mathbb{Z}$ as $\mathbb{Z}_q$.  （定义在整数商环 $\mathbb{Z} / q \mathbb{Z}$ 上的多项式商环：模多项式为 <script type="math/tex">X^N+1</script> ）</li>
+<li>Balanced Mod : 整数商环 <script type="math/tex">\mathbb{Z} / q \mathbb{Z}</script> 上的剩余系代表我们选取 ： <script type="math/tex">\{ - \lfloor q/2 \rfloor \ldots \lfloor q/2 \rfloor \}</script></li>
+<li>数字均用小写字母表示 <script type="math/tex">(a, b, m, s, \ldots)</script>, 多项式均用大写字母表示 <script type="math/tex">(A, B, M, S, \ldots)</script>. </li>
+<li>整数区间：<script type="math/tex">a \in \mathbb{Z}</script> 到 <script type="math/tex">b \in \mathbb{Z}</script> 记为 <script type="math/tex">[a . . b]</script>.</li>
+<li>MSB for Most Significant Bit and LSB for Least Significant Bit respectively.</li>
+<li>取整：<script type="math/tex">\lfloor\cdot\rceil</script></li>
+</ol>
+<p>&nbsp;</p>
+<h2 id="PlainText-And-CipherText-Space"><a href="#PlainText-And-CipherText-Space" class="headerlink" title="PlainText And CipherText Space"></a>PlainText And CipherText Space</h2><ul>
+<li>明文模数 ： <script type="math/tex">p</script>  ；明文空间 <script type="math/tex">M \in \mathcal{R}_p</script></li>
+<li>密文模数 ： <script type="math/tex">q</script>  ；密文空间 <script type="math/tex">M \in \mathcal{R}_q</script></li>
+<li>Scaling Factor ： <script type="math/tex">\Delta  = \frac{q}{p}</script></li>
+</ul>
+<p>&nbsp;</p>
+<h2 id="Ciphertext-Types"><a href="#Ciphertext-Types" class="headerlink" title="Ciphertext Types"></a>Ciphertext Types</h2><script type="math/tex; mode=display">G \rightarrow General : \textsf{LWE} + \textsf{Ring-LWE}</script><p>&nbsp;</p>
+<h3 id="GLWE"><a href="#GLWE" class="headerlink" title="GLWE"></a>GLWE</h3><p>密钥 ： <script type="math/tex">\vec{S} = (S_0, \ldots, S_{k-1}) \in \mathcal{R}^k</script> ；明文 ：<script type="math/tex">M</script></p>
+<script type="math/tex; mode=display">
+(A_0, \ldots, A_{k-1}, B) \in GLWE_{\vec{S}, \sigma}(\Delta M) \subseteq \mathcal{R}_q^{k+1}</script><center><img src="https://assets-global.website-files.com/622ef9de9152c97467eac748/626beffc06ae641cb1dc6078_GLWE_encryption.png" alt="img" style="zoom:33%;" /></center>
+
+<center> Type : Vector of Polynomials (1-dimension)   </center>
+
+<p><strong>记 ： <script type="math/tex">GLWE_{\vec{S}, \sigma}(\Delta M)</script> 为 GLWE 类型密文的一般表示 。</strong></p>
+<center><img src="https://assets-global.website-files.com/622ef9de9152c97467eac748/626bf01306ae64175cdc611a_GLWE_decryption.png" alt="img" style="zoom: 25%;" /></center>
+
+<center> Figure : Decryption   </center>
+
+<p>&nbsp;</p>
+<h3 id="GLev"><a href="#GLev" class="headerlink" title="GLev"></a>GLev</h3><p>密钥 ： <script type="math/tex">\vec{S} = (S_0, \ldots, S_{k-1}) \in \mathcal{R}^k</script> ；明文 ：<script type="math/tex">M</script></p>
+<p><strong>不同 scaling factor 下相同明文的 GLWE 密文向量</strong>：</p>
+<script type="math/tex; mode=display">
+\left( GLWE_{\vec{S}, \sigma}\left(\frac{q}{\beta^1} M\right) \times \ldots \times GLWE_{\vec{S}, \sigma}\left(\frac{q}{\beta^\ell} M\right) \right) = GLev^{\beta, \ell}_{\vec{S}, \sigma}(M) \subseteq \mathcal{R}_q^{\ell \cdot (k+1)}.</script><center><img src="https://assets-global.website-files.com/622ef9de9152c97467eac748/62714a600330c8813512e5a7_GLev1.png" alt="img" style="zoom:25%;" /></center>
+
+<center> Type : Vector of GLWE Ciphertexts (2-dimension)   </center>
+
+<p><strong>记 ： <script type="math/tex">GLev^{\beta,\ell}_{\vec{S}, \sigma}(M)</script> 为 GLev 类型密文的一般表示 。</strong></p>
+<p>&nbsp;</p>
+<h3 id="GGSW"><a href="#GGSW" class="headerlink" title="GGSW"></a>GGSW</h3><p>密钥 ： <script type="math/tex">\vec{S} = (S_0, \ldots, S_{k-1}) \in \mathcal{R}^k</script> ；明文 ：<script type="math/tex">M</script></p>
+<p><strong>密钥每一维的 neg-polynomial（额外包含 1）与明文乘积的 GLev 密文</strong> </p>
+<script type="math/tex; mode=display">
+\left( GLev^{\beta, \ell}_{\vec{S}, \sigma}(-S_0 M) \times \ldots \times GLev^{\beta, \ell}_{\vec{S}, \sigma}(-S_{k-1} M) \times GLev^{\beta, \ell}_{\vec{S}, \sigma}(M) \right) = GGSW^{\beta, \ell}_{\vec{S}, \sigma}(M) \subseteq \mathcal{R}_q^{(k+1) \times \ell (k+1)}.</script><center><img src="https://assets-global.website-files.com/622ef9de9152c97467eac748/62714a975b12e58f4b875b23_GGSW1.png" alt="img" style="zoom:25%;" /></center>
+
+<center> Type : Vector of GLev Ciphertexts (3-dimension)   </center>
+
+<p><strong>记 ： <script type="math/tex">GGSW^{\beta,\ell}_{\vec{S}, \sigma}(M)</script> 为 GGSW 类型密文的一般表示 。</strong></p>
+<p>&nbsp;</p>
+<h2 id="Torus-Visualization"><a href="#Torus-Visualization" class="headerlink" title="Torus Visualization"></a>Torus Visualization</h2><p>Where is our message in TFHE <script type="math/tex">\mathcal{R}_p \rightarrow \mathcal{R}_q</script> ?  <strong>Encoded in MSB !</strong></p>
+<center><img src="https://assets-global.website-files.com/622ef9de9152c97467eac748/626bf05d2022d97acdd0a295_LWE_encoding_msb.png" alt="img" style="zoom:25%;" /></center>
+
+<center> Figure : Message (mod p) lift to q </center>
+
+
+
+<p>What if real numbers in a fixed interval ? <strong>Encoded in MSB but mixed with errors !</strong></p>
+<center><img src="https://assets-global.website-files.com/622ef9de9152c97467eac748/62754bb1ef9624a94d127443_LWE_encoding_real.png" alt="img" style="zoom:25%;" /></center>
+
+<center> Figure : Message m: real numbers </center>
+
+
+
+<p><strong>环形结构 Torus</strong>, a mathematical structure that looks like a donut. Why this way ? </p>
+<center><img src="https://assets-global.website-files.com/622ef9de9152c97467eac748/62754c6f2ccafdc356f14ed0_LWE_torus_visualization_alternative.png" alt="img" style="zoom:25%;" /></center>
+
+<center> Figure : Torus Visualization  for LWE </center>
+
+<center><img src="https://assets-global.website-files.com/622ef9de9152c97467eac748/62754c95f2602ec170074b64_GLWE_torus_visualization.png" alt="img" style="zoom:25%;" /></center>
+
+<center> Figure : Torus Visualization  for Ring-LWE </center>
+
+
+
+<p>&nbsp;</p>
+<h2 id="Building-Blocks"><a href="#Building-Blocks" class="headerlink" title="Building Blocks"></a>Building Blocks</h2><p>Building Blocks <script type="math/tex">\rightarrow</script> Fast Programmable Bootstrapping.</p>
+<p>&nbsp;</p>
+<h3 id="textsf-Homomorphic-ADD"><a href="#textsf-Homomorphic-ADD" class="headerlink" title="\textsf{Homomorphic ADD }"></a><script type="math/tex">\textsf{Homomorphic ADD }</script></h3><p>Message <script type="math/tex">M , M^\prime</script> encrypted by the same key <script type="math/tex">\vec S</script> </p>
+<script type="math/tex; mode=display">
+C = (A_0, \ldots, A_{k-1}, B) \in GLWE_{\vec{S}, \sigma}(\Delta M) \subseteq \mathcal{R}_q^{k+1} \\
+C' = (A'_0, \ldots, A'_{k-1}, B') \in GLWE_{\vec{S}, \sigma}(\Delta M') \subseteq \mathcal{R}_q^{k+1}</script><p>Homomorphic ADD :</p>
+<script type="math/tex; mode=display">
+C^{(+)} = C + C' = (A_0 + A'_0, \ldots, A_{k-1}+A'_{k-1}, B+B') \in GLWE_{\vec{S}, \sigma'}(\Delta (M+M')) \subseteq \mathcal{R}_q^{k+1}</script><center><img src="https://assets-global.website-files.com/622ef9de9152c97467eac748/6275465c21a8e4092a5f6e34_GLWE_addition_noise.png" alt="img" style="zoom:25%;" /></center>
+
+<center> Figure : Homomorphic ADD </center>
+
+<p>&nbsp;</p>
+<h3 id="textsf-Homomorphic-Mul-Part-1"><a href="#textsf-Homomorphic-Mul-Part-1" class="headerlink" title="\textsf{Homomorphic Mul Part 1}"></a><script type="math/tex">\textsf{Homomorphic Mul Part 1}</script></h3><p>密钥 ： <script type="math/tex">\vec{S} = (S_0, \ldots, S_{k-1}) \in \mathcal{R}^k</script> ；明文 ：<script type="math/tex">M</script> ； 密文 ：<script type="math/tex">C = (A_0, \ldots, A_{k-1}, B) \in GLWE_{\vec{S}, \sigma}(\Delta M) \subseteq \mathcal{R}_q^{k+1}.</script></p>
+<p>Little By Little , from constant-ciphertext multiplication to ciphertext-ciphertext multiplication !</p>
+<ul>
+<li>Homomorphic Mul by a <strong>small constant polynomial</strong>. <script type="math/tex; mode=display">
+\Lambda = \sum_{i=0}^{N-1} \Lambda_i X^i \in \mathcal{R}.</script>Mul :<script type="math/tex; mode=display">
+C^{(\cdot)} = \Lambda \cdot C = (\Lambda \cdot A_0, \ldots, \Lambda \cdot A_{k-1}, \Lambda \cdot B) \in GLWE_{\vec{S}, \sigma^{\prime\prime}}(\Delta (\Lambda \cdot M)) \subseteq \mathcal{R}_q^{k+1}</script> <center> <img src="https://assets-global.website-files.com/622ef9de9152c97467eac748/6275486ed4a76988f53e8213_GLWE_scalar_multiplication_noise.png" alt="img" style="zoom:25%;" /></center>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>Homomorphic Mul by a <strong>large constant</strong>. </p>
+<p>If we directly times them :</p>
+<center><img src="https://assets-global.website-files.com/622ef9de9152c97467eac748/62820858aaaae93660dea46f_mult_large_constant.png" alt="img" style="zoom:25%;" /></center>
+
+<p>We need <script type="math/tex">\textsf{Decompose}, \textsf{Recompose}</script> :</p>
+<script type="math/tex; mode=display">
+\gamma = \gamma_1 \frac{q}{\beta^1} + \gamma_2 \frac{q}{\beta^2}  + \ldots + \gamma_\ell \frac{q}{\beta^\ell}</script><p>We need <script type="math/tex">\textsf{GLev}</script> ciphertext :</p>
+<script type="math/tex; mode=display">
+\overline{C} = (C_1, \ldots, C_\ell) \in \left( GLWE_{\vec{S}, \sigma}\left(\frac{q}{\beta^1} M\right) \times \ldots \times GLWE_{\vec{S}, \sigma}\left(\frac{q}{\beta^\ell} M\right) \right) = GLev^{\beta, \ell}_{\vec{S}, \sigma}(M) \subseteq \mathcal{R}_q^{\ell \cdot (k+1)}.</script><p>Mul :</p>
+<script type="math/tex; mode=display">
+\langle \mathsf{Decomp}^{\beta,\ell}(\gamma), \overline{C} \rangle = \sum_{j=1}^\ell \gamma_j \cdot C_j \in GLWE_{\vec{S}, \sigma'}\left(\gamma \cdot M\right) \subseteq \mathcal{R}_q^{k+1}</script><center><img src="https://assets-global.website-files.com/622ef9de9152c97467eac748/628209e1025b555d27a7ec7e_mult_large_constant_2.png" alt="img" style="zoom:25%;" /></center>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>Homomorphic Mul by a <strong>large constant polynomial</strong>. </p>
+<p>Almost the same with the constant one. Decompose the polynomial this time:</p>
+<script type="math/tex; mode=display">
+\mathsf{Decomp}^{\beta,\ell}(\Lambda) = (\Lambda^{(1)}, \ldots, \Lambda^{(\ell)})</script><p>where <script type="math/tex">\Lambda^{(j)}=\sum_{i=0}^{N-1} \Lambda_{i, j} \cdot X^i</script>, with <script type="math/tex">\Lambda_{i, j} \in \mathbb{Z}_\beta</script>, such that:</p>
+<script type="math/tex; mode=display">
+\Lambda=\Lambda^{(1)} \frac{q}{\beta^1}+\ldots+\Lambda^{(\ell)} \frac{q}{\beta^{\ell}} .</script></li>
+</ul>
+<p>PS : <strong><script type="math/tex">\textsf{Decomp}</script> 实际上是一个升维过程，<script type="math/tex">\textsf{Recomp}</script> 是降维过程。</strong></p>
+<p>Homomorphic Mul by a <strong>ciphertext</strong> ? Before this , we come into a similar process called <script type="math/tex">\textsf{Key Switching}</script>.</p>
+<p>&nbsp;</p>
+<h3 id="textsf-Key-Switching"><a href="#textsf-Key-Switching" class="headerlink" title="\textsf{Key Switching}"></a><script type="math/tex">\textsf{Key Switching}</script></h3><p>更换加密密钥 ： <script type="math/tex">GLWE_{\vec{S}, \sigma}(\Delta M)  \longrightarrow  GLWE_{\vec{S^{\prime}}, \sigma}(\Delta M)</script></p>
+<p><strong>原始密钥</strong> ： <script type="math/tex">\vec{S} = (S_0, \ldots, S_{k-1}) \in \mathcal{R}^k</script> ；明文 ：<script type="math/tex">M</script> ； 原始密文 ：<script type="math/tex">C = (A_0, \ldots, A_{k-1}, B) \in GLWE_{\vec{S}, \sigma}(\Delta M) \subseteq \mathcal{R}_q^{k+1}.</script></p>
+<p>&nbsp;</p>
+<p><strong>Key Switching Key</strong> </p>
+<script type="math/tex; mode=display">
+\mathsf{KSK}_i \in \left( GLWE_{\vec{S}', \sigma_{\mathsf{KSK}}}\left(\frac{q}{\beta^1} S_i\right) \times \ldots \times GLWE_{\vec{S}', \sigma_{\mathsf{KSK}}}\left(\frac{q}{\beta^\ell} S_i\right) \right) = GLev^{\beta, \ell}_{\vec{S}', \sigma_{\mathsf{KSK}}}(S_i) \subseteq \mathcal{R}_q^{\ell \cdot (k+1)}</script><p>思路：用 <script type="math/tex">\vec{S^\prime}</script> 加密后的 <script type="math/tex">\vec{S}</script> 去执行解密的第一步，就得到了 <script type="math/tex">\vec{S^\prime}</script> 加密后的密文。实际上完整的 <script type="math/tex">\textsf{KSK}</script> 是一个 GGSW 密文。<script type="math/tex">\textsf{KeY Switching}</script> 与密文的同态乘法是很类似的。</p>
+<p>&nbsp;</p>
+<p>Switching :</p>
+<script type="math/tex; mode=display">
+C' = \underbrace{\overbrace{(0, \ldots, 0, B)}^{\text{Trivial GLWE of } B} - \sum_{i=0}^{k-1} \overbrace{ \langle \mathsf{Decomp}^{\beta,\ell}(A_i), \mathsf{KSK}_i \rangle}^{\text{GLWE encryption of } A_i S_i} }_{\text{GLWE encryption of } B - \sum_{i=0}^{k-1} A_i S_i = \Delta M + E}\in GLWE_{\vec{S}', \sigma'}(\Delta M) \subseteq \mathcal{R}_q^{k+1}.</script><center><img src="https://assets-global.website-files.com/622ef9de9152c97467eac748/62820c4c1c9a9ce781dd48fe_KS.png" alt="img" style="zoom:25%;" /></center>
+
+<center> Figure : Key Switching </center>
+
+
+
+<p>&nbsp;</p>
+<h3 id="textsf-Homomorphic-Mul-Part-2"><a href="#textsf-Homomorphic-Mul-Part-2" class="headerlink" title="\textsf{Homomorphic Mul Part 2}"></a><script type="math/tex">\textsf{Homomorphic Mul Part 2}</script></h3><p> Finally : <script type="math/tex">\textsf{Homomorphic Mul}</script> between two <strong>ciphertexts</strong>  <script type="math/tex">\rightarrow</script>  called <script type="math/tex">\textsf{External Product}</script> in TFHE.</p>
+<p>&nbsp;</p>
+<h4 id="textsf-External-Product"><a href="#textsf-External-Product" class="headerlink" title="\textsf{External Product}"></a><script type="math/tex">\textsf{External Product}</script></h4><p>Setting : GLWE 密文 与 GGSW 密文</p>
+<ul>
+<li>a GLWE ciphertext encrypting a message <script type="math/tex">M_1 \in \mathcal{R}_p</script> under the secret key <script type="math/tex">\vec{S}=\left(S_0, \ldots, S_{k-1}\right) \in \mathcal{R}^k</script> :<script type="math/tex; mode=display">
+C=\left(A_0, \ldots, A_{k-1}, B\right) \in G L W E_{S, \sigma}^{\overrightarrow{ }}\left(\Delta M_1\right) \subseteq \mathcal{R}_q^{k+1}</script>where the elements <script type="math/tex">A_i</script> for <script type="math/tex">i \in[0 . . k-1]</script> are sampled uniformly random from <script type="math/tex">\mathcal{R}_q</script>, and <script type="math/tex">B=\sum_{i=0}^{k-1} A_i \cdot S_i+\Delta M+E \in \mathcal{R}_q</script>, and <script type="math/tex">E \in \mathcal{R}_q</script> has coefficients sampled from a Gaussian distribution <script type="math/tex">\chi_\sigma</script>, as we have already seen before.</li>
+</ul>
+<ul>
+<li>a GGSW ciphertext encrypting a message <script type="math/tex">M_2 \in \mathcal{R}_p</script> under the same secret key <script type="math/tex">\vec{S}=\left(S_0, \ldots, S_{k-1}\right) \in \mathcal{R}^k</script> :<script type="math/tex; mode=display">
+\overline{\overline{C}} = (\overline{C}_0, \ldots, \overline{C}_{k-1}, \overline{C}_k) \in GGSW^{\beta, \ell}_{\vec{S}, \sigma}(M_2) \subseteq \mathcal{R}_q^{(k+1) \times \ell (k+1)}</script>where <script type="math/tex">\overline{C}_i \in GLev^{\beta, \ell}_{\vec{S}, \sigma}(-S_i M_2)</script> for <script type="math/tex">i \in[0 . . k-1]</script> and <script type="math/tex">\overline{C}_k \in GLev^{\beta, \ell}_{\vec{S}, \sigma}(M_2)</script></li>
+</ul>
+<p>&nbsp;</p>
+<p>Process of  <script type="math/tex">\textsf{Homomorphic Mul}</script> !</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+C' &= \overline{\overline{C}} \boxdot C 
+= \langle \mathsf{Decomp}^{\beta,\ell}(C), \overline{\overline{C}} \rangle \\
+&= \underbrace{ 
+\overbrace{\langle \mathsf{Decomp}^{\beta,\ell}(B), \overline{C}_k \rangle}^{\text{GLWE encrypt. of } B M_2} + \sum_{i=0}^{k-1} \overbrace{\langle \mathsf{Decomp}^{\beta,\ell}(A_i), \overline{C}_i \rangle}^{\text{GLWE encrypt. of } - A_i S_i M_2}
+}_{\text{GLWE encrypt. of } B M_2 - \sum_{i=0}^{k-1} A_i S_i M_2 \approx \Delta M_1 M_2}
+\in GLWE_{\vec{S}, \sigma^{\prime\prime}}(\Delta M_1 M_2) \subseteq \mathcal{R}_q^{k+1}
+\end{aligned}</script><center><img src="https://assets-global.website-files.com/622ef9de9152c97467eac748/62820df3479d0920f04c1993_external_product.png" alt="img" style="zoom:25%;" /></center>
+
+<center> Figure : Homomophic Mul (External Product) </center>
+
+
+
+<p>同时 <script type="math/tex">\textsf{Homomorphic Mul}</script> 和 <script type="math/tex">\textsf{Key Switching}</script>  <script type="math/tex">\longrightarrow</script> <script type="math/tex">\textsf{Functional Fey Switching}</script></p>
+<ul>
+<li>GLWE 密钥不变，为 <script type="math/tex">\vec{S}</script></li>
+<li>GGSW 的密文使用一个不同的密钥 <script type="math/tex">\vec{S^\prime}</script></li>
+</ul>
+<p>得到 ：<script type="math/tex">GLWE_{\vec{S}, \sigma^{\prime\prime}}(\Delta M_1 M_2)</script></p>
+<p>&nbsp;</p>
+<h4 id="textsf-Internal-Product"><a href="#textsf-Internal-Product" class="headerlink" title="\textsf{Internal Product}"></a><script type="math/tex">\textsf{Internal Product}</script></h4><p> In TFHE <script type="math/tex">\textsf{External Product} : GLWE \times GGSW \rightarrow GLWE</script> <script type="math/tex">\rightarrow</script>  <script type="math/tex">\textsf{Internal Product}</script> : <script type="math/tex">GGSW \times GGSW \rightarrow GGSW</script></p>
+<p>Setting :</p>
+<ul>
+<li>a GGSW ciphertext encrypting a message <script type="math/tex">M_1 \in \mathcal{R}_p</script> under the same secret key <script type="math/tex">\vec{S}=\left(S_0, \ldots, S_{k-1}\right) \in \mathcal{R}^k</script> :<script type="math/tex; mode=display">
+\overline{\overline{C}}_1 = (\overline{C}_0, \ldots, \overline{C}_{k-1}, \overline{C}_k) \in GGSW^{\beta, \ell}_{\vec{S}, \sigma}(M_1) \subseteq \mathcal{R}_q^{(k+1) \times \ell (k+1)}.</script>where, for <script type="math/tex">i \in [0..k-1]</script> :<script type="math/tex; mode=display">
+\overline{C}_i = (C_{i,1}, \ldots, C_{i,\ell}) \in GLev^{\beta, \ell}_{\vec{S}, \sigma}(-S_i M_1) \subseteq \mathcal{R}_q^{\ell \cdot (k+1)}</script>with <script type="math/tex">C_{i,j} \in GLWE_{\vec{S}, \sigma}\left(\frac{q}{\beta^j} (-S_i M_1) \right)</script> for <script type="math/tex">j \in [1..\ell]</script> and <script type="math/tex; mode=display">
+\overline{C}_k \in (C_{k,1}, \ldots, C_{k,\ell}) \in GLev^{\beta, \ell}_{\vec{S}, \sigma}(M_1) \subseteq \mathcal{R}_q^{\ell \cdot (k+1)}</script>with <script type="math/tex">C_{k,j} \in GLWE_{\vec{S}, \sigma}\left(\frac{q}{\beta^j} M_1 \right)</script> for <script type="math/tex">j \in [1..\ell]</script></li>
+</ul>
+<ul>
+<li>a GGSW ciphertext encrypting a message <script type="math/tex">M_2 \in \mathcal{R}_p</script> under the same secret key <script type="math/tex">\vec{S}=\left(S_0, \ldots, S_{k-1}\right) \in \mathcal{R}^k</script> :<script type="math/tex; mode=display">
+\overline{\overline{C}} = (\overline{C}_0, \ldots, \overline{C}_{k-1}, \overline{C}_k) \in GGSW^{\beta, \ell}_{\vec{S}, \sigma}(M_2) \subseteq \mathcal{R}_q^{(k+1) \times \ell (k+1)}</script>where <script type="math/tex">\overline{C}_i \in GLev^{\beta, \ell}_{\vec{S}, \sigma}(-S_i M_2)</script> for <script type="math/tex">i \in[0 . . k-1]</script> and <script type="math/tex">\overline{C}_k \in GLev^{\beta, \ell}_{\vec{S}, \sigma}(M_2)</script></li>
+</ul>
+<p>&nbsp;</p>
+<p>Process <script type="math/tex">\textsf{Homomorphic Mul}</script>  between  GGSW and GGSW!</p>
+<script type="math/tex; mode=display">
+\overline{\overline{C}}' = \overline{\overline{C}}_2 \boxtimes \overline{\overline{C}}_1 
+= (\overline{\overline{C}}_2 \boxdot C_{0,1}, 
+\ldots, 
+\overline{\overline{C}}_2 \boxdot C_{0,\ell}, 
+\ldots, 
+\overline{\overline{C}}_2 \boxdot C_{k,1}, 
+\ldots, 
+\overline{\overline{C}}_2 \boxdot C_{k,\ell}).</script><p>The result is :</p>
+<script type="math/tex; mode=display">
+\overline{\overline{C}}' = \overline{\overline{C}}_2 \boxtimes \overline{\overline{C}}_1 
+\in GGSW^{\beta, \ell}_{\vec{S}, \sigma^{\prime\prime}}(M_1 M_2) \subseteq \mathcal{R}_q^{(k+1) \times \ell (k+1)}.</script><center><img src="https://assets-global.website-files.com/622ef9de9152c97467eac748/62820f2a29ac692fdd69fa02_internal_product.png" alt="img" style="zoom:25%;" /></center>
+
+<center> Figure : Homomophic Mul (Internal Product) </center>
+
+<p>&nbsp;</p>
+<h3 id="textsf-CMux"><a href="#textsf-CMux" class="headerlink" title="\textsf{CMux}"></a><script type="math/tex">\textsf{CMux}</script></h3><p>The CMux operation is the homomorphic version of a Mux gate, also known as multiplexer gate. </p>
+<p><img src="https://assets-global.website-files.com/622ef9de9152c97467eac748/628210141c9a9c3b91dd67a3_Mux.png" alt="img"></p>
+<center> Figure : CMux Gate</center>
+
+<p>简单来说一次乘法、两次加法即可实现：</p>
+<script type="math/tex; mode=display">
+b \cdot (d_1 - d_0) + d_0 = d_b</script><center><img src="https://assets-global.website-files.com/622ef9de9152c97467eac748/6282171b1d51fdd6f3def78e_CMux.png" alt="img" style="zoom:25%;" /></center>
+
+<center> Figure : CMux Operation</center>
+
+<p>&nbsp;</p>
+<h3 id="textsf-Modulus-Switching"><a href="#textsf-Modulus-Switching" class="headerlink" title="\textsf{Modulus Switching}"></a><script type="math/tex">\textsf{Modulus Switching}</script></h3><p>密文空间变换 ： <script type="math/tex">\mathcal{R}_q \rightarrow \mathcal{R}_\mathcal{w}</script></p>
+<p>&nbsp;</p>
+<p>Let <script type="math/tex">p</script> and <script type="math/tex">q</script> be two positive integers (powers of 2 for simplicity), such that <script type="math/tex">p \leq q</script> and let <script type="math/tex">\Delta=q / p</script>. Let’s recall that an LWE ciphertext encrypting a message <script type="math/tex">m \in \mathbb{Z}_p</script> under the secret key <script type="math/tex">\vec{s}=\left(s_0, \ldots, s_{n-1}\right) \in \mathbb{Z}^n</script> is a tuple:</p>
+<script type="math/tex; mode=display">
+c=\left(a_0, \ldots, a_{n-1}, b\right) \in L W E_{s, \sigma}^{\overrightarrow{ }}(\Delta m) \subseteq \mathbb{Z}_q^{n+1}</script><p>The  <script type="math/tex">\textsf{Modulus Switching}</script>  from <script type="math/tex">q</script> to <script type="math/tex">w</script> is easy :</p>
+<script type="math/tex; mode=display">
+\tilde{c} = (\tilde{a}_0, \ldots, \tilde{a}_{n-1}, \tilde{a}_n = \tilde{b}) \in LWE_{\vec{s}, \sigma}(\tilde{\Delta} m) \subseteq \mathbb{Z}_\omega^{n+1}, \ where \ \tilde{a}_i = \left\lfloor \frac{\omega \cdot a_i}{q} \right\rceil \in \mathbb{Z}_\omega.</script><center><img src="https://assets-global.website-files.com/622ef9de9152c97467eac748/62989869a548471e050a2aa3_modulus_switching.png" alt="img" style="zoom: 25%;" /></center>
+
+<center> Figure : Modulus Switching</center>
+
+<p>&nbsp;</p>
+<h3 id="textsf-Sample-Extraction"><a href="#textsf-Sample-Extraction" class="headerlink" title="\textsf{Sample Extraction}"></a><script type="math/tex">\textsf{Sample Extraction}</script></h3><p>A sample extraction is an operation that takes as input a GLWE ciphertext, encrypting a polynomial message, and <em>extracts</em> the encryption of one of the coefficients of the message as a LWE ciphertext. </p>
+<p>即 <strong>提取 GLWE 加密的多项式其中的一个系数加密后的结果（LWE 密文）。</strong></p>
+<center><img src="https://assets-global.website-files.com/622ef9de9152c97467eac748/629899303cd8b9a3ebdf73fa_sample_extraction.png" alt="img" style="zoom:25%;" /></center>
+
+<p>Let’s take a GLWE ciphertext encrypting a message <script type="math/tex">M = \sum_{j=0}^{N-1} m_j X^j \in \mathcal{R}_p</script> under secret key:</p>
+<script type="math/tex; mode=display">
+\vec{S} = (S_0 = \sum_{j=0}^{N-1} s_{0,j} X^j, \ldots, S_{k-1} = \sum_{j=0}^{N-1} s_{k-1,j} X^j) \in \mathcal{R}^k</script><p>The ciphertext :</p>
+<script type="math/tex; mode=display">
+C = \left(A_0 = \sum_{j=0}^{N-1} a_{0,j} X^j, \ldots, A_{k-1} = \sum_{j=0}^{N-1} a_{k-1,j} X^j, B = \sum_{j=0}^{N-1} b_j X^j \right) \in GLWE_{\vec{S}, \sigma}(\Delta M) \subseteq \mathcal{R}_q^{k+1}</script><p>从上述密文中提取 加密多项式 <script type="math/tex">M</script> 的第 h 个系数：</p>
+<ul>
+<li><p>加密密钥 ： <script type="math/tex">\vec{s} = (s_{0,0}, \ldots, s_{0,N-1}, \ldots, s_{k-1,0}, \ldots, s_{k-1,N-1}) \in \mathbb{Z}^{kN}.</script></p>
+</li>
+<li><p>其中 <script type="math/tex">m_h</script> 的 LWE 密文 <script type="math/tex">c = (a_0, \ldots, a_{n-1}, b) \in \mathbb{Z}^{n+1}_q</script></p>
+<script type="math/tex; mode=display">
+\begin{cases}
+a_{N\cdot i + j} \leftarrow a_{i,h-j} &\text{ for } 0 \leq i < k, 0 \leq j \leq h \\
+a_{N\cdot i + j} \leftarrow - a_{i,h-j+N} &\text{ for } 0 \leq i < k, h+1 \leq j < N \\
+b \leftarrow b_h & \\
+\end{cases}</script></li>
+</ul>
+<p>&nbsp;</p>
+<h3 id="textsf-Blind-Rotation"><a href="#textsf-Blind-Rotation" class="headerlink" title="\textsf{Blind Rotation}"></a><script type="math/tex">\textsf{Blind Rotation}</script></h3><p><strong>The core of the fast bootstrapping!</strong></p>
+<p>How to rotate : </p>
+<ul>
+<li><p>Rotate the coefficients of a polynomial ? </p>
+<p>Shift the coefficients towards the left (or the right) : <script type="math/tex">a_i \cdot x^i \rightarrow  a_{i+h} \cdot x^i</script></p>
+<p>How ?</p>
+<script type="math/tex; mode=display">
+M = m_0 + m_1 X + m_2 X^2 + \ldots + m_\pi X^\pi + \ldots + m_{N-1} X^{N-1} \in \mathcal{R}_q</script><p> We multiply it times <script type="math/tex">X^{-\pi} \in \mathcal{R}_q</script></p>
+<script type="math/tex; mode=display">
+M \cdot X^{-\pi} = m_{\pi} + m_{\pi+1} X + \ldots + m_{N-1} X^{N-\pi-1} - m_0 X^{N-\pi} - \ldots - m_{\pi-1} X^{N-1} \in \mathcal{R}_q.</script><center><img src="https://assets-global.website-files.com/622ef9de9152c97467eac748/62989af8a0c758623f683f89_rotate_clear_clear.png" alt="img" style="zoom:25%;" /></center>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>Rotate the coefficients of an encrypted polynomial <script type="math/tex">\in GLWE</script>? </p>
+<script type="math/tex; mode=display">
+C = \left(A_0, \ldots, A_{k-1}, B \right) \in GLWE_{\vec{S}, \sigma}(\Delta M) \subseteq \mathcal{R}_q^{k+1}</script><p>Rotating :</p>
+<script type="math/tex; mode=display">
+C^{(\mathsf{rot})} = \left(A_0 \cdot X^{-\pi}, \ldots, A_{k-1} \cdot X^{-\pi}, B \cdot X^{-\pi} \right) \in GLWE_{\vec{S}, \sigma}(\Delta M \cdot X^{-\pi}) \subseteq \mathcal{R}_q^{k+1}.</script><center><img src="https://assets-global.website-files.com/622ef9de9152c97467eac748/62989b25f035da93e0196dc4_rotate_encrypt_clear.png" alt="img" style="zoom:25%;" /></center>
+
+
+
+</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>Blind Rotation ?</strong> <script type="math/tex">\rightarrow</script> We wanna hide the shift <script type="math/tex">\pi</script> !</p>
+<p>Binary decomposition :</p>
+<script type="math/tex; mode=display">
+\pi = \pi_0 + \pi_1 \cdot 2 + \pi_2 \cdot 2^2 + \ldots + \pi_\delta \cdot 2^\delta \quad where \ \delta = \log_2(N)</script><p>Then <script type="math/tex">M \cdot X^{-\pi}</script> :</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+M \cdot X^{-\pi} 
+&= M \cdot X^{-\pi_0 -\pi_1 \cdot 2 -\pi_2 \cdot 2^2 + \ldots -\pi_\delta \cdot 2^\delta} \\
+&= M \cdot X^{-\pi_0} \cdot X^{-\pi_1 \cdot 2} \cdot X^{-\pi_2 \cdot 2^2} \cdot \ldots \cdot X^{-\pi_\delta \cdot 2^\delta}. \\
+\end{aligned}</script><p>Compute <script type="math/tex">M \cdot X^{-\pi_j \cdot 2^j}</script> <script type="math/tex">\rightarrow</script> <script type="math/tex">\textsf{CMux}</script> </p>
+<script type="math/tex; mode=display">
+M \cdot X^{-\pi_j \cdot 2^j} =
+\begin{cases}
+M &\text{ if } \pi_j = 0 \\
+M \cdot X^{-2^j} &\text{ if } \pi_j = 1 \\
+\end{cases}</script><p><strong>The full process of Blind Rotation</strong></p>
+<p>We need ciphertexts as follows :</p>
+<ul>
+<li>a GGSW encryption of <script type="math/tex">\pi_j</script> ;</li>
+<li>a GLWE encryption of <script type="math/tex">M</script> as the “0” option ;</li>
+<li>a GLWE encryption of <script type="math/tex">M \cdot X^{-2j}</script> (rotation of a clear number of positions) as the “1” option.</li>
+</ul>
+<p>One <script type="math/tex">\textsf{CMux}</script> :</p>
+<center><img src="https://assets-global.website-files.com/622ef9de9152c97467eac748/62989cec514630c344a20545_blind_rotate.png" alt="img" style="zoom:25%;" /></center>
+
+<center> Figure : Single Rotation</center>
+
+<p>The whole blind rotation :</p>
+<center><img src="https://assets-global.website-files.com/622ef9de9152c97467eac748/62989d043cd8b95289df965f_blind_rotate_long.png" alt="img" style="zoom:25%;" /></center>
+
+<center> Figure : Blind Rotation</center>
+
+<p>&nbsp;</p>
+<h2 id="textsf-Bootstrapping"><a href="#textsf-Bootstrapping" class="headerlink" title="\textsf{Bootstrapping}"></a><script type="math/tex">\textsf{Bootstrapping}</script></h2><p>What is Bootstrapping ?  <strong>Evaluate the decryption function homomorphically</strong></p>
+<p>在 <script type="math/tex">LWE</script> 类问题中，解密算法可以分为下面两步：</p>
+<ol>
+<li><p><strong>STEP-1</strong> : The computation of the linear combination :</p>
+<script type="math/tex; mode=display">
+b-\sum_{i=0}^{n-1} a_i s_i = \Delta m + e \in \mathbb{Z}_q</script></li>
+<li><p><strong>STEP-2</strong> : The rescale and rounding : <script type="math/tex">\left\lfloor \frac{\Delta m + e}{\Delta} \right\rceil = m</script></p>
+</li>
+</ol>
+<p>其中 <strong>STEP-1</strong> 是简单的，用同态加/乘法足以解决，而真正做到减低噪声是第二步，这一步非常关键，也往往是 Bootstrapping 里面最耗费时间的操作。在 TFHE 中，最大的突破在于实现了 Fast Bootstrapping。</p>
+<p> <strong>STEP-1</strong> 是简单的，因此这里首先讨论在 TFHE 中如如何进行 <strong>STEP-2</strong> ：将第一步得到的结果 <script type="math/tex">\pi = b-\sum_{i=0}^{n-1} a_i s_i = \Delta m + e</script> 作为 <script type="math/tex">X</script> 的指数，即 <script type="math/tex">X^{- \pi}</script> 去 Blind Rotate 一个 Look-Up Table (LUT：<strong>evaluates the second step of the decryption (rescale and rounding).</strong>)</p>
+<script type="math/tex; mode=display">
+LWE_{\vec{s}, \sigma}(\Delta m) \times BK (\in GGSW) \rightarrow LWE_{\vec{s}, \sigma}(\Delta m)</script><p>&nbsp;</p>
+<h3 id="Step-2-Blind-Rotation-in-Bootstrapping"><a href="#Step-2-Blind-Rotation-in-Bootstrapping" class="headerlink" title="Step 2 Blind Rotation in Bootstrapping"></a>Step 2 Blind Rotation in Bootstrapping</h3><p>Associate the value <script type="math/tex">m</script> with the plaintext <script type="math/tex">\Delta m + e</script> , the message distribution in <script type="math/tex">q</script>:</p>
+<center><img src="https://assets-global.website-files.com/622ef9de9152c97467eac748/62989f87e9cc4cd6f7c4c4ad_bootstrapping_LUT.png" alt="img" style="zoom:25%;" /></center>
+
+<center> Figure : Mega-cases</center>
+
+
+
+<p>We call the blocks containing multiple repetitions of the same value <em>mega-cases</em>.</p>
+<p><strong>The way we evaluate such LUT is by performing a polynomial rotation: the idea is to put all the elements of the redundant LUT into a polynomial and rotate the polynomial <script type="math/tex">\Delta m + e</script> by multiplying <script type="math/tex">X^{-(\Delta m + e)}</script>. The rotation has the effect to bring one of the elements contained in the mega-case corresponding to <script type="math/tex">m</script> in the constant position of the polynomial.</strong> </p>
+<p>将 LUT 表存入一个多项式，用 Blind Rotation 操作去 rotate ( 乘<script type="math/tex">X^{-(\Delta m + e)}</script> )，常数项上的系数就对应解密的 <script type="math/tex">m</script> ， 即 reading position。</p>
+<center><img src="https://assets-global.website-files.com/622ef9de9152c97467eac748/6298a030afd0f52af31fe6de_bootstrap_LUT_rotate.png" alt="img" style="zoom:25%;" /></center>
+
+<center> Figure : Reading Position</center>
+
+<p>&nbsp;&nbsp;</p>
+<p><strong>How to store such LUT in detail ?</strong></p>
+<ul>
+<li>TFHE 里我们操作的多项式均模 <script type="math/tex">X^N + 1</script> ， 即 最多 N 个系数 （通常 <script type="math/tex">N \lt q</script> : <script type="math/tex">N=2^{10}, q=2^{32}</script>）。我们肯定需要进行数据压缩 modulus switching。</li>
+<li>考虑 单项式 <script type="math/tex">X</script> 在多项式商环上的阶，为 ：<script type="math/tex">2*N，X^{2N} \equiv 1 \mod (X^N +1)</script> 。也就是说，利用 rotation，我们最多得到 <script type="math/tex">2N</script> 个结果 (<script type="math/tex">X^a = X^{a + 2N} \mod (X^N + 1)</script>)。于是我们要把 <script type="math/tex">[0..q-1]</script> 上的 <script type="math/tex">\Delta M  + e</script> 对应信息 转换到 <script type="math/tex">2 \cdot N</script> 上的元素内。（if  <strong>negacyclic property</strong> exists,  N is OK without padding bit）</li>
+</ul>
+<p>Finally, <strong>the modulus switching is going to be done from <script type="math/tex">q</script> to <script type="math/tex">2N</script>  !</strong></p>
+<center><img src="https://assets-global.website-files.com/622ef9de9152c97467eac748/6298a08f5a6e94c3b9dae194_negaciclicity.png" alt="img" style="zoom:25%;" /></center>
+
+<center> Figure : Modulus Switching for LUT</center>
+
+<p>&nbsp;</p>
+<h3 id="Step-1-2-textsf-Bootstrapping"><a href="#Step-1-2-textsf-Bootstrapping" class="headerlink" title="Step 1 + 2 \textsf{Bootstrapping}"></a>Step 1 + 2 <script type="math/tex">\textsf{Bootstrapping}</script></h3><p>Need :</p>
+<ul>
+<li><script type="math/tex; mode=display">c = (a_0, \ldots, a_{n-1}, b) \in LWE_{\vec{s}, \sigma}(\Delta m) \subseteq \mathbb{Z}_q^{n+1}</script></li>
+<li><script type="math/tex; mode=display">\textsf{LUT}$$ polynomial $$V \in \mathcal{R}_q</script></li>
+<li><p><strong>Bootstrapping key</strong> : GGSW encryptions of <script type="math/tex">\vec{s} = (s_0, \ldots, s_{n-1})</script> under a new GLWE secret key : <script type="math/tex">S^\prime</script></p>
+<script type="math/tex; mode=display">
+\mathsf{BK} = (\mathsf{BK}_0, \ldots, \mathsf{BK}_{n-1})\quad where \ \mathsf{BK}_i \in GGSW^{\beta, \ell}_{\vec{S}', \sigma}(s_i) \subseteq \mathcal{R}_q^{(k+1) \times \ell (k+1)}</script></li>
+</ul>
+<p>Process</p>
+<ol>
+<li><p>Modulus switching :</p>
+<p>Step 2 需要的 exponential information 是限定在 2N 范围内的，于是 <script type="math/tex">q \rightarrow 2N</script>  ：</p>
+<script type="math/tex; mode=display">
+c = (a_0, \ldots, a_{n-1}, b) \in LWE_{\vec{s}, \sigma}(\Delta m) \subseteq \mathbb{Z}_q^{n+1} \longmapsto \tilde{c} = (\tilde{a}_0, \ldots, \tilde{a}_{n-1}, \tilde{b}) \in LWE_{\vec{s}, \sigma'}(\tilde{\Delta} m) \subseteq \mathbb{Z}_{2N}^{n+1}</script></li>
+<li><p>Blind rotation</p>
+<ul>
+<li><p>Initialize the blind rotation by multiplying the trivial GLWE encryption <script type="math/tex">V \cdot X^{-\tilde{b}}</script> (rotation)</p>
+</li>
+<li><p>Pass the trivial encryption of <script type="math/tex">V\cdot X^{-\tilde{b}} = V_0</script>  as input to a first <script type="math/tex">\textsf{CMux}</script> : </p>
+<ul>
+<li>Selector : the GGSW encryption of the bit <script type="math/tex">s_0</script></li>
+<li>Options :  <script type="math/tex">V_0</script> and <script type="math/tex">V_0 \cdot X^{\tilde{a}_0}</script></li>
+<li>Output : a GLWE encryption of <script type="math/tex">V_1 = V_0 \cdot X^{\tilde{a}_0 s_0}</script></li>
+</ul>
+</li>
+<li><p>Pass the GLWE encryption of <script type="math/tex">V_1</script> to the second <script type="math/tex">\textsf{CMux}</script> : </p>
+<ul>
+<li>Selector : the GGSW encryption of the bit <script type="math/tex">s_1</script></li>
+<li>Options :  <script type="math/tex">V_1</script> and <script type="math/tex">V_1 \cdot X^{\tilde{a}_1}</script></li>
+<li>Output : a GLWE encryption of <script type="math/tex">V_1 = V_0 \cdot X^{\tilde{a}_0 s_0}</script></li>
+</ul>
+<p>Until N <script type="math/tex">\textsf{CMuxes}</script> done.</p>
+</li>
+<li><p>Final Output :</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+V_n 
+&= V_{n-1} \cdot X^{\tilde{a}_{n-1} s_{n-1}} \\
+&= \ldots \\
+&= V \cdot X^{-\tilde{b}} \cdot X^{\tilde{a}_0 s_0} \cdot \ldots \cdot X^{\tilde{a}_{n-1} s_{n-1}} \\
+&= V \cdot X^{-\tilde{b} + \sum_{i=0}^{n-1} \tilde{a}_i s_i} = V \cdot X^{-(\tilde{\Delta} m + \tilde{e})} \\
+\end{aligned}</script></li>
+</ul>
+<center><img src="https://assets-global.website-files.com/622ef9de9152c97467eac748/6298a111518d8891a5583ae8_bootstrap_blind_rotate.png" alt="img" style="zoom:25%;" /></center>
+
+<center> Figure : Blind Rotation</center>
+</li>
+<li><p>Sample Extraction :  extract the constant sample, that is  <script type="math/tex">LWE_{\vec S^\prime,  \sigma}(\Delta m)</script> .</p>
+</li>
+<li><p>（Key switching : <script type="math/tex">LWE_{\vec S^\prime,  \sigma}(\Delta m) \rightarrow LWE_{\vec s,  \sigma}(\Delta m)</script> ）</p>
+</li>
+</ol>
+<center><img src="https://assets-global.website-files.com/622ef9de9152c97467eac748/6298a297244c280f455f901f_PBS.png" alt="img" style="zoom:25%;" /></center>
+
+<center> Figure : Bootstrapping </center>
+
+
+
+<p>Why programmable ?</p>
+<p><strong>The <script type="math/tex">V</script> polynomial is actually a table. Do operations f on V and we obtain a new table <script type="math/tex">V_f</script> encode <script type="math/tex">f(m)</script></strong> . </p>
+<p> &nbsp;</p>
+<h2 id="Non-arithmetic-Operation"><a href="#Non-arithmetic-Operation" class="headerlink" title="Non-arithmetic Operation"></a>Non-arithmetic Operation</h2><p><strong>An example of bootstrapping: the Gate Bootstrapping !  Non-arithmetic Operation can be implemented by the programmable LUT.</strong> </p>
+<p>所有的比特门运算 (AND, NAND, OR, XOR, etc.) ，都可以通过 programmable bootstrapping 实现。这里以 ADD 门为例，构造 <strong>ADD Gate Bootstrapping</strong> 。</p>
+<p>&nbsp;</p>
+<p> <strong>ADD Gate Bootstrapping Construction</strong></p>
+<ul>
+<li><p>Input ：  two LWE ciphertexts <script type="math/tex">c_1, c_2</script> encrypting two bits <script type="math/tex">\mu_1, \mu_2</script> under the same secret key.</p>
+<ul>
+<li>Ciphertext 1 <script type="math/tex">c_1 = LWE_{s,\sigma}(\Delta \mu_1)</script></li>
+<li>Ciphertext 2 <script type="math/tex">c_2 = LWE_{s,\sigma}(\Delta \mu_2)</script></li>
+</ul>
+</li>
+<li><p>Encoding info : <script type="math/tex">0 \rightarrow -q/8; 1 \rightarrow q/8</script></p>
+</li>
+<li><p>Process :</p>
+<ol>
+<li>线性运算，取决于需要计算的函数。AND Gate 使用：<script type="math/tex; mode=display">
+\mu_1 + \mu_2 - q/8</script></li>
+</ol>
+</li>
+</ul>
+<ol>
+<li><p>基于 LUT 进行Bootstrapping，LUT 对应多项式为 <script type="math/tex">V = \sum_{j=0}^{N-1} \frac{q}{8} X^j</script></p>
+<p>V is rescaled sign function : 对所有正数输入得到 q/8 , 对所有负数输入得到 - q/8</p>
+</li>
+</ol>
+<center><img src="https://assets-global.website-files.com/622ef9de9152c97467eac748/6298abcd70be9d7ee2625dec_Screenshot%202022-06-02%20at%2014.23.08.png" alt="img" style="zoom: 50%;" /></center>
+
+<center> Figure : ADD Gate Bootstrapping </center>
+
+<center><img src="https://assets-global.website-files.com/622ef9de9152c97467eac748/6298a348a0c75850f0688c83_NAND_bootstrap.png" alt="img" style="zoom:25%;" /></center>
+
+<center> Figure : Torus View </center>
+
+<p>&nbsp;</p>
+<p><strong>由于 TFHE 很好地支持了非算术运算，因此 TFHE 中 Gate Bootstrapping 中可以用于神经网络的非线性激活函数构造。</strong></p>
 
     
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://tl2cents.github.io/2023/02/23/TFHE-Overview/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2023/02/19/VNCTF-2023-Crypto-Writeups/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">VNCTF 2023 Crypto Writeups</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Notions-Before-TFHE"><span class="toc-number">1.</span> <span class="toc-text">Notions Before TFHE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PlainText-And-CipherText-Space"><span class="toc-number">2.</span> <span class="toc-text">PlainText And CipherText Space</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ciphertext-Types"><span class="toc-number">3.</span> <span class="toc-text">Ciphertext Types</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GLWE"><span class="toc-number">3.1.</span> <span class="toc-text">GLWE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GLev"><span class="toc-number">3.2.</span> <span class="toc-text">GLev</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GGSW"><span class="toc-number">3.3.</span> <span class="toc-text">GGSW</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Torus-Visualization"><span class="toc-number">4.</span> <span class="toc-text">Torus Visualization</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Building-Blocks"><span class="toc-number">5.</span> <span class="toc-text">Building Blocks</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#textsf-Homomorphic-ADD"><span class="toc-number">5.1.</span> <span class="toc-text">\textsf{Homomorphic ADD }</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#textsf-Homomorphic-Mul-Part-1"><span class="toc-number">5.2.</span> <span class="toc-text">\textsf{Homomorphic Mul Part 1}</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#textsf-Key-Switching"><span class="toc-number">5.3.</span> <span class="toc-text">\textsf{Key Switching}</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#textsf-Homomorphic-Mul-Part-2"><span class="toc-number">5.4.</span> <span class="toc-text">\textsf{Homomorphic Mul Part 2}</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#textsf-External-Product"><span class="toc-number">5.4.1.</span> <span class="toc-text">\textsf{External Product}</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#textsf-Internal-Product"><span class="toc-number">5.4.2.</span> <span class="toc-text">\textsf{Internal Product}</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#textsf-CMux"><span class="toc-number">5.5.</span> <span class="toc-text">\textsf{CMux}</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#textsf-Modulus-Switching"><span class="toc-number">5.6.</span> <span class="toc-text">\textsf{Modulus Switching}</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#textsf-Sample-Extraction"><span class="toc-number">5.7.</span> <span class="toc-text">\textsf{Sample Extraction}</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#textsf-Blind-Rotation"><span class="toc-number">5.8.</span> <span class="toc-text">\textsf{Blind Rotation}</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#textsf-Bootstrapping"><span class="toc-number">6.</span> <span class="toc-text">\textsf{Bootstrapping}</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-2-Blind-Rotation-in-Bootstrapping"><span class="toc-number">6.1.</span> <span class="toc-text">Step 2 Blind Rotation in Bootstrapping</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-1-2-textsf-Bootstrapping"><span class="toc-number">6.2.</span> <span class="toc-text">Step 1 + 2 \textsf{Bootstrapping}</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Non-arithmetic-Operation"><span class="toc-number">7.</span> <span class="toc-text">Non-arithmetic Operation</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
           </div>
@@ -373,9 +909,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
@@ -6821,19 +7357,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MISC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Writeup</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">教程</a>
+                <a href="javascript:void(0)" class="js-tag color2">0S2021</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">0S2021</a>
+                <a href="javascript:void(0)" class="js-tag color3">教程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -7029,56 +7561,6 @@
   <!-- 
   <script async type="text/javascript" size="90" alpha="0.2" zIndex="0" src="/plugins/ribbon.js/ribbon.min.js"></script> -->
   
-  
-    <script type="text/javascript" src="/plugins/live2d-widget.js/L2Dwidget.min.js"></script>
-<script type="text/javascript">
-  /**
-   * 完整配置请参考：https://l2dwidget.js.org/docs/class/src/index.js~L2Dwidget.html#instance-method-init
-   */
-  var pluginModelPath = "assets/", // 模型的文件路径，无需更改
-    pluginRootPath = "/live2d_models/"; // 插件的路径，无需更改
-  //特定的模型json文件名称
-  var modelPathJson = {
-    "epsilon2_1": "Epsilon2.1",
-    "gf": "Gantzert_Felixander",
-    "haru/01": "haru01",
-    "haru/02": "haru02",
-    "nietzsche": "nietzche"
-  }
-
-  
-    var modelName = "tororo";
-  
-
-  var modelJsonPath = "";
-  if (modelPathJson[modelName]) {
-    modelJsonPath = pluginRootPath + modelName + "/" + pluginModelPath + modelPathJson[modelName] +
-      ".model.json";
-  } else {
-    modelJsonPath = pluginRootPath + modelName + "/" + pluginModelPath + modelName + ".model.json";
-  }
-  L2Dwidget.init({
-    model: {
-      jsonPath: modelJsonPath
-    },
-    display: {
-       position: "right", 
-       width: 145, 
-       height: 315, 
-       hOffset: 50, 
-      
-    },
-    mobile: {
-       show: false, 
-       scale: 0.6 
-    },
-    react: {
-       opacity: 0.8 
-    }
-  })
-
-</script>
-
   
   
 </body>
