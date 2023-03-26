@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://tl2cents.github.io/2023/03/26/Cryptography-Topic-Multivariate-Quadratic-Cryptography/image-20230324143754685.png">
 <meta property="og:image" content="https://tl2cents.github.io/2023/03/26/Cryptography-Topic-Multivariate-Quadratic-Cryptography/image-20230324154650780.png">
 <meta property="article:published_time" content="2023-03-26T02:44:48.000Z">
-<meta property="article:modified_time" content="2023-03-26T03:11:51.691Z">
+<meta property="article:modified_time" content="2023-03-26T03:17:13.311Z">
 <meta property="article:author" content="tl2cents">
 <meta property="article:tag" content="MPKC">
 <meta property="article:tag" content="PQC">
@@ -250,7 +250,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">645字</span>
+      <span class="post-count">646字</span>
     </span>
   </span>
 
@@ -275,6 +275,7 @@
     
     <p>多变量密码学（Multivariate cryptography）是在有限域 <script type="math/tex">F</script> 上多元多项式上实现的密码学，多用于非对称加密，亦称多变量公钥密码学（Multivariate Public Key Cryptography abbr. MPKC）。通常使用二次多项式（Multivariate Quadratic abbr. MQ ）来保证其非线性，多元多次多项式的求解问题证明是 NP-Complete 的，因此 PQC 是后量子密码体系内重要的研究方向。该篇博客是 <a target="_blank" rel="noopener" href="https://link.springer.com/book/10.1007/978-1-0716-0987-3">Multivariate Public Key Cryptography</a> 文献中有关 Matsumoto-Imai Cryptosystem 以及其变体的内容研究总结。</p>
 <span id="more"></span>
+<p>&nbsp;</p>
 <h2 id="Matsumoto-Imai-Cryptosystem"><a href="#Matsumoto-Imai-Cryptosystem" class="headerlink" title="Matsumoto-Imai Cryptosystem"></a>Matsumoto-Imai Cryptosystem</h2><p>MI 是第一个影响比较大的 MQPC 体制，假设 k 是一个有限域， MI 不是直接在 <script type="math/tex">k^n</script> 向量空间上寻找可逆映射，而是在 k 的 n 次扩域上寻找可逆的映射。由于其高效率和在实际应用中的潜在应用而引起了广泛的关注，事实上，MI密码系统被日本政府作为备选的安全标准。然而，在最终的轮之前，Jacques Patarin 使用线性化方程的代数攻击破解了 MI [Patarin, 1995]。该方法利用了MI中某些特定的隐藏代数结构。</p>
 <p>通常情况下，人们会认为这就是MI的结局，但是接下来的故事走向了相反的方向。其中一个原因是 MI 密码系统代表了概念层面上的根本性突破，它为该领域带来了全新的数学思想，并因此得到了广泛的探索和推广。另一个原因是MI密码系统的许多新变体似乎具有很大的潜力，尤其是  <code>Sflash</code>  签名方案被选为 New European Schemes for Signatures, Integrity, and Encryption project [NESSIE, 1999] 的标准方案。</p>
 <p>&nbsp;</p>
@@ -7101,22 +7102,6 @@ X^{\prime}=\left(x_1^{\prime}, \ldots, x_n^{\prime}\right)=\bar{F}^{-1}\left(Y^{
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MPKC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PQC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">FHE</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BFV</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">USTC</a>
               </li>
              
@@ -7125,7 +7110,23 @@ X^{\prime}=\left(x_1^{\prime}, \ldots, x_n^{\prime}\right)=\bar{F}^{-1}\left(Y^{
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MPKC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PQC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Writeup</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">FHE</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BFV</a>
               </li>
              
               <li class="article-tag-list-item">

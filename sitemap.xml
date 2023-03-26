@@ -312,34 +312,6 @@
   </url>
   
   <url>
-    <loc>https://tl2cents.github.io/tags/MPKC/</loc>
-    <lastmod>2023-03-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://tl2cents.github.io/tags/PQC/</loc>
-    <lastmod>2023-03-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://tl2cents.github.io/tags/FHE/</loc>
-    <lastmod>2023-03-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://tl2cents.github.io/tags/BFV/</loc>
-    <lastmod>2023-03-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://tl2cents.github.io/tags/USTC/</loc>
     <lastmod>2023-03-26</lastmod>
     <changefreq>daily</changefreq>
@@ -354,7 +326,35 @@
   </url>
   
   <url>
+    <loc>https://tl2cents.github.io/tags/MPKC/</loc>
+    <lastmod>2023-03-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://tl2cents.github.io/tags/PQC/</loc>
+    <lastmod>2023-03-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://tl2cents.github.io/tags/Writeup/</loc>
+    <lastmod>2023-03-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://tl2cents.github.io/tags/FHE/</loc>
+    <lastmod>2023-03-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://tl2cents.github.io/tags/BFV/</loc>
     <lastmod>2023-03-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -405,6 +405,13 @@
   </url>
   
   <url>
+    <loc>https://tl2cents.github.io/categories/Machine-Learning/</loc>
+    <lastmod>2023-03-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://tl2cents.github.io/categories/Cryptography/</loc>
     <lastmod>2023-03-26</lastmod>
     <changefreq>daily</changefreq>
@@ -413,20 +420,6 @@
   
   <url>
     <loc>https://tl2cents.github.io/categories/FHE/</loc>
-    <lastmod>2023-03-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://tl2cents.github.io/categories/Machine-Learning/</loc>
-    <lastmod>2023-03-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://tl2cents.github.io/categories/FHE/Cryptography/</loc>
     <lastmod>2023-03-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -447,7 +440,7 @@
   </url>
   
   <url>
-    <loc>https://tl2cents.github.io/categories/BlockChain/</loc>
+    <loc>https://tl2cents.github.io/categories/FHE/Cryptography/</loc>
     <lastmod>2023-03-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -455,6 +448,13 @@
   
   <url>
     <loc>https://tl2cents.github.io/categories/HEXO/</loc>
+    <lastmod>2023-03-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://tl2cents.github.io/categories/BlockChain/</loc>
     <lastmod>2023-03-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
