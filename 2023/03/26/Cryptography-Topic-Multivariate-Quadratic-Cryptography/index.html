@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://tl2cents.github.io/2023/03/26/Cryptography-Topic-Multivariate-Quadratic-Cryptography/image-20230324143754685.png">
 <meta property="og:image" content="https://tl2cents.github.io/2023/03/26/Cryptography-Topic-Multivariate-Quadratic-Cryptography/image-20230324154650780.png">
 <meta property="article:published_time" content="2023-03-26T02:44:48.000Z">
-<meta property="article:modified_time" content="2023-03-26T03:17:13.311Z">
+<meta property="article:modified_time" content="2023-03-28T05:37:48.696Z">
 <meta property="article:author" content="tl2cents">
 <meta property="article:tag" content="MPKC">
 <meta property="article:tag" content="PQC">
@@ -350,11 +350,11 @@ y_i^{\prime}=\bar{f}_i\left(x_1^{\prime}, \ldots, x_n^{\prime}\right)</script><p
 <li>Q： 为什么说私钥是 <script type="math/tex">L_1,L_2,\theta</script>，不能直接保存 <script type="math/tex">\bar{F}^{-1}</script> 函数为私钥吗？</li>
 <li>Q ：为什么要选取形如 <script type="math/tex">q^\theta+1</script> 这样的指数？</li>
 </ul>
-<p>在尝试使用 <code>sagemath</code>  实现 MI 公钥体制后，笔者认为上述问题的答案都是因为：为了计算效率，由于 <script type="math/tex">\bar{F}^{-1}</script> 函数次数太高，如果我们使用变量 <script type="math/tex">\left(y_1^{\prime}, \ldots, y_n^{\prime}\right)</script> 直接计算表达式，相当于在 n + 1 个变量的多项式商环上求乘法幂，计算量（随着n迅速增大）是非常之大的，在 <code>sagemath</code> 中选择 <script type="math/tex">k = GF(2^8), n = 6</script>  计算就已经非常慢了（也可能与 <code>sagemath</code> 底层实现有关），<strong>但是如果带入具体值进行计算，相当于在 1 个变量的多项式商环上求乘法幂</strong>，其速度显著提升。</p>
+<p>在尝试使用 <code>sagemath</code>  实现 MI 公钥体制后，笔者认为上述问题的答案都是因为：为了计算效率，由于 <script type="math/tex">\bar{F}^{-1}</script> 函数次数太高，如果我们使用变量 <script type="math/tex">\left(y_1^{\prime}, \ldots, y_n^{\prime}\right)</script> 直接计算表达式，相当于在 n + 1 个变量的多项式商环上求乘法幂，计算量（随着n迅速增大）是非常之大的，在 <code>sagemath</code> 中选择 <script type="math/tex">k = GF(2^8), n = 6</script>  计算就已经非常慢了，<strong>但是如果带入具体值进行计算，相当于在 1 个变量的多项式商环上求乘法幂</strong>，其速度显著提升。</p>
 <p>选择 <script type="math/tex">q^\theta+1 = 2^{a \cdot \theta } + 1</script> 这样的指数，第一感觉是便于快速幂计算，这样即使公钥的次数很大，乘法计算次数也比较少，但是考虑代数结构的话，计算方法是特别简单的，因为形如 <script type="math/tex">X^{q^\theta}</script> 这样的映射是著名的 <strong><code>Frobenius map</code></strong>，有着很好的性质。下一节就详细讨论了 MI 的公钥次数。</p>
 <p>&nbsp;</p>
 <h3 id="MI-的公钥次数"><a href="#MI-的公钥次数" class="headerlink" title="MI 的公钥次数"></a>MI 的公钥次数</h3><p> <strong><code>Frobenius map</code></strong>：</p>
-<p>关于 <code>**Frobenius map**</code> 更多的性质可以参考下面两个链接：</p>
+<p>关于 <code>Frobenius map</code> 更多的性质可以参考下面两个链接：</p>
 <ul>
 <li>中文参考 ：<a target="_blank" rel="noopener" href="https://www.bananaspace.org/wiki/Frobenius_%E5%90%8C%E6%80%81">Frobenius同态</a>.</li>
 <li>英文参考：<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Frobenius_endomorphism">Frobenius endomorphism</a></li>
@@ -395,9 +395,9 @@ y_i^{\prime}=\bar{f}_i\left(x_1^{\prime}, \ldots, x_n^{\prime}\right)</script><p
 <script type="math/tex; mode=display">
 \begin{aligned}
 \tilde F(X) & = X^{q^\theta + 1} \\
-& = (\sum_0^{n-1} a_i x^i) (\sum_0^{n-1} a_i x^i)^{q^\theta} \\
-& = (\sum_0^{n-1} a_i x^i) (\sum_0^{n-1} a_i^{q^\theta} x^{iq^\theta}) \\
-& = (\sum_0^{n-1} a_i x^i) (\sum_0^{n-1} a_i x^{iq^\theta})
+& = (\sum_0^{n-1} l_i(x_1,\cdots,x_n) x^i) (\sum_0^{n-1} l_i(x_1,\cdots,x_n)  x^i)^{q^\theta} \\
+& = (\sum_0^{n-1} l_i(x_1,\cdots,x_n) x^i) (\sum_0^{n-1} l_i(x_1,\cdots,x_n)^{q^\theta} x^{iq^\theta}) \\
+& = (\sum_0^{n-1} l_i(x_1,\cdots,x_n) x^i) (\sum_0^{n-1} l_i(x_1,\cdots,x_n) x^{iq^\theta})
 \end{aligned}</script><p>我们实际上只需要进行<strong>一次多项式乘法</strong>！<strong>另外 给定 <script type="math/tex">H(X) \in K[X]</script> ， 其 q-汉明权值为 d，则 <script type="math/tex">\phi \circ H \circ \phi^{-1}</script>  的最高项次数也是 <script type="math/tex">d</script> 这个结论也可以从上述计算过程中推导出来</strong>！ 一个通用性的证明也是简单的，这里不再给出。</p>
 <p>上述优化并没有在 <code>sagemath</code> 上实现，因此直接利用库函数计算多项式的次幂速度会很慢。</p>
 <p>&nbsp;</p>
@@ -7102,23 +7102,11 @@ X^{\prime}=\left(x_1^{\prime}, \ldots, x_n^{\prime}\right)=\bar{F}^{-1}\left(Y^{
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">USTC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">MPKC</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">PQC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Writeup</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -7130,11 +7118,23 @@ X^{\prime}=\left(x_1^{\prime}, \ldots, x_n^{\prime}\right)=\bar{F}^{-1}\left(Y^{
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">0S2021</a>
+                <a href="javascript:void(0)" class="js-tag color5">USTC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Writeup</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">教程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">0S2021</a>
               </li>
              
               <li class="article-tag-list-item">
