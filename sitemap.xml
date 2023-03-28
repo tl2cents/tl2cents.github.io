@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://tl2cents.github.io/2022/12/20/FHE-BFV-Intro/</loc>
+    
+    <lastmod>2023-03-28</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://tl2cents.github.io/2023/03/26/Cryptography-Topic-Multivariate-Quadratic-Cryptography/</loc>
     
     <lastmod>2023-03-28</lastmod>
@@ -10,13 +17,6 @@
   
   <url>
     <loc>https://tl2cents.github.io/2023/02/23/TFHE-Overview/</loc>
-    
-    <lastmod>2023-03-26</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tl2cents.github.io/2022/12/20/FHE-BFV-Intro/</loc>
     
     <lastmod>2023-03-26</lastmod>
     
@@ -326,20 +326,6 @@
   </url>
   
   <url>
-    <loc>https://tl2cents.github.io/tags/FHE/</loc>
-    <lastmod>2023-03-28</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://tl2cents.github.io/tags/BFV/</loc>
-    <lastmod>2023-03-28</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://tl2cents.github.io/tags/USTC/</loc>
     <lastmod>2023-03-28</lastmod>
     <changefreq>daily</changefreq>
@@ -348,6 +334,20 @@
   
   <url>
     <loc>https://tl2cents.github.io/tags/Machine-Learning/</loc>
+    <lastmod>2023-03-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://tl2cents.github.io/tags/FHE/</loc>
+    <lastmod>2023-03-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://tl2cents.github.io/tags/BFV/</loc>
     <lastmod>2023-03-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -412,14 +412,14 @@
   </url>
   
   <url>
-    <loc>https://tl2cents.github.io/categories/FHE/</loc>
+    <loc>https://tl2cents.github.io/categories/Machine-Learning/</loc>
     <lastmod>2023-03-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://tl2cents.github.io/categories/Machine-Learning/</loc>
+    <loc>https://tl2cents.github.io/categories/FHE/</loc>
     <lastmod>2023-03-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
