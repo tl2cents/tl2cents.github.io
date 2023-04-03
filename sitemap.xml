@@ -326,20 +326,6 @@
   </url>
   
   <url>
-    <loc>https://tl2cents.github.io/tags/FHE/</loc>
-    <lastmod>2023-04-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://tl2cents.github.io/tags/BFV/</loc>
-    <lastmod>2023-04-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://tl2cents.github.io/tags/USTC/</loc>
     <lastmod>2023-04-03</lastmod>
     <changefreq>daily</changefreq>
@@ -348,6 +334,20 @@
   
   <url>
     <loc>https://tl2cents.github.io/tags/Machine-Learning/</loc>
+    <lastmod>2023-04-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://tl2cents.github.io/tags/FHE/</loc>
+    <lastmod>2023-04-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://tl2cents.github.io/tags/BFV/</loc>
     <lastmod>2023-04-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -368,14 +368,14 @@
   </url>
   
   <url>
-    <loc>https://tl2cents.github.io/tags/0S2021/</loc>
+    <loc>https://tl2cents.github.io/tags/TFHE/</loc>
     <lastmod>2023-04-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://tl2cents.github.io/tags/TFHE/</loc>
+    <loc>https://tl2cents.github.io/tags/0S2021/</loc>
     <lastmod>2023-04-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -412,14 +412,14 @@
   </url>
   
   <url>
-    <loc>https://tl2cents.github.io/categories/FHE/</loc>
+    <loc>https://tl2cents.github.io/categories/Machine-Learning/</loc>
     <lastmod>2023-04-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://tl2cents.github.io/categories/Machine-Learning/</loc>
+    <loc>https://tl2cents.github.io/categories/FHE/</loc>
     <lastmod>2023-04-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -447,14 +447,14 @@
   </url>
   
   <url>
-    <loc>https://tl2cents.github.io/categories/HEXO/</loc>
+    <loc>https://tl2cents.github.io/categories/BlockChain/</loc>
     <lastmod>2023-04-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://tl2cents.github.io/categories/BlockChain/</loc>
+    <loc>https://tl2cents.github.io/categories/HEXO/</loc>
     <lastmod>2023-04-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
