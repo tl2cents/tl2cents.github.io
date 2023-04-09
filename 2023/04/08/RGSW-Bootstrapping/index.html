@@ -13,12 +13,12 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="Reference Paper ：Bootstrapping in FHEW-like Cryptosystems .  This blog is a summary and notions for the paper. The paper is the main reference paper for the BinFHE implementation in OpenFHE. The main">
+  <meta name="description" content="Reference Paper ：Bootstrapping in FHEW-like Cryptosystems .  This blog is a summary of the paper which is the main reference for the BinFHE implementation in OpenFHE. The main contribution is to reali">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Paper summary - Bootstrapping in FHEW-like Cryptosystems">
 <meta property="og:url" content="https://tl2cents.github.io/2023/04/08/RGSW-Bootstrapping/index.html">
 <meta property="og:site_name" content="tl2cents blog">
-<meta property="og:description" content="Reference Paper ：Bootstrapping in FHEW-like Cryptosystems .  This blog is a summary and notions for the paper. The paper is the main reference paper for the BinFHE implementation in OpenFHE. The main">
+<meta property="og:description" content="Reference Paper ：Bootstrapping in FHEW-like Cryptosystems .  This blog is a summary of the paper which is the main reference for the BinFHE implementation in OpenFHE. The main contribution is to reali">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://tl2cents.github.io/2023/04/08/RGSW-Bootstrapping/image-20230403140458378.png">
 <meta property="og:image" content="https://tl2cents.github.io/2023/04/08/RGSW-Bootstrapping/image-20230404140634480.png">
@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://tl2cents.github.io/2023/04/08/RGSW-Bootstrapping/image-20230406110312057.png">
 <meta property="og:image" content="https://tl2cents.github.io/2023/04/08/RGSW-Bootstrapping/image-20230406110457619.png">
 <meta property="article:published_time" content="2023-04-08T11:10:37.000Z">
-<meta property="article:modified_time" content="2023-04-08T11:47:08.467Z">
+<meta property="article:modified_time" content="2023-04-09T01:55:18.263Z">
 <meta property="article:author" content="tl2cents">
 <meta property="article:tag" content="FHE">
 <meta property="article:tag" content="TFHE">
@@ -300,7 +300,7 @@
     
     <!-- newly added -->
     
-    <p>Reference Paper ：<a target="_blank" rel="noopener" href="https://eprint.iacr.org/2020/086.pdf">Bootstrapping in FHEW-like Cryptosystems</a> .  This blog is a summary and notions for the paper. The paper is the main reference paper for the <code>BinFHE</code> implementation in <a target="_blank" rel="noopener" href="https://github.com/openfheorg/openfhe-development">OpenFHE</a>. The main contribution is to realize the homomorphic standardized variant of <strong>TFHE</strong>, that is, to expand the private key sampling range of TFHE from binary <script type="math/tex">\{0,1\}</script> to any sampling range, such as ternary <script type="math/tex">\{0,1, -1\}</script>, and compared FHEW and TFHE when the private key sampling range is the same. Evaluate the bootstrapping speed, bootstrapping key size and other parameters of the two.</p>
+    <p>Reference Paper ：<a target="_blank" rel="noopener" href="https://eprint.iacr.org/2020/086.pdf">Bootstrapping in FHEW-like Cryptosystems</a> .  This blog is a summary of the paper which is the main reference for the <code>BinFHE</code> implementation in <a target="_blank" rel="noopener" href="https://github.com/openfheorg/openfhe-development">OpenFHE</a>. The main contribution is to realize the homomorphic standardized variant of <strong>TFHE</strong>, that is, to expand the private key sampling range of TFHE from binary <script type="math/tex">\{0,1\}</script> to any sampling range, such as ternary <script type="math/tex">\{0,1, -1\}</script>, and compared FHEW and TFHE when the private key sampling range is the same. Evaluate the bootstrapping speed, bootstrapping key size and other parameters of the two.</p>
 <span id="more"></span>
 <blockquote>
 <p><em>Bootstrapping in FHEW-like Cryptosystems</em> 是 OpenFHE 中 BinFHE 实现的主要参考论文。主要贡献在于实现了 <strong>TFHE 的同态标准化变体</strong>，即将 TFHE 的私钥采样范围从 binary <script type="math/tex">\{0,1\}</script> 扩展到任意采样范围，比如 ternary <script type="math/tex">\{0,1,-1\}</script>，以及对比了 FHEW 、 TFHE 在私钥采样范围相同时，评估二者的 bootstrapping 速度、bootstrapping key size 等参数。</p>
