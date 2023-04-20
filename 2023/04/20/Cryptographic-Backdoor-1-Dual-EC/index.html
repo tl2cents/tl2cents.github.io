@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://tl2cents.github.io/2023/04/20/Cryptographic-Backdoor-1-Dual-EC/image-20230319231945945.png">
 <meta property="og:image" content="https://tl2cents.github.io/2023/04/20/Cryptographic-Backdoor-1-Dual-EC/image-20230320144625525.png">
 <meta property="article:published_time" content="2023-04-20T14:21:08.000Z">
-<meta property="article:modified_time" content="2023-04-20T15:04:07.146Z">
+<meta property="article:modified_time" content="2023-04-20T15:10:28.829Z">
 <meta property="article:author" content="tl2cents">
 <meta property="article:tag" content="Backdoor">
 <meta property="article:tag" content="Dual EC">
@@ -299,9 +299,10 @@
     <p>密码学后门研究系列博客第一篇：Dual EC 伪随机数生成算法，这是密码学界最臭名昭著的一个后门算法，由斯诺登事件证实 NSA 在设计时就故意留存了后门。此后，密码学后门相关的论文都会反复鞭尸这一后门算法，足可见其在学术界的“重大意义”。</p>
 <span id="more"></span>
 <p>&nbsp;</p>
-<h2 id="Dual-EC-A-Standardized-Back-Door"><a href="#Dual-EC-A-Standardized-Back-Door" class="headerlink" title="Dual EC: A Standardized Back Door"></a>Dual EC: A Standardized Back Door</h2><p>Dual EC 是美国国家安全局 (National Security Agency abbr. NSA）大力推行的一个随机数生成器算法，在进入标准化不久后，很多密码学家都怀疑这个算法可能存在后门，最终这个密码学后门由斯诺登事件公布出的 NSA 文件证实，在此之前，NSA 甚至专门资助 RSA 公司1000万美元推广自己的算法，RSA 的 BSAFE 库的默认伪随机数生成器算法就是 Dual EC 。在斯诺登事件曝光之后，NSA在密码学界就臭名昭著了，其后续牵头的若干貌似性能优异的算法都没能进入 ISO 国际标准化内，与此事件不无关系。有关 Dual EC 标准化推行背后的详细故事读者可以阅读这篇论文<sup><a href="#fn_Dual EC 2015" id="reffn_Dual EC 2015">Dual EC 2015</a></sup>。</p>
+<h2 id="Dual-EC"><a href="#Dual-EC" class="headerlink" title="Dual EC"></a>Dual EC</h2><p>Dual EC 是美国国家安全局 (National Security Agency abbr. NSA）大力推行的一个随机数生成器算法，在进入标准化不久后，很多密码学家都怀疑这个算法可能存在后门，最终这个密码学后门由斯诺登事件公布出的 NSA 文件证实，在此之前，NSA 甚至专门资助 RSA 公司1000万美元推广自己的算法，RSA 的 BSAFE 库的默认伪随机数生成器算法就是 Dual EC 。在斯诺登事件曝光之后，NSA在密码学界就臭名昭著了，其后续牵头的若干貌似性能优异的算法都没能进入 ISO 国际标准化内，与此事件不无关系。有关 Dual EC 标准化推行背后的详细故事读者可以阅读这篇论文<sup><a href="#fn_Dual EC 2015" id="reffn_Dual EC 2015">Dual EC 2015</a></sup>。</p>
 <p>&nbsp;</p>
-<h2 id="Dual-EC-算法"><a href="#Dual-EC-算法" class="headerlink" title="Dual EC 算法"></a>Dual EC 算法</h2><p><img src="image-20230318222043342.png" alt="image-20230318222043342"></p>
+<h2 id="Dual-EC-算法"><a href="#Dual-EC-算法" class="headerlink" title="Dual EC 算法"></a>Dual EC 算法</h2><p>下图是一般化的伪随机数生成器的结构：</p>
+<p><img src="image-20230318222043342.png" alt="image-20230318222043342"></p>
 <ol>
 <li>初始化一个熵 <script type="math/tex">s_0</script>，可以是用户指定的 seed 或者来自其他的稳定随机熵（如<code>os.urandom</code>），更新内部状态为 <script type="math/tex">s_1 = f(s_0)</script>。</li>
 <li>每次需要产生随机数时，输出随机数 <script type="math/tex">r_i = g(s_i)</script>，计算 $s_{i+1} = f(s_i)$，更新内部状态。如果需要的比特数比较大，迭代更新至输出足够多的比特数。</li>
@@ -325,7 +326,7 @@
 <p>而就是设计如此糟糕的伪随机数生成器却被 NSA 强行塞进了 NIST、ISO、ANSI等众多国际标准内，并且进行了大规模使用，很难不多想这之后有什么py交易。</p>
 <p>所有这些设计都是为了后门服务：Nobody-But-Us ( NOBUS ) Backdoors，这和学术界的 SETUP (Secretly Embedded Trapdoor with Universal Protection) 后门是类似的，它是一种只有设计者知道的后门，而其他人即使可能发觉后门存在，也没法获得后门或者证明设计者拥有后门。如果不是斯诺登事件的文件证实了 Dual EC 设计的时候就留存了后门，就没有实质性证据可以指控 NSA。</p>
 <p>&nbsp;</p>
-<h2 id="Basic-Dual-EC-Backdoor"><a href="#Basic-Dual-EC-Backdoor" class="headerlink" title="Basic Dual EC Backdoor"></a>Basic Dual EC Backdoor</h2><p>回看 Dual EC 算法，  <script type="math/tex">\textsf{ECDLP}</script> 在非量子的情境下其安全性毋庸置疑，那么问题在于 <script type="math/tex">\textsf{P,Q}</script> 是如何选择的？真如设计者所言是随机选择的吗？假设设计者知道有限域上椭圆曲线两个点的关系 <script type="math/tex">P = d \cdot Q</script> ，即有：</p>
+<h2 id="Dual-EC-后门"><a href="#Dual-EC-后门" class="headerlink" title="Dual EC 后门"></a>Dual EC 后门</h2><p>回看 Dual EC 算法，  <script type="math/tex">\textsf{ECDLP}</script> 在非量子的情境下其安全性毋庸置疑，那么问题在于 <script type="math/tex">\textsf{P,Q}</script> 是如何选择的？真如设计者所言是随机选择的吗？假设设计者知道有限域上椭圆曲线两个点的关系 <script type="math/tex">P = d \cdot Q</script> ，即有：</p>
 <script type="math/tex; mode=display">
 r_i = x(s_i \cdot Q)  \\
 s_{i+1} = x( s_i \cdot P) = x(s_i * d \cdot Q)</script><p>如果我们根据 <script type="math/tex">r_i</script> 恢复出对应曲线上可能的点 <script type="math/tex">R_i</script>，那么：</p>
@@ -534,7 +535,7 @@ s_3 = x(s_2 \oplus \textsf{adin}_3 \cdot P)</script><p>在第二轮时， <scrip
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dual-EC-A-Standardized-Back-Door"><span class="toc-number">1.</span> <span class="toc-text">Dual EC: A Standardized Back Door</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dual-EC-%E7%AE%97%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">Dual EC 算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Basic-Dual-EC-Backdoor"><span class="toc-number">3.</span> <span class="toc-text">Basic Dual EC Backdoor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dual-EC-2006"><span class="toc-number">4.</span> <span class="toc-text">Dual EC 2006</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dual-EC-2007"><span class="toc-number">5.</span> <span class="toc-text">Dual EC 2007</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Exploit-in-Real-Life-Protocols"><span class="toc-number">6.</span> <span class="toc-text">Exploit in Real Life Protocols</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E9%97%A8%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-number">7.</span> <span class="toc-text">后门解决方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-number">8.</span> <span class="toc-text">参考链接</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dual-EC"><span class="toc-number">1.</span> <span class="toc-text">Dual EC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dual-EC-%E7%AE%97%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">Dual EC 算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dual-EC-%E5%90%8E%E9%97%A8"><span class="toc-number">3.</span> <span class="toc-text">Dual EC 后门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dual-EC-2006"><span class="toc-number">4.</span> <span class="toc-text">Dual EC 2006</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dual-EC-2007"><span class="toc-number">5.</span> <span class="toc-text">Dual EC 2007</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Exploit-in-Real-Life-Protocols"><span class="toc-number">6.</span> <span class="toc-text">Exploit in Real Life Protocols</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E9%97%A8%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-number">7.</span> <span class="toc-text">后门解决方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-number">8.</span> <span class="toc-text">参考链接</span></a></li></ol>
                     </div>
                 </span>
             </div>
