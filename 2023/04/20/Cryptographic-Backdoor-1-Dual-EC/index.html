@@ -13,12 +13,12 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="密码学后门研究系列博客第一篇：Dual EC 伪随机数生成算法，这是密码学界最臭名昭著的一个后门算法，由斯诺登事件证实 NSA 在设计时就故意留存了后门。此后，密码学后门相关的论文都会反复鞭尸这一后门算法，足可见其在学术界的“重大意义”。">
+  <meta name="description" content="密码学后门系列博客第一篇：Dual EC 伪随机数生成算法，这是密码学界最臭名昭著的一个后门算法，由斯诺登事件证实 NSA 在设计时就故意留存了后门。此后，密码学后门相关的论文都会反复鞭尸这一后门算法，足可见其在学术界的“重大意义”。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="密码学后门系列Ⅰ: Dual EC">
 <meta property="og:url" content="https://tl2cents.github.io/2023/04/20/Cryptographic-Backdoor-1-Dual-EC/index.html">
 <meta property="og:site_name" content="tl2cents blog">
-<meta property="og:description" content="密码学后门研究系列博客第一篇：Dual EC 伪随机数生成算法，这是密码学界最臭名昭著的一个后门算法，由斯诺登事件证实 NSA 在设计时就故意留存了后门。此后，密码学后门相关的论文都会反复鞭尸这一后门算法，足可见其在学术界的“重大意义”。">
+<meta property="og:description" content="密码学后门系列博客第一篇：Dual EC 伪随机数生成算法，这是密码学界最臭名昭著的一个后门算法，由斯诺登事件证实 NSA 在设计时就故意留存了后门。此后，密码学后门相关的论文都会反复鞭尸这一后门算法，足可见其在学术界的“重大意义”。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://tl2cents.github.io/2023/04/20/Cryptographic-Backdoor-1-Dual-EC/image-20230318222043342.png">
 <meta property="og:image" content="https://tl2cents.github.io/2023/04/20/Cryptographic-Backdoor-1-Dual-EC/image-20230318222525614.png">
@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://tl2cents.github.io/2023/04/20/Cryptographic-Backdoor-1-Dual-EC/image-20230319231945945.png">
 <meta property="og:image" content="https://tl2cents.github.io/2023/04/20/Cryptographic-Backdoor-1-Dual-EC/image-20230320144625525.png">
 <meta property="article:published_time" content="2023-04-20T14:21:08.000Z">
-<meta property="article:modified_time" content="2023-04-20T15:10:28.829Z">
+<meta property="article:modified_time" content="2023-04-28T09:19:55.324Z">
 <meta property="article:author" content="tl2cents">
 <meta property="article:tag" content="Backdoor">
 <meta property="article:tag" content="Dual EC">
@@ -273,7 +273,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">4k字</span>
+      <span class="post-count">4.1k字</span>
     </span>
   </span>
 
@@ -296,7 +296,7 @@
     
     <!-- newly added -->
     
-    <p>密码学后门研究系列博客第一篇：Dual EC 伪随机数生成算法，这是密码学界最臭名昭著的一个后门算法，由斯诺登事件证实 NSA 在设计时就故意留存了后门。此后，密码学后门相关的论文都会反复鞭尸这一后门算法，足可见其在学术界的“重大意义”。</p>
+    <p>密码学后门系列博客第一篇：Dual EC 伪随机数生成算法，这是密码学界最臭名昭著的一个后门算法，由斯诺登事件证实 NSA 在设计时就故意留存了后门。此后，密码学后门相关的论文都会反复鞭尸这一后门算法，足可见其在学术界的“重大意义”。</p>
 <span id="more"></span>
 <p>&nbsp;</p>
 <h2 id="Dual-EC"><a href="#Dual-EC" class="headerlink" title="Dual EC"></a>Dual EC</h2><p>Dual EC 是美国国家安全局 (National Security Agency abbr. NSA）大力推行的一个随机数生成器算法，在进入标准化不久后，很多密码学家都怀疑这个算法可能存在后门，最终这个密码学后门由斯诺登事件公布出的 NSA 文件证实，在此之前，NSA 甚至专门资助 RSA 公司1000万美元推广自己的算法，RSA 的 BSAFE 库的默认伪随机数生成器算法就是 Dual EC 。在斯诺登事件曝光之后，NSA在密码学界就臭名昭著了，其后续牵头的若干貌似性能优异的算法都没能进入 ISO 国际标准化内，与此事件不无关系。有关 Dual EC 标准化推行背后的详细故事读者可以阅读这篇论文<sup><a href="#fn_Dual EC 2015" id="reffn_Dual EC 2015">Dual EC 2015</a></sup>。</p>
@@ -352,10 +352,10 @@ R_3 = x(s_3 \cdot Q) \\
 R_2 = x(s_2 \cdot Q) \\ 
 s_3 = x(s_2 \oplus \textsf{adin}_3 \cdot P)</script><p>在第二轮时， <script type="math/tex">\textsf{adin}_3 = 0</script> , 于是 <script type="math/tex">s_3 = x( (s_2 \oplus \textsf{adin}_3)*d \cdot Q ) = x(d \cdot R_2)</script>，即能够完全恢复伪随机数生成器的内部状态。</p>
 <p>&nbsp;</p>
-<h2 id="Dual-EC-2007"><a href="#Dual-EC-2007" class="headerlink" title="Dual EC 2007"></a>Dual EC 2007</h2><p>2007 年的时候又对 Dual EC 进行了简单修改，但是换汤不换药，后门高高吊（没错，设计者就是故意的）。2007 年修改后的版本是这样的：</p>
+<h2 id="Dual-EC-2007"><a href="#Dual-EC-2007" class="headerlink" title="Dual EC 2007"></a>Dual EC 2007</h2><p>2007 年的时候又对 Dual EC 进行了简单修改，但是换汤不换药，甚至比 2006 年版本后门更加容易利用（没错，设计者就是故意的）。2007 年修改后的版本是这样的：</p>
 <p><img src="image-20230319231945945.png" alt="image-20230319231945945"></p>
-<p>与2006年版本的区别在于：每一次获取随机数时，初始状态都不会输出，而是：初始状态会和用户的额外输入进行异或，更新内部状态后，再进行输出，（<strong>注意，仍然不是每次更新内部状态的时候更新</strong>）。</p>
-<p>这样，攻击者仍然可以通过一次大于等于60字节的输出，获取到内部状态，但是之后每次获取预测值都要猜用户的额外输入时什么。后门利用和 Dual EC 基本是一样的，<strong>只不过这样的设计使得 Dual EC 效率和速度更慢了，安全性却没有什么实质性提升。</strong>足可见设计者居心叵测。</p>
+<p>与2006年版本的区别在于：每一次获取随机数时，更新一次内部状态之后，第一个状态（如 <script type="math/tex">s_0 , s_2, \cdots</script>）都不会输出，而是：第一个状态会和用户的<strong>额外输入</strong>进行异或得到 <script type="math/tex">t_0, t_2, \cdots</script>，由 <script type="math/tex">t_0, t_2, \cdots</script> 更新内部状态得到 <script type="math/tex">s_1,s_3, \cdots</script> 后，再进行输出，（<strong>注意，额外输入每次仍然只作用一轮</strong>）。</p>
+<p>这样，攻击者甚至可以通过一次 30 字节的输出，就能获取到内部状态，但是之后每次获取预测值都要猜测用户的额外输入，但是这个实际中是比较好猜测的，比如时间戳、计数器，因此 2007 年的版本实际是对 2006 年版本后门的一个修复，让后门更加容易利用了，2007 年版本的后门利用和基础的 Dual EC 是一样的，<strong>只不过这样的设计使得 Dual EC 效率和速度更慢了，安全性却没有什么实质性提升。</strong>足可见设计者居心叵测。</p>
 <p>额外提一点是 Dual EC 的前向安全性，这里不指抗量子攻击的前向安全性， Dual EC 在量子情境下安全假设是不存在的， 因为 ECDLP 是可解的；这里的前向安全性指的是经典情境下的不可回溯性。即知道某次输出对应的内部状态，不能够回溯之前的内部状态、获取之前的输出。</p>
 <p>&nbsp;</p>
 <h2 id="Exploit-in-Real-Life-Protocols"><a href="#Exploit-in-Real-Life-Protocols" class="headerlink" title="Exploit in Real Life Protocols"></a>Exploit in Real Life Protocols</h2><p>具体攻击细节参考：<code>On the practical exploitability of Dual EC in TLS implementations</code><sup><a href="#fn_Dual EC Exploit Usenix 2014" id="reffn_Dual EC Exploit Usenix 2014">Dual EC Exploit Usenix 2014</a></sup>。使用了 Dual EC 算法的库：</p>
@@ -374,7 +374,7 @@ s_3 = x(s_2 \oplus \textsf{adin}_3 \cdot P)</script><p>在第二轮时， <scrip
 <li>Dual EC 实现之间的另一个区别是 BSAFE-C 为连续调用缓冲了上一次未使用的随机字节，<strong>最大化利用了输出，同时方便了后门攻击。</strong></li>
 <li>除了 Dual EC 实现中的差异之外，TLS协议的实现也很大程度影响 Dual EC 后门的利用。默认情况下，<strong>每个库生成不同数量的随机值，在 TLS协议握手中以不同的顺序使用随机值，并使用不同的密码套件。</strong></li>
 </ul>
-<p>本文不详细叙述 TLS握手的流程，但是重点在于密钥交换中双方会发送由 Dual EC 产生消息，比如 TLS 临时会话密钥交换过程中的握手，就需要用 Dual EC 依次产生：session ID, the server random, the<br>ephemeral secret <script type="math/tex">a</script>, and (depending on the cipher suite) the signature nonce。<strong>如果根据 session ID 就可以恢复 Dual EC 的内部状态，显然，攻击者就能够全部恢复服务端的密钥。</strong></p>
+<p>本文不详细叙述 TLS握手的流程，但是重点在于密钥交换中双方会发送由 Dual EC 产生消息，比如 TLS 临时会话密钥交换过程中的握手，就需要用 Dual EC 依次产生：session ID, the server random, the ephemeral secret <script type="math/tex">a</script>, and (depending on the cipher suite) the signature nonce。<strong>如果根据 session ID 就可以恢复 Dual EC 的内部状态，显然，攻击者就能够全部恢复服务端的密钥。</strong></p>
 <ul>
 <li>BSAFE：对于使用 DHE 的TLS连接，服务端使用内部缓冲机制按顺序请求： 32字节的会话ID, 28字节的服务端随机数，20字节的临时密钥。</li>
 <li>BSAFE-C ：可知 30 bytes nonce，从而穷举空间是 <script type="math/tex">2^{16}</script></li>
@@ -505,6 +505,15 @@ s_3 = x(s_2 \oplus \textsf{adin}_3 \cdot P)</script><p>在第二轮时， <scrip
 
 
 <nav id="article-nav">
+  
+    <a href="/2023/04/30/2023-D3CTF-d3casino-writeup/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          2023 D3CTF d3casino writeup
+        
+      </div>
+    </a>
   
   
     <a href="/2023/04/08/RGSW-Bootstrapping/" id="article-nav-older" class="article-nav-link-wrap">
@@ -7032,11 +7041,23 @@ s_3 = x(s_2 \oplus \textsf{adin}_3 \cdot P)</script><p>在第二轮时， <scrip
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">solidity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Backdoor</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Dual EC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">USTC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -7056,19 +7077,11 @@ s_3 = x(s_2 \oplus \textsf{adin}_3 \cdot P)</script><p>在第二轮时， <scrip
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">USTC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+                <a href="javascript:void(0)" class="js-tag color5">TFHE</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Writeup</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">TFHE</a>
               </li>
              
               <li class="article-tag-list-item">
