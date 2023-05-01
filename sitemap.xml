@@ -354,20 +354,6 @@
   </url>
   
   <url>
-    <loc>https://tl2cents.github.io/tags/USTC/</loc>
-    <lastmod>2023-05-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://tl2cents.github.io/tags/Machine-Learning/</loc>
-    <lastmod>2023-05-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://tl2cents.github.io/tags/MPKC/</loc>
     <lastmod>2023-05-01</lastmod>
     <changefreq>daily</changefreq>
@@ -396,7 +382,14 @@
   </url>
   
   <url>
-    <loc>https://tl2cents.github.io/tags/TFHE/</loc>
+    <loc>https://tl2cents.github.io/tags/USTC/</loc>
+    <lastmod>2023-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://tl2cents.github.io/tags/Machine-Learning/</loc>
     <lastmod>2023-05-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -404,6 +397,13 @@
   
   <url>
     <loc>https://tl2cents.github.io/tags/Writeup/</loc>
+    <lastmod>2023-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://tl2cents.github.io/tags/TFHE/</loc>
     <lastmod>2023-05-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
