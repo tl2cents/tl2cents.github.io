@@ -368,20 +368,6 @@
   </url>
   
   <url>
-    <loc>https://tl2cents.github.io/tags/MPKC/</loc>
-    <lastmod>2023-10-23</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://tl2cents.github.io/tags/PQC/</loc>
-    <lastmod>2023-10-23</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://tl2cents.github.io/tags/FHE/</loc>
     <lastmod>2023-10-23</lastmod>
     <changefreq>daily</changefreq>
@@ -390,6 +376,20 @@
   
   <url>
     <loc>https://tl2cents.github.io/tags/BFV/</loc>
+    <lastmod>2023-10-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://tl2cents.github.io/tags/MPKC/</loc>
+    <lastmod>2023-10-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://tl2cents.github.io/tags/PQC/</loc>
     <lastmod>2023-10-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
