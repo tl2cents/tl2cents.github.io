@@ -21,7 +21,7 @@
 <meta property="og:description" content="Crypto 的斐波那契数列还挺有意思，其他都很常规。槽点就是，往其他赛道的题里面塞纯脑洞的 MISC 真的一点意思也没有。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-06-11T05:16:03.000Z">
-<meta property="article:modified_time" content="2023-06-11T05:28:18.216Z">
+<meta property="article:modified_time" content="2023-06-11T07:47:35.731Z">
 <meta property="article:author" content="tl2cents">
 <meta property="article:tag" content="writeup">
 <meta property="article:tag" content="fibonacci">
@@ -380,7 +380,7 @@ Count(n,i) = F_{n-i} = \begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}^{n - i - 2}
  \cdot \begin{pmatrix} 1  \\ 1 \end{pmatrix}_1 \quad n \ge i + 2</script></li>
 <li><p>我们发现对任意整除 <script type="math/tex">\mathbb{S}</script> 中的数 ,  所有 <script type="math/tex">f(s)</script> 在 <script type="math/tex">S_n</script> 中累加的次数，就是最终递推公式中常数项 <script type="math/tex">f(n)</script> 对 <script type="math/tex">S_n</script> 的总影响。考虑一个固定的数 <script type="math/tex">s \in \mathbb{S}</script> , 则它对最终 <script type="math/tex">S_n</script> 中的贡献为 ：</p>
 <script type="math/tex; mode=display">
-C(s)_n = F(n-s) + F(n-2s) + \cdots + F(n-ks) , \quad k = \lfloor n/s \rfloor</script><p> 写成矩阵递推公式即：</p>
+C(s)_n = F_{n-s} + F_{n-2s} + \cdots + F_{n-ks} , \quad k = \lfloor n/s \rfloor</script><p> 写成矩阵递推公式即：</p>
 <script type="math/tex; mode=display">
 \begin{pmatrix} C(s)_n  \\ C(s)_{n-1} \end{pmatrix} 
  = (M^{n-s} + M^{n-2s} + \cdots + M^{n-ks})
@@ -395,7 +395,7 @@ S_n = F_n + \sum_{s \in \mathbb{S}} C(s)_n</script><p>&nbsp;</p>
 <p>等比数列需要注意的两个点是：</p>
 <ol>
 <li>乘法不可交换，求和公式要写作 <script type="math/tex">(1-q)^{-1} a_1(1-q^n)</script> （手动推导一下）</li>
-<li>矩阵不一定可逆，上述 <script type="math/tex">1 - q ^ {-1}</script> 可能不存在。</li>
+<li>矩阵不一定可逆，上述 <script type="math/tex">(1 - q) ^ {-1}</script> 可能不存在。</li>
 </ol>
 <p>Exp 实现：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sagemath 9.5</span></span><br><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> gmpy2 <span class="keyword">as</span> gp </span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES </span><br><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> md5 </span><br><span class="line"><span class="keyword">from</span> binascii <span class="keyword">import</span> * </span><br><span class="line">seq = <span class="comment">#</span></span><br><span class="line">m = <span class="comment">#</span></span><br><span class="line">M = <span class="comment">#</span></span><br><span class="line">ct = <span class="comment"># </span></span><br><span class="line"></span><br><span class="line">m0 = [</span><br><span class="line">    [<span class="number">1</span>,<span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>,<span class="number">0</span>]</span><br><span class="line">]</span><br><span class="line">_M = matrix(Zmod(M),m0)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cseq</span>(<span class="params">i, seq = seq</span>):</span></span><br><span class="line">    ct = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> seq:</span><br><span class="line">        <span class="keyword">if</span> i%j == <span class="number">0</span>: </span><br><span class="line">            ct+=<span class="number">1</span> </span><br><span class="line">    <span class="keyword">return</span> ct </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">homework</span>(<span class="params">i, seq = seq</span>):</span></span><br><span class="line">    <span class="keyword">if</span> i == <span class="number">1</span>: <span class="keyword">return</span> <span class="number">1</span> </span><br><span class="line">    <span class="keyword">if</span> i == <span class="number">2</span>: <span class="keyword">return</span> <span class="number">1</span> </span><br><span class="line">    <span class="keyword">else</span>: </span><br><span class="line">        <span class="keyword">return</span> (homework(i-<span class="number">2</span>, seq)+homework(i-<span class="number">1</span>,seq)+cseq(i-<span class="number">1</span>, seq) )%M </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Fib</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="keyword">if</span> n &lt;=<span class="number">2</span> :</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> (_M^(n -<span class="number">1</span>))[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">extra_cal</span>(<span class="params">m, num</span>):</span></span><br><span class="line">    a0 = m % num - <span class="number">1</span></span><br><span class="line">    max_exp = m - num - <span class="number">1</span> </span><br><span class="line">    <span class="keyword">assert</span> (max_exp - a0) % num == <span class="number">0</span></span><br><span class="line">    k = (max_exp - a0)//num + <span class="number">1</span></span><br><span class="line">    q = _M^num</span><br><span class="line">    <span class="keyword">if</span> a0 == -<span class="number">1</span>:</span><br><span class="line">        k = k - <span class="number">1</span></span><br><span class="line">        a0 = a0 + num</span><br><span class="line">    A0 = _M^a0 </span><br><span class="line">    MM = (<span class="number">1</span>/(<span class="number">1</span>-q))*A0*(<span class="number">1</span>-q^k)</span><br><span class="line">    <span class="keyword">return</span> MM[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Fib_plus</span>(<span class="params">n, seq = seq</span>):</span></span><br><span class="line">    R = Fib(n)</span><br><span class="line">    <span class="keyword">for</span> num <span class="keyword">in</span> seq:</span><br><span class="line">        R += extra_cal(n, num)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">int</span>(R % M)</span><br><span class="line"></span><br><span class="line"><span class="comment"># seq_test = [3,5]</span></span><br><span class="line"><span class="comment"># print(Fib_plus(15,seq_test))</span></span><br><span class="line"><span class="comment"># print(homework(15, seq_test))</span></span><br><span class="line">ans = Fib_plus(m,seq)</span><br><span class="line"></span><br><span class="line">k = unhexlify(md5(<span class="built_in">str</span>(ans).encode()).hexdigest())</span><br><span class="line">aes = AES.new(k,AES.MODE_ECB)</span><br><span class="line">msg = aes.decrypt(ct)</span><br><span class="line">print(msg)</span><br></pre></td></tr></table></figure>
@@ -519,6 +519,15 @@ S_n = F_n + \sum_{s \in \mathbb{S}} C(s)_n</script><p>&nbsp;</p>
 
 
 <nav id="article-nav">
+  
+    <a href="/2023/10/23/2023-N1CTF-Crypto-Writeups/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          2023 N1CTF Crypto Writeups
+        
+      </div>
+    </a>
   
   
     <a href="/2023/04/30/2023-D3CTF-d3casino-writeup/" id="article-nav-older" class="article-nav-link-wrap">
@@ -7066,19 +7075,19 @@ S_n = F_n + \sum_{s \in \mathbb{S}} C(s)_n</script><p>&nbsp;</p>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">USTC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">FHE</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">BFV</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">USTC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">

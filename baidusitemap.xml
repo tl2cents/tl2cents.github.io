@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://tl2cents.github.io/2023/10/23/2023-N1CTF-Crypto-Writeups/</loc>
+    <lastmod>2023-10-23</lastmod>
+  </url>
+  <url>
     <loc>https://tl2cents.github.io/2023/06/11/SYCTF-2023-%E5%AE%89%E6%B4%B5%E6%9D%AF-Crypto-%E9%A2%98%E8%A7%A3/</loc>
     <lastmod>2023-06-11</lastmod>
   </url>
