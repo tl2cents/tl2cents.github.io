@@ -9,26 +9,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://tl2cents.github.io">
-  <title>USTC OS 2021 Spring HW5 | tl2cents blog</title>
+  <title>Code-based Cryptography : Linear Code and Decoding Problem | tl2cents blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="1. RAIDConsider a RAID organization comprising five disks in total, how many blocks are accessed in order to perform the following operations for RAID-5 and RAID-6?a. An update of one block of datab.">
+  <meta name="description" content="本文主要介绍 linear code 的相关编码理论基础。然后简单阐述 Code-based Challenges  上一系列用于后量子密码设计的 code-based 问题。本文并不涉及具体的密码学算法设计，旨在对编码理论中的线性编码进行一个简单的介绍。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="USTC OS 2021 Spring HW5">
-<meta property="og:url" content="https://tl2cents.github.io/2021/07/18/USTC%20OS%202021%20Spring%20HW5/index.html">
+<meta property="og:title" content="Code-based Cryptography : Linear Code and Decoding Problem">
+<meta property="og:url" content="https://tl2cents.github.io/2023/11/28/Code-based-Cryptography-Linear-Code-Basis/index.html">
 <meta property="og:site_name" content="tl2cents blog">
-<meta property="og:description" content="1. RAIDConsider a RAID organization comprising five disks in total, how many blocks are accessed in order to perform the following operations for RAID-5 and RAID-6?a. An update of one block of datab.">
+<meta property="og:description" content="本文主要介绍 linear code 的相关编码理论基础。然后简单阐述 Code-based Challenges  上一系列用于后量子密码设计的 code-based 问题。本文并不涉及具体的密码学算法设计，旨在对编码理论中的线性编码进行一个简单的介绍。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tl2cents.github.io/2021/07/18/USTC%20OS%202021%20Spring%20HW5/image-20210609211842575.png">
-<meta property="og:image" content="https://tl2cents.github.io/2021/07/18/USTC%20OS%202021%20Spring%20HW5/image-20210609212354004.png">
-<meta property="article:published_time" content="2021-07-18T09:25:59.000Z">
-<meta property="article:modified_time" content="2022-03-23T02:28:18.000Z">
+<meta property="article:published_time" content="2023-11-28T09:22:05.000Z">
+<meta property="article:modified_time" content="2023-11-28T09:59:07.397Z">
 <meta property="article:author" content="tl2cents">
-<meta property="article:tag" content="USTC">
-<meta property="article:tag" content="0S2021">
+<meta property="article:tag" content="PQC">
+<meta property="article:tag" content="Code">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tl2cents.github.io/2021/07/18/USTC%20OS%202021%20Spring%20HW5/image-20210609211842575.png">
   
     <link rel="alternative" href="/atom.xml" title="tl2cents blog" type="application/atom+xml">
   
@@ -237,14 +234,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="blog-USTC OS 2021 Spring HW5" class="article article-type-blog " itemscope itemprop="blogPost">
+            <article id="blog-Code-based-Cryptography-Linear-Code-Basis" class="article article-type-blog " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      USTC OS 2021 Spring HW5
+      Code-based Cryptography : Linear Code and Decoding Problem
     </h1>
   
 
@@ -256,8 +253,8 @@
               <i class="icon-smile icon"></i> Read: <span id="busuanzi_value_page_pv"></span> times
         </span>
 
-<a href="/2021/07/18/USTC%20OS%202021%20Spring%20HW5/" class="archive-article-date">
-        <time datetime="2021-07-18T09:25:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-18</time>
+<a href="/2023/11/28/Code-based-Cryptography-Linear-Code-Basis/" class="archive-article-date">
+        <time datetime="2023-11-28T09:22:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-28</time>
 </a>
 
   
@@ -279,7 +276,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">11分</span>
+      <span class="post-count">8分</span>
     </span>
   </span>
 </div>
@@ -293,240 +290,251 @@
     
     <!-- newly added -->
     
-    <h2 id="1-RAID"><a href="#1-RAID" class="headerlink" title="1. RAID"></a>1. RAID</h2><p>Consider a RAID organization comprising five disks in total, how many blocks are accessed in order to perform the following operations for <strong>RAID-5 and RAID-6</strong>?<br><strong>a. An update of one block of data</strong><br><strong>b. An update of seven continuous blocks of data. Assume that the seven contiguous blocks begin at a boundary of a stripe.</strong></p>
-<hr>
+    <p>本文主要介绍 linear code 的相关编码理论基础。然后简单阐述 <a target="_blank" rel="noopener" href="https://decodingchallenge.org/">Code-based Challenges</a>  上一系列用于后量子密码设计的 <strong>code-based</strong> 问题。本文并不涉及具体的密码学算法设计，旨在对编码理论中的线性编码进行一个简单的介绍。</p>
 <span id="more"></span>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><hr>
-<h4 id="a"><a href="#a" class="headerlink" title="a."></a>a.</h4><p><strong>RMW</strong></p>
-<p>RAID-5: 2 blocks, A<sub>i</sub> and A<sub>p</sub> .<br>RAID-6: 3 blocks A<sub>i</sub> ,  A<sub>p</sub> and A<sub>q</sub>.</p>
-<p><strong>RRW</strong></p>
-<p>RAID-5: 5 blocks , read  A<sub>2</sub> , A<sub>3</sub> ,  A<sub>4</sub> , and write  A<sub>1</sub>  A<sub>p</sub> .<br>RAID-6: 5 blocks , read  A<sub>2</sub> , A<sub>3</sub>  and write  A<sub>1</sub> , A<sub>p</sub> ,  A<sub>q</sub> .</p>
-<h4 id="b"><a href="#b" class="headerlink" title="b."></a>b.</h4><p><strong>Case1</strong> RAID-5 </p>
-<p>We assume that the blocks are like A<sub>1</sub> , A<sub>2</sub> , A<sub>3</sub> , A<sub>4</sub> , B<sub>1</sub> , B<sub>2</sub> , B<sub>3</sub> .</p>
-<p>RMW:  update every block and its check block. Total 2*7=14 blocks.<br>RRW: 7 data blocks, block B<sub>4</sub> , A<sub>p</sub> , and B<sub>p</sub> .Total 10 blocks.</p>
-<p><strong>Case2</strong> RAID-6</p>
-<p>We assume that the blocks are like A<sub>1</sub> , A<sub>2</sub> , A<sub>3</sub> , B<sub>1</sub> , B<sub>2</sub> , B<sub>3</sub> , C<sub>1</sub> .</p>
-<p>RRW:  update every block and its two check blocks. Total 3*7=21 blocks.<br>RMW: 7 data blocks and  A<sub>p</sub>  , A<sub>q</sub> , B<sub>p</sub>  , B<sub>q</sub> , C<sub>p</sub>  , C<sub>q</sub>  , C<sub>2</sub> , C<sub>3</sub> . Total 15 blocks.</p>
-<p>Best policy: RRW in A and B, RMW  in C. Total 5*2+3=13 blocks.</p>
-<p>&nbsp;<br>&nbsp;</p>
-<h2 id="2-The-disk-scheduling-algorithm"><a href="#2-The-disk-scheduling-algorithm" class="headerlink" title="2. The disk-scheduling algorithm"></a>2. The disk-scheduling algorithm</h2><p><strong>Suppose that a disk drive has 5,000 cylinders, numbered 0 to 4999. The drive is currently serving a request at cylinder 2150, and the previous request was at cylinder 1805. The queue of pending requests, in FIFO order, is: 2069, 1212, 2296, 2800, 544, 1618, 356, 1523, 4965, 3681 Starting from the current head position, what is the total distance (in cylinders) that the disk arm-moves to satisfy all the pending requests for each of the following disk-scheduling algorithms?</strong> </p>
-<p>a. FCFS<br>b. SSTF<br>c. SCAN<br>d. LOOK<br>e. C-SCAN<br>f. C-LOOK</p>
-<hr>
-<h3 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution"></a>Solution</h3><hr>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>Disk-scheduling algorithm</th>
-<th>Scheduling order</th>
-<th>Distances</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>FCFS</td>
-<td>2150, 2069, 1212, 2296, 2800, 544, 1618, 356, 1523, 4965, 3681</td>
-<td>13011</td>
-</tr>
-<tr>
-<td>SSTF</td>
-<td>2150, 2069, 2296, 2800, 3681, 4965, 1618, 1523, 1212, 544, 356</td>
-<td>7586</td>
-</tr>
-<tr>
-<td>SCAN</td>
-<td>2150, 2296, 2800, 3681, 4965, (4999) , 2069, 1618, 1523, 1212, 544, 356</td>
-<td>7492</td>
-</tr>
-<tr>
-<td>LOOK</td>
-<td>2150, 2296, 2800, 3681, 4965, 2069, 1618, 1523, 1212, 544, 356</td>
-<td>7424</td>
-</tr>
-<tr>
-<td>C-SCAN</td>
-<td>2150, 2296, 2800, 3681, 4965, (4999),（0），356, 544, 1212, 1523, 1618, 2069</td>
-<td>9917</td>
-</tr>
-<tr>
-<td>C-LOOK</td>
-<td>2150, 2296, 2800, 3681, 4965 , 356, 544, 1212, 1523, 1618, 2069</td>
-<td>9137</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>&nbsp;<br>&nbsp;</p>
-<h2 id="3-Open-file-table"><a href="#3-Open-file-table" class="headerlink" title="3. Open-file table"></a>3. Open-file table</h2><p> <strong>Explain what open-file table is and why we need it.</strong></p>
-<hr>
-<h3 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution"></a>Solution</h3><hr>
-<p>To avoid constant searching, many systems require that an open() system call be made before a file is first used. The operating system keeps a table, called the <strong>open-file table,</strong> containing information about all open files. When a file operation is requested, the file is <strong>specified via an index into this table</strong>, so no searching is required. When the file is no longer being actively used, it is closed by the process, and the operating system removes its entry from the open-file table. create() and delete() are system calls that work with closed rather than open files.</p>
-<p>By open-file table, the open file information is cached in memory, and the file index is done by open-file table, avoiding the need for directory traversal for each visit, reducing IO overhead, and improving performance. On the other hand, the open-file table can maintain the open state of a file,  which  ensure operations such as deleting to be performed correctly.</p>
-<p>&nbsp;<br>&nbsp;</p>
-<h2 id="4-File-and-Directory"><a href="#4-File-and-Directory" class="headerlink" title="4. File and Directory"></a>4. File and Directory</h2><p><strong>Explain the concept of file and directory, and what does “755” mean for file permission?</strong></p>
-<hr>
-<h3 id="Solution-3"><a href="#Solution-3" class="headerlink" title="Solution"></a>Solution</h3><hr>
-<p><strong>Concepts :</strong></p>
-<p>The operating system abstracts from the physical properties of its storage devices to define a logical storage unit —- the <strong>file</strong>.</p>
-<p><strong>Directory</strong> is a storage unit that records information such as name, location, size, and type about a set of files, and it is also a file.</p>
-<p>The three octal numbers represent the owner’s , group members’, and others’ permissions of reading , writing and executing.</p>
-<p>755= 111 101 101 =&gt; The owner can read, write , and execute this file (111). The group member and others can read and execute this file (cannot read).(101).</p>
-<p>&nbsp;<br>&nbsp;</p>
-<h2 id="5-Continuous-Allocation"><a href="#5-Continuous-Allocation" class="headerlink" title="5. Continuous Allocation"></a>5. Continuous Allocation</h2><p><strong>Explain the problems of using continuous allocation for file system layout and how to solve them.</strong></p>
-<hr>
-<h3 id="Solution-4"><a href="#Solution-4" class="headerlink" title="Solution"></a>Solution</h3><hr>
-<p>Flaws:</p>
-<ul>
-<li>Continuous allocations produce external fragmentation, resulting in insufficient continuous space when creating large files</li>
-<li>It cannot deal with the growth of file size when we need add content to a file.</li>
-</ul>
-<p>Solutions :</p>
-<ul>
-<li>Break large files into small pieces and store them in fix-sized blocks.</li>
-<li>Use linked list to support dynamic growth.</li>
-</ul>
-<p>&nbsp;<br>&nbsp;</p>
-<h2 id="6-FAT-pros-and-cons"><a href="#6-FAT-pros-and-cons" class="headerlink" title="6. FAT (pros and cons)"></a>6. FAT (pros and cons)</h2><p><strong>What are the advantages of the variation of linked allocation that uses a FAT to chain together the blocks of a file? What is the major problem of FAT?</strong></p>
-<hr>
-<h3 id="Solution-5"><a href="#Solution-5" class="headerlink" title="Solution"></a>Solution</h3><hr>
-<p><strong>Advantages</strong></p>
-<p>Better random access performance. When accessing a block in the middle part of a file, look for pointers stored in the FAT to determine its location, rather than sequential access to all blocks of the file to find a pointer to the target block. Most FATs can be cached in memory, so you can determine pointers through memory access without having to access disk blocks.</p>
-<p><strong>Disadvantages</strong></p>
-<p>Partial caching is difficult to implement. A trade-off between space and time : caching FAT for better access performance results in a waste of memory space.</p>
-<p>&nbsp;<br>&nbsp;</p>
-<h2 id="7-Disk-I-O"><a href="#7-Disk-I-O" class="headerlink" title="7. Disk I/O"></a>7. Disk I/O</h2><p><strong>Consider a file system similar to the one used by UNIX with indexed allocation, and assume that every file uses only one block. How many disk I/O operations might be required to read the contents of a small local file at /a/b/c in the following two cases? Should provide the detailed workflow.</strong></p>
-<p><strong>a.</strong> Assume that none of the disk blocks and inodes is currently being cached. </p>
-<p><strong>b.</strong> Assume that none of the disk blocks is currently being cached but all inodes are in memory.</p>
-<hr>
-<h3 id="Solution-6"><a href="#Solution-6" class="headerlink" title="Solution"></a>Solution</h3><hr>
-<p><strong>a. Not cached</strong></p>
+<p>&nbsp;</p>
+<h2 id="线性编码基础"><a href="#线性编码基础" class="headerlink" title="线性编码基础"></a>线性编码基础</h2><p>主要参考：</p>
 <ol>
-<li>root directory</li>
-<li>inode for /a</li>
-<li>disk block for /a</li>
-<li>inode for /a/b</li>
-<li>disk block for /a/b</li>
-<li>inode for /a/b/c</li>
-<li>disk block for /a/b/c</li>
+<li>Ron Roth, Introduction to Coding Theory, Cambridge University Press, 2006, </li>
+<li>A Survey on Code-based Cryptography : <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2201.07119">paper link</a>.</li>
 </ol>
-<p>Total 7 times.</p>
-<p><strong>b.  Cached</strong></p>
-<p>The process is the same as a, but accessing i-node doesn’t need I/O operations. Total 4 times.</p>
-<p>&nbsp;<br>&nbsp;</p>
-<h2 id="8-Max-File-Size-in-FAT"><a href="#8-Max-File-Size-in-FAT" class="headerlink" title="8. Max File Size in FAT"></a>8. Max File Size in FAT</h2><p> <strong>Consider a file system that uses inodes to represent files. Disk blocks are 8-KB in size and a pointer to a disk block requires 4 bytes. This file system has 12 direct disk blocks, plus single, double, and triple indirect disk blocks. What is the maximum size of a file that can be stored in this file system?</strong></p>
-<hr>
-<h3 id="Solution-7"><a href="#Solution-7" class="headerlink" title="Solution"></a>Solution</h3><hr>
-<p>Every block can store 8kB/4B=2048 indexes. Thus, 12 direct blocks , 1  single, double, and triple indirect disk block.</p>
+<p>读者应有线性代数、群环域、代数数论的数学基础。</p>
+<p>&nbsp;</p>
+<h3 id="线性编码-Linear-Code"><a href="#线性编码-Linear-Code" class="headerlink" title="线性编码 Linear Code"></a>线性编码 Linear Code</h3><p>记 <script type="math/tex">\mathbb{F}_q = GF(q)</script> 是阶为 <script type="math/tex">q</script> 的伽罗瓦域，一个 <script type="math/tex">(n,M,d)</script> 编码的空间 <script type="math/tex">\mathcal{C}</script> ，其中 <script type="math/tex">M</script> 是明文空间，<script type="math/tex">n</script> 是码字个数，<script type="math/tex">d</script> 是最短码字距离， 如果  <script type="math/tex">\mathcal{C}</script>  是 <script type="math/tex">\mathbb{F}^n</script> 的线性子空间，则  <script type="math/tex">\mathcal{C}</script> 称为线性编码。 即对于任意 <script type="math/tex">\mathbf{c}_1, \mathbf{c}_2  \in \mathcal{C}</script> 和任意 <script type="math/tex">a_1,a_2 \in \mathbb{F}</script>  使得 <script type="math/tex">a_1 \mathbf{c}_1+a_2 \mathbf{c}_2 \in \mathcal{C}</script> 。</p>
+<p><strong>注记 ：</strong></p>
+<ol>
+<li><strong>线性空间 <script type="math/tex">\mathcal{C}</script> 更一般的记法是 <script type="math/tex">[n,k]</script> ，表明编码长度（code length）为 <script type="math/tex">n</script> ，线性子空间的维度是 <script type="math/tex">k</script> 。</strong></li>
+<li><strong>线性编码</strong>  <script type="math/tex">[n,k]</script>  的总空间是 <script type="math/tex">q^n</script> , 可编码空间是 <script type="math/tex">q^k</script> 。</li>
+<li><strong>线性编码的码率 Code Rate ：</strong> 可编码的空间是 <script type="math/tex">|\mathcal{C}| = q^k</script> ，因此码率是 <script type="math/tex">R = (log_q M)/n = k/n</script> 。</li>
+</ol>
+<p>&nbsp;</p>
+<p><strong>Linear Code 生成矩阵</strong></p>
+<p>代数上定义的概念还比较抽象，实际上直接从生成矩阵看 Linear Code 是很直观的。线性编码  <script type="math/tex">[n,k]</script>  的一个生成矩阵可以看作一个 <script type="math/tex">k \times n</script> 的矩阵 <script type="math/tex">\mathbf{G} \in \mathbb{F}_q^k</script>，其 <script type="math/tex">k</script> 个<strong>线性无关</strong>的行向量构成整个线性子空间的基 <script type="math/tex">\{\mathbf{b}_1, \mathbf{b}_2,\cdots, \mathbf{b}_k \}</script> .</p>
 <script type="math/tex; mode=display">
-MaxSize=(12 * 8 KB) + (2048 * 8 KB) + (2048 * 2048 * 8 KB) + (2048 * 2048 * 2048 * 8 KB) \approx 64 TB</script><p>&nbsp;<br>&nbsp;</p>
-<h2 id="9-Long-filename-in-FAT"><a href="#9-Long-filename-in-FAT" class="headerlink" title="9. Long filename in FAT"></a>9. Long filename in FAT</h2><p><strong>What is the 8+3 naming convention in FAT32 file system, and how to manage long filenames?</strong></p>
-<hr>
-<h3 id="Solution-8"><a href="#Solution-8" class="headerlink" title="Solution"></a>Solution</h3><hr>
-<p><strong>8+3 naming convention:</strong> </p>
-<p>8 characters for name + 3 characters for file extension</p>
-<p><strong>Long filenames:</strong></p>
-<p>If the filename is too long (more than 8 bytes), we add more entries to represent the filename. The first byte of the entry is the sequential number of file name and the terminating directory entry has the sequence number OR-ed with 0x40. Byte 11 of every entry is always 0x0F to indicate that is a LFN.</p>
-<p>&nbsp;<br>&nbsp;</p>
-<h2 id="10-Director-Entries"><a href="#10-Director-Entries" class="headerlink" title="10. Director Entries"></a>10. Director Entries</h2><p><strong>How are directory entries managed in FAT and Ext file systems？</strong></p>
-<hr>
-<h3 id="Solution-9"><a href="#Solution-9" class="headerlink" title="Solution"></a>Solution</h3><hr>
-<p><strong>The FAT file system directory entry</strong> is fixed in size and managed in an array. The entry stores a series of file-related property information, including: file name, extension, property, reserved word, most recent modification time,  first cluster number, file size.</p>
-<p><strong>The EXT  file system directory entry</strong>  varies in size and is managed in a link list. The entry stores the file name and index node.</p>
-<p>&nbsp;<br>&nbsp;</p>
-<h2 id="11-Hard-Symbolic-Link"><a href="#11-Hard-Symbolic-Link" class="headerlink" title="11. Hard/Symbolic Link"></a>11. Hard/Symbolic Link</h2><p><strong>What is the difference between hard link and symbolic link?</strong> </p>
-<hr>
-<h3 id="Solution-10"><a href="#Solution-10" class="headerlink" title="Solution"></a>Solution</h3><hr>
-<p><strong>Hard link</strong></p>
-<ul>
-<li>A hard link is a directory entry pointing to an existing file. No new file content is created!</li>
-<li>Conceptually speaking, this creates a file with two pathnames.</li>
-<li>Hard link entries and original entries  point to  the same inode and do not create new file content. (link count + 1)</li>
+\mathcal{C} = \{a_1 \mathbf{b_1} + a_2 \mathbf{b}_2  + \cdots + a_k \mathbf{b_k} \ | \  a_i \in \mathbb{F}_q \} \\
+\implies \mathcal{C} = \big\{ x \mathbf{G}\ |\ x \in \mathbb{F}_q^k \bigr\}</script><p>&nbsp;</p>
+<p><strong>Linear Code 编解码</strong></p>
+<p>既然涉及到编码，就一定涉及到编解码的操作。编码需要构造映射 <script type="math/tex">\mathbb{F}^k \mapsto \mathcal{C}</script> ，利用生成矩阵定义下面映射：</p>
+<script type="math/tex; mode=display">
+\mathbf{u} \mapsto \mathbf{u}G</script><p>矩阵 <script type="math/tex">G</script> 满秩，即上面映射为双射。</p>
+<p><strong>解码过程</strong>：记码字为 <script type="math/tex">c =  \mathbf{u}G \in F^{n}</script> ，解码操作，可以任意选取 <script type="math/tex">G</script> 线性无关的 <script type="math/tex">k</script> 列，对应的码字为 <script type="math/tex">c^\prime</script> ，得到可逆矩阵 <script type="math/tex">U</script> ，计算 <script type="math/tex">c^\prime U^{-1}</script> ，即可恢复出明文 <script type="math/tex">u</script> 。注意到，实际上解码只需要 <script type="math/tex">k</script> 列，其他的列向量是线性编码中的冗余，可用于纠错。</p>
+<p>&nbsp;</p>
+<p><strong>Linear Code 校验矩阵（Parity Check Matrix） </strong></p>
+<p>知道编码矩阵，不论是正向编码（矩阵乘法），和反向解码（解超定方程），都是简单的。<strong>校验矩阵是用于验证目标码字是否是正确的。</strong>令 <script type="math/tex">\mathcal{C}</script> 是定义在 <script type="math/tex">\mathbb{F}_q</script> 上 <script type="math/tex">[n,k]</script> 的线性编码，其奇偶校验矩阵 <script type="math/tex">H \in \mathbb{F}^{r \times n}</script> （<script type="math/tex">r = n - k</script>）满足：</p>
+<script type="math/tex; mode=display">
+\forall \mathbf{c} \in \mathbb{F}^n, \mathbf{c} \in \mathcal{C} \iff H \mathbf{c}^T = \mathbf{0}</script><p>也就是说编码的空间是校验矩阵 <script type="math/tex">H</script> 的 kernel space（核空间）。对于任意的 <script type="math/tex">x \in \mathbb{F}_q^n</script> ，我们称 <script type="math/tex">x \mathbf{H}^T</script> 为 <strong><em>Syndrome</em></strong> 。</p>
+<p>&nbsp;</p>
+<h3 id="汉明度量-Hamming-Metric"><a href="#汉明度量-Hamming-Metric" class="headerlink" title="汉明度量 Hamming Metric"></a>汉明度量 Hamming Metric</h3><ul>
+<li><p><strong>汉明度量（Hamming Metric）</strong>： 对于 <script type="math/tex">\mathbf{x} \in \mathbb{F}_q^n</script> ，汉明度量为其非 0 元的个数，</p>
+<script type="math/tex; mode=display">
+\mathrm{wt}_H(\mathrm{x})=\left|\left\{i \in\{1, \ldots, n\} \mid x_i \neq 0\right\}\right| \text {. }</script></li>
+<li><p><strong>汉明距离（Hamming Distance）</strong>：对于 <script type="math/tex">\mathbf{x}, \mathbf{y} \in \mathbb{F}_q^n</script> ，汉明距离为，</p>
+<script type="math/tex; mode=display">
+\mathrm{d}_H(\mathrm{x}, \mathrm{y})=\left|\left\{i \in\{1, \ldots, n\} \mid x_i \neq y_i\right\}\right| \text {. }</script></li>
+<li><p><strong>最短距离（Minimum Distance）</strong> ：编码 <script type="math/tex">\mathcal{C}</script> 的最短汉明距离为，</p>
+<script type="math/tex; mode=display">
+d_H(\mathcal{C})=\min \left\{d_H(\mathbf{x}, \mathbf{y}) \mid \mathbf{x}, \mathbf{y} \in \mathcal{C}, \mathbf{x} \neq \mathbf{y}\right\}</script></li>
 </ul>
-<p><strong>Symbolic Link</strong></p>
-<ul>
-<li>A symbolic link is a file. Unlike the hard link, a new inode is created for each symbolic link.</li>
-<li>It stores the pathname (shortcut).</li>
-<li>The link count of the original file doesn’t change.</li>
-</ul>
-<p>&nbsp;<br>&nbsp;</p>
-<h2 id="12-Initial-Link-Counts"><a href="#12-Initial-Link-Counts" class="headerlink" title="12. Initial Link Counts"></a>12. Initial Link Counts</h2><p><strong>What are the initial link counts when a regular file or a directory is created? Why?</strong> </p>
-<hr>
-<h3 id="Solution-11"><a href="#Solution-11" class="headerlink" title="Solution"></a>Solution</h3><hr>
-<ul>
-<li>When a regular file is created, the link count is always 1. Only one inode (itself) points to it.</li>
-<li>When a directory is created, the initial link count is always 2. An extra hard link  “.” points to it.</li>
-</ul>
-<p>&nbsp;<br>&nbsp;</p>
-<h2 id="13-Data-Metadata-Journaling"><a href="#13-Data-Metadata-Journaling" class="headerlink" title="13. Data/Metadata Journaling"></a>13. Data/Metadata Journaling</h2><p><strong>What is the difference between data journaling and metadata journaling? Explain the operation  sequence for each of the two journaling methods.</strong> </p>
-<hr>
-<h3 id="Solution-12"><a href="#Solution-12" class="headerlink" title="Solution"></a>Solution</h3><hr>
-<ul>
-<li><p><strong>Data journaling.</strong></p>
-<p>The operation sequence is as follows :</p>
-</li>
-</ul>
-<p><img src="image-20210609211842575.png" alt="image-20210609211842575" style="zoom:67%;" /></p>
+<p>&nbsp;</p>
+<p>注记：</p>
 <ol>
-<li><p>Journal write : Write the contents of the transaction (including TxB, metadata, and data) .</p>
+<li><p>对于线性编码 <script type="math/tex">\mathcal{C}</script> ，其最短汉明距离为：</p>
+<script type="math/tex; mode=display">
+d_H(\mathcal{C})=\min \left\{\mathrm{wt}_H(\mathbf{x}) \mid \mathbf{x} \in \mathcal{C}, \mathbf{x} \neq \mathbf{0}\right\} .</script></li>
+<li><p>向量 <script type="math/tex">x</script> 距离编码空间 <script type="math/tex">\mathcal{C}</script> 的最短距离记为 ：</p>
+<script type="math/tex; mode=display">
+d_H(\mathbf{x}, \mathcal{C}) =\min \left\{\mathrm{d}_H(\mathbf{x}, \mathbf{y}) \mid \mathbf{y} \in \mathcal{C}\right\} .</script></li>
+<li><p><strong>Hamming sphere</strong> ：汉明球即所有汉明重量小于 <script type="math/tex">r</script> 的向量集合，记为，</p>
+<script type="math/tex; mode=display">
+B_H(r, n, q)=\left\{\mathrm{x} \in \mathbb{F}_q^n \mid \mathrm{wt}_H(\mathrm{x}) \leq r\right\}</script><p>汉明球的集合大小为：</p>
+<script type="math/tex; mode=display">
+\left|B_H(r, n, q)\right|=\sum_{i=0}^r\left(\begin{array}{c}
+n \\
+i
+\end{array}\right)(q-1)^i .</script></li>
+</ol>
+<p>&nbsp;</p>
+<p>实际上，在基于编码的密码学中，有常见的两种度量方式，其一是汉明度量，其二是秩度量（Rank-Metric），本文中只关注基于汉明度量的线性编码和相关性质，对 Rank-Metric 感兴趣的读者可以参考 <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2201.07119">A Survey on Code-Based Cryptography</a> 。</p>
+<p>&nbsp;</p>
+<h3 id="线性编码的性质"><a href="#线性编码的性质" class="headerlink" title="线性编码的性质"></a>线性编码的性质</h3><p><strong>定理 Singleton Bound</strong></p>
+<p>令正整数 <script type="math/tex">k \le n</script> ，令 <script type="math/tex">\mathcal{C}</script> 是一个定义在 <script type="math/tex">\mathbb{F}_q</script> 上 <script type="math/tex">[n,k]</script> 的线性编码，则其最短汉明距离的上界为：</p>
+<script type="math/tex; mode=display">
+d_H \le n - k + 1</script><p>证明思路：只需要证明 k 维的线性编码，删去 <script type="math/tex">d_H - 1</script> 个位置就一定是单射。（证明汉明重量大于 <script type="math/tex">d_H</script> 的汉明球集合的大小一定小于 k 维的线性子空间大小）</p>
+<p>&nbsp;</p>
+<p><strong>定义 Maximum Distance Separable (MDS) </strong></p>
+<p>达到 Singleton bound 的最短汉明距离上界的编码称为 MDS 编码。在实际使用中 MDS 编码具有非常好的性质，因为固定线性编码的参数 <script type="math/tex">[n,k]</script> ，MDS 编码能够最大化纠错能力。</p>
+<p>&nbsp;</p>
+<p><strong>性质 1 ：最短汉明距离与校验矩阵</strong></p>
+<p>令 <script type="math/tex">\mathcal{C}</script> 是一个定义在 <script type="math/tex">\mathbb{F}_q</script> 上 <script type="math/tex">[n,k]</script> 的线性编码， <script type="math/tex">\mathbf{H}</script> 是其校验矩阵，则 <script type="math/tex">\mathcal{C}</script> 的最短汉明距离为 <script type="math/tex">d_H</script> 当且仅当 <script type="math/tex">\mathbf{H}</script> 的任意 <script type="math/tex">d_H - 1</script> 列是线性无关的，并且存在 <script type="math/tex">d_H</script> 个列向量是线性相关的。</p>
+<p>&nbsp;</p>
+<p><strong>定义 Dual Code 对偶编码</strong></p>
+<p>令正整数 <script type="math/tex">k \le n</script> ， <script type="math/tex">\mathcal{C}</script> 是一个定义在 <script type="math/tex">\mathbb{F}_q</script> 上 <script type="math/tex">[n,k]</script> 的线性编码，其对偶编码 <script type="math/tex">\mathcal{C}^{\perp}</script> 是一个定义在 <script type="math/tex">\mathbb{F}_q</script> 上 <script type="math/tex">[n,n-k]</script> 的线性编码，定义如下：</p>
+<script type="math/tex; mode=display">
+\mathcal{C}^{\perp}=\left\{\mathbf{x} \in \mathbb{F}_q^n \mid\langle\mathbf{x}, \mathbf{y}\rangle=\sum_{i=1}^n x_i y_i = \mathbf{0} \forall \mathbf{y} \in \mathcal{C}\right\} .</script><p>&nbsp;</p>
+<p><strong>性质 2 ： 对偶编码</strong></p>
+<p>一个 MDS 编码的对偶编码仍然是 MDS 的。</p>
+<p>&nbsp;</p>
+<p><strong>定义 ：Systematic Form 矩阵</strong></p>
+<p>令 <script type="math/tex">\mathcal{C}</script> 是一个定义在 <script type="math/tex">\mathbb{F}_q</script> 上 <script type="math/tex">[n,k]</script> 的线性编码，那么存在某个置换矩阵（Permutation Matrix）<script type="math/tex">\mathbf{P}</script> ，和一个可逆矩阵 <script type="math/tex">\mathbf{U}</script>，使得生成矩阵变成系统形式（Systematic Form）：</p>
+<script type="math/tex; mode=display">
+\mathbf{U G P}=\left(\begin{array}{ll}
+\operatorname{Id}_k & \mathbf{A}
+\end{array}\right)</script><p>其中 <script type="math/tex">Id_k</script> 是 <script type="math/tex">k \times k</script> 的单位矩阵， 并且 <script type="math/tex">\mathbf{A} \in \mathbb{F}_q^{k \times(n-k)}</script> 。</p>
+<p>对应地，也能将校验矩阵也转换成系统形式，存在某个置换矩阵（Permutation Matrix）<script type="math/tex">\mathbf{P}^\prime</script> ，和一个可逆矩阵 <script type="math/tex">\mathbf{U}^\prime</script>，使得：</p>
+<script type="math/tex; mode=display">
+\mathbf{U}^{\prime} \mathbf{H} \mathbf{P}^{\prime}=\left(\begin{array}{ll}
+\mathbf{B} & \mathrm{Id}_{n-k}
+\end{array}\right)</script><p>&nbsp;</p>
+<p><strong>Remarks</strong></p>
+<p>置换矩阵顾名思义，它的作用就是重新排列矩阵的列顺序或者行顺序，形式上等价于一个单位阵进行任意置换后的矩阵。    </p>
+<p>&nbsp;</p>
+<p><strong>定理 ： Gilbert-Varshamov bound</strong></p>
+<p><strong>定义 1</strong> 令 <script type="math/tex">q</script> 是一个素数的幂， <script type="math/tex">k \le n</script> ，记 <script type="math/tex">V_H(r, n, q)=\left|B_H(r, n, q)\right|</script> 为汉明球的容量， <script type="math/tex">d_H</script>  是正整数使得：</p>
+<script type="math/tex; mode=display">
+V_H\left(d_H-2, n-1, q\right)<q^{n-k} .</script><p> 那么存在一个定义在 <script type="math/tex">\mathbb{F}_q</script> 上  <script type="math/tex">[n,k]</script> 的线性编码，它的最小汉明距离至少是 <script type="math/tex">d_H</script> 。</p>
+<p>&nbsp;</p>
+<p>更为广泛的 Gilbert-Varshamov bound 定义是从编码的最大维数（<script type="math/tex">k</script> 值）来阐述的，记 <script type="math/tex">A L(n, d, q)</script> 为 <script type="math/tex">\mathbb{F}_q^n</script> 上最短汉明距离为 d 的编码的最大维数（<script type="math/tex">k</script> 值）。</p>
+<p><strong>定义 2</strong>  令 <script type="math/tex">q</script> 是一个素数的幂， <script type="math/tex">n,d</script> 是正整数，则：</p>
+<script type="math/tex; mode=display">
+A L(n, d, q) \geq \frac{q^n}{V_H(d-1, n, q)} .</script><p>事实证明，随机生成的 code 以高概率到达渐进的 Gilbert-Varshamov bound 。</p>
+<p>&nbsp;</p>
+<h2 id="常见线性编码"><a href="#常见线性编码" class="headerlink" title="常见线性编码"></a>常见线性编码</h2><p>某些特定方式生成的线性编码具有良好的性质，本节简单介绍一些在密码学、编解码方向常用的线性编码。</p>
+<p>&nbsp;</p>
+<h3 id="Generalized-Reed-Solomon-Code"><a href="#Generalized-Reed-Solomon-Code" class="headerlink" title="Generalized Reed-Solomon Code"></a>Generalized Reed-Solomon Code</h3><p><strong>定义 ： Generalized Reed-Solomon Code</strong></p>
+<p>正整数 <script type="math/tex">k \le n \le q</script> ，令 <script type="math/tex">\alpha \in \mathbb{F}_q^n</script>  是不同元素的 n-元组，即 <script type="math/tex">\alpha=\left(\alpha_1, \ldots, \alpha_n\right)</script> ，其中 <script type="math/tex">\alpha_i \neq \alpha_j, \forall i \neq j \in\{1, \ldots, n\}</script> ；令 <script type="math/tex">\beta \in \mathbb{F}_q^n</script> 是非零的 n-元组，即 <script type="math/tex">\beta=\left(\beta_1, \ldots, \beta_n\right)</script>, 其中 <script type="math/tex">\beta_i \neq 0 , i \in\{1, \ldots, n\}</script>，广义的里德-所罗门编码（Generalized Reed-Solomon Code），码字长度为 <script type="math/tex">n</script> ，线性子空间维数为 <script type="math/tex">k</script> ，记为 <script type="math/tex">\operatorname{GRS}_{n, k}(\alpha, \beta)</script> ，其生成矩阵定义如下：</p>
+<script type="math/tex; mode=display">
+\operatorname{GRS}_{n, k}(\alpha, \beta)=\left\{\left(\beta_1 f\left(\alpha_1\right), \ldots, \beta_n f\left(\alpha_n\right)\right) \mid f \in \mathbb{F}_q[x], \operatorname{deg}(f)<k\right\} .</script><p>在 <script type="math/tex">\beta=(1, \ldots, 1)</script> 时，我们称其为 Reed-Solomon (RS) 编码，记为  <script type="math/tex">\operatorname{RS}_{n, k}(\alpha)</script> 。</p>
+<p>&nbsp;</p>
+<p><strong>Remarks</strong></p>
+<p>GRS 编码的生成矩阵可以解释为类似于 Vandermonde 矩阵乘以对角矩阵，其中每一行对应多项式的不同次数的项（从 0 到 <script type="math/tex">k-1</script>），每列对应不同的评估点 <script type="math/tex">a_i</script>，乘以权重向量中相应的 <script type="math/tex">\beta_i</script>。</p>
+<p><strong>例</strong> 范德蒙矩阵就是最常见的 RS 编码，取 <script type="math/tex">f(x) = \sum_{i=0}^{k-1} x^i</script></p>
+<script type="math/tex; mode=display">
+\left(\begin{array}{ccc}
+1 & \cdots & 1 \\
+\alpha_1 & \cdots & \alpha_n \\
+\vdots & & \vdots \\
+\alpha_1^{k-1} & \cdots & \alpha_n^{k-1}
+\end{array}\right)</script><p><strong>性质 1 </strong> ：GRS 编码都是 MDS 编码，即 GRS 的最小汉明距离达到最大上界 Singleton Bound。</p>
+<script type="math/tex; mode=display">
+d_H\left(\operatorname{GRS}_{n, k}(\alpha, \beta)\right)=n-k+1 .</script><p><strong>性质 2</strong> ：GRS 编码的对偶编码都是 GRS 编码。</p>
+<p><strong>性质 3</strong> ：GRS 的对偶编码满足 ：</p>
+<script type="math/tex; mode=display">
+\operatorname{GRS}_{n, k}(\alpha, \beta)^{\perp}=G R S_{n, n-k}(\alpha, \gamma),</script><p>其中：</p>
+<script type="math/tex; mode=display">
+\gamma_i=\beta_i^{-1} \prod_{\substack{j=1 \\ j \neq i}}^n\left(\alpha_i-\alpha_j\right)^{-1} .</script><p>&nbsp;</p>
+<h3 id="q-ary-Goppa-Code"><a href="#q-ary-Goppa-Code" class="headerlink" title="q-ary Goppa Code"></a>q-ary Goppa Code</h3><p><strong>补充定义</strong> ： <script type="math/tex">m</script> 是正整数，<script type="math/tex">n = q^m</script> ，定义有限域 <script type="math/tex">\mathbb{F}_q^m</script> ，令 <script type="math/tex">G \in \mathbb{F}_q^m[x]</script> ，定义多项式商环：</p>
+<script type="math/tex; mode=display">
+S_m=\mathbb{F}_{q^m[x]} /\langle G\rangle .</script><p><strong>引理</strong> ：令  <script type="math/tex">\alpha \in \mathbb{F}_q</script> 使得 <script type="math/tex">G(\alpha) \neq 0</script> ，那么  <script type="math/tex">(x-\alpha)</script> 在 <script type="math/tex">S_m</script> 内是可逆的，其逆为 ：</p>
+<script type="math/tex; mode=display">
+(x-\alpha)^{-1}=-\frac{1}{G(\alpha)} \frac{G(x)-G(\alpha)}{x-\alpha}</script><p><strong>定义 ： Classical Goppa Code</strong> </p>
+<p>令 <script type="math/tex">\alpha=\left(\alpha_1, \ldots, \alpha_n\right) \in \mathbb{F}_{q^m}^n</script> ，使得  <script type="math/tex">\alpha_i \neq \alpha_j \forall i\ne j \in\{1, \ldots, n\}</script> ，并且  <script type="math/tex">G\left(\alpha_i\right) \neq 0</script> for all <script type="math/tex">i \in\{1, \ldots, n\}</script> ，则 Classical q-ary Goppa 编码定义为：</p>
+<script type="math/tex; mode=display">
+\Gamma(\alpha, G)=\left\{a \in \mathbb{F}_q^n \mid \sum_{i=1}^n \frac{a_i}{x-\alpha_i}=0 \text { in } S_m\right\} .</script><p><strong>性质</strong> 1 ：Goppa 编码 <script type="math/tex">\Gamma(\alpha, G)</script> 的最小汉明距离满足 <script type="math/tex">d_H(\Gamma(\alpha, G)) \geq \operatorname{deg}(G)+1</script> ，线性子空间维数满足 <script type="math/tex">k \geq n-m \operatorname{deg}(G)</script> 。</p>
+<p>&nbsp;</p>
+<p><strong>Goppa Code 校验矩阵</strong></p>
+<p>令 <script type="math/tex">\beta=</script> <script type="math/tex">\left(G\left(\alpha_1\right)^{-1}, \ldots, G\left(\alpha_n\right)^{-1}\right)</script> ，<script type="math/tex">\Gamma(\alpha, G)</script> 的校验矩阵由下面带权值的范德蒙矩阵给出：</p>
+<script type="math/tex; mode=display">
+\mathbf{H}=\left(\begin{array}{ccc}
+\beta_1 & \cdots & \beta_n \\
+\beta_1 \alpha_1 & \cdots & \beta_n \alpha_n \\
+\vdots & & \vdots \\
+\beta_1 \alpha_1^{r-1} & \cdots & \beta_n \alpha_n^{r-1}
+\end{array}\right)</script><p>注意到 <script type="math/tex">\mathbf{H} \in \mathbb{F}_{q^m}^{(n-k) \times n}</script> ，编码 <script type="math/tex">\Gamma(\alpha, G)</script> 是矩阵  <script type="math/tex">\mathbf{H}</script> 的 <script type="math/tex">\mathbb{F}_{q^{-}}</script>kernel 。实际上，以 <script type="math/tex">\mathbf{H}</script> 作为生成矩阵，可以构成一个 GRS 编码，由此可见 GRS 编码和 q-ary Goppa 编码之间的联系。</p>
+<p>&nbsp;</p>
+<h3 id="Cyclic-Code"><a href="#Cyclic-Code" class="headerlink" title="Cyclic Code"></a>Cyclic Code</h3><p><strong>如果任何码字的循环移位也是一个码字，我们称其为循环码。</strong>循环编码 <script type="math/tex">\mathcal{C}</script> 能够只通过一个向量 <script type="math/tex">c</script> （和它的循环移位）来表示。令 <script type="math/tex">c = (c_1,\cdots,c_n) \in \mathbb{F}_q^n</script> ，定义 <script type="math/tex">\sigma</script> 为循环移位函数，即</p>
+<script type="math/tex; mode=display">
+\sigma(c_1,\cdots,c_n) = \sigma(c_n,c_1,\cdots,c_{n-1})</script><p><strong>定义 ：Cyclic Code （循环编码）</strong></p>
+<p>正整数 <script type="math/tex">k \le n</script> ， <script type="math/tex">\mathcal{C}</script> 是一个定义在 <script type="math/tex">\mathbb{F}_q</script> 上 <script type="math/tex">[n,k]</script> 的线性编码， 我们称 <script type="math/tex">\mathcal{C}</script> 是循环码，即满足 <script type="math/tex">\sigma(\mathcal{C}) = \mathcal{C}</script> 。</p>
+<p>&nbsp;</p>
+<p><strong>注记</strong></p>
+<ol>
+<li>令正整数 <script type="math/tex">k \le n \le q - 1</script> ，<script type="math/tex">\alpha  \in \mathbb{F}_q^n</script> 为元素互异的向量，则  <script type="math/tex">\operatorname{RS}_{n, k}(\alpha)</script>  是一个循环编码。</li>
+<li>定义在 <script type="math/tex">\mathbb{F}_q</script> 上长度为 <script type="math/tex">n</script> 的循环编码 <script type="math/tex">\mathcal{C}</script> 是多项式商环 <script type="math/tex">\mathbb{F}_q [x] /(x^n -1)</script> 上的理想（ideals）。因此循环编码 <script type="math/tex">\mathcal{C}</script> 存在生成多项式。我们做如下定义，循环码 <script type="math/tex">\mathcal{C}</script> 的生成多项式是其在 <script type="math/tex">\mathbb{F}_q[x]/(x^n − 1)</script> 中最小次数理想对应的首一多项式。</li>
+</ol>
+<p>&nbsp;</p>
+<p><strong>性质 ： 循环码的生成多项式</strong> </p>
+<p>令 <script type="math/tex">\mathcal{C}</script> 是 <script type="math/tex">\mathbb{F}_q</script> 上长度为 <script type="math/tex">n</script> 的循环编码，其生成多项式为 <script type="math/tex">g(x) = \sum_{i=0}^r g_i x^i</script> ，次数为 <script type="math/tex">r</script> ，则满足：</p>
+<ol>
+<li><p>生成多项式 <script type="math/tex">g(x) | x^n -1</script> （由理想的性质立得）</p>
 </li>
-<li><p>Journal commit : metadata, and data (including TxE) .</p>
+<li><p>循环码 <script type="math/tex">\mathcal{C}</script> 的维数为 <script type="math/tex">k = n - r</script> 。</p>
 </li>
-<li><p>Checkpoint: Write the contents of the update to their on-disk locations.</p>
+<li><p>生成矩阵 <script type="math/tex">G \in \mathbb{F}_q^{(n-r) \times n}</script> 可以表示如下（该形式的矩阵也被称为循环矩阵）：</p>
+<script type="math/tex; mode=display">
+G=\left(\begin{array}{lllll}
+g_0 & \cdots & g_r & & \\
+& \ddots & & \ddots & \\
+& & g_0 & \cdots & g_r
+\end{array}\right)</script></li>
+<li><p>循环码  <script type="math/tex">\mathcal{C}</script> 的对偶编码的生成多项式 <script type="math/tex">h(x)</script> 满足 ：<script type="math/tex">g(x)h(x) = x^n -1</script> ，即  <script type="math/tex">\langle g(x)\rangle^{\perp}=\langle h(x)\rangle</script>。</p>
 </li>
 </ol>
+<p>&nbsp;</p>
+<p>除了循环编码之外，密码学中常见的编码是准循环编码（Quasi-Cyclic Code），简记为 QC 编码。类似地定义 <script type="math/tex">\ell</script> 循环移位，令  <script type="math/tex">c = (c_1,\cdots,c_n) \in \mathbb{F}_q^n</script> ，记 <script type="math/tex">\sigma_{\ell}(x)</script> 如下：</p>
+<script type="math/tex; mode=display">
+\sigma_{\ell}(c_1,\cdots,c_n) = \sigma(c_{1+\ell},\cdots,c_{n+\ell})</script><p>上述下标均在模 <script type="math/tex">n</script> 的意义下进行计算。</p>
+<p>&nbsp;</p>
+<p><strong>定义：Quasi-Cyclic Code（准循环编码）</strong></p>
+<p>令正整数 <script type="math/tex">k \le n</script> ， <script type="math/tex">\mathcal{C}</script> 是一个定义在 <script type="math/tex">\mathbb{F}_q</script> 上 <script type="math/tex">[n,k]</script> 的线性编码，<script type="math/tex">\mathcal{C}</script> 是准循环的，即存在 <script type="math/tex">\ell \in \{1,\cdots, n\}</script>， 使得 <script type="math/tex">\sigma_{\ell}(\mathcal{C}) = \mathcal{C}</script> 。</p>
+<p>&nbsp;</p>
+<h2 id="编码理论的-NP-困难问题"><a href="#编码理论的-NP-困难问题" class="headerlink" title="编码理论的 NP 困难问题"></a>编码理论的 NP 困难问题</h2><p>前面提到过，线性编码的编码、解码问题是简单的。但是我们注意到编码领域一个重要研究方向就是纠错，如果编码后的 codeword 在不可靠信道上传输部分比特出现了错误，线性编码的纠错能力如何？准确而言，一个 <script type="math/tex">[n,k]</script> 的二元线性编码 <script type="math/tex">\mathcal{C}</script> 最大能够纠错多少个比特数？纠错解码的时间复杂度如何？</p>
+<p>第一个问题的答案将在本节给出，第二个问题的答案是纠错算法是 NP 困难的，目前最好的算法是 Information Set Decoding （ISD）类算法及其变体，拥有指数级别的复杂度，也因此用于设计一系列后量子密码体制。</p>
+<p>&nbsp;</p>
+<h3 id="线性编码的纠错能力"><a href="#线性编码的纠错能力" class="headerlink" title="线性编码的纠错能力"></a>线性编码的纠错能力</h3><p>这里我们重新审视线性编码的本质，记  <script type="math/tex">[n,k]</script> 的二元线性编码 <script type="math/tex">\mathcal{C}</script> 的生成矩阵为  <script type="math/tex">\mathbf{G} \in \mathbb{F}_q^k</script>，其 <script type="math/tex">k</script> 个<strong>线性无关</strong>的行向量构成整个线性子空间的基 <script type="math/tex">\{\mathbf{b}_1, \mathbf{b}_2,\cdots, \mathbf{b}_k \}</script> 。记明文 <script type="math/tex">\mathbf{m} = (a_1,\cdots,a_k)</script> ，其对应的码字满足：</p>
+<script type="math/tex; mode=display">
+c = (c_1,\cdots,c_n) = a_1 \mathbf{b_1} + a_2 \mathbf{b}_2  + \cdots + a_k \mathbf{b_k} = \mathbf{mG}</script><p>本质上就是我们有 <script type="math/tex">k</script> 个变量 ，但是我们构建了 <script type="math/tex">n \ge k</script> 组线性方程：</p>
+<script type="math/tex; mode=display">
+\textsf{(n,k) Overdetermined Equations }\left\{
+\begin{array}{lr}
+b_{11} a_1 + b_{21} a_{2} + \cdots + b_{k1} a_k = c_1 \\
+b_{12} a_1 + b_{22} a_{2} + \cdots + b_{k2} a_k = c_2 \\
+\cdots \\
+b_{1n} a_1 + b_{2n} a_{2} + \cdots + b_{kn} a_k = c_n
+\end{array}
+\right.</script><p>上述是一个超定方程组，存在 <script type="math/tex">n - k</script> 组冗余方程组。假设错误向量为 <script type="math/tex">\mathbf{e}</script> ，汉明重量为 <script type="math/tex">\mathbf{wt(e)} = w</script> ，则一个含有错误向量的码字为 <script type="math/tex">\mathbf{c}^\prime = \mathbf{mG + e}</script> ，本质上即 <script type="math/tex">n</script> 组 <script type="math/tex">k</script> 变量的超定线性方程组中，有 <script type="math/tex">w</script> 组方程是错的，如何恢复出原始的 <script type="math/tex">\mathbf{m}</script> 。从解方程的角度容易得到纠错的最多比特数不超过 <script type="math/tex">n -k</script> 。但是实际上线性编码的纠错能力小于 <script type="math/tex">n - k</script> ，其一是，我们并不确定出错的比特位数，即使知道，也无法确定正确的明文，因为不能假设原始消息存在某种可验证的格式（比如 ASCII 码）；其二，码字长度 <script type="math/tex">n</script> 比较大时，随着纠错比特数增大，纠错的时间复杂度是指数级别的（NP 困难）。</p>
+<p>实际计算中，只要满足错误向量的汉明重量比较短时，认为此时解出的码字时正确的，一般我们认为最大纠错的比特数为 Gilbert-Varshamov Distance，记为 <script type="math/tex">d_{\rm GV}(n,k)</script> ，指的是最小的整数 <script type="math/tex">d</script> 使得 ：</p>
+<script type="math/tex; mode=display">
+\sum_{j=0}^{d-1} \binom{n}{j} \ge 2^{n-k}.</script><p>这个界有一个直观的解释，也就是说找一个上界 <script type="math/tex">d_{\rm GV}(n,k)</script> ，使得我们搜索完整个所有可能的错误方程出现的位置 <script type="math/tex">\sum_{j=0}^{d-1} \binom{n}{j}</script> 恰好覆盖整个冗余方程组的空间 <script type="math/tex">2^{n-k}</script> ，在小于这个 <script type="math/tex">d_{\rm GV}(n,k)</script> 时，对于随机编码，纠错大概率能够得到唯一解，一旦大于 <script type="math/tex">d_{\rm GV}(n,k)</script> ，此时可能存在两个或者多个汉明权重相同的错误向量，解密得到两个不同消息，此时我们是无法区分正确消息的。（在后续 SDP 中的解释更为直观）</p>
+<p>下面我们正式定义编码领域两个重要问题（本质上是同一个问题）</p>
 <ul>
-<li><p><strong>Metadata Journaling</strong> </p>
-<p>The operation sequence is as follows :</p>
-<p><img src="image-20210609212354004.png" alt="image-20210609212354004" style="zoom:67%;" /></p>
+<li><strong>Decoding Problem</strong>  ：给定整数 <script type="math/tex">n,k,w</script> , 使得 <script type="math/tex">k \le n</script> 并且 <script type="math/tex">w\le n</script> ， 给定一个<strong>生成矩阵 （generator matrix）</strong> <script type="math/tex">{\rm \bf G} \in \mathbb{F}_2^{ k\times n}</script>，以及一个目标向量（编码后）<script type="math/tex">{\rm \bf y} \in     \mathbb{F}_2^{n}</script> ，上述问题的一个解是找到一个向量 <script type="math/tex">{\rm \bf e} \in     \mathbb{F}_2^n</script> 使得其汉明重量  <script type="math/tex">\le w</script> ，并且满足存在某个 <script type="math/tex">\mathbf{m} \in \mathbb{F}_q^k</script> 使得 <script type="math/tex">{\rm m \bf G + e} = {\rm \bf y }</script> 。</li>
+<li><strong>Syndrome Decoding Problem ：</strong>给定整数 <script type="math/tex">n,k,w</script> , 使得 <script type="math/tex">k \le n</script> 并且 <script type="math/tex">w\le n</script> ， 一个 <script type="math/tex">\mathrm{SD}(n,k,w)</script> 问题实例即，给定一个<strong>奇偶校验矩阵 （parity-check matrix）</strong> <script type="math/tex">{\rm \bf H} \in \mathbb{F}_2^{(n-k)     \times n}</script>，以及一个目标向量（编码后）<script type="math/tex">{\rm \bf s} \in     \mathbb{F}_2^{n-k}</script> （称为 <em>syndrome</em>），上述问题的一个解是找到一个向量 <script type="math/tex">{\rm \bf e} \in     \mathbb{F}_2^n</script> 使得其汉明重量  <script type="math/tex">\le w</script> ，并且满足 <script type="math/tex">{\rm \bf He^{\top}} = {\rm \bf s^{\top}}</script> .</li>
+</ul>
+<p>前一个解码纠错问题实际可以转换成 SDP，即：</p>
+<script type="math/tex; mode=display">
+\mathbf{y}=\mathbf{m G}+\mathbf{e} \\
+\implies y \mathbf{H}^T = (m \mathbf{G})\mathbf{H}^T + e\mathbf{H}^T \\
+\implies \underbrace{y \mathbf{H}^T}_{\mathbf{s}} = e\mathbf{H}^T \\
+\implies {\rm \bf He^{T}} = {\rm \bf s^{T}}</script><p>我们在 SDP 问题中考虑Gilbert-Varshamov Distance 的值 <script type="math/tex">d_{\rm GV}(n,k)</script> ，<script type="math/tex">{\rm \bf s} \in     \mathbb{F}_2^{n-k}</script> ，可能的值为 <script type="math/tex">2^{n-k}</script> 个， 搜索完所有可能的错误方程出现的位置 <script type="math/tex">\sum_{j=0}^{d-1} \binom{n}{j}</script> ， 也就有 <script type="math/tex">\sum_{j=0}^{d-1} \binom{n}{j}</script> 个可能的 Syndrome  值，如果这个值比整个 Syndrome 可能的的空间 <script type="math/tex">2^{n-k}</script> 小，那么给定一个 Syndrome 值，得到的错误向量 <script type="math/tex">\mathbf{e}</script> 大概率是唯一的。否则当 <script type="math/tex">w \ge d_{\rm GV}(n,k)</script> ，由抽屉原理，对于某个 Syndrome 值，可能存在两个错误向量 <script type="math/tex">\mathbf{e_1,e_2}</script>  同时满足 <script type="math/tex">{\rm \bf He^{T}} = {\rm \bf s^{T}}</script> 。</p>
+<p>&nbsp;</p>
+<h3 id="Decoding-Challenge"><a href="#Decoding-Challenge" class="headerlink" title="Decoding Challenge"></a>Decoding Challenge</h3><p>本节简单介绍 <a target="_blank" rel="noopener" href="https://decodingchallenge.org/">Code-based Challenges</a> 上的三个困难问题，这些问题是许多后量子密码体制的底层数学困难问题。</p>
+<p>&nbsp;</p>
+<h4 id="Syndrome-Decoding-Problem"><a href="#Syndrome-Decoding-Problem" class="headerlink" title="Syndrome Decoding Problem"></a>Syndrome Decoding Problem</h4><p><strong>定义：</strong>给定整数 <script type="math/tex">n,k,w</script> , 使得 <script type="math/tex">k \le n</script> 并且 <script type="math/tex">w\le n</script> ， 一个 <script type="math/tex">\mathrm{SD}(n,k,w)</script> 问题实例即，给定一个<strong>奇偶校验矩阵 （parity-check matrix）</strong> <script type="math/tex">{\rm \bf H} \in \mathbb{F}_2^{(n-k)     \times n}</script>，以及一个目标向量（编码后）<script type="math/tex">{\rm \bf s} \in     \mathbb{F}_2^{n-k}</script> （称为 <em>syndrome</em>），上述问题的一个解是找到一个向量 <script type="math/tex">{\rm \bf e} \in     \mathbb{F}_2^n</script> 使得其汉明重量  <script type="math/tex">\le w</script> ，并且满足 <script type="math/tex">{\rm \bf He^{\top}} = {\rm \bf s^{\top}}</script> .</p>
+<p><strong>注记：</strong></p>
 <ol>
-<li><p>Journal write : Write the contents of the transaction (including TxB, metadata) .Write the contents of the update to their on-disk locations. The two writes can be issued in parallel.</p>
-</li>
-<li><p>Journal commit : Write TxE.</p>
-</li>
-<li><p>Checkpoint : Write the update of metadata to their on-disk locations.</p>
+<li><script type="math/tex">\mathrm{SD}(n,k,w)</script>  问题其实就是给了一个 <script type="math/tex">\mathbb{F}_2</script> 上的欠定线性方程组，<strong><script type="math/tex">n</script> 个变量 ， 方程个数比变量个数少 <script type="math/tex">k</script> 个</strong>，因此解空间大小为 <script type="math/tex">2^k</script>，我们的目标就是在 <script type="math/tex">2^k</script> 的空间中寻找汉明重量不大于 <script type="math/tex">w</script> 的目标解。</li>
+<li>Syndrome Decoding Problem 的在线挑战以及现有记录：<a target="_blank" rel="noopener" href="https://decodingchallenge.org/syndrome">https://decodingchallenge.org/syndrome</a></li>
+<li><p>上述挑战的码率（Code-Rate）取为 <script type="math/tex">R = 0.5</script> ，即 <script type="math/tex">n = 2k</script> ，一般而言可快速求解的汉明重量下界是 <a target="_blank" rel="noopener" href="https://decodingchallenge.org/home/documentation#GV">Gilbert-Varshamov bound</a> ，上述挑战选取的值稍大（保证对于任意 <script type="math/tex">{\rm \bf s} \in     \mathbb{F}_2^{n-k}</script> 解的存在性），为 <script type="math/tex">w = \lceil 1.05 \, d_{\rm GV}\rceil</script> 。</p>
+<p>&nbsp;</p>
 </li>
 </ol>
-</li>
-</ul>
-<ul>
-<li><p><strong>Difference</strong></p>
+<h4 id="Low-weight-Codeword-Problem"><a href="#Low-weight-Codeword-Problem" class="headerlink" title="Low-weight Codeword Problem"></a>Low-weight Codeword Problem</h4><p><strong>定义：</strong>给定整数 <script type="math/tex">n,k,w</script> , 使得 <script type="math/tex">k \le n</script> 并且 <script type="math/tex">w\le n</script> ， 一个 <script type="math/tex">\mathrm{LWC}(n,k,w)</script> 问题实例即，给定一个满秩<strong>奇偶校验矩阵 （parity-check matrix）</strong> <script type="math/tex">{\rm \bf H} \in \mathbb{F}_2^{(n-k)     \times n}</script>，上述问题的一个解是找到一个非零向量 <script type="math/tex">{\rm \bf c} \in     \mathbb{F}_2^n</script> 使得其汉明重量  <script type="math/tex">\le w</script> ，并且满足 <script type="math/tex">{\rm \bf Hc^{\top}} = {\rm \bf 0 }</script> .</p>
+<p><strong>注记：</strong></p>
 <ol>
-<li><p><strong>Writing sequence</strong></p>
-<p>Data Journaling :  Write the logs before writing the file system.</p>
-<p>Metadata Journaling :  Write metadata to the log and data to the file system <strong>(in parallel).</strong> Waiting. After submitting the log, write metadata to the file system.</p>
-</li>
-<li><p><strong>The amount of data :</strong>  </p>
-<p>Data Journaling :  Write data twice.</p>
-<p>Metadata Journaling :  Write data once.</p>
-</li>
+<li>该问题可以视为特殊  <em>syndrome</em> <script type="math/tex">\bf{0}</script> 对应的  <script type="math/tex">\mathrm{SD}(n,k,w)</script> 问题实例。</li>
+<li>Low-weight Codeword Problem  的在线挑战以及现有记录 <a target="_blank" rel="noopener" href="https://decodingchallenge.org/low-weight">https://decodingchallenge.org/low-weight</a> 。</li>
+<li>上述挑战的码率（Code-Rate）取为 <script type="math/tex">R = 0.5</script> ，即 <script type="math/tex">n = 2k</script> ，固定 <script type="math/tex">n = 1280</script> , 此时根据 <a target="_blank" rel="noopener" href="https://decodingchallenge.org/home/documentation#GV">Gilbert-Varshamov bound</a> ，存在一个汉明重量为 144 的目标解。</li>
+<li>解法 ： 使用  <a target="_blank" rel="noopener" href="https://decodingchallenge.org/home/documentation#hardness">BJMM algorithm</a> 渐进需要 <script type="math/tex">2^{0.0999852\, n}</script> 的复杂度，对于上述参数即是 <script type="math/tex">2^{128}</script> .</li>
 </ol>
-</li>
-</ul>
-<p>&nbsp;<br>&nbsp;</p>
-<h2 id="14-I-O-control-methods"><a href="#14-I-O-control-methods" class="headerlink" title="14. I/O control methods"></a>14. I/O control methods</h2><p><strong>What are the three I/O control methods?</strong> </p>
-<hr>
-<h3 id="Solution-13"><a href="#Solution-13" class="headerlink" title="Solution:"></a>Solution:</h3><hr>
-<ul>
-<li>Polling.</li>
-<li>Interrupt.</li>
-<li>Direct Memory Access (DMA) .</li>
-</ul>
-<p>&nbsp;<br>&nbsp;</p>
-<h2 id="15-I-O-interface"><a href="#15-I-O-interface" class="headerlink" title="15. I/O interface"></a>15. I/O interface</h2><p><strong>List at least three kinds of I/O devices and explain how to provide a standard and uniform application I/O interface?</strong> </p>
-<hr>
-<h3 id="Solution-14"><a href="#Solution-14" class="headerlink" title="Solution"></a>Solution</h3><hr>
-<p>Keyboard, mouse, router, printer, etc.<br>Implement a  standard and uniform application I/O interface: <strong>Abstraction, encapsulation, layering</strong> .</p>
-<p>&nbsp;<br>&nbsp;</p>
-<h2 id="16-I-O-Subsystem"><a href="#16-I-O-Subsystem" class="headerlink" title="16. I/O Subsystem"></a>16. I/O Subsystem</h2><p><strong>What services are provided by the kernel I/O subsystem ?</strong></p>
-<hr>
-<h3 id="Solution-15"><a href="#Solution-15" class="headerlink" title="Solution"></a>Solution</h3><ul>
-<li><strong>I/O scheduling</strong><br>Maintain a per-device queue.<br>Re-ordering the requests.<br>Average waiting time, fairness, etc. </li>
-<li><strong>Buffering</strong><br>Store data in memory while transferring between devices.<br>To cope with device speed mismatch.<br>To cope with device transfer size mismatch.<br>To maintain “copy semantics” (e.g., copy from application’s buffer to kernel buffer)</li>
-<li><strong>Caching</strong><br>Faster device holding copy of data.</li>
-<li><strong>Spooling</strong><br>Hold output for a device</li>
-<li><strong>Error handling and I/O protection</strong></li>
-<li><strong>Power management, etc.</strong></li>
-</ul>
+<p>&nbsp;</p>
+<h4 id="Large-Weight-Syndrome-Decoding-Problem"><a href="#Large-Weight-Syndrome-Decoding-Problem" class="headerlink" title="Large Weight Syndrome Decoding Problem"></a>Large Weight Syndrome Decoding Problem</h4><p><strong>定义：</strong>给定整数 <script type="math/tex">n,k,w</script> , 使得 <script type="math/tex">k \le n</script> 并且 <script type="math/tex">w\le n</script> ， 一个 <script type="math/tex">\mathrm{LW3SD}(n,k,w)</script> 问题实例即，给定一个<strong>奇偶校验矩阵 （parity-check matrix）</strong> <script type="math/tex">{\rm \bf H} \in \mathbb{F}_3^{(n-k)     \times n}</script>，以及一个目标向量（编码后）<script type="math/tex">{\rm \bf s} \in     \mathbb{F}_3^{n-k}</script> （称为 <em>syndrome</em>），上述问题的一个解是找到一个向量 <script type="math/tex">{\rm \bf e} \in \mathbb{F}_3^n</script> 使得其汉明重量  <script type="math/tex">\ge w</script> ，并且满足 <script type="math/tex">{\rm \bf He^{\top}} = {\rm \bf s^{\top}}</script> .</p>
+<p><strong>注记：</strong></p>
+<ol>
+<li>类似 Syndrome Decoding Problem ，环改为 <script type="math/tex">\mathbb{F}_3</script> ，目标改为寻找的是大于某个汉明重量的解。</li>
+<li><strong>Large Weight Syndrome Decoding Problem</strong> 的在线挑战以及现有记录 <a target="_blank" rel="noopener" href="https://decodingchallenge.org/large-weight">https://decodingchallenge.org/large-weight</a> .</li>
+<li>上述挑战的码率 <script type="math/tex">R = \log_3(2) \simeq 0.36907</script> ，则 <script type="math/tex">k = \lfloor R n \rfloor</script> ，此时对于高汉明重量的  <a target="_blank" rel="noopener" href="https://decodingchallenge.org/home/documentation#GV">Gilbert-Varshamov bound</a> 恰好是 <script type="math/tex">n</script> ，这里我们取略小于  <a target="_blank" rel="noopener" href="https://decodingchallenge.org/home/documentation#GV">Gilbert-Varshamov bound</a> 的目标汉明重量，即 <script type="math/tex">w = \lfloor 0.99 \,     d_{\rm GV}^{+}\rfloor = \lfloor 0.99 \, n \rfloor</script> 。</li>
+</ol>
+<p>&nbsp;</p>
 
     
 
@@ -543,11 +551,11 @@ MaxSize=(12 * 8 KB) + (2048 * 8 KB) + (2048 * 2048 * 8 KB) + (2048 * 2048 * 2048
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">USTC</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PQC</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">0S2021</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Code</a>
         		</li>
       		
 		</ul>
@@ -559,7 +567,7 @@ MaxSize=(12 * 8 KB) + (2048 * 8 KB) + (2048 * 2048 * 8 KB) + (2048 * 2048 * 2048
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/OS-2021//" class="article-tag-list-link color3">OS 2021</a>
+        			<a href="/categories/Cryptography//" class="article-tag-list-link color3">Cryptography</a>
         		</li>
       		
 		</ul>
@@ -614,7 +622,7 @@ MaxSize=(12 * 8 KB) + (2048 * 8 KB) + (2048 * 2048 * 8 KB) + (2048 * 2048 * 2048
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://tl2cents.github.io/2021/07/18/USTC%20OS%202021%20Spring%20HW5/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://tl2cents.github.io/2023/11/28/Code-based-Cryptography-Linear-Code-Basis/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -629,18 +637,9 @@ MaxSize=(12 * 8 KB) + (2048 * 8 KB) + (2048 * 2048 * 8 KB) + (2048 * 2048 * 2048
 
 <nav id="article-nav">
   
-    <a href="/2021/07/21/Naive-Bayes/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Naive Bayes Realized By Python
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/07/18/USTC%20OS%202021%20Spring%20HW4/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">USTC OS 2021 Spring HW4</div>
+    <a href="/2023/11/02/2023-KCTF-98k-defense/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">2023 看雪 KCTF 98k 战队防守方精准攻击赛题设计</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -667,7 +666,7 @@ MaxSize=(12 * 8 KB) + (2048 * 8 KB) + (2048 * 2048 * 8 KB) + (2048 * 2048 * 2048
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-RAID"><span class="toc-number">1.</span> <span class="toc-text">1. RAID</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution"><span class="toc-number">1.1.</span> <span class="toc-text">Solution</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#a"><span class="toc-number">1.1.1.</span> <span class="toc-text">a.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#b"><span class="toc-number">1.1.2.</span> <span class="toc-text">b.</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-The-disk-scheduling-algorithm"><span class="toc-number">2.</span> <span class="toc-text">2. The disk-scheduling algorithm</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-1"><span class="toc-number">2.1.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Open-file-table"><span class="toc-number">3.</span> <span class="toc-text">3. Open-file table</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-2"><span class="toc-number">3.1.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-File-and-Directory"><span class="toc-number">4.</span> <span class="toc-text">4. File and Directory</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-3"><span class="toc-number">4.1.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Continuous-Allocation"><span class="toc-number">5.</span> <span class="toc-text">5. Continuous Allocation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-4"><span class="toc-number">5.1.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-FAT-pros-and-cons"><span class="toc-number">6.</span> <span class="toc-text">6. FAT (pros and cons)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-5"><span class="toc-number">6.1.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Disk-I-O"><span class="toc-number">7.</span> <span class="toc-text">7. Disk I&#x2F;O</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-6"><span class="toc-number">7.1.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-Max-File-Size-in-FAT"><span class="toc-number">8.</span> <span class="toc-text">8. Max File Size in FAT</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-7"><span class="toc-number">8.1.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-Long-filename-in-FAT"><span class="toc-number">9.</span> <span class="toc-text">9. Long filename in FAT</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-8"><span class="toc-number">9.1.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-Director-Entries"><span class="toc-number">10.</span> <span class="toc-text">10. Director Entries</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-9"><span class="toc-number">10.1.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-Hard-Symbolic-Link"><span class="toc-number">11.</span> <span class="toc-text">11. Hard&#x2F;Symbolic Link</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-10"><span class="toc-number">11.1.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-Initial-Link-Counts"><span class="toc-number">12.</span> <span class="toc-text">12. Initial Link Counts</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-11"><span class="toc-number">12.1.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-Data-Metadata-Journaling"><span class="toc-number">13.</span> <span class="toc-text">13. Data&#x2F;Metadata Journaling</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-12"><span class="toc-number">13.1.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-I-O-control-methods"><span class="toc-number">14.</span> <span class="toc-text">14. I&#x2F;O control methods</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-13"><span class="toc-number">14.1.</span> <span class="toc-text">Solution:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-I-O-interface"><span class="toc-number">15.</span> <span class="toc-text">15. I&#x2F;O interface</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-14"><span class="toc-number">15.1.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-I-O-Subsystem"><span class="toc-number">16.</span> <span class="toc-text">16. I&#x2F;O Subsystem</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-15"><span class="toc-number">16.1.</span> <span class="toc-text">Solution</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E7%BC%96%E7%A0%81%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text">线性编码基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E7%BC%96%E7%A0%81-Linear-Code"><span class="toc-number">1.1.</span> <span class="toc-text">线性编码 Linear Code</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%89%E6%98%8E%E5%BA%A6%E9%87%8F-Hamming-Metric"><span class="toc-number">1.2.</span> <span class="toc-text">汉明度量 Hamming Metric</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E7%BC%96%E7%A0%81%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">1.3.</span> <span class="toc-text">线性编码的性质</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%BA%BF%E6%80%A7%E7%BC%96%E7%A0%81"><span class="toc-number">2.</span> <span class="toc-text">常见线性编码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Generalized-Reed-Solomon-Code"><span class="toc-number">2.1.</span> <span class="toc-text">Generalized Reed-Solomon Code</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#q-ary-Goppa-Code"><span class="toc-number">2.2.</span> <span class="toc-text">q-ary Goppa Code</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cyclic-Code"><span class="toc-number">2.3.</span> <span class="toc-text">Cyclic Code</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E7%A0%81%E7%90%86%E8%AE%BA%E7%9A%84-NP-%E5%9B%B0%E9%9A%BE%E9%97%AE%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">编码理论的 NP 困难问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E7%BC%96%E7%A0%81%E7%9A%84%E7%BA%A0%E9%94%99%E8%83%BD%E5%8A%9B"><span class="toc-number">3.1.</span> <span class="toc-text">线性编码的纠错能力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Decoding-Challenge"><span class="toc-number">3.2.</span> <span class="toc-text">Decoding Challenge</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Syndrome-Decoding-Problem"><span class="toc-number">3.2.1.</span> <span class="toc-text">Syndrome Decoding Problem</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Low-weight-Codeword-Problem"><span class="toc-number">3.2.2.</span> <span class="toc-text">Low-weight Codeword Problem</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Large-Weight-Syndrome-Decoding-Problem"><span class="toc-number">3.2.3.</span> <span class="toc-text">Large Weight Syndrome Decoding Problem</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>

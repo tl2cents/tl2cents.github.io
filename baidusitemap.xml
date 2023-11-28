@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://tl2cents.github.io/2023/11/28/Code-based-Cryptography-Linear-Code-Basis/</loc>
+    <lastmod>2023-11-28</lastmod>
+  </url>
+  <url>
     <loc>https://tl2cents.github.io/2023/11/02/2023-KCTF-98k-defense/</loc>
     <lastmod>2023-11-02</lastmod>
   </url>
