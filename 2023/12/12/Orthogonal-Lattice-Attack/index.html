@@ -24,7 +24,7 @@
 <meta property="og:image" content="https://tl2cents.github.io/2023/12/12/Orthogonal-Lattice-Attack/image-1.png">
 <meta property="og:image" content="https://tl2cents.github.io/2023/12/12/Orthogonal-Lattice-Attack/image-2.png">
 <meta property="article:published_time" content="2023-12-12T14:44:01.000Z">
-<meta property="article:modified_time" content="2023-12-12T15:08:16.844Z">
+<meta property="article:modified_time" content="2023-12-13T01:52:04.130Z">
 <meta property="article:author" content="tl2cents">
 <meta property="article:tag" content="PQC">
 <meta property="article:tag" content="Lattice">
@@ -297,8 +297,8 @@
     <p>正交格攻击 ：Orthogonal Lattice Attack （简记为 OL 攻击）是一类重要的格相关攻击。可用于近似公约数问题 （Approximate Common Divisor abbr. ACD）、隐藏子集和问题（Hidden Subset Sum Problem abbr. HSSP）等困难问题的求解，在密码分析方向有广泛的应用。</p>
 <span id="more"></span>
 <p>&nbsp;</p>
-<h2 id="正交格攻击"><a href="#正交格攻击" class="headerlink" title="正交格攻击"></a>正交格攻击</h2><p>正交格的本质就是核空间（kernel space），求某个（或者多个）向量 <script type="math/tex">\mathcal{V}</script> 的核空间 <script type="math/tex">\mathcal{V}^{\perp}</script> ，我们在核空间中进行格规约（LLL 或者 BKZ），从而筛选出我们需要向量再组成一个核空间子格的 basis，记为 <script type="math/tex">\mathcal{V}^{\perp}_s</script> ，在新的 <script type="math/tex">\mathcal{V}^{\perp}</script> 里面再求核空间回去得到一组新的基 <script type="math/tex">(\mathcal{V}^{\perp}_s)^{\perp}</script>，做 BKZ 或者 LLL 规约，得到我们需要向量。</p>
-<p>细节的攻击方法往往要放在具体的场景下阐述，下面简单阐述 ACD 和 HSSP 场景下 OL 攻击的应用。</p>
+<h2 id="正交格攻击"><a href="#正交格攻击" class="headerlink" title="正交格攻击"></a>正交格攻击</h2><p>正交格的本质就是核空间（kernel space），求某个（或者多个）向量 <script type="math/tex">\mathcal{V}</script> 的核空间 <script type="math/tex">\mathcal{V}^{\perp}</script> ，在核空间中进行格规约（LLL 或者 BKZ），从而筛选出具有某种特征的向量组成一个核空间子格的 basis，记为 <script type="math/tex">\mathcal{V}^{\perp}_s</script> ，在新的 <script type="math/tex">\mathcal{V}^{\perp}_s</script> 里面再求核空间回去得到 <script type="math/tex">(\mathcal{V}^{\perp}_s)^{\perp}</script> 的一组基，做 BKZ 或者 LLL 规约，恢复目标向量。</p>
+<p>OL 攻击方法可以应用在许多密码分析场景下，下面简单阐述 ACD 和 HSSP 场景下 OL 攻击的应用。</p>
 <p>&nbsp;</p>
 <h2 id="近似公约数问题"><a href="#近似公约数问题" class="headerlink" title="近似公约数问题"></a>近似公约数问题</h2><p>近似公约数问题（Approximate Common Divisor Problem），记为 <script type="math/tex">\mathcal{ACD}(\gamma, \eta, \rho)</script>，定义如下，给定一个 <script type="math/tex">\eta</script>-bit 奇数 <script type="math/tex">p</script> 以及足够多的下面的样例 <script type="math/tex">a_i</script> :</p>
 <script type="math/tex; mode=display">
@@ -314,12 +314,12 @@
 \alpha a_n & & & & 1
 \end{array}\right)_{n \times(n+1)}</script><p>其中 <script type="math/tex">\alpha</script> 是一个足够大的数，这样 LLL 或者 BKZ 规约后能够保证短向量的第一维度为 0，即核空间。记 <script type="math/tex">\vec t = \left(\alpha \sum_{i=1}^n u_i a_i, u_1, \ldots, u_n\right)</script> 为规约后的基，<script type="math/tex">\alpha</script> 足够大，因此在规约后的基中的向量 <script type="math/tex">\vec u</script> ，多数（ <script type="math/tex">n-1</script> ）都满足， <script type="math/tex">\sum_{i=1}^n u_i a_i=0</script> 。又 <script type="math/tex">a_i=p q_i+r_i</script> ，也就意味着 <script type="math/tex">\sum_{i=1}^n u_i r_i=0 \bmod p</script> ， 因此如果我们再筛选出长度比较短的核向量 <script type="math/tex">\vec u</script> ，使得 <script type="math/tex">\sum_{i=1}^n u_i r_i \le p</script> ，也就意味着 <script type="math/tex">\sum_{i=1}^n u_i r_i = 0</script> 在整数环上也成立，进而得到 <script type="math/tex">\sum_{i=1}^n u_i q_i = 0</script>。也就是说，此时 <script type="math/tex">\left(u_1, \ldots, u_n\right)</script> 是正交于 <script type="math/tex">\left(q_1, \ldots, q_n\right)</script> 。<strong>于是，神奇的事情出现了，我们通过在 <script type="math/tex">\vec a = (a_1, a_2,a_n)</script> 的核空间进行筛选，居然能够得到未知向量 <script type="math/tex">\vec q</script> 和 <script type="math/tex">\vec r</script> 的正交向量，也就是得到了线性关系</strong>。</p>
 <p>&nbsp;</p>
-<p>那么，通过筛选出足够多这样的线性关系，我们能否恢复出 <script type="math/tex">\vec v</script> 或者 <script type="math/tex">\vec q</script> 呢？首先注意到。我们寻找的<strong>短向量</strong> <script type="math/tex">\vec u</script> 需要满足下面条件：</p>
+<p>那么，通过筛选出足够多这样的线性关系，我们能否恢复出 <script type="math/tex">\vec r</script> 或者 <script type="math/tex">\vec q</script> 呢？首先注意到。我们寻找的<strong>短向量</strong> <script type="math/tex">\vec u</script> 需要满足下面条件：</p>
 <ul>
 <li>向量 <script type="math/tex">\vec u</script> 与向量 <script type="math/tex">\vec a</script> 垂直。</li>
 <li>向量 <script type="math/tex">\vec u</script> 与向量 <script type="math/tex">\vec r</script> 垂直（足够短即可）。</li>
 </ul>
-<p>实际上 <script type="math/tex">\vec u</script> 和 <script type="math/tex">\vec q</script> 垂直，由于 <script type="math/tex">\vec q, \vec a, \vec r</script> 是线性相关的，因此我们寻找的是与向量组 <script type="math/tex">\mathcal{V} = (\vec a, \vec r)</script> 正交的核空间，也就是说我们最多能够筛选出 <script type="math/tex">n-2</script> 个线性无关的向量，它们构成了 <script type="math/tex">\mathcal{V}^{\perp}_s</script>。我们在 <script type="math/tex">\mathcal{V}^{\perp}_s</script> 上求核空间回去，能够得到两个向量 <script type="math/tex">(\mathcal{V}^{\perp}_s)^{\perp} = (\vec x_1, \vec x_2)</script> ，容易知道 <script type="math/tex">\vec r，\vec a</script> 在格空间 <script type="math/tex">\mathcal{L}((\mathcal{V}^{\perp}_s)^{\perp})</script> 中，且 <script type="math/tex">\vec r</script> 是一个短向量，LLL 或者 BKZ 能够恢复向量 <script type="math/tex">\vec r</script> ，进一步恢复出参数 <script type="math/tex">\vec q, p</script> 。</p>
+<p>同时满足上面条件就能满足 <script type="math/tex">\vec u</script> 和 <script type="math/tex">\vec q</script> 垂直，因为 <script type="math/tex">\vec q, \vec a, \vec r</script> 是线性相关的。我们寻找的是与向量组 <script type="math/tex">\mathcal{V} = (\vec a, \vec r)</script> 正交的核空间，也就是说最多能够筛选出 <script type="math/tex">n-2</script> 个线性无关的向量，它们构成了 <script type="math/tex">\mathcal{V}^{\perp}_s</script> 的一组基。在 <script type="math/tex">\mathcal{V}^{\perp}_s</script> 上求核空间回去，能够得到两个向量 <script type="math/tex">(\mathcal{V}^{\perp}_s)^{\perp} = (\vec x_1, \vec x_2)</script> ，容易知道 <script type="math/tex">\vec r，\vec a</script> 在格空间 <script type="math/tex">\mathcal{L}((\mathcal{V}^{\perp}_s)^{\perp})</script> 中，且 <script type="math/tex">\vec r</script> 是一个短向量，LLL 或者 BKZ 能够恢复向量 <script type="math/tex">\vec r</script> ，进一步恢复出参数 <script type="math/tex">\vec q, p</script> 。</p>
 <p>&nbsp;</p>
 <p><strong>Remarks</strong></p>
 <p>实际上第一步构造的格 <script type="math/tex">\mathcal{L}_1(\alpha)</script> ，就是在整数环上求 <script type="math/tex">K = \mathcal{Ker}(\vec a)</script> ，维度为 <script type="math/tex">(n-1) \times n</script> ，然后对矩阵 <script type="math/tex">K</script> 做 LLL 或者 BKZ 规约。</p>
@@ -413,7 +413,7 @@ L=\left[\begin{array}{ccccc}
 <li>首先在 <script type="math/tex">\mathbb{Z}_M</script> 计算 <script type="math/tex">\mathcal{L}_0</script> 的一组 LLL-reduced 基 。</li>
 <li>在这组基中选取最短的 <script type="math/tex">m-n</script> 组向量 <script type="math/tex">\mathbf{u}_1, \ldots, \mathbf{u}_{m-n}</script> ，这组基将恰好是 <script type="math/tex">\mathcal{L}_{\mathrm{x}}^{\perp}</script> 的一组生成基。</li>
 <li>在整数环上计算 <script type="math/tex">\mathcal{L}_{\mathrm{x}}^{\perp}</script> 的核空间， <script type="math/tex">\bar{\mathcal{L}}_{\mathrm{x}}=\left(\mathcal{L}_{\mathrm{x}}^{\perp}\right)^{\perp}</script> 。<script type="math/tex">\bar{\mathcal{L}}_{\mathrm{x}}</script> ，计算 <script type="math/tex">\bar{\mathcal{L}}_{\mathrm{x}}</script> 的一组基 <script type="math/tex">\rm\bf c_1,c_2,\cdots,c_n</script> 。</li>
-<li>对这组基 <script type="math/tex">\rm\bf c_1,c_2,\cdots,c_n</script> 计算 BKZ-reduced 基，筛选这些基，直至满足所有最短向量都是二元的，即恢复了 <script type="math/tex">\rm\bf x_1,x_2,\cdots,x_n</script> 向量。</li>
+<li>对这组基 <script type="math/tex">\rm\bf c_1,c_2,\cdots,c_n</script> 计算 BKZ-reduced 基，筛选这些基，直至满足所有基向量都是二元的，即恢复了 <script type="math/tex">\rm\bf x_1,x_2,\cdots,x_n</script> 向量。</li>
 </ol>
 <p>下图是 Nguyen-Stern 算法中 OL 攻击的部分（即上面的 step1-3，图源自论文 <a target="_blank" rel="noopener" href="https://eprint.iacr.org/2020/461.pdf">A Polynomial-Time Algorithm for Solving the Hidden Subset Sum Problem</a>）：</p>
 <center><img src="image.png" alt="Alt text" style="zoom: 60%;" /></center>
@@ -453,7 +453,7 @@ L=\left[\begin{array}{ccccc}
     \rm\bf \beta v_{1}^{(2)} & \rm\bf \beta v_{2}^{(2)} & \cdots & \rm\bf \beta v_{t}^{(2)}  &  & 1\\
     \vdots & \vdots & \vdots & \vdots & & & \ddots \\
     \rm\bf \beta v_{1}^{(n)} & \rm\bf \beta v_{2}^{(n)} & \cdots & \rm\bf \beta v_{t}^{(n)}  & & & & 1\\
-    \beta q
+    \beta q & \beta q & \cdots & \beta q
 \end{bmatrix}_{(n + 1) \times (t+n)}</script><p>&nbsp;</p>
 <h2 id="一些参考"><a href="#一些参考" class="headerlink" title="一些参考"></a>一些参考</h2><p>一些用到了 OL 攻击技巧的 CTF 赛题：</p>
 <ul>
