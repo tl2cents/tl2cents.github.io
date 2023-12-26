@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://tl2cents.github.io/2023/12/25/2023-NCTF-Crypto-Writeups/feistel.png">
 <meta property="og:image" content="https://tl2cents.github.io/2023/12/25/2023-NCTF-Crypto-Writeups/error_trans.png">
 <meta property="article:published_time" content="2023-12-25T07:38:56.000Z">
-<meta property="article:modified_time" content="2023-12-25T10:40:47.612Z">
+<meta property="article:modified_time" content="2023-12-26T01:43:01.797Z">
 <meta property="article:author" content="tl2cents">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="writeup">
@@ -387,7 +387,7 @@ IV_1 \oplus Y_0 = \{Y,  Y\oplus 1\}</script><p>即可成功恢复出 <script typ
 <p>通过 CBC 的特性我们知道，给出的 <code>enc</code> 第一个分组解密（ECB）得到的明文是已知的 <script type="math/tex">\mathbf{0} = iv \oplus iv</script> ，同时第一个密文分组等价于 flag 密文的 IV 值。有了已知明文分组，就能很轻松地进行我们上面阐述地两种攻击，解密任意加密分组了。记我们得到的四个分组如下 <script type="math/tex">ct_0, ct_1, ct_2, ct_3</script>，其中 <script type="math/tex">ct_0</script> 对应的明文是全 0 字节，基本流程如下：</p>
 <ol>
 <li>利用诸如 <script type="math/tex">iv || ct_0 || ct_1</script> 形式的密文，进行已知明文的 2-block 攻击，得到 <script type="math/tex">ct_1</script> 解密后的最后两个字节。（flag 未知的字节是hex，此步最多需要交互 <script type="math/tex">16 \times 16 = 256</script> 次）</li>
-<li>利用诸如 <script type="math/tex">iv || ct_1</script> 形式的密文，进行单分组攻击，得到 <script type="math/tex">ct_2</script> 的完整解密结果 。（flag 未知的字节是hex，此步最多需要交互 <script type="math/tex">16 \times 16 + 16 \times (16 - 4) = 448</script> 次）</li>
+<li>利用诸如 <script type="math/tex">iv || ct_1</script> 形式的密文，进行单分组攻击，得到 <script type="math/tex">ct_1</script> 的完整解密结果 。（flag 未知的字节是hex，此步最多需要交互 <script type="math/tex">16 \times 16 + 16 \times (16 - 4) = 448</script> 次）</li>
 <li>以此类推，解密 <script type="math/tex">ct_2, ct_3</script> 。</li>
 </ol>
 <p>&nbsp;</p>
@@ -446,7 +446,7 @@ M_s=
    s_{2}& s_3 & ... & s_1
   \end{matrix}
   \right] 
-  \in GF(q)^{N \times N}</script><p>记 <script type="math/tex">h = a \cdot s</script> ，则 <script type="math/tex">\vec h = \vec a \cdot M_s \mod q</script>  ，本题中 <script type="math/tex">\vec a</script> 想象固定，每次生成的 <script type="math/tex">\vec s</script>  都是二元的，即 <script type="math/tex">M_s</script> 上的元素都在 <script type="math/tex">\{0,1\}</script> 上，即每个 <script type="math/tex">\vec h[i]</script> 都对应了集合 <script type="math/tex">\vec a</script> 的一个子集和问题，但是这里 <script type="math/tex">\vec a, \vec s</script> 均未给出，即 HSSP 问题。</p>
+  \in GF(q)^{N \times N}</script><p>记 <script type="math/tex">h = a \cdot s</script> ，则 <script type="math/tex">\vec h = \vec a \cdot M_s \mod q</script>  ，本题中 <script type="math/tex">\vec a</script> 向量固定，每次生成的 <script type="math/tex">\vec s</script>  都是二元的，即 <script type="math/tex">M_s</script> 上的元素都在 <script type="math/tex">\{0,1\}</script> 上，每个 <script type="math/tex">\vec h[i]</script> 都对应了集合 <script type="math/tex">\vec a</script> 的一个子集和问题，但是这里 <script type="math/tex">\vec a, \vec s</script> 均未给出，所以是 HSSP 问题。</p>
 <p>HSSP 问题的求解方法可以使用正交格攻击，Nguyen-Stern 算法求解，或者 OL+Multivariate 的算法，感兴趣的读者可以参考我另一篇博客：<a href="https://tl2cents.github.io/2023/12/12/Orthogonal-Lattice-Attack/#%E9%9A%90%E8%97%8F%E5%AD%90%E9%9B%86%E5%92%8C%E9%97%AE%E9%A2%98">正交格攻击-HSSP</a> 。这里就不再赘述。</p>
 <p>&nbsp;</p>
 <h3 id="EXP-3"><a href="#EXP-3" class="headerlink" title="EXP"></a>EXP</h3><p>HSSP 的 Solver 直接用的论文 <a target="_blank" rel="noopener" href="https://eprint.iacr.org/2020/461.pdf">A Polynomial-Time Algorithm for Solving the Hidden Subset Sum Problem</a> 的代码，使用 flatter 用于加速 LLL reduction，论文代码的 recovery binary 函数没有用标准的 NS 算法来写，所以可能恢复不出足够的目标向量，多跑几次就好了。</p>
