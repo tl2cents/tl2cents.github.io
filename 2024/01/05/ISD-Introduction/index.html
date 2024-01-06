@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://tl2cents.github.io/2024/01/05/ISD-Introduction/image-20240105124549809.png">
 <meta property="og:image" content="https://tl2cents.github.io/2024/01/05/ISD-Introduction/image-20240105143537067.png">
 <meta property="article:published_time" content="2024-01-05T15:47:35.000Z">
-<meta property="article:modified_time" content="2024-01-05T16:22:57.337Z">
+<meta property="article:modified_time" content="2024-01-06T03:09:51.057Z">
 <meta property="article:author" content="tl2cents">
 <meta property="article:tag" content="PQC">
 <meta property="article:tag" content="ISD">
@@ -307,24 +307,24 @@
 <li>对于矩阵 <script type="math/tex">G \in \mathbb{F}^{k \times n}</script> ，<script type="math/tex">I</script> 为下标集合 <script type="math/tex">\{1,2,\cdots,n\}</script> 的子集，<script type="math/tex">G_{I}</script> 表示取矩阵 <script type="math/tex">G</script> 对应下标的列构成的新矩阵。集合 <script type="math/tex">I^C</script> 表示 <script type="math/tex">I</script> 的补集。</li>
 <li>若无特殊说明，我们均考虑在二元域 <script type="math/tex">\mathbb{F}_2</script> 上的线性编码。</li>
 <li>符号 <script type="math/tex">\mathbf{wt (\cdot)}</script> 表示向量的汉明重量。 </li>
-<li>简记 Syndrome Decoding Problem 为 <script type="math/tex">\mathcal{SDP(n,k,t)}</script> ，表示在 <script type="math/tex">[n,k]</script> 的线性编码上求解汉明重量不大于 <script type="math/tex">t</script> 的 SDP 问题，即给定校验矩阵 <script type="math/tex">{\rm \bf H} \in \mathbb{F}_2^{(n-k)     \times n}</script>，以及一个目标向量（编码后）<script type="math/tex">{\rm \bf s} \in     \mathbb{F}_2^{n-k}</script> ，找到一个向量 <script type="math/tex">{\rm \bf e} \in     \mathbb{F}_2^n</script> 使得其汉明重量  <script type="math/tex">\le t</script> ，并且满足 <script type="math/tex">{\rm \bf He^{\top}} = {\rm \bf s^{\top}}</script> .</li>
+<li>简记 Syndrome Decoding Problem 为 <script type="math/tex">\mathcal{SDP(n,k,t)}</script> ，表示在 <script type="math/tex">[n,k]</script> 的线性编码上求解汉明重量不大于 <script type="math/tex">t</script> 的 SDP 问题，即给定校验矩阵 <script type="math/tex">{\rm \bf H} \in \mathbb{F}_2^{(n-k)     \times n}</script>，以及一个目标向量 <script type="math/tex">{\rm \bf s} \in     \mathbb{F}_2^{n-k}</script> ，找到一个向量 <script type="math/tex">{\rm \bf e} \in     \mathbb{F}_2^n</script> 使得其汉明重量  <script type="math/tex">\le t</script> ，并且满足 <script type="math/tex">{\rm \bf He^{\top}} = {\rm \bf s^{\top}}</script> .</li>
 <li>简记 <script type="math/tex">\left(\begin{array}{c} n \\ m \end{array}\right)</script> 为组合数，也即二项式系数（Binomial Coefficient）。</li>
 </ol>
 <p>&nbsp;</p>
-<h3 id="信息集-Information-Set"><a href="#信息集-Information-Set" class="headerlink" title="信息集 Information Set"></a>信息集 Information Set</h3><p>记  <script type="math/tex">[n,k]</script> 的二元线性编码 <script type="math/tex">\mathcal{C}</script> 的生成矩阵为  <script type="math/tex">\mathbf{G} \in \mathbb{F}_2^k</script>，其 <script type="math/tex">k</script> 个<strong>线性无关</strong>的行向量构成整个线性子空间的基 <script type="math/tex">\{\mathbf{b}_1, \mathbf{b}_2,\cdots, \mathbf{b}_k \}</script> 。记明文 <script type="math/tex">\mathbf{m} = (a_1,\cdots,a_k)</script> ，其对应的码字满足：</p>
+<h3 id="信息集-Information-Set"><a href="#信息集-Information-Set" class="headerlink" title="信息集 Information Set"></a>信息集 Information Set</h3><p>记  <script type="math/tex">[n,k]</script> 的二元线性编码 <script type="math/tex">\mathcal{C}</script> 的生成矩阵为  <script type="math/tex">\mathbf{G} \in \mathbb{F}_2^{k \times n}</script>，其 <script type="math/tex">k</script> 个<strong>线性无关</strong>的行向量构成整个线性子空间的基 <script type="math/tex">\{\mathbf{b}_1, \mathbf{b}_2,\cdots, \mathbf{b}_k \}</script> 。记明文 <script type="math/tex">\mathbf{m} = (a_1,\cdots,a_k)</script> ，其对应的码字满足：</p>
 <script type="math/tex; mode=display">
-c = (c_1,\cdots,c_n) = a_1 \mathbf{b_1} + a_2 \mathbf{b}_2  + \cdots + a_k \mathbf{b_k} = \mathbf{mG}</script><p>实际上我们最少只需要 <script type="math/tex">k</script> 维的密文信息即可解码，只要选取子集 <script type="math/tex">I \subset \{1,2,\cdots,n\}</script> ，大小为 <script type="math/tex">|I| = k</script> ，使得 <script type="math/tex">G_{I}</script> 为可逆矩阵，则可解码得到原消息。<strong>因此，满足上述性质的大小为 <script type="math/tex">k</script> 的集合 <script type="math/tex">I</script> 被称为信息集，因为它包含编码的所有信息。</strong></p>
-<p>当然，信息集的概念一般在含错误向量的场景下使用，我们考虑两种场景下的信息集：</p>
+c = (c_1,\cdots,c_n) = a_1 \mathbf{b_1} + a_2 \mathbf{b}_2  + \cdots + a_k \mathbf{b_k} = \mathbf{mG}</script><p>实际上我们只需要 <script type="math/tex">k</script> 维的密文信息即可解码：选取子集 <script type="math/tex">I \subset \{1,2,\cdots,n\}</script> ，大小为 <script type="math/tex">|I| = k</script> ，使得 <script type="math/tex">G_{I}</script> 为可逆矩阵，则可解码得到原消息。<strong>因此，满足上述性质的大小为 <script type="math/tex">k</script> 的集合 <script type="math/tex">I</script> 被称为信息集，因为它包含编码的所有信息。</strong></p>
+<p>信息集的概念一般在含错误向量的场景下使用，考虑两种场景下的信息集：</p>
 <ol>
 <li>生成矩阵场景：含错码字 <script type="math/tex">\mathbf {c = mG + e, wt(e) = t}</script> ，选取大小为 <script type="math/tex">k</script> 的下标子集 <script type="math/tex">I \subset \{1,2,\cdots,n\}</script> 为信息集，如果有效错误集（对应维度的 <script type="math/tex">e_i</script> 为 1）均不落入信息集 <script type="math/tex">I</script> 中，则我们可以根据 <script type="math/tex">\mathbf{c_I \cdot G}_I^{-1}</script> 直接解码得到消息 <script type="math/tex">m</script> 。</li>
-<li>校验矩阵场景：给定一个 <script type="math/tex">\mathcal{SDP(n,k,t)}</script>， 校验矩阵 <script type="math/tex">{\rm \bf H} \in \mathbb{F}_2^{(n-k)     \times n}</script>，目标向量 <script type="math/tex">{\rm \bf s} \in     \mathbb{F}_2^{n-k}</script> ，此时我们想要找到 <script type="math/tex">{\rm \bf e} \in     \mathbb{F}_2^n</script> 使得，<script type="math/tex">\mathbf{wt(e)} \le t</script> ，并且满足 <script type="math/tex">{\rm \bf He^{\top}} = {\rm \bf s^{\top}}</script> 。选取大小为 <script type="math/tex">n-k</script> 的下标子集 <script type="math/tex">I \subset \{1,2,\cdots,n\}</script> 为信息集，如果有效错误集（对应维度的 <script type="math/tex">e_i</script> 为 1）全部落入信息集 <script type="math/tex">I</script> 中，则我们可以根据 <script type="math/tex">\mathbf{s \cdot H}_I^{-1}</script> 直接解码得到向量 <script type="math/tex">\mathbf{e}</script> 的 error 部分，然后根据信息集位置重构即可得到 <script type="math/tex">\mathbf{e}</script>。</li>
+<li>校验矩阵场景：给定一个 <script type="math/tex">\mathcal{SDP(n,k,t)}</script>， 校验矩阵 <script type="math/tex">{\rm \bf H} \in \mathbb{F}_2^{(n-k)     \times n}</script>，目标向量 <script type="math/tex">{\rm \bf s} \in     \mathbb{F}_2^{n-k}</script> ，此时我们想要找到 <script type="math/tex">{\rm \bf e} \in     \mathbb{F}_2^n</script> 使得，<script type="math/tex">\mathbf{wt(e)} \le t</script> ，并且满足 <script type="math/tex">{\rm \bf He^{\top}} = {\rm \bf s^{\top}}</script> 。选取大小为 <script type="math/tex">n-k</script> 的下标子集 <script type="math/tex">I \subset \{1,2,\cdots,n\}</script> 为信息集，如果有效错误集（对应维度的 <script type="math/tex">e_i</script> 为 1）全部落入信息集 <script type="math/tex">I</script> 中，则可以根据 <script type="math/tex">\mathbf{s \cdot H}_I^{-1}</script> 直接解码得到向量 <script type="math/tex">\mathbf{e}</script> 的有效部分，然后根据信息集位置重构恢复 <script type="math/tex">\mathbf{e}</script>。</li>
 </ol>
-<p>多数情况下，我们都只考虑在校验矩阵场景下的信息集解码算法。在一般论文中，都会直接把 <script type="math/tex">\mathcal{SDP}</script> 的信息集定义为上述信息集的补集 <script type="math/tex">J = I^C</script>。这两者实际是等价的，我们后面不再区分。后续校验矩阵场景下的 ISD 算法中，我们统一称大小为 <script type="math/tex">k</script> 的下标子集 <script type="math/tex">I \subset \{1,2,\cdots,n\}</script> 为信息集 ，满足矩阵 <script type="math/tex">H_{I^C}</script> 是可逆的。</p>
+<p>多数情况下，我们都只考虑在校验矩阵场景下的信息集解码算法。在一般论文中，都会直接把 <script type="math/tex">\mathcal{SDP}</script> 的信息集定义为上述信息集的补集 <script type="math/tex">J = I^C</script>，这两者实际是等价的。后续校验矩阵场景下的 ISD 算法中，统一称大小为 <script type="math/tex">k</script> 的下标子集 <script type="math/tex">I \subset \{1,2,\cdots,n\}</script> 为信息集 ，只要其满足矩阵 <script type="math/tex">H_{I^C}</script> 是可逆的。</p>
 <p>值得注意的是，对于校验矩阵 <script type="math/tex">{\rm \bf H} \in \mathbb{F}_2^{(n-k)\times n}</script> ，存在一个置换矩阵（Permutation Matrix）<script type="math/tex">\mathbf{P} \in \mathbb{F}_2^{n \times n}</script> ，和一个可逆矩阵 <script type="math/tex">\mathbf{U} \in \mathbb{F}_2^{(n-k) \times (n-k)}</script> 使得：</p>
 <script type="math/tex; mode=display">
 \mathbf{U} \mathbf{H} \mathbf{P}=\left(\begin{array}{ll}
 \mathbf{A} & \mathrm{Id}_{n-k}
-\end{array}\right)</script><p>实际上每个信息集 <script type="math/tex">I</script> 对应的 <script type="math/tex">\mathbf{H}_{I^C}^{-1}</script> ，也就是使得校验矩阵系统化的矩阵 <script type="math/tex">U = \mathbf{H}_{I^C}^{-1}</script>。另外为了简洁起见，我们把置换矩阵的作用忽略。</p>
+\end{array}\right)</script><p>实际上每个信息集 <script type="math/tex">I</script> 对应的 <script type="math/tex">\mathbf{H}_{I^C}^{-1}</script> ，也就是使得校验矩阵系统化的矩阵 <script type="math/tex">U = \mathbf{H}_{I^C}^{-1}</script>。另外为了简洁起见，绝大多数情况下我们把置换矩阵的作用忽略。</p>
 <p>&nbsp;</p>
 <h3 id="Plain-ISD"><a href="#Plain-ISD" class="headerlink" title="Plain ISD"></a>Plain ISD</h3><p>最早由 Prange 提出的 ISD 算法，又被称为朴素 ISD 算法，是最简单的的 ISD 算法。</p>
 <p><strong>Plain ISD 算法</strong></p>
@@ -377,27 +377,27 @@ w
 T(n,k,w)_{\rm \bf bf} = \left(\begin{array}{c} n \\ w \end{array}\right)</script><p>对于大部分困难参数而言，朴素的 ISD 算法都有比较好的时间性能上的提升。考虑 decoding challenge 上低汉明重量码字解码问题给出的具体参数 <script type="math/tex">n =  1280, k = 640, t = 144</script> ，时间复杂度如下（简单估计，不考虑优化，会有小的多项式系数误差）：</p>
 <script type="math/tex; mode=display">
 T(n,k,w)_{\rm \bf pisd}  = O(2^{187}) \\
-T(n,k,w)_{\rm \bf bf}  = O(2^{645}) \\</script><p>目前 SDP 最优的求解算法之一是 <script type="math/tex">\rm \bf BJMM</script> ，其渐进时间复杂度为 <script type="math/tex">T(n,k,w)_{\rm \bf BJMM} = O(2^{0.0999852\, n})</script> （不考虑空间的限制），目前绝大多数基于编码的 PQC 密码体制，其安全强度对标这个渐进时间复杂度。</p>
+T(n,k,w)_{\rm \bf bf}  = O(2^{645}) \\</script><p>目前 SDP 最优的求解算法之一是 <script type="math/tex">\rm \bf BJMM</script> ，其渐进时间复杂度为 <script type="math/tex">T(n,n/2,d_{GV})_{\rm \bf BJMM} = O(2^{0.0999852\, n})</script> （不考虑空间的限制），目前绝大多数基于编码的 PQC 密码体制，其安全强度对标这个渐进时间复杂度。</p>
 <p>&nbsp;</p>
-<h2 id="Improved-ISD"><a href="#Improved-ISD" class="headerlink" title="Improved ISD"></a>Improved ISD</h2><p>ISD 算法提出之后，有大量的优化算法。核心的优化思路是分析有效错误集（对应维度的 <script type="math/tex">e_i</script> 为 1）在信息集中的分布。通过增加单轮求解的时间复杂度，来减少 ISD 主循环中需要迭代的次数。给定一个 <script type="math/tex">\mathcal{SDP(n,k,t)}</script>，主要有两个方向的优化：</p>
+<h2 id="Improved-ISD"><a href="#Improved-ISD" class="headerlink" title="Improved ISD"></a>Improved ISD</h2><p>ISD 算法提出之后，提出了许多优化算法。核心的优化思路是分析有效错误集（对应维度的 <script type="math/tex">e_i</script> 为 1）在信息集中的分布。通过增加单轮求解的时间复杂度，来减少 ISD 主循环中需要迭代的次数。给定一个 <script type="math/tex">\mathcal{SDP(n,k,t)}</script>，主要有两个方向的优化：</p>
 <ol>
 <li>方向一（Lee-Brickell）：假设大小为 <script type="math/tex">k</script> 信息集中有 <script type="math/tex">v</script> 个错误，信息集的补集中存在 <script type="math/tex">t -v</script> 个错误。</li>
 <li>方向二（Dumer）：假设在 <script type="math/tex">k+l</script> 个比特位置（包含一个信息集）上有 <script type="math/tex">v</script> 个错误，在另外 <script type="math/tex">n-k-l</script> 个比特位置上有 <script type="math/tex">t-v</script> 个错误。</li>
 </ol>
 <p>&nbsp;</p>
-<p>Lee-Brickell 方向的优化，论文<sup><a href="#fn_ Code-Survey22" id="reffn_ Code-Survey22"> Code-Survey22</a></sup>给出了一个各类 ISD 算法中错误向量中的 <script type="math/tex">t</script> 个为 1 的维度（即有效错误集）在信息集中分布假设</p>
+<p>Lee-Brickell 方向的优化，论文<sup><a href="#fn_ Code-Survey22" id="reffn_ Code-Survey22"> Code-Survey22</a></sup>给出了一个各类 ISD 算法中错误向量中大小为 <script type="math/tex">t</script> 的有效错误集在信息集中分布假设</p>
 <center><img src="image-20231208170937916.png" alt="image-20231208170937916" style="zoom: 50%;" /> </center>
 
 <center><b>图一：Lee-Brickell 方向优化</b></center>
 
 <p>&nbsp;</p>
-<p>Dumer 方向的优化，论文<sup><a href="#fn_ Code-Survey22" id="reffn_ Code-Survey22"> Code-Survey22</a></sup>给出了一个各类 ISD 算法中错误向量中的 <script type="math/tex">t</script> 个为 1 的维度在 <script type="math/tex">k+l</script> 个位置（包含一个信息集）中分布假设：</p>
+<p>Dumer 方向的优化，论文<sup><a href="#fn_ Code-Survey22" id="reffn_ Code-Survey22"> Code-Survey22</a></sup>给出了一个各类 ISD 算法中错误向量中大小为 <script type="math/tex">t</script> 的有效错误集在 <script type="math/tex">k+l</script> 个位置（包含一个信息集）中分布假设：</p>
 <center><img src="image-20231208192406028.png" alt="image-20231208192406028" style="zoom: 50%;" /> </center>
 
 <center><b>图二：Dumer 方向优化</b></center>
 
 <p>&nbsp;</p>
-<h3 id="Lee-Brickell-Direction"><a href="#Lee-Brickell-Direction" class="headerlink" title="Lee-Brickell Direction"></a>Lee-Brickell Direction</h3><p>由于本文篇幅有限，仅选取部分算法进行介绍性阐述。在理解朴素 ISD 算法的核心思想后，再重新考虑错误的分布，这也是 ISD 算法的主要优化思路。</p>
+<h3 id="Lee-Brickell-Direction"><a href="#Lee-Brickell-Direction" class="headerlink" title="Lee-Brickell Direction"></a>Lee-Brickell Direction</h3><p>由于本文篇幅有限，仅选取部分算法进行介绍性阐述。</p>
 <p> &nbsp;</p>
 <p><strong>Lee-Brickell ISD 算法</strong></p>
 <p><strong>输入</strong> ：校验矩阵 <script type="math/tex">{\rm \bf H} \in \mathbb{F}_2^{(n-k)     \times n}</script>，目标向量 <script type="math/tex">{\rm \bf s} \in     \mathbb{F}_2^{n-k}</script> ，目标汉明重量 <script type="math/tex">t</script> ，参数 <script type="math/tex">v < \mathcal{MIN}\{t,k\}</script> </p>
@@ -430,7 +430,7 @@ R = (n-k)^{3}+(n-k)^2(n+1) + \left(\begin{array}{l}
 k \\
 v
 \end{array}\right)(v+1)k</script><p>如果使用 early abort 的思想，时间复杂度可以进一步优化。感兴趣的读者可以去阅读 ISD 相关的 survey。</p>
-<p>有效错误集恰好分布在 <script type="math/tex">I</script> 中 <script type="math/tex">v</script> 个的概率为：</p>
+<p>有效错误集恰好有  <script type="math/tex">v</script> 个 落入 <script type="math/tex">I</script>  的概率为：</p>
 <script type="math/tex; mode=display">
 p = \left(\begin{array}{l}
 k \\
@@ -464,7 +464,7 @@ v
 )</script><p>&nbsp;</p>
 <h3 id="Dumer-Direction"><a href="#Dumer-Direction" class="headerlink" title="Dumer Direction"></a>Dumer Direction</h3><p>Dumer 方向的 ISD 算法，本文以 BJMM 算法为例，它是目前为止在 binary code 上求解 SDP 渐进最优的算法。BJMM 算法的论文<sup><a href="#fn_ BJMM12" id="reffn_ BJMM12"> BJMM12</a></sup> 名为：Decoding Random Binary Linear Codes in 2n/20 : How 1 + 1 = 0 Improves Information Set Decoding， 很有意思的一个思路就是利用 binary code 的等式：<script type="math/tex">0 = 1 + 1</script> 去优化 ISD 算法。</p>
 <p>在前面提到过的所有 ISD 算法中，它们对错误向量 <script type="math/tex">\rm\bf e</script> 的划分都是基于等式 <script type="math/tex">0 = 0 + 0, 1= 1 + 0 = 0 + 1</script> ，而从来不会用到二元域上的特殊等式 <script type="math/tex">0 = 1 + 1</script> ，也就是说信息集合划分的两个子错误集 <script type="math/tex">\rm\bf e_I, e_J</script> 不会在相同位置同时出现 <script type="math/tex">1</script> （缺省位置默认补 0）。于是 BJMM 的核心思路是把错误向量  <script type="math/tex">\rm\bf e \in \mathbb{F}_2^n, wt(e) = v</script> 划分为 ： <script type="math/tex">\rm\bf e = e_1 + e_2</script>  ，其中  <script type="math/tex">\rm\bf e_1, e_2 \in \mathbb{F}_2^n</script> ，并且汉明重量为 <script type="math/tex">\rm\bf wt(e_1) = wt(e_2) = \frac{v}{2} + \varepsilon</script> ，也就是说我们假设 <script type="math/tex">\rm\bf e_1, e_2</script> 在 <script type="math/tex">\varepsilon</script> 个位置上发生重叠（对应维度均为 1）。</p>
-<p>Dumer （包括BJMM）算法的第一步仍然是高斯消元，不同于 Lee-Brickell 方向， Dumer 方向 ISD 的信息集大小为 <script type="math/tex">k + l</script> ，部分高斯消元（Partial Gaussian Elimination）是大小为 <script type="math/tex">n - k -l</script> 的方阵。即给定 <script type="math/tex">{\rm \bf H} \in \mathbb{F}_2^{(n-k)     \times n}</script> （经过某个置换后）：</p>
+<p>Dumer （包括BJMM）算法的第一步仍然是高斯消元，不同于 Lee-Brickell 方向， Dumer 方向 ISD 的信息集大小为 <script type="math/tex">k + l</script> ，部分高斯消元（Partial Gaussian Elimination）作用在大小为 <script type="math/tex">n - k -l</script> 的方阵。即给定 <script type="math/tex">{\rm \bf H} \in \mathbb{F}_2^{(n-k)     \times n}</script> （经过某个置换后）：</p>
 <script type="math/tex; mode=display">
 \mathbf{U H}=\left(\begin{array}{cc}
 \operatorname{Id}_{n-k-\ell} & \mathbf{A} \\
@@ -487,7 +487,12 @@ v
 \mathbf{e}_1^{\top}+\mathbf{A e}_2^{\top} & =\mathbf{s}_1^{\top}\\
 \mathbf{B e}_2^{\top} & =\mathbf{s}_2^{\top}
 \end{aligned}</script><p>Dumer 方向 ISD 算法的思路是求解第二个等式：寻找汉明权重等于 <script type="math/tex">v</script>  的错误向量 <script type="math/tex">\mathbf{e}_2 \in \mathbb{F}_2^{k+\ell}</script>  使得 <script type="math/tex">\mathbf{e}_2 \mathbf{B}^{\top}=\mathbf{s}_2</script> 。然后计算 <script type="math/tex">\mathbf{e}_1=\mathbf{s}_1-\mathbf{e}_2 \mathbf{A}^{\top}</script> ，检查其汉明重量是否满足 <script type="math/tex">\rm\bf{wt(e_1)} = t - v</script> 。</p>
-<p>注意到，求解第二个等式，本质上就是求解一个更小规模的 SDP 问题，校验矩阵为 <script type="math/tex">\mathbf{B} \in \mathbb{F}_2^{\ell \times(k+\ell)}</script> ，并且此时我们需要求解出一系列的解。Dumer 方向的 ISD 算法对这个小规模 SDP 的求解采用了 Wagner 对 General Birthday Problem 求解的算法框架 ： merge。到目前为止，这都是 Dumer 方向 ISD 的求解框架。</p>
+<p>注意到，求解第二个等式，本质上就是求解一个更小规模的 SDP 问题，校验矩阵为 <script type="math/tex">\mathbf{B} \in \mathbb{F}_2^{\ell \times(k+\ell)}</script> ，并且此时我们需要求解出一系列的解。Dumer 方向的 ISD 算法对这个小规模 SDP 的求解采用了 Wagner 的算法框架 ： Merge，即广义生日悖论问题（general birthday problem）的时间-空间权衡算法。</p>
+<p>Dumer 方向 ISD 的求解框架大致分为两步：</p>
+<ol>
+<li>部分高斯消元（PGE）得到两个方程，包含一个更小规模的 <script type="math/tex">\mathcal{SDP}</script> 问题。</li>
+<li>利用 Wagner 算法求解更小规模的 <script type="math/tex">\mathcal{SDP}</script> ，验证汉明重量。</li>
+</ol>
 <p>&nbsp;</p>
 <h3 id="BJMM-算法中-1-1-0-的优化"><a href="#BJMM-算法中-1-1-0-的优化" class="headerlink" title="BJMM 算法中 1 + 1 = 0 的优化"></a>BJMM 算法中 <script type="math/tex">1 + 1 = 0</script> 的优化</h3><p>BJMM 中 merge 的思路其实很简单。每次我们寻找目标向量解时，两个列表的目标候选向量都会选定重叠（overlap） 段的长度为 <script type="math/tex">\varepsilon</script> ，如之前给出的 Dumer 方向图中的蓝色部分所示：</p>
 <center><img src="image-20231208192406028.png" alt="image-20231208192406028" style="zoom: 50%;" /> </center>
