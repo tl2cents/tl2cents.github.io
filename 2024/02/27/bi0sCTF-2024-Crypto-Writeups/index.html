@@ -21,7 +21,7 @@
 <meta property="og:description" content="Right after the Lantern Festival, we (Never Stop Exploiting abbr. NeSE) participated in bi0sCTF. I spent a whole day on the crypto challenges, most of which are well-designed and impressive. This writ">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-02-27T02:31:51.000Z">
-<meta property="article:modified_time" content="2024-02-27T07:35:09.697Z">
+<meta property="article:modified_time" content="2024-03-01T12:46:42.624Z">
 <meta property="article:author" content="tl2cents">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="writeup">
@@ -333,7 +333,7 @@ c_1p + 1 = 1 + d_1k_1p \mod p^2 \\
 y = g ^ {x} \mod p^{r+1}, x < p^{r}</script><p>Let <script type="math/tex">x = x_{r-1} p^{r-1} + \cdots + x_1p +  x_0</script> , <script type="math/tex">q = p-1</script> and <script type="math/tex">d = g^q, c = y^q</script>,  we can first compute <script type="math/tex">x_0</script> by downgrading the equation to mod <script type="math/tex">p^2</script> or doing <script type="math/tex">p</script>-digit expansion similarly</p>
 <script type="math/tex; mode=display">
 y^q = (g^q) ^ {x} \mod p^{r+1}, x < p^{r} \\
-\iff \underbrace{(c_r p^r + \cdots + c_1 p + 1)}_{c = y^q \mod p^{r+1}} = {\underbrace{(d_r p^r + \cdots + d_1 p + 1)}_{d = g^q \mod p^{r+1}}}^{x_0} \mod p^{r+1} \\
+\iff \underbrace{(c_r p^r + \cdots + c_1 p + 1)}_{c = y^q \mod p^{r+1}} = {\underbrace{(d_r p^r + \cdots + d_1 p + 1)}_{d = g^q \mod p^{r+1}}}^{x_{r-1} p^{r-1} + \cdots + x_1p +  x_0} \mod p^{r+1} \\
 \implies c_1 = d_1x_0 \mod p</script><p>After <script type="math/tex">x_0</script> is recovered, the equation becomes :</p>
 <script type="math/tex; mode=display">
 y^q = (g^q)^x \mod p^{r+1} \\
@@ -527,6 +527,15 @@ ed_p = k(p-1) + 1 \\
 
 
 <nav id="article-nav">
+  
+    <a href="/2024/03/19/dlp-in-matrix-group/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          矩阵离散对数 DLP in Matrix Groups
+        
+      </div>
+    </a>
   
   
     <a href="/2024/01/05/ISD-Introduction/" id="article-nav-older" class="article-nav-link-wrap">
@@ -7123,6 +7132,14 @@ ed_p = k(p-1) + 1 \\
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ISD</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Matrix Group</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Discrete Logarithm</a>
               </li>
             
             <div class="clearfix"></div>

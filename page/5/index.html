@@ -235,6 +235,111 @@
             
 
   
+    <article id="blog-Hackgame2021" class="article article-type-blog  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/10/31/Hackgame2021/" target="_blank">Hacker Game 2021 Writeup</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/10/31/Hackgame2021/" class="archive-article-date">
+        <time datetime="2021-10-31T15:03:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-31</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    <!-- newly added -->
+    
+    <!-- newly added -->
+    
+    <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>大四党最后一次在校内组打Hacker Game（<del>然而一共也就参加了两次</del>），如图所示，今年对crypto太不友好了，就只有一道RSA，其他都不算是传统的crypto，刚开始还在打柏鹭杯，后面没啥时间了索性就都没看了，这次就只更一些个人觉得有趣的题吧。意外的是我web小白，居然ak了web，今年web确实出得很照顾新手。</p>
+<p><img src="/images/image-20211031230742968.png" alt="image-20211031230742968"></p>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">writeup</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/CTF//" class="article-tag-list-link color4">CTF</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/10/31/Hackgame2021/">阅读全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="blog-2021-DASCTF-July-WriteUp" class="article article-type-blog  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -981,115 +1086,9 @@
 
 
   
-    <article id="blog-Red-Hat-Cup-2021-Writeup" class="article article-type-blog  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/05/11/Red-Hat-Cup-2021-Writeup/" target="_blank">Red Hat Cup 2021(红帽杯) Writeup</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/05/11/Red-Hat-Cup-2021-Writeup/" class="archive-article-date">
-        <time datetime="2021-05-11T01:37:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-11</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    <!-- newly added -->
-    
-    <!-- newly added -->
-    
-    <p>这应该是暑假前打的最后一场CTF了，后面准备保研直接摊开了。</p>
-<h2 id="EBCDIC"><a href="#EBCDIC" class="headerlink" title="EBCDIC"></a>EBCDIC</h2><p>MISC 签到题，直接送分的。提示EBCDIC编码，拿python或者编辑器改一下编码就行。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data = <span class="string">&quot;86 93 81 87 C0 A6 85 F1 83 F0 94 85 6D A3 F0 6D 99 85 84 88 81 A3 F2 F0 F2 F1 D0&quot;</span></span><br><span class="line">data = <span class="built_in">bytes</span>.fromhex(data)</span><br><span class="line">print(data)</span><br><span class="line">dt = <span class="string">&#x27;&#x27;</span>.join(data.decode(<span class="string">&#x27;cp500&#x27;</span>))</span><br><span class="line">print(dt)</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;we1c0me_t0_redhat2021&#125;</span><br></pre></td></tr></table></figure>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">writeup</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/CTF//" class="article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/05/11/Red-Hat-Cup-2021-Writeup/">阅读全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/4/">Prev page</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">Next page</a>
+      <a class="extend prev" rel="prev" href="/page/4/">Prev page</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/">Next page</a>
     </nav>
   
 
@@ -7638,6 +7637,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ISD</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Matrix Group</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Discrete Logarithm</a>
               </li>
             
             <div class="clearfix"></div>

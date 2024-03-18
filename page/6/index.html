@@ -235,6 +235,112 @@
             
 
   
+    <article id="blog-Red-Hat-Cup-2021-Writeup" class="article article-type-blog  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/05/11/Red-Hat-Cup-2021-Writeup/" target="_blank">Red Hat Cup 2021(红帽杯) Writeup</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/05/11/Red-Hat-Cup-2021-Writeup/" class="archive-article-date">
+        <time datetime="2021-05-11T01:37:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-11</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    <!-- newly added -->
+    
+    <!-- newly added -->
+    
+    <p>这应该是暑假前打的最后一场CTF了，后面准备保研直接摊开了。</p>
+<h2 id="EBCDIC"><a href="#EBCDIC" class="headerlink" title="EBCDIC"></a>EBCDIC</h2><p>MISC 签到题，直接送分的。提示EBCDIC编码，拿python或者编辑器改一下编码就行。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data = <span class="string">&quot;86 93 81 87 C0 A6 85 F1 83 F0 94 85 6D A3 F0 6D 99 85 84 88 81 A3 F2 F0 F2 F1 D0&quot;</span></span><br><span class="line">data = <span class="built_in">bytes</span>.fromhex(data)</span><br><span class="line">print(data)</span><br><span class="line">dt = <span class="string">&#x27;&#x27;</span>.join(data.decode(<span class="string">&#x27;cp500&#x27;</span>))</span><br><span class="line">print(dt)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;we1c0me_t0_redhat2021&#125;</span><br></pre></td></tr></table></figure>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">writeup</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/CTF//" class="article-tag-list-link color4">CTF</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/05/11/Red-Hat-Cup-2021-Writeup/">阅读全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="blog-Gradient Descent" class="article article-type-blog  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -990,110 +1096,9 @@
 
 
   
-    <article id="blog-博客搭建" class="article article-type-blog  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/03/20/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" target="_blank">博客搭建记录</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/03/20/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" class="archive-article-date">
-        <time datetime="2021-03-20T00:40:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-20</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    <!-- newly added -->
-    
-    <!-- newly added -->
-    
-    <p>&nbsp;<br>这是个人第一次搭建博客，网上基本有全面的教程，这里附上一个比较全面的<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/80140564">知乎教程</a>。如果搭建过程中hexo init出现问题并且你是使用了VPN或者其他代理的可以考虑一下本文的解决方案。<br>&nbsp;</p>
-<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><h3 id="安装git环境"><a href="#安装git环境" class="headerlink" title="安装git环境"></a>安装git环境</h3><p>官网下载一个<a target="_blank" rel="noopener" href="https://git-scm.com/download">git</a><br>如果没有github账号，建议先去<a target="_blank" rel="noopener" href="https://github.com/">官网</a>注册github账号<br>我就比较懒了，有什么可以问题去<a target="_blank" rel="noopener" href="https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git">官网的教程</a>看一看<br>&nbsp;<br>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/HEXO//" class="article-tag-list-link color5">HEXO</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/03/20/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">阅读全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/5/">Prev page</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+      <a class="extend prev" rel="prev" href="/page/5/">Prev page</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/">Next page</a>
     </nav>
   
 
@@ -7642,6 +7647,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ISD</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Matrix Group</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Discrete Logarithm</a>
               </li>
             
             <div class="clearfix"></div>
