@@ -13,15 +13,15 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="矩阵离散对数 ： 给定矩阵 M \in \mathbb{F}_q^{n \times n} ， 以及 Y &#x3D; M^x ，求解 x 。 通常矩阵会限制在线性群 GL(n,q) 上（可逆矩阵）。本篇博客参考文献[1][2] ，阐述如何基于若尔当标准型分解 M &#x3D; P J P^{-1} 将矩阵离散对数问题转换为有限域上的离散对数问题。">
+  <meta name="description" content="矩阵离散对数 ： 给定矩阵 M \in \mathbb{F}_q^{n \times n} ， 以及 Y &#x3D; M^x ，求解 x 。 本篇博客参考文献[1][2] ，阐述如何基于若尔当标准型分解 M &#x3D; P J P^{-1} 将矩阵离散对数问题转换为有限域上的离散对数问题。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="矩阵离散对数 DLP in Matrix Groups">
 <meta property="og:url" content="https://tl2cents.github.io/2024/03/19/dlp-in-matrix-group/index.html">
 <meta property="og:site_name" content="tl2cents blog">
-<meta property="og:description" content="矩阵离散对数 ： 给定矩阵 M \in \mathbb{F}_q^{n \times n} ， 以及 Y &#x3D; M^x ，求解 x 。 通常矩阵会限制在线性群 GL(n,q) 上（可逆矩阵）。本篇博客参考文献[1][2] ，阐述如何基于若尔当标准型分解 M &#x3D; P J P^{-1} 将矩阵离散对数问题转换为有限域上的离散对数问题。">
+<meta property="og:description" content="矩阵离散对数 ： 给定矩阵 M \in \mathbb{F}_q^{n \times n} ， 以及 Y &#x3D; M^x ，求解 x 。 本篇博客参考文献[1][2] ，阐述如何基于若尔当标准型分解 M &#x3D; P J P^{-1} 将矩阵离散对数问题转换为有限域上的离散对数问题。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-03-18T16:13:55.000Z">
-<meta property="article:modified_time" content="2024-03-19T00:59:08.200Z">
+<meta property="article:modified_time" content="2024-03-19T16:02:08.450Z">
 <meta property="article:author" content="tl2cents">
 <meta property="article:tag" content="Matrix Group">
 <meta property="article:tag" content="Discrete Logarithm">
@@ -267,7 +267,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1.6k字</span>
+      <span class="post-count">1.7k字</span>
     </span>
   </span>
 
@@ -276,7 +276,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">6分</span>
+      <span class="post-count">7分</span>
     </span>
   </span>
 </div>
@@ -291,8 +291,10 @@
     <!-- newly added -->
     
     <p><strong>矩阵离散对数</strong> ： 给定矩阵 <script type="math/tex">M \in \mathbb{F}_q^{n \times n}</script> ， 以及 <script type="math/tex">Y = M^x</script> ，求解 <script type="math/tex">x</script> 。</p>
-<p>通常矩阵会限制在线性群 <script type="math/tex">GL(n,q)</script> 上（可逆矩阵）。本篇博客参考文献<a target="_blank" rel="noopener" href="https://theory.stanford.edu/~dfreeman/papers/discretelogs.pdf">[1]</a><a target="_blank" rel="noopener" href="https://uwaterloo.ca/scholar/sites/ca.scholar/files/ajmeneze/files/glnq.pdf">[2]</a> ，阐述如何基于若尔当标准型分解 <script type="math/tex">M = P J P^{-1}</script> 将矩阵离散对数问题转换为有限域上的离散对数问题。</p>
+<p>本篇博客参考文献<a target="_blank" rel="noopener" href="https://theory.stanford.edu/~dfreeman/papers/discretelogs.pdf">[1]</a><a target="_blank" rel="noopener" href="https://uwaterloo.ca/scholar/sites/ca.scholar/files/ajmeneze/files/glnq.pdf">[2]</a> ，阐述如何基于若尔当标准型分解 <script type="math/tex">M = P J P^{-1}</script> 将矩阵离散对数问题转换为有限域上的离散对数问题。</p>
 <span id="more"></span>
+<p><strong>Remarks</strong></p>
+<p>通常矩阵会限制在线性群 <script type="math/tex">GL(n,q)</script> 上（可逆矩阵），对于可逆矩阵，矩阵行列式不为 0，可以考虑行列式的幂同态，直接转换成有限域上的离散对数问题。针对矩阵行列式为 0 或者 1 的情况下，基于行列式的规约不可行。除此之外，我们需要矩阵更本质的数学结构来简化求解或者获取更多的指数信息（<script type="math/tex">x\ge q</script>）。</p>
 <p>&nbsp;</p>
 <h2 id="若尔当标准型分解"><a href="#若尔当标准型分解" class="headerlink" title="若尔当标准型分解"></a>若尔当标准型分解</h2><p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Jordan_normal_form">Jordan Normal Form</a> 是线性代数中一个非常重要的矩阵分解形式。在此之前，我们先简单介绍<strong>矩阵相似</strong>的概念，矩阵 <script type="math/tex">M</script> 与 <script type="math/tex">J</script> 相似，即存在可逆矩阵 <script type="math/tex">P</script> 使得</p>
 <script type="math/tex; mode=display">
