@@ -21,7 +21,7 @@
 <meta property="og:description" content="矩阵离散对数 ： 给定矩阵 M \in \mathbb{F}_q^{n \times n} ， 以及 Y &#x3D; M^x ，求解 x 。 通常矩阵会限制在线性群 GL(n,q) 上（可逆矩阵）。本篇博客参考文献[1][2] ，阐述如何基于若尔当标准型分解 M &#x3D; P J P^{-1} 将矩阵离散对数问题转换为有限域上的离散对数问题。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-03-18T16:13:55.000Z">
-<meta property="article:modified_time" content="2024-03-18T16:25:29.846Z">
+<meta property="article:modified_time" content="2024-03-19T00:59:08.200Z">
 <meta property="article:author" content="tl2cents">
 <meta property="article:tag" content="Matrix Group">
 <meta property="article:tag" content="Discrete Logarithm">
@@ -267,7 +267,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1.7k字</span>
+      <span class="post-count">1.6k字</span>
     </span>
   </span>
 
@@ -325,7 +325,7 @@ J = \begin{bmatrix}
   & &  \ddots &*\\
   & & & \lambda_n
 \end{bmatrix} \\
-J[i][i] = \lambda_i , \quad \text{eigenvalues of M}</script><p>于是在若尔当标准型下，矩阵离散对数问题表示如下：</p>
+J[i][i] = \lambda_i , \quad \text{eigenvalues of M}</script><p>根据若尔当标准型分解，<script type="math/tex">Y</script> 表示如下：</p>
 <script type="math/tex; mode=display">
 Y = M^x = P J^x P^{-1} \\
 \implies J^x = P^{-1} Y P</script><p>而对于上三角矩阵来说：</p>
@@ -335,7 +335,7 @@ J^x =  \begin{bmatrix}
  & \lambda_2^x  & \cdots &  \\
   & & \ddots \\
   & & & \lambda_n^x
-\end{bmatrix} \\</script><p>我们可以只要求出若尔当矩阵 <script type="math/tex">J</script> 和 转换矩阵 <script type="math/tex">P</script> ，于是矩阵离散对数就能规约成 <script type="math/tex">n</script> 个有限域上的离散对数求解。但是，若尔当矩阵不一定在原有限域上存在（特征值不在有限域 <script type="math/tex">\mathbb{F}_q</script> 上），于是需要在扩域上求解，最常见的方式是在分裂域上求解出所有特征值。</p>
+\end{bmatrix} \\</script><p>我们只要求出若尔当矩阵 <script type="math/tex">J</script> 和 转换矩阵 <script type="math/tex">P</script> ，于是矩阵离散对数就能规约成 <script type="math/tex">n</script> 个有限域上的离散对数求解。但是，若尔当矩阵不一定在原有限域上存在（特征值不在有限域 <script type="math/tex">\mathbb{F}_q</script> 上），需要在扩域上求解，最常见的方式是在分裂域上求解出所有特征值。</p>
 <p>&nbsp;</p>
 <p><strong>一般的矩阵离散对数问题规约</strong></p>
 <p>给定  <script type="math/tex">M \in \mathbb{F}_q^{n \times n}</script> ， 以及 <script type="math/tex">Y = M^x</script> ，规约如下：</p>
@@ -374,7 +374,7 @@ J_2^x = \begin{bmatrix}
 \begin{aligned}
    p_M(x)  &= \bf{det} (xI - M) \\
    p_{Y}(x) &= \bf{det} (xI - Y)
-\end{aligned}</script><p>假定 <script type="math/tex">p_M(x)</script> 存在特征值 <script type="math/tex">\lambda \in \mathbb{F}_q</script> ，则其对应 <script type="math/tex">\lambda^k \in \mathbb{F}_q</script>，并且 <script type="math/tex">\lambda^k</script> 也一定是矩阵 <script type="math/tex">Y=M^k</script> 的特征值（从 <script type="math/tex">M</script> 的若尔当标准型分解的 k 次方来看，单根特征值一定成立，多重特征值笔者没有严格证明），从而 <script type="math/tex">p_Y(x)</script> 一定存在根 <script type="math/tex">\lambda^k</script>。</p>
+\end{aligned}</script><p>假定 <script type="math/tex">p_M(x)</script> 存在特征值 <script type="math/tex">\lambda \in \mathbb{F}_q</script> ，则其对应 <script type="math/tex">\lambda^k \in \mathbb{F}_q</script>，并且 <script type="math/tex">\lambda^k</script> 也一定是矩阵 <script type="math/tex">Y=M^k</script> 的特征值（特征值满足 <script type="math/tex">Mv = \lambda v</script>,  易证），从而 <script type="math/tex">p_Y(x)</script> 一定存在根 <script type="math/tex">\lambda^k</script>。</p>
 <p>&nbsp;</p>
 <p><strong>基于特征值的矩阵 DLP 规约如下</strong>：<br>给定  <script type="math/tex">M \in \mathbb{F}_q^{n \times n}</script> ， 以及 <script type="math/tex">Y = M^k</script></p>
 <ol>
@@ -492,6 +492,15 @@ J_2^x = \begin{bmatrix}
 
 
 <nav id="article-nav">
+  
+    <a href="/2024/03/19/DubheCTF-2024-Crypto-Writeups/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          DubheCTF 2024 Crypto Writeups
+        
+      </div>
+    </a>
   
   
     <a href="/2024/02/27/bi0sCTF-2024-Crypto-Writeups/" id="article-nav-older" class="article-nav-link-wrap">
