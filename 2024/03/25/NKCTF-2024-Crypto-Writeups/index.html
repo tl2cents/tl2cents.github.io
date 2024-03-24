@@ -21,7 +21,7 @@
 <meta property="og:description" content="最终排名第一，NKCTF 2024 所有 crypto 赛题的题解。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-03-24T16:00:45.000Z">
-<meta property="article:modified_time" content="2024-03-24T16:06:51.466Z">
+<meta property="article:modified_time" content="2024-03-24T16:09:20.735Z">
 <meta property="article:author" content="tl2cents">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="writeup">
@@ -292,8 +292,8 @@
     
     <p>最终排名第一，NKCTF 2024 所有 crypto 赛题的题解。</p>
 <span id="more"></span>
-<p>&nbsp;</p>
 <p>电脑打比赛得最累的一集（确信）。这次 crypto 有两题随便写的 exp 要跑近 100 h，最后好歹优化到单核 2h 内能跑完。</p>
+<p>&nbsp;</p>
 <h2 id="eZ-Math"><a href="#eZ-Math" class="headerlink" title="eZ_Math"></a>eZ_Math</h2><p>&nbsp;</p>
 <h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>有如下关系：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">n = p * q * r * s</span><br><span class="line">x = <span class="built_in">pow</span>(q + r, p, n)</span><br><span class="line">y = <span class="built_in">pow</span>(p * q + r, p, n)</span><br><span class="line">z = <span class="built_in">pow</span>(s + <span class="number">1</span>, m1, s ** <span class="number">3</span>)</span><br><span class="line">--&gt;</span><br><span class="line">(<span class="number">1</span>). (x-y) | q</span><br><span class="line">(<span class="number">2</span>). y = k1 * p + r </span><br><span class="line">(<span class="number">3</span>). x = k2 * p + q + r</span><br><span class="line">(<span class="number">4</span>). x - y = (k2-k1) * p + q</span><br><span class="line">--&gt;</span><br><span class="line">(<span class="number">5</span>). (x-y-q)|p , (x-y-q)|q</span><br></pre></td></tr></table></figure>
