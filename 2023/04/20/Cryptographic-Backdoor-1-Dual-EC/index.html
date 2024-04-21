@@ -8,7 +8,7 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="https://tl2cents.github.io">
+  <link rel="dns-prefetch" href="https://tanglee.top">
   <title>密码学后门系列Ⅰ: Dual EC | tl2cents blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,22 +16,22 @@
   <meta name="description" content="密码学后门系列博客第一篇：Dual EC 伪随机数生成算法，这是密码学界最臭名昭著的一个后门算法，由斯诺登事件证实 NSA 在设计时就故意留存了后门。此后，密码学后门相关的论文都会反复鞭尸这一后门算法，足可见其在学术界的“重大意义”。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="密码学后门系列Ⅰ: Dual EC">
-<meta property="og:url" content="https://tl2cents.github.io/2023/04/20/Cryptographic-Backdoor-1-Dual-EC/index.html">
+<meta property="og:url" content="https://tanglee.top/2023/04/20/Cryptographic-Backdoor-1-Dual-EC/index.html">
 <meta property="og:site_name" content="tl2cents blog">
 <meta property="og:description" content="密码学后门系列博客第一篇：Dual EC 伪随机数生成算法，这是密码学界最臭名昭著的一个后门算法，由斯诺登事件证实 NSA 在设计时就故意留存了后门。此后，密码学后门相关的论文都会反复鞭尸这一后门算法，足可见其在学术界的“重大意义”。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tl2cents.github.io/2023/04/20/Cryptographic-Backdoor-1-Dual-EC/image-20230318222043342.png">
-<meta property="og:image" content="https://tl2cents.github.io/2023/04/20/Cryptographic-Backdoor-1-Dual-EC/image-20230318222525614.png">
-<meta property="og:image" content="https://tl2cents.github.io/2023/04/20/Cryptographic-Backdoor-1-Dual-EC/image-20230319213459059.png">
-<meta property="og:image" content="https://tl2cents.github.io/2023/04/20/Cryptographic-Backdoor-1-Dual-EC/image-20230319231945945.png">
-<meta property="og:image" content="https://tl2cents.github.io/2023/04/20/Cryptographic-Backdoor-1-Dual-EC/image-20230320144625525.png">
+<meta property="og:image" content="https://tanglee.top/2023/04/20/Cryptographic-Backdoor-1-Dual-EC/image-20230318222043342.png">
+<meta property="og:image" content="https://tanglee.top/2023/04/20/Cryptographic-Backdoor-1-Dual-EC/image-20230318222525614.png">
+<meta property="og:image" content="https://tanglee.top/2023/04/20/Cryptographic-Backdoor-1-Dual-EC/image-20230319213459059.png">
+<meta property="og:image" content="https://tanglee.top/2023/04/20/Cryptographic-Backdoor-1-Dual-EC/image-20230319231945945.png">
+<meta property="og:image" content="https://tanglee.top/2023/04/20/Cryptographic-Backdoor-1-Dual-EC/image-20230320144625525.png">
 <meta property="article:published_time" content="2023-04-20T14:21:08.000Z">
 <meta property="article:modified_time" content="2023-04-28T09:19:56.000Z">
 <meta property="article:author" content="tl2cents">
 <meta property="article:tag" content="Backdoor">
 <meta property="article:tag" content="Dual EC">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tl2cents.github.io/2023/04/20/Cryptographic-Backdoor-1-Dual-EC/image-20230318222043342.png">
+<meta name="twitter:image" content="https://tanglee.top/2023/04/20/Cryptographic-Backdoor-1-Dual-EC/image-20230318222043342.png">
   
     <link rel="alternative" href="/atom.xml" title="tl2cents blog" type="application/atom+xml">
   
@@ -49,6 +49,19 @@
     }
   </style>
   
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'G-W4J1WJ4VD7', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
 
   
 
@@ -475,7 +488,7 @@ s_3 = x(s_2 \oplus \textsf{adin}_3 \cdot P)</script><p>在第二轮时， <scrip
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://tl2cents.github.io/2023/04/20/Cryptographic-Backdoor-1-Dual-EC/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://tanglee.top/2023/04/20/Cryptographic-Backdoor-1-Dual-EC/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -559,7 +572,7 @@ s_3 = x(s_2 \oplus \textsf{adin}_3 \cdot P)</script><p>在第二轮时， <scrip
       <div class="footer-left">
         &copy;
         2021-2024
-        <a href="https://tl2cents.github.io/" target="_blank">tl2cents</a>
+        <a href="https://tanglee.top/" target="_blank">tl2cents</a>
       </div>
       <div class="footer-right">
         

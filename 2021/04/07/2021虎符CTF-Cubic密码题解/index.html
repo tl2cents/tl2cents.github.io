@@ -8,7 +8,7 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="https://tl2cents.github.io">
+  <link rel="dns-prefetch" href="https://tanglee.top">
   <title>2021虎符CTF-Cubic密码题解 | tl2cents blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,12 +16,12 @@
   <meta name="description" content="这次做这道椭圆曲线的密码的原因是之前见过这个有趣的方程问题。这题求方程：  \frac{x}{y+z}+\frac{y}{x+z}+\frac{z}{x+y}&#x3D;6约束条件：   x,y,z 都是正整数，并且六组解都互素，即给了约束条件gcd（x,y,z）&#x3D;1,也就是不能由一组解简单构造多解。 不计x,y,z的顺序，即不能简单得由一组解排列组合。  上面这个方程要爆破到第一组最小的解是不可能的。毕竟">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2021虎符CTF-Cubic密码题解">
-<meta property="og:url" content="https://tl2cents.github.io/2021/04/07/2021%E8%99%8E%E7%AC%A6CTF-Cubic%E5%AF%86%E7%A0%81%E9%A2%98%E8%A7%A3/index.html">
+<meta property="og:url" content="https://tanglee.top/2021/04/07/2021%E8%99%8E%E7%AC%A6CTF-Cubic%E5%AF%86%E7%A0%81%E9%A2%98%E8%A7%A3/index.html">
 <meta property="og:site_name" content="tl2cents blog">
 <meta property="og:description" content="这次做这道椭圆曲线的密码的原因是之前见过这个有趣的方程问题。这题求方程：  \frac{x}{y+z}+\frac{y}{x+z}+\frac{z}{x+y}&#x3D;6约束条件：   x,y,z 都是正整数，并且六组解都互素，即给了约束条件gcd（x,y,z）&#x3D;1,也就是不能由一组解简单构造多解。 不计x,y,z的顺序，即不能简单得由一组解排列组合。  上面这个方程要爆破到第一组最小的解是不可能的。毕竟">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://mlzeng.com/image/an-interesting-equation/sols.png">
-<meta property="og:image" content="https://tl2cents.github.io/2021/04/07/2021%E8%99%8E%E7%AC%A6CTF-Cubic%E5%AF%86%E7%A0%81%E9%A2%98%E8%A7%A3/flag.jpg">
+<meta property="og:image" content="https://tanglee.top/2021/04/07/2021%E8%99%8E%E7%AC%A6CTF-Cubic%E5%AF%86%E7%A0%81%E9%A2%98%E8%A7%A3/flag.jpg">
 <meta property="article:published_time" content="2021-04-07T08:58:36.000Z">
 <meta property="article:modified_time" content="2022-03-23T02:16:44.000Z">
 <meta property="article:author" content="tl2cents">
@@ -46,6 +46,19 @@
     }
   </style>
   
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'G-W4J1WJ4VD7', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
 
   
 
@@ -399,7 +412,7 @@ y^2=x^3+fx+g</script><p>然后<strong>有理数域上面的圆锥曲线求解就
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://tl2cents.github.io/2021/04/07/2021%E8%99%8E%E7%AC%A6CTF-Cubic%E5%AF%86%E7%A0%81%E9%A2%98%E8%A7%A3/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://tanglee.top/2021/04/07/2021%E8%99%8E%E7%AC%A6CTF-Cubic%E5%AF%86%E7%A0%81%E9%A2%98%E8%A7%A3/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -483,7 +496,7 @@ y^2=x^3+fx+g</script><p>然后<strong>有理数域上面的圆锥曲线求解就
       <div class="footer-left">
         &copy;
         2021-2024
-        <a href="https://tl2cents.github.io/" target="_blank">tl2cents</a>
+        <a href="https://tanglee.top/" target="_blank">tl2cents</a>
       </div>
       <div class="footer-right">
         

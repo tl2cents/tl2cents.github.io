@@ -8,7 +8,7 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="https://tl2cents.github.io">
+  <link rel="dns-prefetch" href="https://tanglee.top">
   <title>HITCON CTF 2022 Crypto Writeups | tl2cents blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
   <meta name="description" content="Hitcon 2022 Crypto 方向题解，这次纯crypto方向六道题，剩一道chimera没有解出来。和去年一样，Hitcon又出了NTRU格密码相关的攻击，去年是选择密文攻击，这次是广播攻击。该题解不包含两道NTRU题的题解，之后有空会单独写一篇NTRU相关攻击的博客。以下是BabySSS，Secret，Superprime的题解。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HITCON CTF 2022 Crypto Writeups">
-<meta property="og:url" content="https://tl2cents.github.io/2022/11/29/HITCON-CTF-2022-Crypto-Writeups/index.html">
+<meta property="og:url" content="https://tanglee.top/2022/11/29/HITCON-CTF-2022-Crypto-Writeups/index.html">
 <meta property="og:site_name" content="tl2cents blog">
 <meta property="og:description" content="Hitcon 2022 Crypto 方向题解，这次纯crypto方向六道题，剩一道chimera没有解出来。和去年一样，Hitcon又出了NTRU格密码相关的攻击，去年是选择密文攻击，这次是广播攻击。该题解不包含两道NTRU题的题解，之后有空会单独写一篇NTRU相关攻击的博客。以下是BabySSS，Secret，Superprime的题解。">
 <meta property="og:locale" content="zh_CN">
@@ -43,6 +43,19 @@
     }
   </style>
   
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'G-W4J1WJ4VD7', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
 
   
 
@@ -314,7 +327,7 @@ x_1^{128} & x_2^{128} & ... & x_8^{128} & & & & 2^{-63}\\
 <h2 id="Secret"><a href="#Secret" class="headerlink" title="Secret"></a>Secret</h2><p>&nbsp;</p>
 <h3 id="源代码-1"><a href="#源代码-1" class="headerlink" title="源代码"></a>源代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random, os</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> getPrime, bytes_to_long</span><br><span class="line"></span><br><span class="line">p = getPrime(<span class="number">1024</span>)</span><br><span class="line">q = getPrime(<span class="number">1024</span>)</span><br><span class="line">n = p * q</span><br><span class="line"></span><br><span class="line">flag = <span class="built_in">open</span>(<span class="string">&#x27;flag&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>).read()</span><br><span class="line">pad_length = <span class="number">256</span> - <span class="built_in">len</span>(flag)</span><br><span class="line">m = bytes_to_long(os.urandom(pad_length) + flag)</span><br><span class="line"><span class="keyword">assert</span>(m &lt; n)</span><br><span class="line">es = [random.randint(<span class="number">1</span>, <span class="number">2</span>**<span class="number">512</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">64</span>)]</span><br><span class="line">cs = [<span class="built_in">pow</span>(m, p + e, n) <span class="keyword">for</span> e <span class="keyword">in</span> es]</span><br><span class="line">print(es)</span><br><span class="line">print(cs)</span><br></pre></td></tr></table></figure>
 <p>&nbsp;</p>
-<h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><p>已知64组 <script type="math/tex">(e_i,m^{p+e_i} \mod n)</script>，我们需要恢复m。这题有些类似之前n1ctf的一道题，详情参考我之前的博客<a href="https://tl2cents.github.io/2022/11/08/N1CTF-2022-Crypto-Writeups-By-tl2cents/#ezdlp">ezdlp</a>。难点在于恢复n，这题的不同点在于我们不知道基底m，因此这里我们需要找很小的 <script type="math/tex">k_i,\  i= 1,2,...,64</script> 使得：</p>
+<h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><p>已知64组 <script type="math/tex">(e_i,m^{p+e_i} \mod n)</script>，我们需要恢复m。这题有些类似之前n1ctf的一道题，详情参考我之前的博客<a target="_blank" rel="noopener" href="https://tl2cents.github.io/2022/11/08/N1CTF-2022-Crypto-Writeups-By-tl2cents/#ezdlp">ezdlp</a>。难点在于恢复n，这题的不同点在于我们不知道基底m，因此这里我们需要找很小的 <script type="math/tex">k_i,\  i= 1,2,...,64</script> 使得：</p>
 <script type="math/tex; mode=display">
 \sum k_i =  0  \xrightarrow{s.t.} \sum k_i* p = 0 \\
 \sum e_i*k_i =  0</script><p>解空间，即上面两个方程的核空间，是一个线性空间。因此我们可以取一组核空间的基构成的矩阵，在这个矩阵上进行LLL算法即可得到符合条件的小系数 <script type="math/tex">k_i</script> 。因为我们不能求逆，把正负号分两边进行计算，即可得到n的整数倍 <script type="math/tex">K*n</script> , 利用多组这样的倍数求一个最大公倍数即可恢复n。</p>
@@ -424,7 +437,7 @@ q = \sum\limits_0^t (a_i+48)*256^i \tag{2}</script><p>下面分布讨论题目�
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://tl2cents.github.io/2022/11/29/HITCON-CTF-2022-Crypto-Writeups/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://tanglee.top/2022/11/29/HITCON-CTF-2022-Crypto-Writeups/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -508,7 +521,7 @@ q = \sum\limits_0^t (a_i+48)*256^i \tag{2}</script><p>下面分布讨论题目�
       <div class="footer-left">
         &copy;
         2021-2024
-        <a href="https://tl2cents.github.io/" target="_blank">tl2cents</a>
+        <a href="https://tanglee.top/" target="_blank">tl2cents</a>
       </div>
       <div class="footer-right">
         

@@ -8,7 +8,7 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="https://tl2cents.github.io">
+  <link rel="dns-prefetch" href="https://tanglee.top">
   <title>格密码分析：正交格攻击 | tl2cents blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,20 +16,20 @@
   <meta name="description" content="正交格攻击 ：Orthogonal Lattice Attack （简记为 OL 攻击）是一类重要的格相关攻击。可用于近似公约数问题 （Approximate Common Divisor abbr. ACD）、隐藏子集和问题（Hidden Subset Sum Problem abbr. HSSP）等困难问题的求解，在密码分析方向有广泛的应用。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="格密码分析：正交格攻击">
-<meta property="og:url" content="https://tl2cents.github.io/2023/12/12/Orthogonal-Lattice-Attack/index.html">
+<meta property="og:url" content="https://tanglee.top/2023/12/12/Orthogonal-Lattice-Attack/index.html">
 <meta property="og:site_name" content="tl2cents blog">
 <meta property="og:description" content="正交格攻击 ：Orthogonal Lattice Attack （简记为 OL 攻击）是一类重要的格相关攻击。可用于近似公约数问题 （Approximate Common Divisor abbr. ACD）、隐藏子集和问题（Hidden Subset Sum Problem abbr. HSSP）等困难问题的求解，在密码分析方向有广泛的应用。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tl2cents.github.io/2023/12/12/Orthogonal-Lattice-Attack/image.png">
-<meta property="og:image" content="https://tl2cents.github.io/2023/12/12/Orthogonal-Lattice-Attack/image-1.png">
-<meta property="og:image" content="https://tl2cents.github.io/2023/12/12/Orthogonal-Lattice-Attack/image-2.png">
+<meta property="og:image" content="https://tanglee.top/2023/12/12/Orthogonal-Lattice-Attack/image.png">
+<meta property="og:image" content="https://tanglee.top/2023/12/12/Orthogonal-Lattice-Attack/image-1.png">
+<meta property="og:image" content="https://tanglee.top/2023/12/12/Orthogonal-Lattice-Attack/image-2.png">
 <meta property="article:published_time" content="2023-12-12T14:44:01.000Z">
 <meta property="article:modified_time" content="2023-12-15T13:35:41.715Z">
 <meta property="article:author" content="tl2cents">
 <meta property="article:tag" content="PQC">
 <meta property="article:tag" content="Lattice">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tl2cents.github.io/2023/12/12/Orthogonal-Lattice-Attack/image.png">
+<meta name="twitter:image" content="https://tanglee.top/2023/12/12/Orthogonal-Lattice-Attack/image.png">
   
     <link rel="alternative" href="/atom.xml" title="tl2cents blog" type="application/atom+xml">
   
@@ -47,6 +47,19 @@
     }
   </style>
   
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'G-W4J1WJ4VD7', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
 
   
 
@@ -533,7 +546,7 @@ L=\left[\begin{array}{ccccc}
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://tl2cents.github.io/2023/12/12/Orthogonal-Lattice-Attack/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://tanglee.top/2023/12/12/Orthogonal-Lattice-Attack/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -617,7 +630,7 @@ L=\left[\begin{array}{ccccc}
       <div class="footer-left">
         &copy;
         2021-2024
-        <a href="https://tl2cents.github.io/" target="_blank">tl2cents</a>
+        <a href="https://tanglee.top/" target="_blank">tl2cents</a>
       </div>
       <div class="footer-right">
         

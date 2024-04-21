@@ -8,7 +8,7 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="https://tl2cents.github.io">
+  <link rel="dns-prefetch" href="https://tanglee.top">
   <title>DubheCTF 2024 Crypto Writeups | tl2cents blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
   <meta name="description" content="DubheCTF 2024 中 MDH（基于矩阵群的  DH 密钥交换） 和 ezcrc （CRC 的代数表达式）的题解。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DubheCTF 2024 Crypto Writeups">
-<meta property="og:url" content="https://tl2cents.github.io/2024/03/19/DubheCTF-2024-Crypto-Writeups/index.html">
+<meta property="og:url" content="https://tanglee.top/2024/03/19/DubheCTF-2024-Crypto-Writeups/index.html">
 <meta property="og:site_name" content="tl2cents blog">
 <meta property="og:description" content="DubheCTF 2024 中 MDH（基于矩阵群的  DH 密钥交换） 和 ezcrc （CRC 的代数表达式）的题解。">
 <meta property="og:locale" content="zh_CN">
@@ -43,6 +43,19 @@
     }
   </style>
   
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'G-W4J1WJ4VD7', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
 
   
 
@@ -285,8 +298,8 @@
 <script type="math/tex; mode=display">
 \rm p_A(x) = \bf{det} (xI - A)</script><p>从定义不难得到：特征多项式的根就是矩阵的特征值，而根据若尔当标准型在扩域上的分解形式，<strong>矩阵特征值会保持幂同态</strong>，即 <script type="math/tex">M</script> 的一个特征值 <script type="math/tex">\lambda</script> ，在 <script type="math/tex">M^x</script> 中对应的特征值就是 <script type="math/tex">\lambda^x</script> 。因此我们同样可以把矩阵离散对数降级到它元素有限域上的离散对数问题。而  <script type="math/tex">\mathbb{Z}_{p^3}</script> 上的离散对数在本题的场景下是简单的（<script type="math/tex">x \le 2^{590}, p.nbits() = 256</script>），详细请参考笔者另外两篇博客：</p>
 <ul>
-<li>矩阵离散对数规约问题可以参考博客 <a href="https://tl2cents.github.io/2024/03/19/dlp-in-matrix-group/#%E5%9F%BA%E4%BA%8E%E7%89%B9%E5%BE%81%E5%80%BC%E7%9A%84%E7%9F%A9%E9%98%B5-DLP">基于特征值的矩阵 DLP</a>。</li>
-<li>整数环 <script type="math/tex">\mathbb{Z}_{p^3}</script> 上的离散对数问题可以参考博客 <a href="https://tl2cents.github.io/2024/02/27/bi0sCTF-2024-Crypto-Writeups/#Discrete-Logarithm-Over-mathbb-Z-p-r">Discrete-Logarithm-Over-Z-p-r</a>。</li>
+<li>矩阵离散对数规约问题可以参考博客 <a target="_blank" rel="noopener" href="https://tl2cents.github.io/2024/03/19/dlp-in-matrix-group/#%E5%9F%BA%E4%BA%8E%E7%89%B9%E5%BE%81%E5%80%BC%E7%9A%84%E7%9F%A9%E9%98%B5-DLP">基于特征值的矩阵 DLP</a>。</li>
+<li>整数环 <script type="math/tex">\mathbb{Z}_{p^3}</script> 上的离散对数问题可以参考博客 <a target="_blank" rel="noopener" href="https://tl2cents.github.io/2024/02/27/bi0sCTF-2024-Crypto-Writeups/#Discrete-Logarithm-Over-mathbb-Z-p-r">Discrete-Logarithm-Over-Z-p-r</a>。</li>
 </ul>
 <p>&nbsp;</p>
 <h3 id="Exp"><a href="#Exp" class="headerlink" title="Exp"></a>Exp</h3><p>Sage EXP</p>
@@ -301,7 +314,7 @@
 <p>&nbsp;</p>
 <h3 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h3><p>五次交互从 flag 的 crc256 的值中恢复出 flag。flag 中未知字节数为 32，从 crc256 中恰好能够恢复出完整的 flag。crc 是线性的，更具体来说， crc256 可以表示为，输入为 <script type="math/tex">m \in \mathbb{F}_2^{256}</script> , 编码成多项式记为 <script type="math/tex">M(x) \in \mathbb{F}_2[x]</script> ：</p>
 <ol>
-<li>仿射函数：<script type="math/tex">f(m) = A m + b</script> ，<script type="math/tex">A \in \mathbb{F}_2^{256 \times 256}, m,b \in \mathbb{F}_2^{256}</script> （参考 <a href="https://tl2cents.github.io/2022/11/01/Hacker-Game-2022-%E5%87%BA%E9%A2%98%E8%AE%B0/#%E9%80%86CRC128%E5%93%88%E5%B8%8C">HackerGame 2022</a>）</li>
+<li>仿射函数：<script type="math/tex">f(m) = A m + b</script> ，<script type="math/tex">A \in \mathbb{F}_2^{256 \times 256}, m,b \in \mathbb{F}_2^{256}</script> （参考 <a target="_blank" rel="noopener" href="https://tl2cents.github.io/2022/11/01/Hacker-Game-2022-%E5%87%BA%E9%A2%98%E8%AE%B0/#%E9%80%86CRC128%E5%93%88%E5%B8%8C">HackerGame 2022</a>）</li>
 <li>多项式函数：<script type="math/tex">R(x) = M(x) x^{256} \mod G(x) \in \mathbb{F}_2[x]</script> , 其中 <script type="math/tex">G(x)</script> 为模多项式，次数为 256，且一般是不可约多项式；<script type="math/tex">M(x)</script> 是消息输入多项式， <script type="math/tex">R(x)</script> 是 CRC 值输出多项式。</li>
 </ol>
 <p>&nbsp;</p>
@@ -405,7 +418,7 @@ R_1(x) + R_2(x) = g(x) \mod G(x)</script><p>即我们可以通过两次 CRC256 �
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://tl2cents.github.io/2024/03/19/DubheCTF-2024-Crypto-Writeups/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://tanglee.top/2024/03/19/DubheCTF-2024-Crypto-Writeups/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -489,7 +502,7 @@ R_1(x) + R_2(x) = g(x) \mod G(x)</script><p>即我们可以通过两次 CRC256 �
       <div class="footer-left">
         &copy;
         2021-2024
-        <a href="https://tl2cents.github.io/" target="_blank">tl2cents</a>
+        <a href="https://tanglee.top/" target="_blank">tl2cents</a>
       </div>
       <div class="footer-right">
         
