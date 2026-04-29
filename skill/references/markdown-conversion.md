@@ -37,6 +37,32 @@ For exact block syntax, bilingual declarations, and beautification primitives, a
 7. Upgrade code fences, collapsible sections, and theorem-like environments where the content benefits.
 8. If the post is bilingual or will likely get a translation, preserve the structure needed for paired articles.
 9. For Chinese technical notes, localize section titles and subsection names instead of leaving large English heading chunks from the source.
+10. Before finishing, run a math-format pass: no single-dollar math remains, every standalone `$$` display block has a blank line before and after it, and Liquid titles do not contain raw `$...$` math.
+
+## Manual Refinement Patterns To Apply During Conversion
+
+When a plain Markdown draft already contains the right content but weak structure, perform the same structural packaging during conversion instead of leaving it for a later manual pass.
+
+Use these target patterns:
+
+- Opening reference lines such as papers, challenge repos, or source links -> group them near the top in `{% plain error title="参考链接" %}` or `{% plain error title="References" %}`.
+- A formal problem statement of the form "given ..., find ..., such that ..." -> use `{% definition title="..." %}` and keep the defining equation inside the block.
+- Algorithm-family bullet lists with repeated dimensions such as time, space, memory, or parallelism -> convert them to a comparison table.
+- Short motivating questions or classical problem prompts -> use a concise blockquote with a bold lead phrase, not a large custom block.
+- A compact algorithm recipe followed by its local conclusion -> wrap steps and conclusion together in `{% plain success title="..." %}`.
+- Detailed mechanism explanations, failure cases, caveats, and complexity analyses -> wrap the whole local idea in `{% plain error title="..." %}` when a title helps, or `{% plain error %}` when the first bold sentence is already the title.
+- Plain `**Remarks**` sections -> convert to `{% remark title="..." %}` with a descriptive title rather than the generic word "Remarks".
+- Important one-sentence takeaways inside a remark -> keep them as a blockquote inside the remark so the conclusion is visually separated without creating another top-level section.
+- Definitions introduced inline with bold text -> convert to `{% definition title="中文名 English Term" %}` when the concept is reused later.
+
+Prefer integration over mechanical one-to-one conversion:
+
+- Keep setup, notation, equations, and the immediate conclusion in one conceptual subsection.
+- Combine algorithm steps with the following complexity sentence when they describe the same local algorithm.
+- Combine multi-phase complexity discussions into one custom block with numbered phases followed by final complexity bullets.
+- Keep external references together instead of scattering bare links through the opening paragraphs.
+- Keep short implementation examples visible as normal code fences; use folding only for long scripts, large dumps, or auxiliary material.
+- Add Kramdown code titles to benchmark outputs or repeated run logs so readers can compare runs quickly.
 
 ## Math Rules
 
@@ -46,8 +72,10 @@ Rules to enforce:
 
 - Inline formulas: use `$$x+y$$` inline with the sentence.
 - Display formulas: also use `$$...$$`, but surround the formula block with at least one blank line before and after it.
+- Treat missing blank lines around standalone `$$` lines as a conversion bug, not as an optional style cleanup.
 - When a displayed derivation spans multiple lines, keep it in a standalone display block with enough surrounding whitespace for reliable parsing.
 - If the source Markdown uses `$...$`, convert it to `$$...$$`.
+- Do not put raw `$...$` or `$$...$$` math delimiters inside Liquid block attributes such as `title="..."`; use a plain-text title instead.
 - If a formula contains absolute-value or norm bars such as `$|x|$` or `$|E(\mathbb{F}_p)|$`, rewrite the bars with LaTeX commands such as `\vert x \vert` or `\vert E(\mathbb{F}_p) \vert` to avoid accidental Markdown table parsing.
 - If the source uses LaTeX theorem environments that Jekyll will not understand directly, convert them to repo-supported blocks.
 - When parentheses, brackets, braces, or angle brackets wrap tall expressions, normalize them to `\left ... \right` style delimiters where appropriate.
@@ -125,7 +153,7 @@ Use `<img ...>` only when one of these is true:
 - Supply meaningful `alt`.
 - Add `caption` when the image conveys context worth naming.
 - Use width controls commonly seen in recent posts such as `50%`, `65%`, `85%`, `95%`, or `100%`.
-- For mathematical diagrams or graph sketches copied from notes, start from `95%` and only narrow it when the browser rendering feels too loose.
+- For mathematical diagrams or graph sketches copied from notes, choose width by visual density: compact diagrams often work better around `60%` or `70%`; use `95%` only when full-width rendering materially improves legibility.
 - For image galleries or extra photos, consider wrapping them in `{% plain fold ... %}` blocks.
 
 ## Upgrading Plain Markdown Structure
@@ -154,6 +182,9 @@ When converting, actively improve presentation using the repo's current componen
 - Mark challenge statements, small observations, and checkpoints with `success` or `info` blocks.
 - Add `title="..."`, `type="..."`, and `fold="true"` to code fences when filenames or semantics are useful.
 - Use `{% plain fold ... %}` for long side notes, expanded examples, or supplementary images.
+- Prefer descriptive custom block titles over generic labels such as `Remarks`, `Notes`, or `Analysis`.
+- Convert repeated nested bullet dimensions into tables when the comparison is easier to scan as rows and columns.
+- Use quoted bridge paragraphs for short conceptual prompts, and reserve custom blocks for content that packages a complete local idea.
 
 But keep these limits in mind during beautification:
 

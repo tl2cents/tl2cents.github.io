@@ -108,7 +108,12 @@ For recent Chinese math/crypto posts, prefer these habits:
 - Use `{% plain info|error %}` with a title for mini-protocols, failed ideas, implementation caveats, or FAQ-style clarifications.
 - Use `{% proof fold title="..." %}` when correctness arguments are longer than a short paragraph.
 - Prefer a short quoted intuition paragraph (`> ...`) when introducing a concept bridge between two sections.
-- When showing mathematical diagrams from the post's own assets, `width="95%"` is a common default unless the figure is unusually tall or visually crowded.
+- Use comparison tables when the source has repeated bullet dimensions such as time complexity, space complexity, and parallelism.
+- Convert formal problem statements into `{% definition title="..." %}` blocks, and keep their defining equations inside the block.
+- Use `{% plain success title="..." %}` for compact algorithms whose steps and immediate conclusion should be read together.
+- Use `{% plain error title="..." %}` or `{% plain error %}` for complexity analysis, caveats, failed cases, or mechanism details that should stand out from the main flow.
+- Convert generic `Remarks` into `{% remark title="..." %}` with a concrete title; if the key insight is a single sentence, place it as a blockquote inside the remark.
+- When showing mathematical diagrams from the post's own assets, tune width by visual density. Compact graph sketches often read better around `60%` or `70%`; reserve `95%` for figures that need full-width detail.
 
 Use the `hello-world` pair as the syntax reference for:
 
@@ -286,7 +291,8 @@ Preferred LaTeX normalization habits for this repo:
 For local blog images, prefer this include form:
 
 ```liquid
-{% include figure.html src="/assets/images/<post-subdir>/image.png" alt="..." width="95%" caption="..." %}
+{% include figure.html src="/assets/images/<post-subdir>/image.png" alt="..." width="70%" caption="..." %}
 ```
 
 Use raw `<img>` only when the image needs special HTML attributes or already lives in a non-blog asset area.
+Use `width="60%"` or `width="70%"` for compact diagrams and `width="85%"`, `width="95%"`, or `width="100%"` for dense screenshots, wide tables, or figures whose labels need more space.
