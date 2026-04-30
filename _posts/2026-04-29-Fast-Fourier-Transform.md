@@ -3,6 +3,7 @@ tags: FFT NTT Polynomial Post-Quantum-Cryptography
 title: "快速傅里叶变换与数论变换"
 key: fast-fourier-transform
 lang: zh
+bilingual: true
 published: true
 ---
 
