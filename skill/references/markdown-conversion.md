@@ -39,6 +39,39 @@ For exact block syntax, bilingual declarations, and beautification primitives, a
 9. For Chinese technical notes, localize section titles and subsection names instead of leaving large English heading chunks from the source.
 10. Before finishing, run a math-format pass: no single-dollar math remains, every standalone `$$` display block has a blank line before and after it, and Liquid titles do not contain raw `$...$` math.
 
+## Developer Checklist
+
+Use this checklist during the implementation pass.
+
+- Identify the target post language, topic, likely tags, date, title, and output filename.
+- Preserve the source article's content coverage, argument order, examples, and technical discussion unless the user explicitly asks for compression or restructuring.
+- Add valid front matter and the repository opening structure: summary block, `<!--more-->`, optional hidden macro block, then the main body.
+- Fix obvious typos directly and keep notes for the final response.
+- Polish local sentence expression without changing technical meaning.
+- Convert single-dollar math to the repo's `$$...$$` style.
+- Add blank lines before and after standalone display math blocks.
+- Normalize absolute-value bars such as `|x|` to `\vert x \vert` inside formulas.
+- Apply formula-normalization heuristics such as `\left...\right`, semantic operators, and modular notation when appropriate.
+- Move or reference local images under `assets/images/<post-subdir>/` and render local blog images with `{% include figure.html %}` when suitable.
+- Upgrade weak Markdown into repo-supported blocks, tables, enhanced code fences, and foldable sections when the content benefits.
+- Preserve bilingual-readiness when a future paired version is likely.
+- Run `bundle exec jekyll build` when a post file is written or substantially modified.
+
+## Reviewer Checklist
+
+Use this checklist in a separate review pass after the developer pass.
+
+- Compare the converted post against the source Markdown for accidental deletions, reordered reasoning, or unrequested compression.
+- Confirm the opening structure and `<!--more-->` placement produce a useful excerpt.
+- Confirm every typo fix is legitimate and can be reported.
+- Inspect math delimiters: no unintended `$...$`, no display math without surrounding blank lines, no raw `|...|` that can be parsed as a table, and no math delimiters inside Liquid titles.
+- Inspect formulas for semantic changes introduced by normalization.
+- Confirm custom blocks, details, theorem/proof blocks, code fences, and Kramdown attributes match repository-supported syntax.
+- Confirm local images live under the expected `assets/images/<post-subdir>/` folder and use valid root-relative paths.
+- Confirm Chinese/English heading language matches the post language and terminology choices are consistent.
+- Confirm the converted post follows recent repository style rather than older unpolished posts.
+- Confirm `bundle exec jekyll build` passes or record why it was not run.
+
 ## Manual Refinement Patterns To Apply During Conversion
 
 When a plain Markdown draft already contains the right content but weak structure, perform the same structural packaging during conversion instead of leaving it for a later manual pass.

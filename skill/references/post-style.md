@@ -91,6 +91,8 @@ Typical Chinese opening swaps `**tl;dr:**` for `**概要:**`.
 
 When converting from a plain Markdown article, actively add this opening structure instead of preserving a bare first paragraph.
 
+For translated bilingual counterparts, keep the normal target-language summary before `<!--more-->`, then place the translation disclaimer immediately after `<!--more-->`. This keeps homepage excerpts focused on the article summary instead of the AI-generation disclaimer.
+
 ## Established Writing Style
 
 - Keep the tone technical and dense.

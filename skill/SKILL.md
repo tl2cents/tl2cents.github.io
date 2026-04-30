@@ -14,6 +14,7 @@ Use the references to match the established post structure and local workflow be
 
 - Read [references/post-style.md](references/post-style.md) before writing or restructuring a post.
 - Read [references/project-map.md](references/project-map.md) before adding features, changing UI, changing rendering behavior, or modifying site-wide settings.
+- Read [references/agent-review-workflow.md](references/agent-review-workflow.md) before substantial Markdown conversion, bilingual translation, feature work, UI changes, or rendering changes that need an implementation pass and an independent review pass.
 - Read [references/markdown-conversion.md](references/markdown-conversion.md) when the input starts as a plain Markdown file or notes dump.
 - Read [references/bilingual-translation.md](references/bilingual-translation.md) when the task is to translate an existing post into its bilingual counterpart.
 - Read [references/workflow.md](references/workflow.md) before preview, build, or deploy tasks.
@@ -31,6 +32,7 @@ Use the references to match the established post structure and local workflow be
 5. Keep asset links repo-relative, typically under `/assets/...`.
 6. Match the dominant section language to the post language; for Chinese technical posts, prefer Chinese headings and keep English terms in parentheses only when they help orientation.
 7. Run a local Jekyll build after substantial edits; when visual behavior changed, also run the local preview flow.
+8. For substantial conversions, bilingual counterparts, UI changes, or rendering changes, use the developer/reviewer workflow in [references/agent-review-workflow.md](references/agent-review-workflow.md): one pass implements, a separate review pass checks against the task-specific checklist before final delivery.
 
 ## Guardrails
 
@@ -45,6 +47,7 @@ Use the references to match the established post structure and local workflow be
 
 - [references/post-style.md](references/post-style.md): front matter, article skeleton, bilingual conventions, custom blocks, math, and enhanced code fences.
 - [references/project-map.md](references/project-map.md): repository architecture, important page/layout/UI/config/plugin/script locations, and where to edit common site features.
+- [references/agent-review-workflow.md](references/agent-review-workflow.md): developer/reviewer agent responsibilities, model-selection guidance, and acceptance process for substantial blog tasks.
 - [references/markdown-conversion.md](references/markdown-conversion.md): how to turn a plain Markdown article into a polished post using this repo's recent style.
 - [references/bilingual-translation.md](references/bilingual-translation.md): how to generate a faithful Chinese/English counterpart from an existing post while preserving bilingual blog behavior.
 - [references/workflow.md](references/workflow.md): prerequisites, local preview/build commands, and cautious deployment notes for this repository.

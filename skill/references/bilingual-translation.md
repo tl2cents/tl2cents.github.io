@@ -45,7 +45,7 @@ If an older file in the repository uses an inconsistent suffix pattern, do not c
 4. Keep the summary label in the target language:
    - Chinese posts usually use `**概要:**`
    - English posts usually use `**tl;dr:**` or `**Abstract:**`, following the nearby style
-5. Insert an explicit translation disclaimer near the top of the translated post.
+5. Insert an explicit translation disclaimer immediately after `<!--more-->` in the translated post so the homepage excerpt stays focused on the article summary.
 6. Preserve the original post as the default visible article.
 7. Run a local build check if the task includes actually writing the translated file.
 
@@ -72,7 +72,25 @@ Usage rules:
 - Fill in the actual agent name and model name.
 - Adjust the source/target language wording to match the real translation direction.
 - Keep the disclaimer concise and technical.
-- Place it high enough in the article that readers can see it immediately.
+- Place it immediately after `<!--more-->`, before the optional macro block, horizontal rule, references, or main body. Do not place the disclaimer before `<!--more-->`.
+
+Recommended bilingual opening order:
+
+```markdown
+{: .info}
+**tl;dr:** Target-language summary.
+
+<!--more-->
+
+{: .error}
+**Disclaimer:** This article is ...
+
+<p hidden>$$
+...
+$$</p>
+
+---
+```
 
 ## Terminology Rules
 
@@ -92,3 +110,36 @@ Usage rules:
 - Do not translate fenced code blocks introduced by triple backticks or equivalent code-fence syntax.
 - Do not translate raw HTML examples, Liquid examples, or Markdown syntax demonstrations when they are serving as code or rendering examples.
 - Translation quality must not come at the cost of broken MathJax, Liquid tags, or image rendering.
+
+## Developer Checklist
+
+Use this checklist during the implementation pass.
+
+- Detect source language and target language from front matter and content.
+- Preserve the original post as the visible primary/default version.
+- Create the translated counterpart with a clean language suffix before `.md`.
+- Keep `key` identical across both versions.
+- Set `lang` explicitly on both versions.
+- Set `bilingual: true` on the primary visible version.
+- Set `hidden: true` on the translated counterpart unless the user explicitly asks otherwise.
+- Keep formulas, images, references, HTML, Liquid, Markdown structure, inline code, and fenced code structurally intact.
+- Translate prose faithfully without adding, deleting, or reordering meaning.
+- Preserve domain terminology carefully for cryptography, mathematics, and computer science.
+- Put the target-language summary before `<!--more-->`.
+- Put the translation disclaimer immediately after `<!--more-->`.
+- Run `bundle exec jekyll build` when a translated file is written.
+
+## Reviewer Checklist
+
+Use this checklist in a separate review pass after the developer pass.
+
+- Confirm the generated counterpart builds a valid bilingual pair with the original post.
+- Confirm the original/default post was not renamed, hidden, or semantically rewritten.
+- Confirm the translated file has the expected filename suffix and front matter.
+- Confirm the disclaimer is after `<!--more-->`, not before it.
+- Confirm the homepage excerpt will show the article summary rather than the AI disclaimer.
+- Compare representative sections against the source for omissions, additions, mistranslations, or reordered claims.
+- Inspect formulas for broken delimiters, changed semantics, missing blank lines around display blocks, and accidental Markdown table parsing from raw `|...|`.
+- Confirm raw HTML, Liquid tags, Kramdown attributes, inline code, and fenced code were not translated or structurally modified.
+- Confirm image paths, captions, references, and links still point to valid targets.
+- Confirm `bundle exec jekyll build` passes or record why it was not run.
