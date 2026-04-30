@@ -6,13 +6,15 @@ key: rs-mceliece-niederreiter
 lang: en
 ---
 
-{: .error}
-**Disclaimer:** This article is automatically translated from Chinese based on the open source tool [GPT-Academic](https://github.com/binary-husky/gpt_academic), using the [OpenAI-GPT-4o-mini](https://platform.openai.com/docs/models/gpt-4o-mini) model. If there are any ambiguities or mistakes, please switch to the original Chinese blog.
+
 
 {: .info}
 **Abstract:** This article introduces the Generalized Reed-Solomon Code (GRS) along with the McEliece and Niederreiter encryption algorithms. Although GRS is a very efficient linear code, the standard McEliece implementation uses Goppa Code instead of the simpler and more efficient GRS code due to security issues with GRS encoding in the aforementioned two cryptosystems, namely the Sidelnikov-Shestakov attack. This blog provides a brief introduction to GRS linear coding and its associated attacks.
 
 <!--more-->
+
+{: .error}
+**Disclaimer:** This article is automatically translated from Chinese based on the open source tool [GPT-Academic](https://github.com/binary-husky/gpt_academic), using the [OpenAI-GPT-4o-mini](https://platform.openai.com/docs/models/gpt-4o-mini) model. If there are any ambiguities or mistakes, please switch to the original Chinese blog.
 
 Main references:
 

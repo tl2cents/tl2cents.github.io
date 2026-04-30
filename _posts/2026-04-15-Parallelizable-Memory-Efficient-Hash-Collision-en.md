@@ -7,13 +7,14 @@ hidden: true
 published: true
 ---
 
-{: .error}
-**Disclaimer:** This article is the English counterpart automatically generated from the original Chinese blog by `Codex` + `GPT-5.4`. The translation aims to preserve the original meaning, structure, and technical details as faithfully as possible. If there is any ambiguity or inaccuracy, please refer to the original Chinese version.
 
 {: .info}
 **tl;dr:** This article discusses three generic hash-collision search methods: the birthday-paradox collision algorithm, Pollard's rho with Floyd cycle detection, and the parallelizable Pollard's lambda method based on Distinguished Points. These generic methods can be generalized in a similar way to integer factorization and discrete logarithm problems.
 
 <!--more-->
+
+{: .error}
+**Disclaimer:** This article is the English counterpart automatically generated from the original Chinese blog by `Codex` + `GPT-5.4`. The translation aims to preserve the original meaning, structure, and technical details as faithfully as possible. If there is any ambiguity or inaccuracy, please refer to the original Chinese version.
 
 ---
 

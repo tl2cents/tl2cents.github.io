@@ -6,14 +6,14 @@ lang: en
 hidden: true
 ---
 
-{: .error}
-**Disclaimer:** This article is automatically translated from Chinese based on the open source tool [GPT-Academic](https://github.com/binary-husky/gpt_academic), using the [OpenAI-GPT-4o-mini](https://platform.openai.com/docs/models/gpt-4o-mini) model. If there are any ambiguities or mistakes, please switch to the original Chinese blog.
-
-
 {: .info}
 **tl;dr:** This article introduces the definition, properties of bilinear maps, and their applications in cryptography such as the MOV attack, single-round three-party DH protocol, and Identity-Based Encryption.
 
 <!--more-->
+
+{: .error}
+**Disclaimer:** This article is automatically translated from Chinese based on the open source tool [GPT-Academic](https://github.com/binary-husky/gpt_academic), using the [OpenAI-GPT-4o-mini](https://platform.openai.com/docs/models/gpt-4o-mini) model. If there are any ambiguities or mistakes, please switch to the original Chinese blog.
+
 
 Bilinear maps establish linear relationships between different groups. Since Boneh and Franklin first applied bilinear map functions in Identity-Based Encryption in 2001, they quickly became a popular research direction in cryptography, holding significant importance in various emerging cryptographic areas, such as zero-knowledge proofs and Pairing-Based Cryptography. Cryptanalysis methods based on bilinear maps (especially elliptic curve groups) feature typical examples like the MOV Attack, which leverages bilinear maps to convert the discrete logarithm problem based on certain pairing-friendly elliptic curves.
 
