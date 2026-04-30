@@ -13,6 +13,7 @@ Use the references to match the established post structure and local workflow be
 ## Quick Start
 
 - Read [references/post-style.md](references/post-style.md) before writing or restructuring a post.
+- Read [references/project-map.md](references/project-map.md) before adding features, changing UI, changing rendering behavior, or modifying site-wide settings.
 - Read [references/markdown-conversion.md](references/markdown-conversion.md) when the input starts as a plain Markdown file or notes dump.
 - Read [references/bilingual-translation.md](references/bilingual-translation.md) when the task is to translate an existing post into its bilingual counterpart.
 - Read [references/workflow.md](references/workflow.md) before preview, build, or deploy tasks.
@@ -43,6 +44,7 @@ Use the references to match the established post structure and local workflow be
 ## References
 
 - [references/post-style.md](references/post-style.md): front matter, article skeleton, bilingual conventions, custom blocks, math, and enhanced code fences.
+- [references/project-map.md](references/project-map.md): repository architecture, important page/layout/UI/config/plugin/script locations, and where to edit common site features.
 - [references/markdown-conversion.md](references/markdown-conversion.md): how to turn a plain Markdown article into a polished post using this repo's recent style.
 - [references/bilingual-translation.md](references/bilingual-translation.md): how to generate a faithful Chinese/English counterpart from an existing post while preserving bilingual blog behavior.
 - [references/workflow.md](references/workflow.md): prerequisites, local preview/build commands, and cautious deployment notes for this repository.
