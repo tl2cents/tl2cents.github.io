@@ -84,7 +84,9 @@
 
 .navigation {
   @include overflow(auto, "x");
+  overflow: visible;
   & > ul {
+    overflow: visible;
     height: map-get($layout, header-height);
     padding-bottom: 0;
     margin: 0;
@@ -120,4 +122,99 @@
   &::after {
     @include split-line(bottom, 4px, $main-color-1);
   }
+}
+
+.navigation__item--lang-switch {
+  &::after {
+    display: none;
+  }
+}
+
+.home-language-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.home-language-switch__toggle {
+  appearance: none;
+  min-width: 2.6rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: $header-text-color;
+  cursor: pointer;
+  font: inherit;
+  line-height: inherit;
+  text-align: left;
+  transition: color map-get($animation, duration) map-get($animation, timing-function);
+
+  &:hover {
+    color: $main-color-1;
+  }
+
+  &::after {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 0.28rem;
+    height: 0.28rem;
+    border-right: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
+    content: "";
+    opacity: 0.7;
+    transform: translateY(-70%) rotate(45deg);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    border-radius: 2px;
+    box-shadow: 0 2px 0 $main-color-1;
+  }
+}
+
+.home-language-switch__menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.7rem);
+  z-index: 9;
+  min-width: 7rem;
+  padding: 0.25rem 0;
+  border: 1px solid $border-color-l;
+  border-radius: map-get($base, border-radius);
+  background: $background-color;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+}
+
+.home-language-switch__option {
+  @include flexbox();
+  @include align-items(center);
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.42rem 0.7rem;
+  border: 0;
+  background: transparent;
+  color: $header-text-color;
+  cursor: pointer;
+  font: inherit;
+  font-size: map-get($base, font-size-sm);
+  text-align: left;
+
+  &[aria-selected="true"] {
+    color: $main-color-1;
+  }
+
+  &:hover {
+    background: $text-background-color;
+    color: $main-color-1;
+  }
+}
+
+.home-language-switch__option-code {
+  min-width: 1.6rem;
+  color: inherit;
+  font-weight: map-get($base, font-weight-bold);
 }

@@ -14,7 +14,7 @@
 {%- endif -%}
 
 {%- if include.type == 'item' -%}
-<div class="article-list items items--divided">
+<div class="article-list items items--divided{% if include.home_language_switch %} article-list--home-lang{% endif %}">
 {%- elsif include.type == 'brief' -%}
 <div class="article-list items">
 {%- elsif include.type == 'grid' -%}
@@ -33,6 +33,8 @@
     {%- assign _translations = '' -%}
     {%- assign _translation_zh_url = '' -%}
     {%- assign _translation_en_url = '' -%}
+    {%- assign _translation_zh_article = nil -%}
+    {%- assign _translation_en_article = nil -%}
     {%- if _article.key -%}
       {%- assign _translations = site.posts | where: "key", _article.key | sort: "lang" -%}
       {%- if _translations.size > 1 -%}
@@ -41,10 +43,24 @@
           {%- assign _translation_url = __return -%}
           {%- if _t.lang == 'zh' -%}
             {%- assign _translation_zh_url = _translation_url -%}
+            {%- assign _translation_zh_article = _t -%}
           {%- elsif _t.lang == 'en' -%}
             {%- assign _translation_en_url = _translation_url -%}
+            {%- assign _translation_en_article = _t -%}
           {%- endif -%}
         {%- endfor -%}
+      {%- endif -%}
+    {%- endif -%}
+    {%- assign _home_localized = false -%}
+    {%- if include.home_language_switch and _translations != '' and _translations.size > 1 -%}
+      {%- assign _home_localized = true -%}
+      {%- if _translation_en_url == '' -%}
+        {%- assign _translation_en_url = _article_url -%}
+        {%- assign _translation_en_article = _article -%}
+      {%- endif -%}
+      {%- if _translation_zh_url == '' -%}
+        {%- assign _translation_zh_url = _article_url -%}
+        {%- assign _translation_zh_article = _article -%}
       {%- endif -%}
     {%- endif -%}
 
@@ -73,19 +89,60 @@
           </div>
         {%- endif -%}
         <div class="item__content">
-          <header><a href="{{ _article_url }}"><h2 itemprop="headline" class="item__header">{{ _article.title }}</h2></a></header>
+          <header>
+            {%- if _home_localized -%}
+              <h2 itemprop="headline" class="item__header">
+                <a class="article-list__localized" data-home-lang="en" href="{{ _translation_en_url }}">{{ _translation_en_article.title }}</a>
+                <a class="article-list__localized" data-home-lang="zh" href="{{ _translation_zh_url }}" hidden>{{ _translation_zh_article.title }}</a>
+              </h2>
+            {%- else -%}
+              <a href="{{ _article_url }}"><h2 itemprop="headline" class="item__header">{{ _article.title }}</h2></a>
+            {%- endif -%}
+          </header>
           <div class="item__description">
             {%- if _article.excerpt and include.show_excerpt -%}
-              <div class="article__content" itemprop="description articleBody">
-                {%- if _excerpt_type == 'html' -%}
-                  {{ _article.excerpt }}
-                {%- else -%}
-                  {{ _article.excerpt | strip_html | strip | truncate: _excerpt_truncate }}
+              {%- if _home_localized -%}
+                {%- if _translation_en_article.excerpt -%}
+                  <div class="article__content article-list__localized" data-home-lang="en" itemprop="description articleBody">
+                    {%- if _excerpt_type == 'html' -%}
+                      {{ _translation_en_article.excerpt }}
+                    {%- else -%}
+                      {{ _translation_en_article.excerpt | strip_html | strip | truncate: _excerpt_truncate }}
+                    {%- endif -%}
+                  </div>
                 {%- endif -%}
-              </div>
+                {%- if _translation_zh_article.excerpt -%}
+                  <div class="article__content article-list__localized" data-home-lang="zh" itemprop="description articleBody" hidden>
+                    {%- if _excerpt_type == 'html' -%}
+                      {{ _translation_zh_article.excerpt }}
+                    {%- else -%}
+                      {{ _translation_zh_article.excerpt | strip_html | strip | truncate: _excerpt_truncate }}
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              {%- else -%}
+                <div class="article__content" itemprop="description articleBody">
+                  {%- if _excerpt_type == 'html' -%}
+                    {{ _article.excerpt }}
+                  {%- else -%}
+                    {{ _article.excerpt | strip_html | strip | truncate: _excerpt_truncate }}
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
             {%- endif -%}
             {%- if include.show_readmore -%}
-              {%- if _translations != '' and _translations.size > 1 -%}
+              {%- if _home_localized -%}
+                <p class="article-list__readmore-links">
+                  <a class="article-list__localized" data-home-lang="en" href="{{ _translation_en_url }}">Read more</a>
+                  <a class="article-list__localized" data-home-lang="zh" href="{{ _translation_zh_url }}" hidden>阅读全文</a>
+                  {%- if _translation_zh_url != '' -%}
+                    <span class="article-list__readmore-sep">·</span><a href="{{ _translation_zh_url }}">CN</a>
+                  {%- endif -%}
+                  {%- if _translation_en_url != '' -%}
+                    <span class="article-list__readmore-sep">/</span><a href="{{ _translation_en_url }}">EN</a>
+                  {%- endif -%}
+                </p>
+              {%- elsif _translations != '' and _translations.size > 1 -%}
                 <p class="article-list__readmore-links">
                   <a href="{{ _article_url }}">{{ _locale_readmore }}</a>
                   {%- if _translation_zh_url != '' -%}
@@ -94,6 +151,11 @@
                   {%- if _translation_en_url != '' -%}
                     <span class="article-list__readmore-sep">/</span><a href="{{ _translation_en_url }}">EN</a>
                   {%- endif -%}
+                </p>
+              {%- elsif include.home_language_switch -%}
+                <p class="article-list__readmore-links">
+                  <a class="article-list__localized" data-home-lang="en" href="{{ _article_url }}">Read more</a>
+                  <a class="article-list__localized" data-home-lang="zh" href="{{ _article_url }}" hidden>阅读全文</a>
                 </p>
               {%- else -%}
                 <p><a href="{{ _article_url }}">{{ _locale_readmore }}</a></p>

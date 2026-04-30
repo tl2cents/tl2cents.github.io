@@ -1,0 +1,36 @@
+<div class="home-language-switch d-print-none" data-home-lang-menu>
+  <button class="home-language-switch__toggle" type="button" data-home-lang-toggle aria-haspopup="listbox" aria-expanded="false" aria-label="Home page language">
+    <span data-home-lang="en">EN</span>
+    <span data-home-lang="zh" hidden>中文</span>
+  </button>
+  <div class="home-language-switch__menu" data-home-lang-options role="listbox" aria-label="Home page language" hidden>
+    <button class="home-language-switch__option" type="button" role="option" data-home-lang-value="en" aria-selected="true">
+      <span class="home-language-switch__option-code">EN</span>
+      <span>English</span>
+    </button>
+    <button class="home-language-switch__option" type="button" role="option" data-home-lang-value="zh" aria-selected="false">
+      <span class="home-language-switch__option-code">中文</span>
+      <span>Chinese</span>
+    </button>
+  </div>
+</div>
+<script>
+  (function () {
+    try {
+      var lang = document.documentElement.getAttribute('lang') === 'zh' ? 'zh' : 'en';
+      document.documentElement.setAttribute('data-home-lang', lang);
+      document.documentElement.setAttribute('lang', lang);
+      document.documentElement.lang = lang;
+      document.querySelectorAll('.navigation [data-home-lang], .home-language-switch [data-home-lang]').forEach(function (node) {
+        node.hidden = node.getAttribute('data-home-lang') !== lang;
+      });
+      document.querySelectorAll('.home-language-switch [data-home-lang-value]').forEach(function (node) {
+        node.setAttribute('aria-selected', node.getAttribute('data-home-lang-value') === lang ? 'true' : 'false');
+      });
+    } catch (e) {
+      document.documentElement.setAttribute('data-home-lang', 'en');
+      document.documentElement.setAttribute('lang', 'en');
+      document.documentElement.lang = 'en';
+    }
+  })();
+</script>

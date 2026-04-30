@@ -13,6 +13,13 @@
     font-weight: map-get($base, font-weight-bold);
     white-space: nowrap;
   }
+  &.article-list--home-lang {
+    .item__header {
+      a {
+        color: inherit;
+      }
+    }
+  }
   .item__meta {
     padding: 0 map-get($spacers, 3) 0 0;
     font-family: map-get($base, font-family-code);
