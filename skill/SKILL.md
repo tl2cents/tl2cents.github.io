@@ -42,6 +42,7 @@ Use the references to match the established post structure and local workflow be
 - When converting a local Markdown draft into a publishable post, do not cut content or rewrite the article's reasoning structure unless the user explicitly asks for a shorter or reorganized version.
 - Do not use `update_blog.sh` casually; it stages every change in the worktree and pushes `master`.
 - Restart the preview server after `_config.yml` changes because Jekyll does not hot-reload that file.
+- Prefer one local git commit per independent feature or user-visible change. Do not push or deploy those commits unless the user explicitly asks; the human reviewer decides which local commits to keep.
 
 ## References
 

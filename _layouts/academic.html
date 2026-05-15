@@ -1,0 +1,227 @@
+---
+layout: page
+full_width: true
+type: webpage
+comment: false
+---
+{%- assign academic = page.academic -%}
+{%- assign profile = academic.profile -%}
+
+<div class="layout--academic">
+  <div class="academic-shell">
+    <aside class="academic-profile" aria-label="Academic profile">
+      {%- unless profile.show_photo == false -%}
+        <div class="academic-profile__portrait{% if profile.photo %} academic-profile__portrait--photo{% endif %}" aria-hidden="true">
+          {%- if profile.photo -%}
+            {%- include snippets/get-nav-url.html path=profile.photo -%}
+            <img src="{{ __return }}" alt="">
+          {%- else -%}
+            <span>{{ profile.initials | default: "AP" }}</span>
+          {%- endif -%}
+        </div>
+      {%- endunless -%}
+
+      <p class="academic-profile__eyebrow">{{ profile.eyebrow | default: "Academic Homepage" }}</p>
+      <h1>{{ profile.name }}</h1>
+      <p class="academic-profile__role">{{ profile.role }}</p>
+      <p class="academic-profile__affiliation">{{ profile.affiliation }}</p>
+
+      <div class="academic-profile__meta">
+        {%- if profile.location -%}
+          <span><i class="fas fa-map-marker-alt"></i>{{ profile.location }}</span>
+        {%- endif -%}
+        {%- if profile.email -%}
+          <a href="mailto:{{ profile.email }}"><i class="far fa-envelope"></i>{{ profile.email }}</a>
+        {%- endif -%}
+      </div>
+
+      {%- if profile.links -%}
+        <ul class="academic-links">
+          {%- for link in profile.links -%}
+            <li>
+              <a href="{{ link.url }}">
+                {%- if link.icon -%}<i class="{{ link.icon }}"></i>{%- endif -%}
+                <span>
+                  <strong>{{ link.label }}</strong>
+                  {%- if link.detail -%}<small>{{ link.detail }}</small>{%- endif -%}
+                </span>
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </aside>
+
+    <main class="academic-main" aria-label="Academic homepage content">
+      <section class="academic-section academic-section--intro">
+        <div class="academic-intro__header">
+          <p class="academic-section__label">Research Profile</p>
+          <h2>About Me</h2>
+        </div>
+        <div class="academic-intro__body">{{ academic.intro.body | markdownify }}</div>
+      </section>
+
+      {%- if academic.interests -%}
+        <section class="academic-section academic-section--interests">
+          <div class="academic-section__heading academic-section__heading--interests">
+            <p class="academic-section__label">Focus Areas</p>
+            <h2>Research Interests</h2>
+          </div>
+          <div class="academic-interest-grid">
+            {%- for interest in academic.interests -%}
+              <article class="academic-interest">
+                <h3>{{ interest.title }}</h3>
+                <p>{{ interest.description }}</p>
+              </article>
+            {%- endfor -%}
+          </div>
+        </section>
+      {%- endif -%}
+
+      {%- if academic.news -%}
+        <section class="academic-section">
+          <div class="academic-section__heading">
+            <p class="academic-section__label">Updates</p>
+            <h2>News</h2>
+          </div>
+          <ol class="academic-news">
+            {%- for item in academic.news -%}
+              <li>
+                <time>{{ item.date }}</time>
+                <span>{{ item.text }}</span>
+              </li>
+            {%- endfor -%}
+          </ol>
+        </section>
+      {%- endif -%}
+
+      {%- if academic.publications -%}
+        <section class="academic-section academic-section--publications">
+          <div class="academic-section__heading academic-section__heading--publications">
+            <p class="academic-section__label">Selected Work</p>
+            <h2>Publications</h2>
+          </div>
+          <div class="academic-publications">
+            {%- for publication in academic.publications -%}
+              <article class="academic-publication">
+                <div class="academic-publication__header">
+                  <div>
+                    <p class="academic-publication__venue">
+                      <span>{{ publication.venue }}</span>
+                      {%- if publication.status -%}
+                        <span class="academic-publication__status">{{ publication.status }}</span>
+                      {%- endif -%}
+                    </p>
+                    <h3>{{ publication.title }}</h3>
+                  </div>
+                  {%- if publication.venue_short -%}
+                    <span class="academic-publication__tag">{{ publication.venue_short }}</span>
+                  {%- endif -%}
+                </div>
+                {%- assign _publication_authors = publication.authors -%}
+                {%- if publication.highlight_author -%}
+                  {%- capture _highlighted_author -%}<strong class="academic-publication__author-highlight">{{ publication.highlight_author }}</strong>{%- endcapture -%}
+                  {%- assign _publication_authors = _publication_authors | replace: publication.highlight_author, _highlighted_author -%}
+                {%- endif -%}
+                <p class="academic-publication__authors">{{ _publication_authors }}</p>
+                {%- if publication.summary -%}
+                  <blockquote class="academic-publication__summary">
+                    <p>{{ publication.summary }}</p>
+                  </blockquote>
+                {%- endif -%}
+                {%- if publication.links or publication.ratings -%}
+                  <div class="academic-publication__meta-row">
+                    {%- if publication.links -%}
+                      <div class="academic-publication__links">
+                        {%- for link in publication.links -%}
+                          {%- assign _link_label = link.label | downcase -%}
+                          {%- assign _link_class = '' -%}
+                          {%- if _link_label contains 'eprint' -%}
+                            {%- assign _link_class = ' academic-publication__link--eprint' -%}
+                          {%- elsif _link_label contains 'code' -%}
+                            {%- assign _link_class = ' academic-publication__link--code' -%}
+                          {%- endif -%}
+                          <a class="academic-publication__link{{ _link_class }}" href="{{ link.url }}">{{ link.label }}</a>
+                        {%- endfor -%}
+                      </div>
+                    {%- endif -%}
+                    {%- if publication.ratings -%}
+                      <div class="academic-publication__ratings" aria-label="Conference ratings">
+                        {%- for rating in publication.ratings -%}
+                          {%- assign _rating_label = rating | downcase -%}
+                          {%- assign _rating_class = '' -%}
+                          {%- if _rating_label contains 'ccf' -%}
+                            {%- assign _rating_class = ' academic-publication__rating--ccf' -%}
+                          {%- elsif _rating_label contains 'core' -%}
+                            {%- assign _rating_class = ' academic-publication__rating--core' -%}
+                          {%- endif -%}
+                          <span class="academic-publication__rating{{ _rating_class }}">{{ rating }}</span>
+                        {%- endfor -%}
+                      </div>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              </article>
+            {%- endfor -%}
+          </div>
+        </section>
+      {%- endif -%}
+
+      {%- if academic.sections -%}
+        <div class="academic-section-pair">
+          {%- for section in academic.sections -%}
+            <section class="academic-section academic-section--compact">
+              <div class="academic-section__heading">
+                <p class="academic-section__label">{{ section.label }}</p>
+                <h2>{{ section.title }}</h2>
+              </div>
+              <ul class="academic-list">
+                {%- for item in section.items -%}
+                  <li>{{ item }}</li>
+                {%- endfor -%}
+              </ul>
+            </section>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if academic.award_blocks -%}
+        {%- for award_block in academic.award_blocks -%}
+          {%- if award_block.items -%}
+            <section class="academic-section academic-section--awards">
+              <div class="academic-section__heading academic-section__heading--awards">
+                <p class="academic-section__label">{{ award_block.label | default: "Selected Awards" }}</p>
+                {%- if award_block.title -%}
+                  <h2>{{ award_block.title }}</h2>
+                {%- endif -%}
+              </div>
+              <div class="academic-awards">
+                {%- for award in award_block.items -%}
+                  <a class="academic-award" href="{{ award.url }}">
+                    <time>{{ award.year }}</time>
+                    <div class="academic-award__body">
+                      <div class="academic-award__header">
+                        <strong>{{ award.title }}</strong>
+                        <span>{{ award.result }}</span>
+                      </div>
+                      {%- if award.description -%}
+                        <div class="academic-award__description">{{ award.description | markdownify }}</div>
+                      {%- endif -%}
+                      {%- if award.tags -%}
+                        <div class="academic-award__tags">
+                          {%- for tag in award.tags -%}
+                            <span>{{ tag }}</span>
+                          {%- endfor -%}
+                        </div>
+                      {%- endif -%}
+                    </div>
+                  </a>
+                {%- endfor -%}
+              </div>
+            </section>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+    </main>
+  </div>
+</div>
