@@ -22,7 +22,7 @@ academic:
         icon: fab fa-orcid
       - label: Institution
         detail: IIE, CAS / UCAS
-        url: https://english.ucas.ac.cn/index.php/academics/cas-institutes/573-beijing-branch/2718-beijingbranch0032
+        url: https://english.ucas.ac.cn/
         icon: fas fa-university
       - label: GitHub
         detail: Code and projects
@@ -43,11 +43,10 @@ academic:
   intro:
     title: About Me
     body: |
-      I received my B.Sc. degree in Information Security from the University of Science and Technology of China (2018-2022). I then joined the University of Chinese Academy of Sciences as a Ph.D. student in Cybersecurity under the supervision of Xiaorui Gong.
+      I am a Ph.D. student in Cybersecurity at the University of Chinese Academy of Sciences (**UCAS**), advised by Prof. Xiaorui Gong and affiliated with the Institute of Information Engineering, Chinese Academy of Sciences. I received my B.Sc. degree in Information Security from the University of Science and Technology of China (**USTC**) in 2022. In parallel, I was a core member of the NeSE CTF team from 2022 to 2026, focusing on crypto and blockchain in international CTF competitions.
 
       My doctoral research primarily focuses on the Generalized Birthday Problem and Wagner's algorithm. More broadly, I maintain strong research interests in post-quantum cryptography (especially code-based), zero-knowledge proofs, and blockchain security.
 
-      In parallel, I was also a core crypto member of the NeSE CTF team from 2022 to 2026. However, following the rapid advancement of large language models, I have largely stepped away from CTF competitions since 2026, as I believe modern LLMs have fundamentally undermined the design space of many CTF challenges, particularly in the cryptography category.
   interests:
     - title: Applied Cryptography
       description: Cryptanalysis of real-world protocols and cryptographic schemes, with a focus on post-quantum candidates, zk-SNARKs and blockchain applications.
@@ -109,7 +108,6 @@ academic:
           url: https://nese.team/awards/2025/
           tags:
             - With NeSE
-            - Crypto
         - title: 0CTF 2025
           result: 2nd Place
           year: 2025

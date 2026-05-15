@@ -18,6 +18,7 @@
     position: sticky;
     top: 6rem;
     align-self: start;
+    min-width: 0;
     padding: 2rem;
     overflow: hidden;
     border: 1px solid rgba(24, 34, 32, .12);
@@ -85,6 +86,7 @@
 
   .academic-profile__role {
     display: inline-flex;
+    max-width: 100%;
     padding: .2rem .5rem;
     border: 1px solid rgba(30, 91, 90, .16);
     border-radius: 999px;
@@ -107,9 +109,11 @@
       display: inline-flex;
       align-items: center;
       gap: .5rem;
+      min-width: 0;
       color: #34413d;
       font-size: .92rem;
       text-decoration: none;
+      overflow-wrap: anywhere;
       word-break: break-word;
     }
 
@@ -131,6 +135,7 @@
       display: flex;
       align-items: center;
       gap: .75rem;
+      min-width: 0;
       min-height: 2.45rem;
       padding: .6rem .75rem;
       border: 1px solid rgba(30, 91, 90, .18);
@@ -164,6 +169,7 @@
         font-size: .78rem;
         font-weight: 500;
         line-height: 1.25;
+        overflow-wrap: anywhere;
       }
 
       &:hover {
@@ -177,9 +183,11 @@
   .academic-main {
     display: grid;
     gap: 1.25rem;
+    min-width: 0;
   }
 
   .academic-section {
+    min-width: 0;
     padding: 1.7rem;
     border: 1px solid rgba(24, 34, 32, .1);
     border-radius: 8px;
@@ -202,12 +210,14 @@
       font-size: 1.02rem;
       line-height: 1.35;
       letter-spacing: 0;
+      overflow-wrap: anywhere;
     }
 
     p {
       margin: 0;
       color: #4c5854;
       line-height: 1.65;
+      overflow-wrap: anywhere;
     }
   }
 
@@ -459,6 +469,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: .45rem;
+    min-width: 0;
 
     a {
       padding: .25rem .55rem;
@@ -488,6 +499,7 @@
     flex-wrap: wrap;
     justify-content: flex-end;
     gap: .35rem;
+    min-width: 0;
 
     span {
       padding: .2rem .5rem;
@@ -643,6 +655,7 @@
   .layout--academic {
     .academic-shell {
       width: min(100% - 1.25rem, 1180px);
+      gap: 1rem;
       padding: 1.25rem 0 2.5rem;
     }
 
@@ -655,13 +668,50 @@
       padding: 0;
     }
 
+    .academic-intro__header,
+    .academic-section__heading {
+      display: grid;
+      gap: .35rem;
+      align-items: start;
+      justify-content: stretch;
+      margin: -1.1rem -1.1rem 1rem;
+      padding: 1rem 1.1rem .85rem;
+
+      h2 {
+        text-align: left;
+      }
+    }
+
+    .academic-intro__header {
+      margin: 0;
+      padding: 1rem 1.1rem .85rem;
+    }
+
+    .academic-intro__body {
+      padding: 1.1rem;
+    }
+
     .academic-profile h1 {
       font-size: 1.65rem;
+    }
+
+    .academic-profile__role {
+      border-radius: 6px;
     }
 
     .academic-news li {
       grid-template-columns: 1fr;
       gap: .25rem;
+    }
+
+    .academic-interest-grid,
+    .academic-section-pair {
+      gap: .75rem;
+    }
+
+    .academic-interest,
+    .academic-publication {
+      padding: .9rem;
     }
 
     .academic-publication__header {
@@ -673,14 +723,85 @@
       justify-self: start;
     }
 
+    .academic-publication__status {
+      margin-left: 0;
+      margin-top: .35rem;
+    }
+
+    .academic-publication__summary {
+      padding: .75rem .85rem .75rem 1.2rem;
+      font-size: .92rem;
+
+      &::before {
+        display: none;
+      }
+    }
+
+    .academic-publication__meta-row {
+      display: grid;
+      justify-content: stretch;
+      gap: .6rem;
+    }
+
+    .academic-publication__ratings {
+      justify-content: flex-start;
+    }
+
     .academic-award {
       grid-template-columns: 1fr;
       gap: .45rem;
+      padding: .85rem .9rem;
     }
 
     .academic-award__header {
       display: grid;
       gap: .35rem;
+
+      span {
+        justify-self: start;
+      }
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  .layout--academic {
+    .academic-shell {
+      width: min(100% - .75rem, 1180px);
+      padding-top: .75rem;
+    }
+
+    .academic-profile,
+    .academic-section {
+      padding: .85rem;
+    }
+
+    .academic-section--intro {
+      padding: 0;
+    }
+
+    .academic-intro__header,
+    .academic-section__heading {
+      margin: -.85rem -.85rem .85rem;
+      padding: .85rem;
+    }
+
+    .academic-intro__header {
+      margin: 0;
+    }
+
+    .academic-intro__body {
+      padding: .9rem;
+    }
+
+    .academic-links a {
+      padding: .55rem .6rem;
+    }
+
+    .academic-publication__links a,
+    .academic-publication__ratings span,
+    .academic-award__tags span {
+      font-size: .72rem;
     }
   }
 }
