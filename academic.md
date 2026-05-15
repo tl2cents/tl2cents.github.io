@@ -43,11 +43,11 @@ academic:
   intro:
     title: About Me
     body: |
-      I received my B.Sc. degree in Information Security from University of Science and Technology of China (2018-2022). I then joined University of Chinese Academy of Sciences as a Ph.D. student in Cybersecurity under the supervision of Xiaorui Gong.
+      I received my B.Sc. degree in Information Security from the University of Science and Technology of China (2018-2022). I then joined the University of Chinese Academy of Sciences as a Ph.D. student in Cybersecurity under the supervision of Xiaorui Gong.
 
       My doctoral research primarily focuses on the Generalized Birthday Problem and Wagner's algorithm. More broadly, I maintain strong research interests in post-quantum cryptography (especially code-based), zero-knowledge proofs, and blockchain security.
 
-      In parallel, I was also a core crypto-member of NeSE CTF team from 2022 to 2026. However, following the rapid advancement of large language models, I have largely stepped away from CTF competitions since 2026, as I believe modern LLMs have fundamentally undermined the design space of many CTF challenges, particularly in the cryptography category.
+      In parallel, I was also a core crypto member of the NeSE CTF team from 2022 to 2026. However, following the rapid advancement of large language models, I have largely stepped away from CTF competitions since 2026, as I believe modern LLMs have fundamentally undermined the design space of many CTF challenges, particularly in the cryptography category.
   interests:
     - title: Applied Cryptography
       description: Cryptanalysis of real-world protocols and cryptographic schemes, with a focus on post-quantum candidates, zk-SNARKs and blockchain applications.
@@ -99,7 +99,7 @@ academic:
           result: 2nd Place
           year: 2025
           url: https://ctftime.org/event/2577/
-          description: "NeSE's crypto team: tl2cents(me), deebato, and Threonine."
+          description: "NeSE's crypto team: tl2cents (me), deebato, and Threonine."
           tags:
             - Captain
             - All Kill

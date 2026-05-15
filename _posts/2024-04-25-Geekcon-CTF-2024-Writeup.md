@@ -5,7 +5,7 @@ published: True
 ---
 
 {: .info}
-**tl;dr:** Writeups for Geekcon CTF 2024 including challenges `ZkMaze` and all "real" crypto challenges. I ended up in 10th place and really appreciated the challenges. The topics related to the crypto challenges are HNP, RSA and bilinear map. 
+**tl;dr:** Writeups for Geekcon CTF 2024, including challenges `ZkMaze` and all "real" crypto challenges. I ended up in 10th place and really appreciated the challenges. The topics related to the crypto challenges are HNP, RSA and bilinear map.
 
 <!--more-->
 
@@ -391,7 +391,7 @@ $$
 
 
 
-Actually, my solver only needs the 341 lsb leaks for solving the whole challenge which is obliviously unintended. After recovering the  256-bit $Y_i^\prime$ from HNP-SUM, we can recover both the 256 least significant bits and 256 most significant bits of  $X^\prime$ since $Y_i^\prime$ is too small compared to modulo. Using these leaks of 8 samples to construct an EHNP lattice, we can solve for the hidden $X$ with high probability. (HNP solver also works but with low probability).
+Actually, my solver only needs the 341 lsb leaks for solving the whole challenge, which is obviously unintended. After recovering the  256-bit $Y_i^\prime$ from HNP-SUM, we can recover both the 256 least significant bits and 256 most significant bits of  $X^\prime$ since $Y_i^\prime$ is too small compared to modulo. Using these leaks of 8 samples to construct an EHNP lattice, we can solve for the hidden $X$ with high probability. (HNP solver also works but with low probability).
 
 
 
@@ -704,7 +704,7 @@ while True:
 **Challenge Info**: You stole Alice's RSA private key, but it is sparse, can you recover the whole key? flag is `md5sum privkey.pem | awk '{print "flag{"$1"}"}'`. [Attachment](/assets/ctf-stuff/2024-geekcon/SpARse_cd0775f5bc6763992848a7060f371efd.tar.xz)
 
 
-We are given a corrupted RSA private key file in `pem` file format. We can extract as much as possible information from the perm file. One may be confused why a 2048 bit n has to be encoded as 257 byte long which is one byte more than expected and sometimes not. This is due to the symbol bit to recognize positive and negative numbers encoded in ASN.1 DER. Due to this reason, we may need to try all possible combinations.
+We are given a corrupted RSA private key file in `pem` file format. We can extract as much information as possible from the PEM file. One may be confused why a 2048 bit n has to be encoded as 257 byte long which is one byte more than expected and sometimes not. This is due to the symbol bit to recognize positive and negative numbers encoded in ASN.1 DER. Due to this reason, we may need to try all possible combinations.
 
 After decoding all the known bits, we have approximately 29.81% leaks of $p,q,d,d_p,d_q$​ :
 

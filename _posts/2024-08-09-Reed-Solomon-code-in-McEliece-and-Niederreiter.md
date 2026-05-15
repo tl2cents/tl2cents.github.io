@@ -24,7 +24,7 @@ bilingual: true
 {: .error}
 **定义** ： Generalized Reed-Solomon Code
 
-正整数 $k \le n \le q$ ，令 $\alpha \in \mathbb{F}_q^n$  是不同元素的 n-元组，即 $\alpha=\left(\alpha_1, \ldots, \alpha_n\right)$ ，其中 $\alpha_i \neq \alpha_j, \forall i \neq j \in\{1, \ldots, n\}$ ；令 $\beta \in \mathbb{F}_q^n$ 是非零的 n-元组，即 $\beta=\left(\beta_1, \ldots, \beta_n\right)$, 其中 $\beta_i \neq 0 , i \in \{1, \ldots, n\}$，广义的里德-所罗门编码（Generalized Reed-Solomon Code），码字长度为 $n$ ，线性子空间维数为 $k$ ，记为 ，其码字空间定义如下：
+正整数 $k \le n \le q$ ，令 $\alpha \in \mathbb{F}_q^n$  是不同元素的 n-元组，即 $\alpha=\left(\alpha_1, \ldots, \alpha_n\right)$ ，其中 $\alpha_i \neq \alpha_j, \forall i \neq j \in\{1, \ldots, n\}$ ；令 $\beta \in \mathbb{F}_q^n$ 是非零的 n-元组，即 $\beta=\left(\beta_1, \ldots, \beta_n\right)$，其中 $\beta_i \neq 0 , i \in \{1, \ldots, n\}$，广义的里德-所罗门编码（Generalized Reed-Solomon Code），码字长度为 $n$ ，线性子空间维数为 $k$ ，记为 $\operatorname{GRS}_{n,k}(\alpha,\beta)$，其码字空间定义如下：
 
 $$
 \operatorname{GRS}_{n, k}(\alpha, \beta)=\left\{\left(\beta_1 f\left(\alpha_1\right), \ldots, \beta_n f\left(\alpha_n\right)\right) \mid f \in \mathbb{F}_q[x], \operatorname{deg}(f)<k\right\} .
@@ -177,7 +177,7 @@ Niederreiter 和 McEliece 的核心区别在于：
 {: .success}
 **Step 2. 加密**
 
-- 明文编码：将消息编码为 $n$ 维的误差向量， 其中 $m$ 的汉明重量小于 $t$。
+- 明文编码：将消息编码为 $n$ 维的误差向量，其中 $m$ 的汉明重量小于 $t$。
 
 - 加密：密文为对应误差向量的 syndrome，即
   $$
@@ -233,7 +233,7 @@ Niederreiter 和 McEliece 的核心区别在于：
 
 如果使用 GRS 编码，生成矩阵和校验矩阵本质都是一样的，从分析的角度看，在 Niederreiter 和 McEliece 都是一样的。我们以 Niederreiter 为例，介绍 GRS 编码的 Sidelnikov-Shestakov 攻击，又名 Russian Attack。
 
-Sidelnikov-Shestakov 攻击的思路在于通过公钥 $\hat{H}$ 恢复出 GRS 编码的结构，注意到任意 GRS 的校验矩阵左乘以一个置换矩阵（列置换），仍然是一个 GRS 编码，因此我们的目标是恢复出一个等价 ${GRS}_{n, k}(\alpha, \beta)$ 编码的校验矩阵 $\bar{H} = HP$ 。 即恢复出等价向量：
+Sidelnikov-Shestakov 攻击的思路在于通过公钥 $\hat{H}$ 恢复出 GRS 编码的结构，注意到任意 GRS 的校验矩阵左乘以一个置换矩阵（列置换），仍然是一个 GRS 编码，因此我们的目标是恢复出一个等价 ${GRS}_{n, k}(\alpha, \beta)$ 编码的校验矩阵 $\bar{H} = HP$。即恢复出等价向量：
 
 $$
 \alpha = (\alpha_1, \cdots, \alpha_{n}), \beta = (\beta_1, \cdots, \beta_{n})
@@ -537,8 +537,8 @@ $$
 **关于 $\infty$**: 在有限域中，$\infty$ 是不存在的，因此我们需要将 $\infty$ 与有限域元素统一处理，在射影几何中，我们将有限域 $\mathbb{F}_q$ 上的仿射直线 $\mathbb{A}^1$ 扩展为射影直线 $\mathbb{P}^1$。射影直线 $\mathbb{P}^1$ 包含了仿射直线上的所有点以及一个额外的无穷远点 $\infty$ 。这似乎是有限域多项式一个比较 tricky 的地方，笔者在这里也没有深入研究，根据极限理论，$f(\infty)$ 由首项系数主导，直觉上它的值只与首项系数有关。在已知多项式的次数和所有零点的情况下，仅首项系数是未知的，故而引入无穷远点可以快速确定多项式的首项系数，因此令 $\alpha_3 = \infty$，可以完全确定多项式的分解形式。
 
 
-## Sagemath Implementation
+## SageMath Implementation
 
-使用 Sagemath 10.3 实现上述加密算法的仓库： [Code-Based-Cryptography](https://github.com/tl2cents/Code-Based-Cryptography).
+使用 SageMath 10.3 实现上述加密算法的仓库： [Code-Based-Cryptography](https://github.com/tl2cents/Code-Based-Cryptography).
 
 ---

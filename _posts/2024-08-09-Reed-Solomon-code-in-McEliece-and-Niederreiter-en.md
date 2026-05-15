@@ -217,7 +217,7 @@ $$
 
 ## Sidelnikov-Shestakov attack
 
-If GRS coding is used, the generator matrix and check matrix are essentially the same; from the analysis perspective, they are the same in both Niederreiter and McEliece. Taking Niederreiter as an example, we introduce the Sidelnikov-Shestakov attack on GRS coding, also known as the Russian Attack.
+If GRS coding is used, the generator matrix and check matrix are essentially the same; from an analysis perspective, they are the same in both Niederreiter and McEliece. Taking Niederreiter as an example, we introduce the Sidelnikov-Shestakov attack on GRS coding, also known as the Russian Attack.
 
 The idea behind the Sidelnikov-Shestakov attack is to recover the structure of the GRS coding through the public key $\hat{H}$ . Note that any GRS check matrix multiplied on the left by a permutation matrix (column permutation) is still a GRS code, so our goal is to recover an equivalent check matrix $\bar{H} = HP$ of the ${GRS}_{n, k}(\alpha, \beta)$ code. That is, recover the equivalent vectors:
 
@@ -227,7 +227,7 @@ $$
 
 ### Algebraic Expression
 
-The above problem can be completely modeled into the following scenario, where the private key is $H_{(n-k) \times n}$ as a check matrix of a $GRS_{n, k}(\alpha, \beta)$ code, given a Niederreiter public key $\hat H = S H$ , recover an equivalent check matrix of the $GRS_{n, k}(\bar \alpha, \bar \beta)$ code. That is to solve for a set of $S, H$ or $\alpha, \beta$ vectors.
+The above problem can be completely modeled into the following scenario, where the private key $H_{(n-k) \times n}$ is used as a check matrix of a $GRS_{n, k}(\alpha, \beta)$ code: given a Niederreiter public key $\hat H = S H$ , recover an equivalent check matrix of the $GRS_{n, k}(\bar \alpha, \bar \beta)$ code. That is to solve for a set of $S, H$ or $\alpha, \beta$ vectors.
 
 For ease of expression, we directly consider the complete expression of the check matrix of size $k \times n$ :
 
@@ -256,7 +256,7 @@ s_{n-k,1} & s_{n-k,2} & \cdots & s_{k, k}
 \end{aligned}
 $$
 
-where the polynomial $f_i(x) = \sum_{j} s_{i, j} x^j$ is a polynomial of degree $k-1$ . Since $S$ is an invertible matrix, $f_i(x)$ are linearly independent polynomials.
+where the polynomial $f_i(x) = \sum_{j} s_{i, j} x^j$ is a polynomial of degree $k-1$ . Since $S$ is an invertible matrix, the polynomials $f_i(x)$ are linearly independent.
 
 &nbsp;
 
@@ -510,8 +510,8 @@ $$
 {: .error}
 **About $\infty$**: In finite fields, $\infty$ does not exist. Therefore, we need to unify the treatment of $\infty$ with finite field elements. In projective geometry, we extend the affine line $\mathbb{A}^1$ over the finite field $\mathbb{F}_q$ to the projective line $\mathbb{P}^1$ . The projective line $\mathbb{P}^1$ includes all points on the affine line and an additional point at infinity $\infty$ . This seems to be a somewhat tricky aspect of polynomials over finite fields. The author did not delve deeply into this; according to limit theory, $f(\infty)$ is dominated by the leading coefficient, and intuitively, its value only relates to the leading coefficient. Given the degree of the polynomial and all its roots, with the leading coefficient being the only unknown, introducing the point at infinity can quickly determine the leading coefficient of the polynomial. Thus, letting $\alpha_3 = \infty$ can completely determine the factorization form of the polynomial.
 
-## Sagemath Implementation
+## SageMath Implementation
 
-The repository for implementing the above encryption algorithm using Sagemath 10.3: [Code-Based-Cryptography](https://github.com/tl2cents/Code-Based-Cryptography).
+The repository for implementing the above encryption algorithm using SageMath 10.3: [Code-Based-Cryptography](https://github.com/tl2cents/Code-Based-Cryptography).
 
 ---

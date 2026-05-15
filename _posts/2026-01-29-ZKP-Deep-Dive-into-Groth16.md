@@ -69,7 +69,7 @@ $$
 {% enddefinition %}
 
 {% remark %}
-- Usually $$\tau$$ is called as a secret evaluation point. Let $$P(x) = \sum_{i=0}^{k}  a_i x^i$$ be a polynomial of degree $$k < \deg T$$ with coefficients in $$\mathbb{F}_{r}$$. Then we can evaluate $$P(\tau)$$ in the exponent of $$g_1$$ or $$g_2$$ given the common reference string:
+- Usually $$\tau$$ is called a secret evaluation point. Let $$P(x) = \sum_{i=0}^{k}  a_i x^i$$ be a polynomial of degree $$k < \deg T$$ with coefficients in $$\mathbb{F}_{r}$$. Then we can evaluate $$P(\tau)$$ in the exponent of $$g_1$$ or $$g_2$$ given the common reference string:
   
   $$
   g^{P(\tau)} = g^{\sum_{i=0}^{k}a_i{\tau^i}} = \prod_{i=0}^{k} (g^{\tau^i})^{a_i}.
@@ -197,7 +197,7 @@ $$
 
 
 <div class="error-block" markdown="1">
-<div class="block-title">The Core of Veification</div>
+<div class="block-title">The Core of Verification</div>
 
 The verifier is able to verify the zk-SNARK proof $$\pi = (g_1^A,g_1^C, g_2^B)$$ by checking:
 
@@ -306,7 +306,7 @@ Essentially, an attacker can take an existing zero-knowledge proof and tweak it 
 
 ### Forging Attack With Toxic Waste
 
-When the simulation trapdoor $$\mathrm{ST}=(\alpha, \beta, \gamma, \delta, \tau)$$ are leaked, one can forge a proof without a valid witness. This is a generic forging attack against the trusted setup zero-knowledge proof protocol. 
+When the simulation trapdoor $$\mathrm{ST}=(\alpha, \beta, \gamma, \delta, \tau)$$ is leaked, one can forge a proof without a valid witness. This is a generic forging attack against the trusted setup zero-knowledge proof protocol.
 
 
 {% plain success%}

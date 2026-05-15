@@ -23,9 +23,9 @@ I implemented another secret sharing this year, but it doesn’t recover the fla
 
 ### Writeup
 
-The challenge implements a secret sharing scheme with parameters $(n,t,p) = (48, 24, 65537)$ in python. We are given 48 shares i.e. points on the polynomial of degree 23. By lagrange interpolation, we can recover the polynomial coefficients. However, since the default type of numpy array is `int64`, the points evaluation may result in overflow of `numpy.int64`.
+The challenge implements a secret sharing scheme with parameters $(n,t,p) = (48, 24, 65537)$ in Python. We are given 48 shares i.e. points on the polynomial of degree 23. By Lagrange interpolation, we can recover the polynomial coefficients. However, since the default type of NumPy array is `int64`, the points evaluation may result in overflow of `numpy.int64`.
 
-Denote $f(x) = \sum_{i=0}^{23} a_i x^i$ and $q, p = 2^{64}, 65537$, the point coordinate $(x_i, y_i)$ are equivalent to the following expression:
+Denote $f(x) = \sum_{i=0}^{23} a_i x^i$ and $q, p = 2^{64}, 65537$, the point coordinates $(x_i, y_i)$ are equivalent to the following expression:
 
 
 $$
@@ -334,7 +334,7 @@ Therefore:
 
 1. If the algebraic immunity of $f$ is 1, it means $g$ is linear and we can directly build linear equations based on bits of case 2.
 2. If the algebraic immunity of $f$ is 2, we can build linear equations based on $\displaystyle n + \binom{n}{2}$ monomials of degree no more than 2 (XL attack).
-3. If the algebraic immunity of $f$ is greater than 2, it depends on the number of monomials you have. If n is too large, it may needs a lot of output bits and build a huge matrix.
+3. If the algebraic immunity of $f$ is greater than 2, it depends on the number of monomials you have. If n is too large, it may need a lot of output bits and build a huge matrix.
 
 
 
@@ -721,9 +721,9 @@ The challenge implements a [zero-knowledge proof of factoring](https://www.di.en
 
 
 
-The key observation pertains not to cryptographic stuff but to the characteristics of `Python`. I spent  the whole day analyzing the security parameters and finally gave up. 
+The key observation pertains not to cryptographic details but to the characteristics of `Python`. I spent  the whole day analyzing the security parameters and finally gave up.
 
-At the first glance, we can find a crucial flaw in source code: the protocol only checks $e \le B$. We can input negative $e$ to leak more information of $r$. However, the verifying process in the server do checks $0 \le y < A$ and we cannot recover $r$ by modulo $e$.
+At first glance, we can find a crucial flaw in source code: the protocol only checks $e \le B$. We can input negative $e$ to leak more information of $r$. However, the server-side verification process does check $0 \le y < A$ and we cannot recover $r$ by modulo $e$.
 
 Right here, we can do binary search of $n - \varphi(n)$ using the check $y \ge 0$. Notice that $r$ is very close to $A$,  the closer our guess is to $n - \varphi(n)$,  the more precarious this comparison becomes (at most 10 bits can be recovered). Again, I failed to recover enough bits of $n - \varphi(n)$. Everything is stuck here and ultimately, I have resolved to implement a timely stop-loss.
 
@@ -731,7 +731,7 @@ Right here, we can do binary search of $n - \varphi(n)$ using the check $y \ge 0
 
 ### Python Int Limit
 
-As is known to all, the `int` type of python is unlimited. The limit in the sub-title does not mean storage size in memory for `int`, but the maximum length for the conversion between digit strings and `int`. 
+As is known to all, Python's `int` type is unlimited. The limit in the sub-title does not mean storage size in memory for `int`, but the maximum length for the conversion between digit strings and `int`.
 
 - If the length of digit string is more than 4300, you cannot convert it to `int` directly.
 - If the value of `int` is more than $10^{4300}$, you cannot convert it to string directly.
@@ -995,7 +995,7 @@ tr(AB) = \mathsf{flatten}(A)  \mathsf{flatten}(B)^T
 $$
 
 
-where $A, B$ is $n \times n$ matrix and flatten is a trivial flatten mapping: $\mathbb{F}^{n \times m} \mapsto \mathbb{F}^{1 \times nm}$ equivalent to `vector(mat.list())` in sage. The identity is easy to prove by the definition of trace, omitted here.
+where $A$ and $B$ are $n \times n$ matrices and flatten is a trivial flatten mapping: $\mathbb{F}^{n \times m} \mapsto \mathbb{F}^{1 \times nm}$ equivalent to `vector(mat.list())` in sage. The identity is easy to prove by the definition of trace, omitted here.
 
 
 

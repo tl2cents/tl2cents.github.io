@@ -36,7 +36,7 @@ $$
    3. 线性三：$e(x^c,y) = e(x,y)^c = e(x, y^c)$
 
 
-注意到，上述定义允许将所有元素对映射到 $G_t$ 的单位元 $1$ ，从而一个平凡映射 $e : \forall u \in G_{1}, \forall v \in u, e(u,v) = 1$ 也是一个双线性映射，但是这样平凡的（trivial）双线性映射对密码学而言，没有研究意义。密码学关注的是应该是 **非平凡的（non-trivial）、可计算的双线性映射.**
+注意到，上述定义允许将所有元素对映射到 $G_t$ 的单位元 $1$ ，从而一个平凡映射 $e : \forall u \in G_{1}, \forall v \in u, e(u,v) = 1$ 也是一个双线性映射，但是这样平凡的（trivial）双线性映射对密码学而言，没有研究意义。密码学关注的是应该是 **非平凡的（non-trivial）、可计算的双线性映射。**
 
 {: .error}
 **Admissible Bilinear Map**
@@ -98,10 +98,10 @@ Abelian variety（阿贝尔簇）是代数几何中的一个重要概念，**它
 
 最早最著名的双线性映射是 Weil Pairing 和 Tate Pairing，之后基于它们提出了优化的 Pairing 算法，无一例外，**它们都是基于椭圆曲线的双线性映射。**
 
-1. **Weil  Pairing**：Weil 配对是定义在椭圆曲线上的一种双线性映射。它是配对密码学中使用的第一个配对类型之一，计算复杂性较高。
+1. **Weil Pairing**：Weil 配对是定义在椭圆曲线上的一种双线性映射。它是配对密码学中使用的第一个配对类型之一，计算复杂性较高。
 2. **Tate Pairing**：Tate 配对是一种相对于 Weil 配对计算效率更高的双线性映射。
 3. **Ate Pairing**：Ate 配对是对 Tate 配对的改进，旨在进一步提高计算效率。
-4. **Barreto-Naehrig(BN) Pairing**：BN 配对是一种特殊的配对类型，它在特定类型的椭圆曲线（称为Barreto-Naehrig曲线）上定义。
+4. **Barreto-Naehrig(BN) Pairing**：BN 配对是一种特殊的配对类型，它在特定类型的椭圆曲线（称为 Barreto-Naehrig 曲线）上定义。
 
 所有的这些双线性映射（pairing）都包含非常复杂的数学原理，并且计算代价比较昂贵，但是，针对双线性映射在密码学上的应用而言，*No need to understand and construct it to use them* ，并不需要理解构造原理。作为分析方法和工具，双线性配对在密码学上有着广泛的应用。（当然，如何构造更好的双线性配对和加速 pairing 计算也是热门研究方向）
 
@@ -145,7 +145,7 @@ $$
 **Remarks**
 - **XDH 假设**：假如群 $G_1, G_2$ 不相同，存在双线性映射 $e:G_1 \times G_2 \mapsto G_t$ ，只要 $G_1, G_2$ 之间不存在可有效计算的群同构，则 $G_1$ 和 $G_2$ 上的 DDH 问题仍可能是困难的。（比如一些 MNT Curves）
 - **CDH 问题** ：假如 $G$ 上的 DDH 问题是简单的，其 CDH 问题可能仍然是困难的。
-- **GDH 群** ：一个素数阶群  $G$  ， 如果它的 CDH 问题是困难的， 而 DDH 问题是可解的，则 $G$ 被称为 Gap Diffie-Hellman （GDH）群。
+- **GDH 群** ：一个素数阶群 $G$，如果它的 CDH 问题是困难的， 而 DDH 问题是可解的，则 $G$ 被称为 Gap Diffie-Hellman （GDH）群。
 - **零知识证明**：在 GDH 群上，Alice 可以在不泄露私钥 $a$ 的情况下证明她拥有数 $a$​，这一过程可以通过 DDH 挑战来实现。这完美符合零知识证明的场景！
 
 
@@ -158,7 +158,7 @@ $$
 
 **定理（MOV规约）** ：假设存在双线性映射  $e:G \times G \mapsto G_t$ ，则群 $G$ 上的离散对数问题不会比 $G_t$ 上的离散对数问题更加困难。
 
-证明是简单，给定 $g, g^a \in G$ ，我们可以计算 $g_t = e(g,g)$ 和 $y_t = e(g, g^a) = e(g,g)^a =g_{t}^{a} \in G_t$ ，此时我们得到了群 $G_t$ 上的一组离散对数问题 $g_t, y_t = g_t^a$ ，并且解为原离散对数问题的解。 这个规约过程被称为 MOV 规约，我们将其应用有限域上椭圆曲线群上，就能得到著名的 MOV Attack。
+证明是简单的，给定 $g, g^a \in G$ ，我们可以计算 $g_t = e(g,g)$ 和 $y_t = e(g, g^a) = e(g,g)^a =g_{t}^{a} \in G_t$ ，此时我们得到了群 $G_t$ 上的一组离散对数问题 $g_t, y_t = g_t^a$ ，并且解为原离散对数问题的解。这个规约过程被称为 MOV 规约，我们将其应用有限域上椭圆曲线群上，就能得到著名的 MOV Attack。
 
 &nbsp;
 
@@ -169,7 +169,7 @@ $$
 **定理**：${\hat E}$ 与 $\mathbb{F}_{p^k}$ 之间存在双线性映射，当且仅当 $\mathcal{O}({\hat E}) \mid (p^k - 1)$​ 。
 
 1. 充分条件：双线性映射的条件满足两个子群的阶相同，因此必然满足 $\mathcal{O}({\hat E}) \mid (p^k - 1) $ 。
-2. 必要条件：由 Weil  Pairing 或者 Tate Pairing 的构造给出。
+2. 必要条件：由 Weil Pairing 或者 Tate Pairing 的构造给出。
 
 &nbsp;
 
@@ -185,7 +185,7 @@ $$
 4. 我们得到离散对数问题 $u, v = u^r \in \mathbb{F}_{p^{k}}$ ，求解得 $r$ 。
 
 
-基于 Sage 的 MOV Attack ，来自 [jvdsn's cryto attack](https://github.com/jvdsn/crypto-attacks/blob/master/attacks/ecc/mov_attack.py) ：
+基于 Sage 的 MOV Attack ，来自 [jvdsn's crypto attack](https://github.com/jvdsn/crypto-attacks/blob/master/attacks/ecc/mov_attack.py) ：
 
 <details class="exploit">
 <summary><b>MOV-Attack.py</b></summary>
@@ -291,7 +291,7 @@ def attack(P, R, max_k=6, max_tries=10):
 
 ### One-round 3-party Diffie-Hellman
 
-基于双线性映射设计的第一个密码协议是单轮的三方 DH 协议，它可以通过单轮交互完成。双线性映射的本质是通过类似"作弊"的机制，让你假装解决了一次 CDH 问题，即 $e(g^a, g^b) = c(g,g)^{ab} \in G_t$ ，但是这个计算结果是在新的群 $G_t$ 上，我们无法再继续进行 Pairing，只能让我们额外解决一个 CDH 问题 。按照这个思路，单轮的三方 DH 协议就很平凡了。
+基于双线性映射设计的第一个密码协议是单轮的三方 DH 协议，它可以通过单轮交互完成。双线性映射的本质是通过类似“作弊”的机制，让你假装解决了一次 CDH 问题，即 $e(g^a, g^b) = e(g,g)^{ab} \in G_t$ ，但是这个计算结果是在新的群 $G_t$ 上，我们无法再继续进行 Pairing，只能让我们额外解决一个 CDH 问题。按照这个思路，单轮的三方 DH 协议就很平凡了。
 
 &nbsp;
 
@@ -317,10 +317,10 @@ def attack(P, R, max_k=6, max_tries=10):
 
 1. 初始化（Setup） ：PKG 随机选择  $s \stackrel{R}{\leftarrow} \mathbb{Z}_p$​ ，生成 PKG 的公钥为 $g^s$​ 。
 
-2. 密钥提取（Extarct）：Alice 和 Bob 可以向 PKG 获取他们的私钥：
+2. 密钥提取（Extract）：Alice 和 Bob 可以向 PKG 获取他们的私钥：
    
    $$
-   S_a = \textsf{MakeKey}(s, \textsf{'Alice'}) = h_1(\textsf{'Alcie'})^s \\
+   S_a = \textsf{MakeKey}(s, \textsf{'Alice'}) = h_1(\textsf{'Alice'})^s \\
    S_b = \textsf{MakeKey}(s, \textsf{'Bob'}) = h_1(\textsf{'Bob'})^s
    $$
 
@@ -378,5 +378,5 @@ Alice 和 Bob 计算秘密共享值与 Joux 三方 DH 协议完全相同，但�
 部分参考文献如下
 
 - [Intro to Bilinear Maps](https://people.csail.mit.edu/alinush/6.857-spring-2015/papers/bilinear-maps.pdf) ：这是本文的主要参考文献，博客逻辑行文与这个 slides 一致。
-- [Pairings or bilinear maps](https://alinush.github.io/2022/12/31/pairings-or-bilinear-maps.html) ： 这篇博客介绍了 pairing 的历史发展，以及它在构造简洁零知识证明协议里面的应用。
+- [Pairings or bilinear maps](https://alinush.github.io/2022/12/31/pairings-or-bilinear-maps.html) ：这篇博客介绍了 pairing 的历史发展，以及它在构造简洁零知识证明协议里面的应用。
 - [Pairings for beginners](https://static1.squarespace.com/static/5fdbb09f31d71c1227082339/t/5ff394720493bd28278889c6/1609798774687/PairingsForBeginners.pdf) ：这篇文献介绍了 pairing 背后的数学，以及椭圆曲线配对的详细技术细节，这是前两篇文献里面没有的，比较硬核。

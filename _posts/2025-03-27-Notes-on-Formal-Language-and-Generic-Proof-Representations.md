@@ -5,7 +5,7 @@ published: True
 ---
 
 {: .info}
-**tl;dr:** Some insightful notes from the moonmath book. Introdcue definitions of formal language, R1CS and quadratic arithmetic program in zero-knowledge proof systems.
+**tl;dr:** Some insightful notes from the moonmath book. Introduce definitions of formal languages, R1CS, and quadratic arithmetic programs in zero-knowledge proof systems.
 
 <!--more-->
 
@@ -120,15 +120,15 @@ $$
 R_{L_1 \cap L_2}: \Sigma_I^* \times \Sigma_W^* \rightarrow\{\text { true }, \text { false }\} ;(i, w) \mapsto R_1(i, w) \text { and } R_2(i, w)
 $$
 
-Thus, the intersection of two decision-function-based languages is also decision-function-based language. This is important from an implementation point of view: it allows us to construct complex decision functions, their languages and associated statements from simple building blocks. Given a publicly known instance $I \in \Sigma_I^*$, a statement in an intersection language claims knowledge of a witness that satisfies all relations simultaneously.
+Thus, the intersection of two decision-function-based languages is also a decision-function-based language. This is important from an implementation point of view: it allows us to construct complex decision functions, their languages and associated statements from simple building blocks. Given a publicly known instance $I \in \Sigma_I^*$, a statement in an intersection language claims knowledge of a witness that satisfies all relations simultaneously.
 
 ## Rank-1 Constraint Systems
 
-Rank-1 (Quadratic) Constraint Systems abbr. R1CS are a class of languages that are particularly useful in the context of zero-knowledge proofs. They are defined over finite fields and consist of a set of quadratic equations that must be satisfied by a pair of strings, one representing the public instance and the other representing the private witness.
+Rank-1 (Quadratic) Constraint Systems, abbreviated as R1CS, are a class of languages that are particularly useful in the context of zero-knowledge proofs. They are defined over finite fields and consist of a set of quadratic equations that must be satisfied by a pair of strings, one representing the public instance and the other representing the private witness.
 
 ### R1CS Satisfiability Language
 
-The core idea is to **express the decision function in terms of a system of quadratic equations over a finite field.** This is particular useful for pairing-based proving systems. See [SNARKs for C: Verifying Program Executions Succinctly and in Zero Knowledge](https://eprint.iacr.org/2013/507) for formal definition/proofs of R1CS.
+The core idea is to **express the decision function in terms of a system of quadratic equations over a finite field.** This is particularly useful for pairing-based proving systems. See [SNARKs for C: Verifying Program Executions Succinctly and in Zero Knowledge](https://eprint.iacr.org/2013/507) for formal definition/proofs of R1CS.
 
 <section class="info" markdown="1">
 **Definition (_R1CS_)**: Let $\mathbb{F}$ be a finite field, $n$ the dimension of Instance (number of public inputs), $m$ the dimension of Witness (number of private inputs), $k$ the number of constraints. Let $x=(1, I, W) \in \mathbb{F}^{1+n+m}$ is a $(n+m+1)$-dimensional vector, $A, B, C$ are $(n+m+1) \times k$-dimensional matrices and $\odot$ is the Schur/Hadamard product, then a R1CS can be written as follows:
@@ -178,7 +178,7 @@ $$
 
 ### Algebraic Circuits
 
-Solving the systems of quadratic equations is generally NP-hard. Given an instance $I$, finding the witness $W$ such that $R(I ; W)=$ true is a hard problem and thus may makes it secure against malicious attacks. However, for some proving systems (e.g., hashing preimage proof), it's expected that given a witness $W$ (e.g., the preimage), finding the public instance $I$ (e.g. hashing value) such that $R(I ; W)=$ true is easy (in polynomial time). Rank-1 Constraint Systems are therefore impractical from a provers perspective and auxiliary information is needed that helps to compute solutions $I$ efficiently. This witness/instance generation can be usually performed as a progarm, or more generally, as a circuit. Algebraic Circuits are a class of circuits involving only addition and multiplication operations that are particularly useful in the context of zero-knowledge proofs.
+Solving the systems of quadratic equations is generally NP-hard. Given an instance $I$, finding the witness $W$ such that $R(I ; W)=$ true is a hard problem and thus may make it secure against malicious attacks. However, for some proving systems (e.g., hashing preimage proof), it's expected that given a witness $W$ (e.g., the preimage), finding the public instance $I$ (e.g. hashing value) such that $R(I ; W)=$ true is easy (in polynomial time). Rank-1 Constraint Systems are therefore impractical from a prover's perspective and auxiliary information is needed that helps to compute solutions $I$ efficiently. This witness/instance generation can usually be performed as a program, or more generally, as a circuit. Algebraic Circuits are a class of circuits involving only addition and multiplication operations that are particularly useful in the context of zero-knowledge proofs.
 
 - Every algebraic circuit defines an associated R1CS and (may) also provides an efficient way to compute solutions $I$ with a given witness $W$ for that R1CS.
 - Every R1CS can be expressed as an algebraic circuit. This can be achieved by defining temporary variables for every multiplication/addiction operation in the R1CS.
@@ -214,7 +214,7 @@ To get a better intuition of above definition, let $C(\mathbb{F})$ be an algebra
 One reason why those systems are useful in the context of succinct zero-knowledge proof systems is because any R1CS can be transformed into another computational model called a Quadratic Arithmetic Program abbr. QAP, which serves as the basis for some of the most efficient succinct non-interactive zero-knowledge proof generators that currently exist. As we will see, proving statements for languages that have decision functions defined by Quadratic Arithmetic Programs can be achieved by providing certain polynomials, and those proofs can be verified by checking a particular divisibility property of those polynomials.
 
 <section class="info" markdown="1">
-**Definition(*Quadratic Arithmetic Programs*).** Let $\mathbb{F}$ be a field and $R$ a Rank-1 Constraint System over $\mathbb{F}$ such that the number of non-zero elements in $\mathbb{F}$ is strictly larger than the number $k$ of constraints in $R$. Moreover, let $a_j^i, b_j^i$ and $c_j^i \in \mathbb{F}$ for every index $0 \leq j \leq n+m$ and $1 \leq i \leq k$, be the defining constants of the R1CS and $m_1, \ldots, m_k$ be arbitrary, invertible and distinct elements from $\mathbb{F}$.
+**Definition(*Quadratic Arithmetic Programs*).** Let $\mathbb{F}$ be a field and $R$ a Rank-1 Constraint System over $\mathbb{F}$ such that the number of non-zero elements in $\mathbb{F}$ is strictly larger than the number $k$ of constraints in $R$. Moreover, let $a_j^i, b_j^i$ and $c_j^i \in \mathbb{F}$ for every index $0 \leq j \leq n+m$ and $1 \leq i \leq k$ be the defining constants of the R1CS, and let $m_1, \ldots, m_k$ be arbitrary, invertible, and distinct elements from $\mathbb{F}$.
 
 Then a Quadratic Arithmetic Program associated to the R1CS $R$ is the following set of polynomials over $\mathbb{F}$:
 
@@ -269,5 +269,5 @@ A generic proof system can be constructed from a circuit, then to R1CS and final
 - Verifying the proof in the R1CS means checking if the elements (witness) of the proof satisfy the R1CS equations. 
 - Verifying a proof in the QAP is done by polynomial division of the proof polynomial $P$ by the target polynomial $T$. The proof is verified if and only if $P$ is divisible by $T$.
 
-In this sense, the QAP representation is a more abstract (also more convenient) representation of proof system and requires verification of a polynomial divisibility property. This mathematical property is much easier to check in zero-knowledge than the others. The Groth16 proving system is the first efficient and practical proof system that follows the transformation from circuit to R1CS and then to QAP. The R1CS and circuit representations are typically used as intermediate representations in the proof generation process. As the lowest level representation of the proof system, the algeraic circuit can be efficiently generated by high-level programming languages (e.g., circom, rust, etc.). In [circom](https://github.com/iden3/circom), we only need to define the circuit and the compiler will automatically generate the final proof system (circuit -> R1CS -> QAP) based on our chosen backend protocol (e.g., Groth16, Plonk, etc.).
+In this sense, the QAP representation is a more abstract (also more convenient) representation of proof system and requires verification of a polynomial divisibility property. This mathematical property is much easier to check in zero-knowledge than the others. The Groth16 proving system is the first efficient and practical proof system that follows the transformation from circuit to R1CS and then to QAP. The R1CS and circuit representations are typically used as intermediate representations in the proof generation process. As the lowest level representation of the proof system, the algebraic circuit can be efficiently generated by high-level programming languages (e.g., circom, rust, etc.). In [circom](https://github.com/iden3/circom), we only need to define the circuit and the compiler will automatically generate the final proof system (circuit -> R1CS -> QAP) based on our chosen backend protocol (e.g., Groth16, Plonk, etc.).
 </section>

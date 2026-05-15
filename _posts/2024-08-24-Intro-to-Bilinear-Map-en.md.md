@@ -108,7 +108,7 @@ To understand bilinear mappings, it is essential to grasp their influence on the
 
 1. Alice generates a private key $a$ and sends her public key $g^a$ to Bob.
 2. Bob generates a private key $b$ and sends his public key $g^b$ to Alice.
-3. Alice computes $S = (g^b)^a = g^{ab}$, and Bob computes $S = (g^a)^b = g^{ab}$, hence $S$ is their shared secret value.Given $g, g^a, g^b$, solving for the secret value $g^{ab}$ is difficult and is referred to as the Computational Diffie-Hellman problem (CDH). This is based on the fact that the discrete logarithm problem on $G$ is difficult: given $g, g^a$, solving for the private key $a$ is difficult. The DDH problem is a weakened version, where given $g, g^a, g^b, g^c$, the adversary has to determine whether $g^c$ is the shared secret value produced by the DH protocol $s = g^{ab}$. The formal definition is as follows.
+3. Alice computes $S = (g^b)^a = g^{ab}$, and Bob computes $S = (g^a)^b = g^{ab}$, hence $S$ is their shared secret value. Given $g, g^a, g^b$, solving for the secret value $g^{ab}$ is difficult and is referred to as the Computational Diffie-Hellman problem (CDH). This is based on the fact that the discrete logarithm problem on $G$ is difficult: given $g, g^a$, solving for the private key $a$ is difficult. The DDH problem is a weakened version, where given $g, g^a, g^b, g^c$, the adversary has to determine whether $g^c$ is the shared secret value produced by the DH protocol $s = g^{ab}$. The formal definition is as follows.
 
 **DDH**: Let $G$ be a multiplicative group with generator $g$ of order $q$. The advantage of a probabilistic algorithm $\mathcal{A}$ in solving the decision Diffie-Hellman problem in $G$ is defined as:
 
@@ -154,7 +154,7 @@ First, we introduce the basic concept of the embedding degree on elliptic curves
 3. MOV reduction: Choose an arbitrary base point $G$, compute $u = e(P, G), v = e(Q, G) = e([r]P, G) = e(P, G)^r$,
 4. We obtain the discrete logarithm problem $u, v = u^r \in \mathbb{F}_{p^{k}}$ and solve for $r$.
 
-MOV Attack based on Sage, from [jvdsn's cryto attack](https://github.com/jvdsn/crypto-attacks/blob/master/attacks/ecc/mov_attack.py): 
+MOV Attack based on Sage, from [jvdsn's crypto attack](https://github.com/jvdsn/crypto-attacks/blob/master/attacks/ecc/mov_attack.py):
 
 <details class="exploit">
 <summary><b>MOV-Attack.py</b></summary>
@@ -255,7 +255,7 @@ Based on bilinear mappings (also known as Pairing), cryptography that relies on 
 
 ### One-round 3-party Diffie-Hellman
 
-The first cryptographic protocol designed based on bilinear mappings is a one-round three-party DH protocol, which can be completed through a single round of interaction. The essence of bilinear mapping is to use a kind of "cheating" mechanism to make it appear as if a CDH problem has been solved, namely, $e(g^a, g^b) = c(g,g)^{ab} \in G_t$, but this computational result is in the new group $G_t$. We cannot continue to perform Pairing, and instead have to solve an additional CDH problem. Following this idea, the one-round three-party DH protocol becomes quite trivial.
+The first cryptographic protocol designed based on bilinear mappings is a one-round three-party DH protocol, which can be completed through a single round of interaction. The essence of bilinear mapping is to use a kind of "cheating" mechanism to make it appear as if a CDH problem has been solved, namely, $e(g^a, g^b) = e(g,g)^{ab} \in G_t$, but this computational result is in the new group $G_t$. We cannot continue to perform Pairing, and instead have to solve an additional CDH problem. Following this idea, the one-round three-party DH protocol becomes quite trivial.
 
 &nbsp;
 
@@ -334,6 +334,6 @@ The first pairing in history associated with elliptic curves is the Weil pairing
 
 Some references are as follows:
 
-- [Intro to Bilinear Maps](https://people.csail.mit.edu/alinush/6.857-spring-2015/papers/bilinear-maps.pdf): This is the main reference for this article; the logical flow of the blog aligns with this slides.
+- [Intro to Bilinear Maps](https://people.csail.mit.edu/alinush/6.857-spring-2015/papers/bilinear-maps.pdf): This is the main reference for this article; the logical flow of the blog aligns with these slides.
 - [Pairings or bilinear maps](https://alinush.github.io/2022/12/31/pairings-or-bilinear-maps.html): This blog covers the historical development of pairings and their application in constructing concise zero-knowledge proof protocols.
 - [Pairings for beginners](https://static1.squarespace.com/static/5fdbb09f31d71c1227082339/t/5ff394720493bd28278889c6/1609798774687/PairingsForBeginners.pdf): This document introduces the mathematics behind pairings and details the technical aspects of elliptic curve pairings, which are not covered in the previous two documents and are relatively hardcore.

@@ -10,18 +10,18 @@ published: true
 <!--more-->
 
 {: .success}
-**Preface:** Lately, I've been diving into the [moon-math book](https://github.com/LeastAuthority/moonmath-manual). I found this book not just to be an excellent introduction to zero-knowledge proofs but also an excellent resource for beginners in elliptic curve cryptography, providing a high-level overview of many concepts without delving deeply into detailed proofs or mathematical intricacies. This article explains some basic concepts of elliptic curves. Although I have learned many ECC-related concepts in CTF contexts, a systematic study like this is highly beneficial for me, which is also the motivation behind this blog. This blog serves as mostly like notes rather than a detailed specification and I strongly recommend reading the [moon-math book](https://github.com/LeastAuthority/moonmath-manual) for details, especially for those interested in ZKP and SNARK.
+**Preface:** Lately, I've been diving into the [moon-math book](https://github.com/LeastAuthority/moonmath-manual). I found this book not just to be an excellent introduction to zero-knowledge proofs but also an excellent resource for beginners in elliptic curve cryptography, providing a high-level overview of many concepts without delving deeply into detailed proofs or mathematical intricacies. This article explains some basic concepts of elliptic curves. Although I have learned many ECC-related concepts in CTF contexts, a systematic study like this is highly beneficial for me, which is also the motivation behind this blog. This blog serves mostly as notes rather than a detailed specification and I strongly recommend reading the [moon-math book](https://github.com/LeastAuthority/moonmath-manual) for details, especially for those interested in ZKP and SNARK.
 
 
 ---
 
 ## Short Weierstrass Curves
 
-Readers who are not from a mathematical background should be most familiar with this form of elliptic curve, as it provides the simplest and most intuitive algebraic representation of elliptic curves. 
+Readers without a mathematical background should be most familiar with this form of elliptic curve, as it provides the simplest and most intuitive algebraic representation of elliptic curves.
 
 ### Definition
 
-<section class="success" markdown="1">**Definition (_Short Weierstrass Curves_)**. Let $\mathbb{F}$ be a finite field of characteristic $q$ with $q>3$. The Short Weierstrass elliptic curve $E\_{a, b}(\mathbb{F})$ over $\mathbb{F}$ in its affine representation is the set of all pairs of field elements $(x, y) \in \mathbb{F} \times \mathbb{F}$ that satisfy the Short Weierstrass cubic equation $y^2=x^3+a \cdot x+b$, together with a distinguished symbol $\mathcal{O}$, called the point at infinity which is also the identity in elliptic curve: 
+<section class="success" markdown="1">**Definition (_Short Weierstrass Curves_)**. Let $\mathbb{F}$ be a finite field of characteristic $q$ with $q>3$. The Short Weierstrass elliptic curve $E\_{a, b}(\mathbb{F})$ over $\mathbb{F}$ in its affine representation is the set of all pairs of field elements $(x, y) \in \mathbb{F} \times \mathbb{F}$ that satisfy the Short Weierstrass cubic equation $y^2=x^3+a \cdot x+b$, together with a distinguished symbol $\mathcal{O}$, called the point at infinity which is also the identity of the elliptic curve:
 
 $$
 \mathbf{E}_{a, b}(\mathbb{F})=\left\{(x, y) \in \mathbb{F} \times \mathbb{F} \mid y^2=x^3+a \cdot x+b\right\} \bigcup\{\mathcal{O}\}
@@ -30,11 +30,11 @@ $$
 </section>  
 
 
-<p class="error" markdown="1">**Non-singular**. Typically, we require $4 a^3+27 b^2 \ne 0$ (so-called non-singularity) **which loosely means that the curve has no cusps or self-intersections in the geometric sense,** if seen as an actual curve. Cusps and self-intersections would make the group law potentially ambiguous, i.e., the discrete logarithm over singular elliptic curve is trivial and extremely unsecure for cryptography, referring to [this](https://github.com/jvdsn/crypto-attacks/blob/master/attacks/ecc/singular\_curve.py) and [this](https://ieeexplore.ieee.org/document/7426154/). Intuitively, we can think of the group law on a singular curve as degenerating into the addition group of the base finite field, **note that it is an addition group rather than a multiplication group.** The discrete logarithm of the addition group in the base finite field corresponds to the Euclidean division or inversion.
+<p class="error" markdown="1">**Non-singular**. Typically, we require $4 a^3+27 b^2 \ne 0$ (so-called non-singularity) **which loosely means that the curve has no cusps or self-intersections in the geometric sense,** if seen as an actual curve. Cusps and self-intersections would make the group law potentially ambiguous, i.e., the discrete logarithm over singular elliptic curve is trivial and extremely insecure for cryptography, referring to [this](https://github.com/jvdsn/crypto-attacks/blob/master/attacks/ecc/singular\_curve.py) and [this](https://ieeexplore.ieee.org/document/7426154/). Intuitively, we can think of the group law on a singular curve as degenerating into the addition group of the base finite field, **note that it is an addition group rather than a multiplication group.** The discrete logarithm of the addition group in the base finite field corresponds to the Euclidean division or inversion.
 </p> 
 
 
-**Isomorphic affine Short Weierstrass curves**:  Though we have yet not discussing the group law of the elliptic curve, we can classify elliptic curves to decide which pairs of parameters $(a, b)$ and $\left(a^{\prime}, b^{\prime}\right)$ instantiate equivalent curves in the sense that there is a 1:1 correspondence between the set of curve points. Let's see how isomorphic affine short Weierstrass curves can be derived from the underlying curve equations. We know that for isomorphic curves, their curve equation should be algebraically equivalent. For non-zero $c^6$ (we choose degree $6 = lcm(2,3)$ to avoid fraction in the exponent), we can rewrite a new equivalent curve equation as follows:
+**Isomorphic affine Short Weierstrass curves**:  Although we have not yet discussed the group law of the elliptic curve, we can classify elliptic curves to decide which pairs of parameters $(a, b)$ and $\left(a^{\prime}, b^{\prime}\right)$ instantiate equivalent curves in the sense that there is a 1:1 correspondence between the set of curve points. Let's see how isomorphic affine short Weierstrass curves can be derived from the underlying curve equations. We know that for isomorphic curves, their curve equation should be algebraically equivalent. For non-zero $c^6$ (we choose degree $6 = lcm(2,3)$ to avoid fractions in the exponents), we can rewrite a new equivalent curve equation as follows:
 
 $$
 c^6 y^2 = c^6(x^3 + a\cdot x + b) \\
@@ -77,7 +77,7 @@ It's easy to see that $j(\mathbf{E})$ is determined by the value of $\frac{a^3}{
 
 Group laws of elliptic curve are all based on so-called chord-and-tangent rule. It's important to view elliptic curves in finite fields as curve (though they are just scattered points graphically) and the addition law involves finding the third intersection point of the line passing through two given points on the curve. Consider the line $\ell$ which intersects the curve in $P$ and $Q$ (if $Q=P$, we count it twice). If $\ell$ intersects the elliptic curve at a third point $R$, define the sum of $P$ and $Q$ as the reflection of $R^\prime$ at the x-axis: $R = P + Q$. If the line $\ell$ does not intersect the curve at a third point, define the sum to be the point at infinity $\mathcal{O}$. If the two points are the same, we define $\ell$ as the tangent line.
 
-These definitions are quite meaningful geometrically. To ensure the definitions are well-defined, we must also address an algebraic property: ensuring that any line intersects the elliptic curve at no more than three points. Otherwise, the addition law would become ambiguous. Actually, every line implies a linear relationship of $x, y$. To find the intersecting points, we only need to solve a univariate polynomial with at most degree 3 after applying the linear reduction. By the fundamental theorem of finite fields, there are at most $3$ roots for degree-3 univariate polynomial. This shows that our group laws are well-defined.
+These definitions are quite meaningful geometrically. To ensure the definitions are well-defined, we must also address an algebraic property: ensuring that any line intersects the elliptic curve at no more than three points. Otherwise, the addition law would become ambiguous. Actually, every line implies a linear relationship of $x, y$. To find the intersecting points, we only need to solve a univariate polynomial of degree at most 3 after applying the linear reduction. By the fundamental theorem of finite fields, there are at most $3$ roots for degree-3 univariate polynomial. This shows that our group laws are well-defined.
 
 <section class="success" markdown="1">
 **Chord-and-Tangent Group Laws**:
@@ -124,7 +124,7 @@ Alright, all group laws are understandable except that the identity element $\ma
 
 ## Projective Weierstrass Curves
 
-Projective space provides a better definition of elliptic curves and offers more efficient group operation formulas. The group law discussed in the previous section involves computing the multiplicative inverse, whereas the formulas in projective space only involve finite field multiplication and addition, significantly improving efficiency. Most cryptographic lib implements the projective elliptic curves such as sagemath.
+Projective space provides a better definition of elliptic curves and offers more efficient group operation formulas. The group law discussed in the previous section involves computing the multiplicative inverse, whereas the formulas in projective space only involve finite field multiplication and addition, significantly improving efficiency. Most cryptographic libraries implement projective elliptic curves, as SageMath does.
 
 ### Projective Plane
 
@@ -172,7 +172,7 @@ $$
 \mathbf{E}_{a, b}(\mathbb{FP^2}) = \{ [X:Y:Z] \in \mathbb{FP^2} | Y^2 Z = X^3 + aXZ^2 + b Z^3\}
 $$
 
-The projective Weierstrass curve contains points which are not in the original Weierstrass curve: $[X:Y:0]$ and this is exactly the point at infinity. Note that for $Z =0$, we have $X =0$ from the projective curve equation. After normalization, the point at infinity is unique: $[0:1:0]$ and one can often see this point in sagemath by calling `E.zero()`. For other points, we can normalize $Z$ into 1 and the first two coordinates of $[X:Y:1]$ is the original point of the affine Weierstrass curve $\mathbf{E}\_{a, b}(\mathbb{F})$. 
+The projective Weierstrass curve contains points which are not in the original Weierstrass curve: $[X:Y:0]$ and this is exactly the point at infinity. Note that for $Z =0$, we have $X =0$ from the projective curve equation. After normalization, the point at infinity is unique: $[0:1:0]$ and one can often see this point in SageMath by calling `E.zero()`. For other points, we can normalize $Z$ into 1 and the first two coordinates of $[X:Y:1]$ are the original point of the affine Weierstrass curve $\mathbf{E}\_{a, b}(\mathbb{F})$.
 
 <section class="warning" markdown="1">
 The group isomorphism of projective and affine Weierstrass curves are given by:
@@ -399,7 +399,7 @@ $$
 Notes:
 
 - Detailed proof can be found in Theorem 3.2 in [Twisted Edwards Curves](https://eprint.iacr.org/2008/013.pdf).
-- Before or after the isomorphism, we can rescale some parameter, e.g., [Birational Equvalence of Twisted Edwards and Montgomery curves](https://math.stackexchange.com/questions/1391732/birational-equvalence-of-twisted-edwards-and-montgomery-curves). Consider mapping $\textsf{I}$, we can rescale $Y := sy$ with $s \ne 0$ of $B \cdot y^2=x^3+A \cdot x^2+x$ and the new mapping becomes:
+- Before or after the isomorphism, we can rescale some parameter, e.g., [Birational Equivalence of Twisted Edwards and Montgomery curves](https://math.stackexchange.com/questions/1391732/birational-equvalence-of-twisted-edwards-and-montgomery-curves). Consider mapping $\textsf{I}$, we can rescale $Y := sy$ with $s \ne 0$ of $B \cdot y^2=x^3+A \cdot x^2+x$ and the new mapping becomes:
   
   $$
   \begin{aligned}
@@ -416,7 +416,7 @@ Notes:
   If $\frac{4}{a-d}$ is quadratic residue, we can always rescale $B = 1$ by letting $s = (\sqrt{\frac{4}{a-d}})^{-1}$.
 
 <section class="info" markdown="1">
-**Twisted Edwards Group Law.** In twisted Edwards curve, we have the simplest group law without extra definition of identity or annoying branching. Given two points $(x\_1, y\_1)$ and $(x\_2, y\_2)$, the sum of them is given by:
+**Twisted Edwards Group Law.** In a twisted Edwards curve, we have the simplest group law without extra definition of identity or annoying branching. Given two points $(x\_1, y\_1)$ and $(x\_2, y\_2)$, the sum of them is given by:
 
 $$
 (x_1, y_1) + (x_2, y_2) = (\frac{x_1y_2 + y_1x_2}{1 + dx_1x_2y_1y_2}, \frac{y_1y_2 - ax_1x_2}{1-dx_1x_2y_1y_2}).

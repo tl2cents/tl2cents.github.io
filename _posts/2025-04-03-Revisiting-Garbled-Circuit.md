@@ -5,7 +5,7 @@ published: true
 ---
 
 {: .info}
-**tl;dr:** This blog will introduce the naive Yao's garbled circuit and state-of-the-art gate optimizations in fancy-garbling library (implementation of [BMR16](https://eprint.iacr.org/2016/969)). This blog also serves as a detailed writeup of DiceCTF 2025 NIL-CIRC.
+**tl;dr:** This blog will introduce Yao's naive garbled circuit and state-of-the-art gate optimizations in the fancy-garbling library (implementation of [BMR16](https://eprint.iacr.org/2016/969)). This blog also serves as a detailed writeup of DiceCTF 2025 NIL-CIRC.
 
 <!--more-->
 
@@ -38,13 +38,13 @@ We describe the general process of garbled circuit protocol between Alice (known
 <img src="/assets/ctf-stuff/2025-dicectf/gc.png" alt="gc" style="zoom: 85%;" style="display: block; margin-left: auto; margin-right: auto;"/>
 
 
-Alice and Bob agree on the pubic $f$ and its corresponding boolean circuit $\mathcal{F}$. Let the private input $a = (a_1, \ldots, a_{m})$ and $b = (b_1, \ldots, b_{n})$.
+Alice and Bob agree on the public $f$ and its corresponding boolean circuit $\mathcal{F}$. Let the private input $a = (a_1, \ldots, a_{m})$ and $b = (b_1, \ldots, b_{n})$.
 
 1. **Circuit Garbling**: Alice garbles the public boolean circuit $\mathcal{F}$, i.e., encrypting the truth table and wire labels. Denote the  truth tables of the garbled circuit as $\mathcal{F}_{g}$. In this case, every input wire is encoded as two strings $w_0, w_1$ representing input bit $0,1$ respectively.
 2. **OT Phase**: Alice sends wire labels corresponding to Bob's private input $b$ through a batch of OT protocols. The other wire labels must kept secret to Bob.
 3. Alice sends the garbled circuit $\mathcal{F}_{g}$ (truth tables of all gates) and wire labels corresponding to Alice's private input to Bob. Note that the wire labels looks random and leaks nothing about $a$ to Bob.
 4. **Evaluation**: Bob now has all input wire labels and garbled truth tables $\mathcal{F}_{g}$ and evaluate the circuit to obtain the final encrypted output. 
-5. **Reveal Output**: Since Bob does not know which bit semantic the final output wire label corresponds to, Alice and Bob exchange information to learn the plain output of the the pubic $f$.
+5. **Reveal Output**: Since Bob does not know which bit semantic the final output wire label corresponds to, Alice and Bob exchange information to learn the plain output of the public $f$.
 
 The above protocol is too high-level and in the following, we elaborate on how to garble a boolean gate.
 
@@ -89,13 +89,13 @@ Now, we can see that with only the input wires and the garbled circuit $\mathcal
 
 ### A Demo of Garbled Circuit 
 
-In DiceCTF 2021, there is challenge [garbled](https://github.com/dicegang/dicectf-2021-challenges/tree/master/crypto/garbled) (writeup can be found [here](https://ctftime.org/writeup/25974)) about the naive implementation of Yao's garbled circuit. I use the challenge codes to illustrate the steps of garbled circuit protocol. The demo codes can be found in my [ctf-writeups](https://github.com/tl2cents/CTF-Writeups/tree/master/2025/DiceCTF/nic-cir/demo).
+In DiceCTF 2021, there is a challenge [garbled](https://github.com/dicegang/dicectf-2021-challenges/tree/master/crypto/garbled) (writeup can be found [here](https://ctftime.org/writeup/25974)) about the naive implementation of Yao's garbled circuit. I use the challenge codes to illustrate the steps of garbled circuit protocol. The demo codes can be found in my [ctf-writeups](https://github.com/tl2cents/CTF-Writeups/tree/master/2025/DiceCTF/nic-cir/demo).
 
 
 <section class="success" markdown="1">
 **Step 0. Public Circuit and Private Inputs**
 
-Alice and Bob agree on the pubic boolean circuit $\mathcal{F}$ defined as follows:
+Alice and Bob agree on the public boolean circuit $\mathcal{F}$ defined as follows:
 
 ``` json
 # circuit_map.json
@@ -175,7 +175,7 @@ def garble_label(key0, key1, key2):
     return (gl, validation)
 ```
 
-The tuple $(g, v)$ actually encrypts an extra value $0$ for validation and Bob can find the correct output label of $c$ by checking whether the the second plaintext is zero. 
+The tuple $(g, v)$ actually encrypts an extra value $0$ for validation and Bob can find the correct output label of $c$ by checking whether the second plaintext is zero.
 
 </section>
 
@@ -191,7 +191,7 @@ $$
 L_{b} = (x_3^1,x_4^1) = (key[3][1],key[4][1]) = (16682547, 6753699)
 $$
 
-without revealing anything about $b = (1, 1)$ through the OT protocol. We will not explain the details of OT protocol here, readers can refer to [OT-WIKI](https://en.wikipedia.org/wiki/Oblivious_transfer) for more details. The simplest OT protocol can be instantiated from RSA (or ECDH, see [eprint/2015/267](https://eprint.iacr.org/2015/267)).
+without revealing anything about $b = (1, 1)$ through the OT protocol. We will not explain the details of the OT protocol here, readers can refer to [OT-WIKI](https://en.wikipedia.org/wiki/Oblivious_transfer) for more details. The simplest OT protocol can be instantiated from RSA (or ECDH, see [eprint/2015/267](https://eprint.iacr.org/2015/267)).
 
 At this point, Bob has all the input wire labels and the garbled truth tables of the circuit, so he can begin computing the labels corresponding to the output wires. Specifically, the process involves unlocking the four entries in the garbled truth table corresponding to each logic gate. Among these entries, only one is the correct result, enabling Bob to obtain the intermediate labels of $x_5, x_6, x_7, x_9$. The label $x_9$ represents the final computation result.
 
@@ -301,7 +301,7 @@ $$
 E_{W_a^0, W_b^0}(W_c^0) = \mathcal{H}(g, W_a^0 \mid\mid W_b^0) \oplus W_c^0.
 $$
 
-We then assign $W_c^0 = \mathcal{H}(g, W_a^0 \mid\mid W_b^0) $ and only three ciphertexts of fan-in-2 gates are sent to the evaluator. We can futher reduce the number of ciphertexts to 2 by polynomial interpolation in [PSSW09](https://eprint.iacr.org/2009/314.pdf) or a simple construction in [GLNP15](https://eprint.iacr.org/2015/751.pdf). Since the two techniques are not compatible with free-XOR, we will not discuss them here.
+We then assign $W_c^0 = \mathcal{H}(g, W_a^0 \mid\mid W_b^0) $ and only three ciphertexts of fan-in-2 gates are sent to the evaluator. We can further reduce the number of ciphertexts to 2 by polynomial interpolation in [PSSW09](https://eprint.iacr.org/2009/314.pdf) or a simple construction in [GLNP15](https://eprint.iacr.org/2015/751.pdf). Since the two techniques are not compatible with free-XOR, we will not discuss them here.
 
 </section>
 &nbsp;
@@ -315,7 +315,7 @@ $$
 W_a^x \oplus W_b^y = (W_a^0 \oplus W_b^0) \oplus (x \oplus y) \Delta
 $$
 
-We assign $W_c^0 = W_a^0 \oplus W_b^0$ as the 'false' wire label and simply XORing two input wire labels of XOR gate that encodes $a, b$ results in the output wire label encoding $c = a \oplus b$. As a consequence, garbled XOR gate can be evaluated without any cryptographic operations by the evaluator or any garbled-gate ciphertexts. Note that by choosing $\mathcal{LSB}(\Delta) = 1$ (or other definition of the color bit), the free-XOR technique is compatible of point-and-permute and row-reduction techniques, which results in 3 ciphertexts per AND gate and 0 per XOR.
+We assign $W_c^0 = W_a^0 \oplus W_b^0$ as the 'false' wire label and simply XORing two input wire labels of XOR gate that encodes $a, b$ results in the output wire label encoding $c = a \oplus b$. As a consequence, garbled XOR gate can be evaluated without any cryptographic operations by the evaluator or any garbled-gate ciphertexts. Note that by choosing $\mathcal{LSB}(\Delta) = 1$ (or other definition of the color bit), the free-XOR technique is compatible with point-and-permute and row-reduction techniques, which results in 3 ciphertexts per AND gate and 0 per XOR.
 </section>
 &nbsp;
 
@@ -327,7 +327,7 @@ The half-gate technique **[ZRE15](https://eprint.iacr.org/2014/756)** is a power
 
 ### Half-Gate Decomposition
 
-The half-gate technique allows two ciphertexts per AND gate which is compatible of free-XOR. Denote $(A, A \oplus \Delta)$ and $(B, B \oplus \Delta)$ as the input wire labels to an AND gate, and $(C, C \oplus \Delta)$ as the output wire labels, where $A, B, C$ each encodes 'false' (bit 0) of $a, b, c$. Let $\mathcal{H}(\cdot)$ be a random oracle. The half-gate technique split the AND gate $c = a \land b$ as follows:
+The half-gate technique allows two ciphertexts per AND gate which is compatible with free-XOR. Denote $(A, A \oplus \Delta)$ and $(B, B \oplus \Delta)$ as the input wire labels to an AND gate, and $(C, C \oplus \Delta)$ as the output wire labels, where $A, B, C$ each encodes 'false' (bit 0) of $a, b, c$. Let $\mathcal{H}(\cdot)$ be a random oracle. The half-gate technique splits the AND gate $c = a \land b$ as follows:
 
 - Case $a = 0$: AND gate degenerate to a unary gate that always outputs false.
 - Case $a = 1$: AND gate degenerate to a unary identity gate that always outputs its input.
@@ -459,7 +459,7 @@ $$
 
 </section>
 
-Finally, the generator sends $T_{G_c}, T_{G_e}$ to the evaluator. Denote the boolean value of wire $a, b$ as $x_{a}, x_{b}$ and let $p_a$ be $0$ for simplicity (ignore the first permutation). The evaluator evaluate the two half gates to get $W_{G_c}, W_{E_c}$ based on the color bits of $W_a^{x_a}, W_b^{x_b}$ as follows:
+Finally, the generator sends $T_{G_c}, T_{G_e}$ to the evaluator. Denote the boolean value of wire $a, b$ as $x_{a}, x_{b}$ and let $p_a$ be $0$ for simplicity (ignore the first permutation). The evaluator evaluates the two half gates to get $W_{G_c}, W_{E_c}$ based on the color bits of $W_a^{x_a}, W_b^{x_b}$ as follows:
 
 $$
 \begin{cases}
@@ -503,11 +503,11 @@ The BMR16 scheme generalizes the free-XOR and half-gates to arithmetic circuits 
 
 ## Free-XOR Offset Leak
 
-When free-XOR is implemented in garbled circuit, it should be careful that an malicious OT receiver may destroy the security and privacy of garbled circuit. In standard OT protocol, although it's impossible (when implemented and used correctly) for the receiver to obtain two messages $x_0, x_1$ simultaneously, a dishonest receiver may carefully construct the input so that the value of some function $f(x_0, x_1)$ is leaked (e.g., we can easily recover the value of  $f(x_0, x_1) = x_0 \pm x_1 \mod N$ in the RSA OT protocol). In free-XOR, the two messages to be transmitted in OT protocol) are $W_i^0, W_i^{1}$ where $\Delta = W_i^0 \oplus W_i^{1}$ holds for all $i$. Therefore, if we can recover $f(W_i^0, W_i^{1}) = W_i^0 \oplus W_i^{1} = \Delta$, we can actually recover all labels in the circuit. 
+When free-XOR is implemented in a garbled circuit, one should be careful that a malicious OT receiver may destroy the security and privacy of the garbled circuit. In the standard OT protocol, although it's impossible (when implemented and used correctly) for the receiver to obtain two messages $x_0, x_1$ simultaneously, a dishonest receiver may carefully construct the input so that the value of some function $f(x_0, x_1)$ is leaked (e.g., we can easily recover the value of  $f(x_0, x_1) = x_0 \pm x_1 \mod N$ in the RSA OT protocol). In free-XOR, the two messages to be transmitted in the OT protocol are $W_i^0, W_i^{1}$ where $\Delta = W_i^0 \oplus W_i^{1}$ holds for all $i$. Therefore, if we can recover $f(W_i^0, W_i^{1}) = W_i^0 \oplus W_i^{1} = \Delta$, we can actually recover all labels in the circuit.
 
 In challenge [NIL-CIRC](https://github.com/defund/ctf/tree/master/dicectf-quals-2025/nil-circ), the Chou-Orlandi OT protocol is implemented in fancy-garbling library. We can recover the server's private key as follows:
 
-- Run the Chou-Orlandi OT protocol with an malicious receiver. This can leak the global offset $\Delta$ of free-XOR which allows us to recover all the wire label pairs in the garbled circuit.
+- Run the Chou-Orlandi OT protocol with a malicious receiver. This can leak the global offset $\Delta$ of free-XOR which allows us to recover all the wire label pairs in the garbled circuit.
 - Use the unbalanced AND gate to recover the bit semantics of wire label pairs. 
 - Construct linear equations to recover the private key bits based on the bit semantics of wire labels.
 
@@ -569,7 +569,7 @@ The sender has two secrets $m_0, m_1$. Let $G$ be the public generator on curve-
   $$
 </section>
 
-This is a perfect phase to run a malicious OT receiver attack to recover the global offset $\Delta$ of free-XOR. The idea to make:
+This is a perfect phase to run a malicious OT receiver attack to recover the global offset $\Delta$ of free-XOR. The idea is to make:
 
 $$
 k_0 = k_1 \implies yR = y Y - yR  \implies R = \frac{1}{2}Y.
@@ -633,4 +633,4 @@ impl<C: AbstractChannel> CustomAND for Evaluator<C, WireMod2> {
 }
 ```
 
-Then we export all known bits of the wires into a file and solve linear equations to recover key bits in sagemath. In my local test, we can recover 124 key bits and brute force 4 bits to decrypt the flag. Exploiting codes can be found in my [ctf-writeups](https://github.com/tl2cents/CTF-Writeups/tree/master/2025/DiceCTF/nic-cir).
+Then we export all known bits of the wires into a file and solve linear equations to recover key bits in SageMath. In my local test, we can recover 124 key bits and brute force 4 bits to decrypt the flag. Exploiting codes can be found in my [ctf-writeups](https://github.com/tl2cents/CTF-Writeups/tree/master/2025/DiceCTF/nic-cir).

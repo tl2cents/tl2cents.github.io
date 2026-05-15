@@ -108,7 +108,7 @@ $$
 \textsf{MAC}(k(x), m(x), \ell) =  (k(x) \cdot x^{8(\ell + 1)} + m(x))^{e} \mod f(x)
 $$
 
-where $m(x)$ is the padded message `len(msg) || msg` and $\ell$ is the bytes length of `msg`. It looks like RSA encryption in the Galois field. In circus and cccircus, we simply RSA-decrypt the mac value $t$, i.e., compute $d = e^{-1} \bmod {2^{128} - 1}$ and $pt = t^d$. Since $\mathcal{GCD}(e, 2^{128} -1) = 5$, a more convenient way is to compute `nth_root` in sage and we have a chance of 1/5 to submit the correct key to the server.
+where $m(x)$ is the padded message `len(msg) || msg` and $\ell$ is the byte length of `msg`. It looks like RSA encryption in the Galois field. In circus and cccircus, we simply RSA-decrypt the mac value $t$, i.e., compute $d = e^{-1} \bmod {2^{128} - 1}$ and $pt = t^d$. Since $\mathcal{GCD}(e, 2^{128} -1) = 5$, a more convenient way is to compute `nth_root` in sage and we have a chance of 1/5 to submit the correct key to the server.
 
 The oracle in cccccircus is slightly different. Denote the final mac value as coefficient vector:
 
@@ -306,7 +306,7 @@ The right-hand side is known and we bruteforce the candidates of $a, b$ in a mee
 - Enumerate $b$, compute table containing all possible values of $2 \cdot c^{-d_1 \cdot 2^{504}} \cdot c^{-b}$.
 - Enumerate $a$, compute $(c^{2^{252}})^a$ and check if there is a collision in the aforementioned table. Once we find a collision, we can retrieve $a, b$ and correct the error bits.
 
-The enumeration space is at most $\binom{252}{4} \approx 2^{28}$. We can accelerate the computing process of $c^b$ and $(c^{2^{252}})^a$ by precomputing power basis, i.e., precomputing $c^{2^i}, c^{-2^i}$ for $i \in [1, 504]$. The complete search of $(4,3)$ or $(3,4)$ error distribution takes 1 min with 12 cores in python. A single-core implementation takes at most 20 mins (but actually finishes after 2 mins) if we correctly guess the $(4,3)$ or $(3,4)$ distribution.
+The enumeration space is at most $\binom{252}{4} \approx 2^{28}$. We can accelerate the computing process of $c^b$ and $(c^{2^{252}})^a$ by precomputing power basis, i.e., precomputing $c^{2^i}, c^{-2^i}$ for $i \in [1, 504]$. The complete search of $(4,3)$ or $(3,4)$ error distribution takes 1 min with 12 cores in Python. A single-core implementation takes at most 20 mins (but actually finishes after 2 mins) if we correctly guess the $(4,3)$ or $(3,4)$ distribution.
 
 ### Exploit
 
@@ -459,8 +459,8 @@ c_inv = pow(c, -1, n)
 enc2_basis = [pow(enc2, 2**i, n) for i in range(unknown_nbit // 2)]
 enc2_inv_basis = [pow(inv_enc2, 2**i, n) for i in range(unknown_nbit // 2)]
 
-search_err1 = 3 # build table with 3 errors (may be the msb or lsb, depending on the your implementation)
-search_err2 = 4 # search table with 4 errors (may be the msb or lsb, depending on the your implementation)
+search_err1 = 3 # build table with 3 errors (may be the msb or lsb, depending on your implementation)
+search_err2 = 4 # search table with 4 errors (may be the msb or lsb, depending on your implementation)
 pos_size = 252  # unknown_nbit // 2
 
 d_l_msb = d_lsb >> (unknown_nbit // 2)

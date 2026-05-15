@@ -108,9 +108,9 @@ The server provides two oracles
 - **Register**: encrypting oracle: returns the ciphertext of sha256 hash of `secret + msg` .
 - **Verify**: decrypting oracle to check whether the plaintext ends with the 32 bytes sha256 hash: `sha256(secret + msg)`.
 
-To authenticate as an admin, one must successfully interact with the verifying oracle with username exactly being `admin`. Notably, the server parses the username using the expression `msg.rpartition(b'user=')[2]`. This allows for a potential parsing ambiguity: if the message is crafted as `user=uname user=admin`, the server may interpret the last occurrence and treat the user as `admin`. This behavior is reminiscent of the SHA-256 length extension attack. Specifically, if the SHA-256 hash of `secret + "user=uname" ` is known, the Merkle–Damgård construction enables the computation of a valid hash for a message of the form `secret + "user=uname****user=admin"` without knowledge of the original secret.
+To authenticate as an admin, one must successfully interact with the verifying oracle with the username exactly equal to `admin`. Notably, the server parses the username using the expression `msg.rpartition(b'user=')[2]`. This allows for a potential parsing ambiguity: if the message is crafted as `user=uname user=admin`, the server may interpret the last occurrence and treat the user as `admin`. This behavior is reminiscent of the SHA-256 length extension attack. Specifically, if the SHA-256 hash of `secret + "user=uname" ` is known, the Merkle–Damgård construction enables the computation of a valid hash for a message of the form `secret + "user=uname****user=admin"` without knowledge of the original secret.
 
-For a detailed discussion of this attack, refer to the repository [hash-length-extension](https://github.com/thecrabsterchief/hash-length-extension). In our setting, we can query a Paillier ciphertext corresponding to the hash value $h = \text{sha256}(\text{secret} + \texttt{b"user=tl2cents"})$ from the registration oracle. If we are able to decrypt $h$ using the verifying oracle, we can then forge a valid tag for the extended message eneding with `"user=admin"`, thereby achieving admin authentication
+For a detailed discussion of this attack, refer to the repository [hash-length-extension](https://github.com/thecrabsterchief/hash-length-extension). In our setting, we can query a Paillier ciphertext corresponding to the hash value $h = \text{sha256}(\text{secret} + \texttt{b"user=tl2cents"})$ from the registration oracle. If we are able to decrypt $h$ using the verifying oracle, we can then forge a valid tag for the extended message ending with `"user=admin"`, thereby achieving admin authentication
 
 <section class="info" markdown="1">
 
@@ -214,7 +214,7 @@ else:
 
 ### Solution
 
-We need to pass a CMAC check to submit a 1024-bit RSA public key $n$ and also a signature check the verifies `pow(s, 65537, n) == challenge_string`. The CMAC key is given as `NIST_SP_800_38B_Appendix_D1_K` and we can find the key value [here](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-38b.pdf) and the CMAC illustration: 
+We need to pass a CMAC check to submit a 1024-bit RSA public key $n$ and also a signature check that verifies `pow(s, 65537, n) == challenge_string`. The CMAC key is given as `NIST_SP_800_38B_Appendix_D1_K` and we can find the key value [here](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-38b.pdf) and the CMAC illustration:
 
 <img src="/assets/ctf-stuff/2025-downunder/image-20250720165934785.png" referrerpolicy="no-referrer" alt="and-gate" style="display: block; margin-left: auto; margin-right: auto;">
 
@@ -471,7 +471,7 @@ if __name__ == "__main__":
 
 ### Solution
 
-The server has a secret key $s$ of Curve-p256 and its public key $S = [s]G$ is given. The private key $p, q$ of paillier scheme is also given. If we submit a paillier ciphertext encrypting $a$, the server will further reveal the following information:
+The server has a secret key $s$ of P-256 and its public key $S = [s]G$ is given. The private key $p, q$ of Paillier scheme is also given. If we submit a Paillier ciphertext encrypting $a$, the server will further reveal the following information:
 
 $$
 \begin{cases}

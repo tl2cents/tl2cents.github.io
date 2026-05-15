@@ -5,7 +5,7 @@ published: true
 ---
 
 {: .info}
-**tl;dr:** Last week, I participated in SECON CTF 2024 in team Never Stop Exploiting. Here are the writeups for challenges `dual_summon`, `Tidal wave` and `Trillion Ether` solved by me. 
+**tl;dr:** Last week, I participated in SECCON CTF 2024 with team Never Stop Exploiting. Here are the writeups for challenges `dual_summon`, `Tidal wave` and `Trillion Ether` solved by me.
 
 <!--more-->
 
@@ -45,7 +45,7 @@ $$
 tag = \sum_{i=1}^{n} p_i \cdot H^{i} + C
 $$
 
-More details of `AES-GCM` can be found in [AEAD-Nonce-Reuse-Attacks](https://github.com/tl2cents/AEAD-Nonce-Reuse-Attacks). The `summon` oracle allows us to query a tag with a fixed H and C since the key and nonce is fixed. Therefore, by choosing a known plaintext differential, we can recover the MAC key H from equation like $t_1 - t_2 = H^2 \cdot (p_1 - p_2)$. After recovering two MAC keys, use the two known tags of the same plaintext i.e. GHASH(k1, pt) and GHASH(k2, pt) to find a delta such that GHASH(k1, pt + delta) = GHASH(k2, pt + delta). Refer to the following exploit for details.
+More details of `AES-GCM` can be found in [AEAD-Nonce-Reuse-Attacks](https://github.com/tl2cents/AEAD-Nonce-Reuse-Attacks). The `summon` oracle allows us to query a tag with a fixed H and C since the key and nonce are fixed. Therefore, by choosing a known plaintext differential, we can recover the MAC key H from an equation like $t_1 - t_2 = H^2 \cdot (p_1 - p_2)$. After recovering two MAC keys, use the two known tags of the same plaintext i.e. GHASH(k1, pt) and GHASH(k2, pt) to find a delta such that GHASH(k1, pt + delta) = GHASH(k2, pt + delta). Refer to the following exploit for details.
 
 ### Exploit
 
@@ -141,7 +141,7 @@ G = \begin{bmatrix}
 \end{bmatrix}
 $$
 
-In this challenge, several equations of secret vector $\vec \alpha = (\alpha_1, \cdots, \alpha_{n})$ are given and asks us to recover two encoded messages: $P_e = \vec p \cdot G + e \mod N$ and $K_e = \vec k \cdot G + e \mod N$ to recover the flag. The overall solution is outlined as follows:
+In this challenge, several equations of secret vector $\vec \alpha = (\alpha_1, \cdots, \alpha_{n})$ are given, and we are asked to recover two encoded messages: $P_e = \vec p \cdot G + e \mod N$ and $K_e = \vec k \cdot G + e \mod N$ to recover the flag. The overall solution is outlined as follows:
 
 1. Solve high degree multivariate equations to recover the alphas (and thus the G matrix).
 2. Solve a LWE problem  to recover the p vector and then factor n.
@@ -189,7 +189,7 @@ The key point of solving this problem is to find linear (or simple) relations fr
     \end{cases}
   $$
 
-- Substitute the simple equations in the high-degree rsa equations to make it univariate and then combine it with $\alpha_{36}^2 = a_{36}$ to reover $\alpha_{36}$. Finally, we can recover the whole vector $\vec \alpha = (\alpha_1, \cdots, \alpha_{n})$.
+- Substitute the simple equations in the high-degree rsa equations to make it univariate and then combine it with $\alpha_{36}^2 = a_{36}$ to recover $\alpha_{36}$. Finally, we can recover the whole vector $\vec \alpha = (\alpha_1, \cdots, \alpha_{n})$.
 
 <details class="exploit">
 <summary><b>RecoverAlphas.py</b></summary>
@@ -318,7 +318,7 @@ $$
 K_e = \vec k \cdot G + e \mod N
 $$
 
-where $$G \in \mathbb{Z}_{N}^{k \times n}$$ and $$K_e \in  \mathbb{Z}_{N}^{n}$$ is known. In this case, the Hamming weight of the error vector is small (28 errors in total). This is a typical error-correcting problem in code-based cryptography. To decode the errored codeword, we reduce this problem from $$\mathbb{Z}_{N}$$ to $$\mathbb{F}_{p}$$ and $$\mathbb{F}_q$$ since there are only 14 errors in the two sub-fields. The GRS code can decode up to $$d = (n - k + 1)/2 =14.5$$ errors and this is expected in this challenge. Details of decoding Generalized Reed-Solomon codes can be found in [SageMath Docs](https://doc.sagemath.org/html/en/reference/coding/sage/coding/grs_code.html).
+where $$G \in \mathbb{Z}_{N}^{k \times n}$$ and $$K_e \in  \mathbb{Z}_{N}^{n}$$ is known. In this case, the Hamming weight of the error vector is small (28 errors in total). This is a typical error-correcting problem in code-based cryptography. To decode the corrupted codeword, we reduce this problem from $$\mathbb{Z}_{N}$$ to $$\mathbb{F}_{p}$$ and $$\mathbb{F}_q$$ since there are only 14 errors in the two sub-fields. The GRS code can decode up to $$d = (n - k + 1)/2 =14.5$$ errors and this is expected in this challenge. Details of decoding Generalized Reed-Solomon codes can be found in [SageMath Docs](https://doc.sagemath.org/html/en/reference/coding/sage/coding/grs_code.html).
 
 <details class="exploit">
 <summary><b>RecoverKey.py</b></summary>

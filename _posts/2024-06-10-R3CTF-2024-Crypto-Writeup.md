@@ -5,7 +5,7 @@ published: true
 ---
 
 {: .info}
-**tl;dr:** Writeups for R3CTF 2024 including challenges `r0,1,2system` and `TinySeal` and `SPARROW`. Amazing challenges about: poly-nonce attack of ECDSA, BFV fully homomorphic encryption and linearization of symmetric cipher.
+**tl;dr:** Writeups for R3CTF 2024, including the challenges `r0,1,2system`, `TinySeal`, and `SPARROW`. Amazing challenges about: poly-nonce attack of ECDSA, BFV fully homomorphic encryption, and linearization of symmetric cipher.
 
 <!--more-->
 
@@ -36,7 +36,7 @@ r0system，r1system，r2system 的题解。最终目的都是拿到 Alice 和 Bo
 ### Ecdsa Polynomial Nonce Recurrence Attack
 
 {: .info}
-**相关实现和论文参考**：Github 开源实现 [**Polynonce: ECDSA Attack**](https://github.com/kudelskisecurity/ecdsa-polynomial-nonce-recurrence-attack)，论文 [A Novel Related Nonce Attack for ECDSA](https://eprint.iacr.org/2023/305.pdf) page 7 section 3.2。
+**相关实现和论文参考**：GitHub 开源实现 [**Polynonce: ECDSA Attack**](https://github.com/kudelskisecurity/ecdsa-polynomial-nonce-recurrence-attack)，论文 [A Novel Related Nonce Attack for ECDSA](https://eprint.iacr.org/2023/305.pdf) page 7 section 3.2。
 
 
 注意到本题 nonce 的生成方式在数学本质上和 ECDSA 签名是类似的：
@@ -85,7 +85,7 @@ $$
 
 ![image-20240609220217887](/assets/ctf-stuff/2024-r3ctf/image-20240609220217887.png)
 
-求解私钥多项式的根得到 $x$ 和系数 $a_i$ 的若干个解 ，预测 $s_{10}$ 即可得到最后一次注册 Bob 的账号时的 token。
+求解私钥多项式的根得到 $x$ 和系数 $a_i$ 的若干个解，预测 $s_{10}$ 即可得到最后一次注册 Bob 的账号时的 token。
 
 
 
@@ -809,7 +809,7 @@ $$
 \sum_k c_{j, k} = \sum_{i} y_i + \sum_{k} e_{j, k} \mod 2
 $$
 
-问题来了，对 $j =1,2, \cdots, t$ ，上述方程其实都是一个方程，**无论 $t$ 多大， 我们只能得到 一个比特信息！**
+问题来了，对 $j =1,2, \cdots, t$，上述方程其实都是一个方程，**无论 $t$ 多大，我们只能得到一个比特信息！**
 
 {: .error}
 是否存在一种方法将 $\textsf{Sum}$ 不变量转换到整数环上的线性方程？对于模 2 有限域上的**单次加法**，我们可以很轻松地通过取反，转换为整数环上的加法！

@@ -7,7 +7,7 @@ published: true
 ---
 
 {: .info}
-**概要:** 介绍 Supersingular Isogeny Key Exchange 的核心： 超奇异椭圆曲线、 J-invariant 和 Isogeny，最后介绍标准的 SIDH 协议。本文是对 [Supersingular isogeny key exchange for beginners](https://eprint.iacr.org/2019/1321.pdf) 原文的一份笔记式整理/翻译，原文更适合入门阅读。
+**概要:** 介绍 Supersingular Isogeny Key Exchange 的核心：超奇异椭圆曲线、 J-invariant 和 Isogeny，最后介绍标准的 SIDH 协议。本文是对 [Supersingular isogeny key exchange for beginners](https://eprint.iacr.org/2019/1321.pdf) 原文的一份笔记式整理/翻译，原文更适合入门阅读。
 
 <!--more-->
 
@@ -59,7 +59,7 @@ $$
 {% remark title="j-不变量的性质" %}
 
 - 两条椭圆曲线同构当且仅当它们的 $j$-不变量相同。
-- 对于 $$p = 3 \mod 4$$，在有限域 $$\mathbb{F}_{p^2} = \mathbb{F}_{p}(i)$$ 中，其中 $$i^2 + 1 = 0$$，超奇异曲线一共有 $$\lfloor p/12 \rfloor + z$$ 类， 其中 $$z \in \{0,1,2\}$$ 类，它的值与 $$p \mod 12$$ 有关。
+- 对于 $$p = 3 \mod 4$$，在有限域 $$\mathbb{F}_{p^2} = \mathbb{F}_{p}(i)$$ 中，其中 $$i^2 + 1 = 0$$，超奇异曲线一共有 $$\lfloor p/12 \rfloor + z$$ 类，其中 $$z \in \{0,1,2\}$$ 类，它的值与 $$p \mod 12$$ 有关。
 - 特征为 $$p$$ 的有限域上的超奇异椭圆曲线，其 $j$-invariant 总是落在 $$\mathbb{F}_{p^2}$$ 上。因此讨论 supersingular 曲线时，转到 $$\mathbb{F}_{p^2}$$ 上通常是自然的。
 
 {% endremark %}
@@ -134,7 +134,7 @@ $$
 2. **度（Degree）**：同源的度是函数域扩张的次数。度为 $$n$$ 的同源称为 $$n$$-同源。
 3. **复合**：如果 $$\phi: E \rightarrow E^{\prime}$$ 和 $$\psi: E^{\prime} \rightarrow E^{\prime \prime}$$ 是同源，则 $$\psi \circ \phi$$ 也是同源。
 
-记核为 $$G$$，则通常也把像曲线记为 $$E^\prime = E/G$$。值得注意的是，椭圆曲线同源与其核 $$G$$ 一一对应。给定一个核 $$G$$，我们都可以构造对应的同源映射；其显式构造可以参考 Vélu Fomulas。这部分证明非常数学，细节可以参考：
+记核为 $$G$$，则通常也把像曲线记为 $$E^\prime = E/G$$。值得注意的是，椭圆曲线同源与其核 $$G$$ 一一对应。给定一个核 $$G$$，我们都可以构造对应的同源映射；其显式构造可以参考 Vélu Formulas。这部分证明非常数学，细节可以参考：
 
 - MIT Elliptic Curves: <https://math.mit.edu/classes/18.783/2023/LectureSlides5.pdf>
 - Vélu's Formulas for SIDH: <https://www.mariascrs.com/2020/11/07/velus-formulas.html>
@@ -548,4 +548,3 @@ $$
 
 **当两个同源的 kernel 相同时，它们对应的是同一个群作用。**  因此 SIDH 协议最终会得到同一个等价曲线族，也就是相同的共享 j-invariant。
 {% endproof %}
-
