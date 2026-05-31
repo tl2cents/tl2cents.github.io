@@ -19,7 +19,7 @@ Useful references:
 
 ## Preliminaries
 
-Before start, the basic definitions of zero-knowledge proofs and zk-SNARKs are assumed to be known, especially for Rank-1 Constraint System (R1CS) and Quadratic Arithmetic Programs. For a brief introduction, please refer to my previous post: [Notes on Formal Language and Generic Proof System](https://blog.tanglee.top/2025/03/27/Notes-on-Formal-Language-and-Generic-Proof-Representations.html). For beginners, [moonmath book](https://github.com/LeastAuthority/moonmath-manual) is highly recommended for learning the mathematical foundations and Groth16 protocol.
+Before start, the basic definitions of zero-knowledge proofs and zk-SNARKs are assumed to be known, especially for Rank-1 Constraint System (R1CS) and Quadratic Arithmetic Programs. For a brief introduction, please refer to my previous post: [Notes on Formal Language and Generic Proof System]({% post_url 2025-03-27-Notes-on-Formal-Language-and-Generic-Proof-Representations %}). For beginners, [moonmath book](https://github.com/LeastAuthority/moonmath-manual) is highly recommended for learning the mathematical foundations and Groth16 protocol.
 
 > **High-Level Process of Groth16.** In Groth16, the claim or knowledge to be proven is typically represented as an arithmetic circuit, then reduced to a Rank-1 Constraint System (R1CS), and finally transformed into a Quadratic Arithmetic Program (QAP). This reduction allows the proof to be distilled into a single polynomial identity. In this post, we focus exclusively on the final polynomial proof, which constitutes the core of Groth16's zero-knowledge property.
 
