@@ -6,21 +6,11 @@ comment: false
 ---
 {%- assign academic = page.academic -%}
 {%- assign profile = academic.profile -%}
+{%- assign profile_photo = profile.photo | default: profile.avatar -%}
 
 <div class="layout--academic">
   <div class="academic-shell">
     <aside class="academic-profile" aria-label="Academic profile">
-      {%- unless profile.show_photo == false -%}
-        <div class="academic-profile__portrait{% if profile.photo %} academic-profile__portrait--photo{% endif %}" aria-hidden="true">
-          {%- if profile.photo -%}
-            {%- include snippets/get-nav-url.html path=profile.photo -%}
-            <img src="{{ __return }}" alt="">
-          {%- else -%}
-            <span>{{ profile.initials | default: "AP" }}</span>
-          {%- endif -%}
-        </div>
-      {%- endunless -%}
-
       <p class="academic-profile__eyebrow">{{ profile.eyebrow | default: "Academic Homepage" }}</p>
       <h1>{{ profile.name }}</h1>
       <p class="academic-profile__role">{{ profile.role }}</p>
@@ -58,7 +48,15 @@ comment: false
           <p class="academic-section__label">Research Profile</p>
           <h2>About Me</h2>
         </div>
-        <div class="academic-intro__body">{{ academic.intro.body | markdownify }}</div>
+        <div class="academic-intro__content{% if profile_photo %} academic-intro__content--with-photo{% endif %}">
+          {%- if profile_photo -%}
+            {%- include snippets/get-nav-url.html path=profile_photo -%}
+            <figure class="academic-intro__portrait">
+              <img src="{{ __return }}" alt="Portrait of {{ profile.name | default: 'academic profile' }}">
+            </figure>
+          {%- endif -%}
+          <div class="academic-intro__body">{{ academic.intro.body | markdownify }}</div>
+        </div>
       </section>
 
       {%- if academic.interests -%}
@@ -105,15 +103,7 @@ comment: false
             {%- for publication in academic.publications -%}
               <article class="academic-publication">
                 <div class="academic-publication__header">
-                  <div>
-                    <p class="academic-publication__venue">
-                      <span>{{ publication.venue }}</span>
-                      {%- if publication.status -%}
-                        <span class="academic-publication__status">{{ publication.status }}</span>
-                      {%- endif -%}
-                    </p>
-                    <h3>{{ publication.title }}</h3>
-                  </div>
+                  <h3>{{ publication.title }}</h3>
                   {%- if publication.venue_short -%}
                     <span class="academic-publication__tag">{{ publication.venue_short }}</span>
                   {%- endif -%}
@@ -124,6 +114,14 @@ comment: false
                   {%- assign _publication_authors = _publication_authors | replace: publication.highlight_author, _highlighted_author -%}
                 {%- endif -%}
                 <p class="academic-publication__authors">{{ _publication_authors }}</p>
+                {%- if publication.venue or publication.status -%}
+                  <p class="academic-publication__venue">
+                    {%- if publication.venue -%}<span>{{ publication.venue }}</span>{%- endif -%}
+                    {%- if publication.status -%}
+                      <span class="academic-publication__status">{{ publication.status }}</span>
+                    {%- endif -%}
+                  </p>
+                {%- endif -%}
                 {%- if publication.summary -%}
                   <blockquote class="academic-publication__summary">
                     <p>{{ publication.summary }}</p>
@@ -183,6 +181,60 @@ comment: false
             </section>
           {%- endfor -%}
         </div>
+      {%- endif -%}
+
+      {%- if academic.talks -%}
+        <section class="academic-section academic-section--talks">
+          <div class="academic-section__heading academic-section__heading--talks">
+            <p class="academic-section__label">Talks</p>
+            <h2>Talks & Presentations</h2>
+          </div>
+          <div class="academic-talks">
+            {%- for talk in academic.talks -%}
+              <article class="academic-talk">
+                <div class="academic-talk__header">
+                  <h3>{{ talk.title }}</h3>
+                  {%- if talk.tags -%}
+                    <div class="academic-talk__header-tags">
+                      {%- for tag in talk.tags -%}
+                        <span class="academic-talk__tag">{{ tag }}</span>
+                      {%- endfor -%}
+                    </div>
+                  {%- endif -%}
+                </div>
+                {%- assign _talk_speakers = talk.speakers | default: talk.authors -%}
+                {%- if _talk_speakers -%}
+                  {%- assign _talk_speakers_html = _talk_speakers -%}
+                  {%- assign _talk_highlight_speaker = talk.highlight_speaker | default: talk.highlight_author -%}
+                  {%- if _talk_highlight_speaker -%}
+                    {%- capture _highlighted_speaker -%}<strong class="academic-talk__speaker-highlight">{{ _talk_highlight_speaker }}</strong>{%- endcapture -%}
+                    {%- assign _talk_speakers_html = _talk_speakers_html | replace: _talk_highlight_speaker, _highlighted_speaker -%}
+                  {%- endif -%}
+                  <p class="academic-talk__speakers">{{ _talk_speakers_html }}</p>
+                {%- endif -%}
+                {%- if talk.event or talk.date or talk.location or talk.status -%}
+                  <div class="academic-talk__details">
+                    {%- if talk.event -%}<span>{{ talk.event }}</span>{%- endif -%}
+                    {%- if talk.date -%}<span>{{ talk.date }}</span>{%- endif -%}
+                    {%- if talk.location -%}<span>{{ talk.location }}</span>{%- endif -%}
+                    {%- if talk.status -%}<span>{{ talk.status }}</span>{%- endif -%}
+                  </div>
+                {%- endif -%}
+                {%- if talk.links -%}
+                  <div class="academic-talk__tags">
+                    {%- for link in talk.links -%}
+                      {%- if link.url -%}
+                        <a href="{{ link.url }}">{{ link.label }}</a>
+                      {%- else -%}
+                        <span>{{ link.label }}</span>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </div>
+                {%- endif -%}
+              </article>
+            {%- endfor -%}
+          </div>
+        </section>
       {%- endif -%}
 
       {%- if academic.award_blocks -%}

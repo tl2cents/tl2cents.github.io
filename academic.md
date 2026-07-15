@@ -43,7 +43,7 @@ academic:
   intro:
     title: About Me
     body: |
-      I am a Ph.D. student in Cybersecurity at the University of Chinese Academy of Sciences (**UCAS**), advised by Prof. Xiaorui Gong and affiliated with the Institute of Information Engineering, Chinese Academy of Sciences. I received my B.Sc. degree in Information Security from the University of Science and Technology of China (**USTC**) in 2022. In parallel, I was a core member of the NeSE CTF team from 2022 to 2026, focusing on crypto and blockchain in international CTF competitions.
+      I am a Ph.D. student in Cybersecurity at the University of Chinese Academy of Sciences (**UCAS**), advised by Prof. Xiaorui Gong and affiliated with the Institute of Information Engineering, Chinese Academy of Sciences. I received my B.Sc. degree in information security from the University of Science and Technology of China (**USTC**) in 2022. In parallel, I was a core member of the NeSE CTF team from 2022 to 2026, focusing on crypto and blockchain in international CTF competitions.
 
       My doctoral research primarily focuses on the Generalized Birthday Problem and Wagner's algorithm. More broadly, I maintain strong research interests in post-quantum cryptography (especially code-based), zero-knowledge proofs, and blockchain security.
 
@@ -75,7 +75,7 @@ academic:
           url: "https://eprint.iacr.org/2025/1351"
         - label: Code
           url: "https://github.com/tl2cents/Generalized-Birthday-Problem"
-    - venue: IACR Transactions on Cryptographic Hardware and Embedded Systems, 2026(2)
+    - venue: IACR Transactions on Cryptographic Hardware and Embedded Systems, 2026 (2)
       venue_short: CHES 2026
       # status: Published
       title: Memory Optimizations of Wagner’s Algorithm with Applications to Equihash
@@ -90,6 +90,20 @@ academic:
           url: "https://eprint.iacr.org/2025/2141"
         - label: Code
           url: "https://github.com/tl2cents/Wagner-Algorithms"
+  talks:
+    - event: Black Hat USA 2026 Briefings
+      title: "Breaking the Unbreakable: Dismantling the Myth of Trusted Cryptographic Libraries"
+      speakers: Guannan Wang, Lili Tang, and Guancheng Li
+      highlight_speaker: Lili Tang
+      date: Aug 1-6, 2026
+      location: Las Vegas
+      status: On Demand Only
+      tags:
+        - Black Hat USA
+      links:
+        - label: Link
+          url: "https://blackhat.com/us-26/briefings/schedule/index.html#breaking-the-unbreakable-dismantling-the-myth-of-trusted-cryptographic-libraries-on-demand-only-53162"
+        - label: Slide
   award_blocks:
     - label: Selected Awards
       title: Capture The Flag (CTF)
