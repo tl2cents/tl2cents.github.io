@@ -9,19 +9,18 @@ academic:
   profile:
     eyebrow: Academic Homepage
     name: Lili Tang
-    initials: Tang
-    # show_photo: false
-    role: Ph.D. Student in Cryptography
-    affiliation: Institute of Information Engineering, University of Chinese Academy of Sciences
+    name_zh: 唐雳雳
+    photo: /assets/images/profile-github.jpg
+    role: Ph.D. in Cryptography
     location: Beijing, China
-    email: tanglili [at] iie [dot] ac [dot] cn
+    email: tanglili@iie.ac.cn
     links:
       - label: ORCID
         detail: 0009-0008-7492-478X
         url: https://orcid.org/0009-0008-7492-478X
         icon: fab fa-orcid
       - label: Institution
-        detail: IIE, CAS / UCAS
+        detail: UCAS, China
         url: https://english.ucas.ac.cn/
         icon: fas fa-university
       - label: GitHub
@@ -43,7 +42,7 @@ academic:
   intro:
     title: About Me
     body: |
-      I am a Ph.D. student in Cybersecurity at the University of Chinese Academy of Sciences (**UCAS**), advised by Prof. Xiaorui Gong and affiliated with the Institute of Information Engineering, Chinese Academy of Sciences. I received my B.Sc. degree in information security from the University of Science and Technology of China (**USTC**) in 2022. In parallel, I was a core member of the NeSE CTF team from 2022 to 2026, focusing on crypto and blockchain in international CTF competitions.
+      I am a Ph.D. student in Cybersecurity at the University of Chinese Academy of Sciences (**UCAS**), advised by Prof. Xiaorui Gong. I received my B.Sc. degree in information security from the University of Science and Technology of China (**USTC**) in 2022. In parallel, I was a core member of the NeSE CTF team from 2022 to 2026, focusing on crypto and blockchain in international CTF competitions.
 
       My doctoral research primarily focuses on the Generalized Birthday Problem and Wagner's algorithm. More broadly, I maintain strong research interests in post-quantum cryptography (especially code-based), zero-knowledge proofs, and blockchain security.
 
@@ -52,9 +51,12 @@ academic:
       description: Cryptanalysis of real-world protocols and cryptographic schemes, with a focus on post-quantum candidates, zk-SNARKs and blockchain applications.
     - title: AI for Cryptography/Security
       description: Automatic vulnerability discovery, especially for cryptographic protocols and implementations. Vibe research in the realms of cryptography and security.
-  # news:
-  #   - date: 2026
-  #     text: Replace this item with a recent paper acceptance, talk, internship, or project update.
+  news:
+    - date: July, 2026
+      pinned: true
+      text: I expect to complete my Ph.D. after **June, 2027**. Currently, I'm looking for postdoctoral or other research positions. If you find my research areas matching your opportunities, please feel free to contact me via email.
+    - date: July, 2026
+      text: My joint work about using LLM agents to automatically discover vulnerabilities in cryptographic libraries will be presented at **Black Hat USA 2026** Briefings. See the [talk page](https://blackhat.com/us-26/briefings/schedule/index.html#breaking-the-unbreakable-dismantling-the-myth-of-trusted-cryptographic-libraries-on-demand-only-53162) for details.
   #   - date: 2025
   #     text: Add a selected research milestone or teaching activity here.
   #   - date: 2024
@@ -62,7 +64,7 @@ academic:
   publications:
     - venue: The 46th International Cryptology Conference
       venue_short: Crypto 2026
-      status: To appear
+      # status: To appear
       title: On the Regularity of the Generalized Birthday Problem
       authors: Lili Tang, Yao Sun, and Xiaorui Gong
       highlight_author: Lili Tang
@@ -97,7 +99,7 @@ academic:
       highlight_speaker: Lili Tang
       date: Aug 1-6, 2026
       location: Las Vegas
-      status: On Demand Only
+      status: On Demand
       tags:
         - Black Hat USA
       links:
@@ -107,6 +109,7 @@ academic:
   award_blocks:
     - label: Selected Awards
       title: Capture The Flag (CTF)
+      note: "I was one of NeSE's top two contributors from 2022 to 2025. Over the same period, NeSE consistently ranked in [CTFtime](https://ctftime.org/team/13575)'s global top 10 teams (3rd in 2022, 7th in 2023, 8th in 2024, and 5th in 2025). See more awards at [nese.team](https://nese.team/awards/) and related writeups on [my blog](/archive.html). I also enjoy solving challenges on [CryptoHack](https://cryptohack.org/) and completed all of them in July 2024, [ranking 24th](https://cryptohack.org/user/IcingMoon/) globally at the time."
       items:
         - title: Crypto CTF 2025
           result: 2nd Place
