@@ -1,62 +1,49 @@
 (function () {
-  var profile = document.querySelector('[data-academic-profile]');
-  if (!profile) { return; }
+  var navigator = document.querySelector('[data-academic-navigator]');
+  if (!navigator) { return; }
 
-  var desktop = window.matchMedia('(min-width: 1024px)');
   var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  var navigator = profile.querySelector('[data-academic-navigator]');
-  var sectionLabel = profile.querySelector('[data-academic-section-label]');
-  var sectionCurrent = profile.querySelector('[data-academic-section-current]');
-  var sectionTotal = profile.querySelector('[data-academic-section-total]');
-  var markerContainer = profile.querySelector('[data-academic-section-markers]');
+  var sectionTrack = navigator.querySelector('[data-academic-section-markers]');
+  var sectionLinks = Array.prototype.slice.call(navigator.querySelectorAll('[data-academic-section-link]'));
   var sections = Array.prototype.slice.call(document.querySelectorAll('[data-academic-section]'));
-  var markers = [];
   var activeSectionIndex = -1;
-  var lastScrollY = Math.max(window.scrollY, 0);
-  var travel = 0;
-  var lastDirection = 0;
   var ticking = false;
 
-  function twoDigits(value) {
-    return value < 10 ? '0' + value : String(value);
-  }
+  function revealActiveLink(link) {
+    if (!sectionTrack || sectionTrack.scrollWidth <= sectionTrack.clientWidth) { return; }
 
-  function setExpanded() {
-    profile.classList.remove('is-compact');
+    var trackRect = sectionTrack.getBoundingClientRect();
+    var linkRect = link.getBoundingClientRect();
+    var linkLeft = sectionTrack.scrollLeft + linkRect.left - trackRect.left;
+    var targetLeft = linkLeft - (sectionTrack.clientWidth - link.offsetWidth) / 2;
+    sectionTrack.scrollTo({
+      left: Math.max(targetLeft, 0),
+      behavior: reducedMotion.matches ? 'auto' : 'smooth'
+    });
   }
 
   function setActiveSection(index) {
-    if (!navigator || index === activeSectionIndex || !sections[index]) { return; }
+    if (index === activeSectionIndex || !sections[index] || !sectionLinks[index]) { return; }
 
     activeSectionIndex = index;
-    sectionLabel.textContent = sections[index].getAttribute('data-academic-section');
-    sectionCurrent.textContent = twoDigits(index + 1);
 
-    markers.forEach(function (marker, markerIndex) {
-      marker.classList.toggle('is-past', markerIndex < index);
-      marker.classList.toggle('is-active', markerIndex === index);
-      if (markerIndex === index) {
-        marker.setAttribute('aria-current', 'location');
+    sectionLinks.forEach(function (link, linkIndex) {
+      link.classList.toggle('is-past', linkIndex < index);
+      link.classList.toggle('is-active', linkIndex === index);
+      if (linkIndex === index) {
+        link.setAttribute('aria-current', 'location');
       } else {
-        marker.removeAttribute('aria-current');
+        link.removeAttribute('aria-current');
       }
     });
 
-    if (!reducedMotion.matches && sectionLabel.animate) {
-      sectionLabel.animate([
-        { opacity: .2, transform: 'translate3d(.5rem, 0, 0)' },
-        { opacity: 1, transform: 'translate3d(0, 0, 0)' }
-      ], {
-        duration: 280,
-        easing: 'cubic-bezier(.22, 1, .36, 1)'
-      });
-    }
+    revealActiveLink(sectionLinks[index]);
   }
 
   function updateActiveSection() {
-    if (!navigator || sections.length === 0) { return; }
+    if (sections.length === 0) { return; }
 
-    var focusLine = Math.min(window.innerHeight * .38, 360);
+    var focusLine = Math.min(window.innerHeight * .32, 300);
     var latestTop = -Infinity;
     var nextIndex = 0;
 
@@ -75,74 +62,39 @@
     setActiveSection(nextIndex);
   }
 
-  function buildNavigator() {
-    if (!navigator || !markerContainer || sections.length === 0) { return; }
+  function prepareNavigator() {
+    sectionLinks.forEach(function (link, index) {
+      if (!sections[index]) { return; }
 
-    sectionTotal.textContent = twoDigits(sections.length);
-    sections.forEach(function (section, index) {
-      var label = section.getAttribute('data-academic-section');
-      var marker = document.createElement('button');
-      marker.type = 'button';
-      marker.className = 'academic-profile__section-marker';
-      marker.setAttribute('aria-label', 'Go to ' + label);
-      marker.title = label;
-      marker.addEventListener('click', function () {
-        section.scrollIntoView({
+      link.addEventListener('click', function (event) {
+        event.preventDefault();
+        sections[index].scrollIntoView({
           behavior: reducedMotion.matches ? 'auto' : 'smooth',
           block: 'start'
         });
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState(null, '', link.getAttribute('href'));
+        }
       });
-      markerContainer.appendChild(marker);
-      markers.push(marker);
     });
 
-    navigator.hidden = false;
     setActiveSection(0);
   }
 
-  function updateProfile() {
-    var scrollY = Math.max(window.scrollY, 0);
-    var delta = scrollY - lastScrollY;
-    var direction = delta === 0 ? 0 : delta > 0 ? 1 : -1;
-
-    if (!desktop.matches || scrollY < 96) {
-      setExpanded();
-      travel = 0;
-      lastDirection = direction;
-    } else if (direction !== 0) {
-      if (direction !== lastDirection) {
-        travel = 0;
-      }
-
-      travel += Math.abs(delta);
-      if (travel >= 24) {
-        profile.classList.toggle('is-compact', direction > 0);
-        travel = 0;
-      }
-      lastDirection = direction;
-    }
-
+  function updatePage() {
     updateActiveSection();
-    lastScrollY = scrollY;
     ticking = false;
   }
 
   function requestUpdate() {
     if (!ticking) {
-      window.requestAnimationFrame(updateProfile);
+      window.requestAnimationFrame(updatePage);
       ticking = true;
     }
   }
 
-  buildNavigator();
+  prepareNavigator();
   window.addEventListener('scroll', requestUpdate, { passive: true });
   window.addEventListener('resize', requestUpdate, { passive: true });
-
-  if (desktop.addEventListener) {
-    desktop.addEventListener('change', requestUpdate);
-  } else {
-    desktop.addListener(requestUpdate);
-  }
-
-  updateProfile();
+  updatePage();
 }());

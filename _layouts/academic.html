@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: base
 full_width: true
 type: webpage
 comment: false
@@ -9,6 +9,32 @@ comment: false
 {%- assign profile_photo = profile.photo | default: profile.avatar -%}
 
 <div class="layout--academic">
+  <header class="academic-topbar" data-academic-navigator>
+    <div class="academic-topbar__inner">
+      <a class="academic-topbar__identity" href="{{ '/' | relative_url }}" aria-label="Back to Tanglee's blog">
+        {%- include svg/logo.svg -%}
+        <span>Tanglee</span>
+      </a>
+      <nav class="academic-topbar__sections" aria-label="Academic page sections" data-academic-section-markers>
+        <a href="#about-me" data-academic-section-link>About Me</a>
+        {%- if academic.news -%}<a href="#news" data-academic-section-link>News</a>{%- endif -%}
+        {%- if academic.interests -%}<a href="#research-interests" data-academic-section-link>Interests</a>{%- endif -%}
+        {%- if academic.publications -%}<a href="#publications" data-academic-section-link>Publications</a>{%- endif -%}
+        {%- if academic.sections -%}
+          {%- for section in academic.sections -%}
+            <a href="#section-{{ forloop.index }}" data-academic-section-link>{{ section.title }}</a>
+          {%- endfor -%}
+        {%- endif -%}
+        {%- if academic.talks -%}<a href="#talks" data-academic-section-link>Talks</a>{%- endif -%}
+        {%- if academic.award_blocks -%}
+          {%- for award_block in academic.award_blocks -%}
+            {%- if award_block.items -%}<a href="#awards-{{ forloop.index }}" data-academic-section-link>CTF</a>{%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+      </nav>
+    </div>
+  </header>
+
   <div class="academic-shell">
     <aside class="academic-profile" aria-label="Academic profile" data-academic-profile>
       <h1>{{ profile.name }}</h1>
@@ -39,21 +65,10 @@ comment: false
         </ul>
       {%- endif -%}
 
-      <nav class="academic-profile__navigator" aria-label="Academic page sections" data-academic-navigator hidden>
-        <div class="academic-profile__section-status">
-          <span class="academic-profile__section-label" data-academic-section-label>About Me</span>
-          <span class="academic-profile__section-count" aria-label="Current section">
-            <strong data-academic-section-current>01</strong>
-            <span aria-hidden="true">/</span>
-            <span data-academic-section-total>01</span>
-          </span>
-        </div>
-        <div class="academic-profile__section-markers" data-academic-section-markers></div>
-      </nav>
     </aside>
 
     <main class="academic-main" aria-label="Academic homepage content">
-      <section class="academic-section academic-section--intro" data-academic-section="About Me">
+      <section class="academic-section academic-section--intro" id="about-me" data-academic-section="About Me">
         <div class="academic-intro__header">
           <p class="academic-section__label academic-intro__identity">{{ profile.name }}{% if profile.name_zh %} ({{ profile.name_zh }}){% endif %}</p>
           <h2>About Me</h2>
@@ -70,7 +85,7 @@ comment: false
       </section>
 
       {%- if academic.news -%}
-        <section class="academic-section" data-academic-section="News">
+        <section class="academic-section" id="news" data-academic-section="News">
           <div class="academic-section__heading">
             <p class="academic-section__label">Updates</p>
             <h2>News</h2>
@@ -92,7 +107,7 @@ comment: false
       {%- endif -%}
 
       {%- if academic.interests -%}
-        <section class="academic-section academic-section--interests" data-academic-section="Research Interests">
+        <section class="academic-section academic-section--interests" id="research-interests" data-academic-section="Interests">
           <div class="academic-section__heading academic-section__heading--interests">
             <p class="academic-section__label">Focus Areas</p>
             <h2>Research Interests</h2>
@@ -109,7 +124,7 @@ comment: false
       {%- endif -%}
 
       {%- if academic.publications -%}
-        <section class="academic-section academic-section--publications" data-academic-section="Publications">
+        <section class="academic-section academic-section--publications" id="publications" data-academic-section="Publications">
           <div class="academic-section__heading academic-section__heading--publications">
             <p class="academic-section__label">Selected Work</p>
             <h2>Publications</h2>
@@ -204,7 +219,7 @@ comment: false
       {%- if academic.sections -%}
         <div class="academic-section-pair">
           {%- for section in academic.sections -%}
-            <section class="academic-section academic-section--compact" data-academic-section="{{ section.title | escape }}">
+            <section class="academic-section academic-section--compact" id="section-{{ forloop.index }}" data-academic-section="{{ section.title | escape }}">
               <div class="academic-section__heading">
                 <p class="academic-section__label">{{ section.label }}</p>
                 <h2>{{ section.title }}</h2>
@@ -220,7 +235,7 @@ comment: false
       {%- endif -%}
 
       {%- if academic.talks -%}
-        <section class="academic-section academic-section--talks" data-academic-section="Talks &amp; Presentations">
+        <section class="academic-section academic-section--talks" id="talks" data-academic-section="Talks">
           <div class="academic-section__heading academic-section__heading--talks">
             <p class="academic-section__label">Talks</p>
             <h2>Talks & Presentations</h2>
@@ -276,7 +291,7 @@ comment: false
       {%- if academic.award_blocks -%}
         {%- for award_block in academic.award_blocks -%}
           {%- if award_block.items -%}
-            <section class="academic-section academic-section--awards" data-academic-section="{{ award_block.title | default: 'Awards' | escape }}">
+            <section class="academic-section academic-section--awards" id="awards-{{ forloop.index }}" data-academic-section="Awards">
               <div class="academic-section__heading academic-section__heading--awards">
                 <p class="academic-section__label">{{ award_block.label | default: "Selected Awards" }}</p>
                 {%- if award_block.title -%}
@@ -285,11 +300,17 @@ comment: false
               </div>
               <div class="academic-awards">
                 {%- for award in award_block.items -%}
-                  <a class="academic-award" href="{{ award.url }}">
+                  <article class="academic-award">
                     <time>{{ award.year }}</time>
                     <div class="academic-award__body">
                       <div class="academic-award__header">
-                        <strong>{{ award.title }}</strong>
+                        <strong>
+                          {%- if award.url -%}
+                            <a href="{{ award.url }}">{{ award.title }}</a>
+                          {%- else -%}
+                            {{ award.title }}
+                          {%- endif -%}
+                        </strong>
                         <span>{{ award.result }}</span>
                       </div>
                       {%- if award.description -%}
@@ -303,12 +324,12 @@ comment: false
                         </div>
                       {%- endif -%}
                     </div>
-                  </a>
+                  </article>
                 {%- endfor -%}
               </div>
               {%- if award_block.note -%}
                 <aside class="academic-awards__note" aria-label="Awards note">
-                  <strong>Note</strong>
+                  <strong>More about CTF</strong>
                   <div>{{ award_block.note | markdownify }}</div>
                 </aside>
               {%- endif -%}
@@ -323,3 +344,5 @@ comment: false
 <script>
   {% include scripts/academic-profile.js %}
 </script>
+
+{%- include markdown-enhancements.html -%}

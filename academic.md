@@ -31,7 +31,7 @@ academic:
         detail: Notes and essays
         url: /
         icon: fas fa-pen-nib
-      - label: CV
+      - label: Resume
         detail: Email me for a detailed CV
         url: "#"
         icon: far fa-file-alt
@@ -54,9 +54,9 @@ academic:
   news:
     - date: July, 2026
       pinned: true
-      text: I expect to complete my Ph.D. after **June, 2027**. Currently, I'm looking for postdoctoral or other research positions. If you find my research areas matching your opportunities, please feel free to contact me via email.
+      text: I expect to complete my Ph.D. after **June, 2027**. Currently, I'm looking for postdoctoral or other research positions. If you find my research areas matching any opportunity, please feel free to contact me via email.
     - date: July, 2026
-      text: My joint work about using LLM agents to automatically discover vulnerabilities in cryptographic libraries will be presented at **Black Hat USA 2026** Briefings. See the [talk page](https://blackhat.com/us-26/briefings/schedule/index.html#breaking-the-unbreakable-dismantling-the-myth-of-trusted-cryptographic-libraries-on-demand-only-53162) for details.
+      text: Our joint work on using LLM agents to discover vulnerabilities in cryptographic libraries will be presented at the **Black Hat USA 2026 Briefings**. See the [talk page](https://blackhat.com/us-26/briefings/schedule/index.html#breaking-the-unbreakable-dismantling-the-myth-of-trusted-cryptographic-libraries-on-demand-only-53162) for details.
   #   - date: 2025
   #     text: Add a selected research milestone or teaching activity here.
   #   - date: 2024
