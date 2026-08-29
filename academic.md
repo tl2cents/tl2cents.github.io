@@ -11,7 +11,7 @@ academic:
     name: Lili Tang
     name_zh: 唐雳雳
     photo: /assets/images/profile-github.jpg
-    role: Ph.D. in Cryptography
+    role: Ph.D. in Cybersecurity
     location: Beijing, China
     email: tanglili@iie.ac.cn
     links:
@@ -24,7 +24,7 @@ academic:
         url: https://english.ucas.ac.cn/
         icon: fas fa-university
       - label: GitHub
-        detail: Code and projects
+        detail: "@tl2cents"
         url: https://github.com/tl2cents
         icon: fab fa-github
       - label: Blog
@@ -54,7 +54,7 @@ academic:
   news:
     - date: July, 2026
       pinned: true
-      text: I expect to complete my Ph.D. after **June, 2027**. Currently, I'm looking for postdoctoral or other research positions. If you find my research areas matching any opportunity, please feel free to contact me via email.
+      text: I expect to complete my Ph.D. after **June, 2027**. Currently, I'm looking for postdoctoral or other research positions (**Crypto/LLM/Security/AI4S**). If you find my research areas matching any opportunity, please feel free to contact me via email.
     - date: July, 2026
       text: Our joint work on using LLM agents to discover vulnerabilities in cryptographic libraries will be presented at the **Black Hat USA 2026 Briefings**. See the [talk page](https://blackhat.com/us-26/briefings/schedule/index.html#breaking-the-unbreakable-dismantling-the-myth-of-trusted-cryptographic-libraries-on-demand-only-53162) for details.
   #   - date: 2025
@@ -92,10 +92,28 @@ academic:
           url: "https://eprint.iacr.org/2025/2141"
         - label: Code
           url: "https://github.com/tl2cents/Wagner-Algorithms"
+    - venue: IACR Transactions on Symmetric Cryptology, 2026 (3)
+      venue_short: FSE 2027
+      title: "k-Tree Revisited: Memory-Time Cost of Preimage Attack on Incremental Hashes"
+      authors: Rui Ding*, Lili Tang*, Shaomin Chen, and Xiaorui Gong
+      contribution_note: Equal Contribution
+      highlight_author: Lili Tang
+      ratings:
+        - CCF-B
+        - CORE-B
+      # summary: "TL;DR: 
+      # links:
+      #   - label: EPRINT
+      #     url: none
+      #   - label: Code
+      #     url: none
   talks:
     - event: Black Hat USA 2026 Briefings
       title: "Breaking the Unbreakable: Dismantling the Myth of Trusted Cryptographic Libraries"
-      speakers: Guannan Wang, Lili Tang, and Guancheng Li
+      authors: Guannan Wang, Lili Tang, and Guancheng Li
+      speakers:
+        - Guannan Wang
+        - Lili Tang
       highlight_speaker: Lili Tang
       date: Aug 1-6, 2026
       location: Las Vegas
@@ -106,6 +124,7 @@ academic:
         - label: Link
           url: "https://blackhat.com/us-26/briefings/schedule/index.html#breaking-the-unbreakable-dismantling-the-myth-of-trusted-cryptographic-libraries-on-demand-only-53162"
         - label: Slide
+          url: "https://i.blackhat.com/BH-USA-26/Presentations/BHUS26-Wang-Breaking-the-Unbreakable-Slides.pdf"
   award_blocks:
     - label: Selected Awards
       title: Capture The Flag (CTF)

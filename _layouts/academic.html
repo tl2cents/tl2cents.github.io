@@ -139,11 +139,23 @@ comment: false
                   {%- endif -%}
                 </div>
                 {%- assign _publication_authors = publication.authors -%}
+                {%- if publication.contribution_note -%}
+                  {%- capture _contribution_mark -%}<sup class="academic-publication__contribution-mark" title="{{ publication.contribution_note | escape }}">*</sup>{%- endcapture -%}
+                  {%- assign _publication_authors = _publication_authors | replace: '*', _contribution_mark -%}
+                {%- endif -%}
                 {%- if publication.highlight_author -%}
                   {%- capture _highlighted_author -%}<strong class="academic-publication__author-highlight">{{ publication.highlight_author }}</strong>{%- endcapture -%}
                   {%- assign _publication_authors = _publication_authors | replace: publication.highlight_author, _highlighted_author -%}
                 {%- endif -%}
-                <p class="academic-publication__authors">{{ _publication_authors }}</p>
+                <p class="academic-publication__authors">
+                  {{- _publication_authors -}}
+                  {%- if publication.contribution_note -%}
+                  <span class="academic-publication__contribution-note">
+                    <span class="academic-publication__contribution-note-mark" aria-hidden="true">*</span>
+                    <span>{{ publication.contribution_note }}</span>
+                  </span>
+                  {%- endif -%}
+                </p>
                 {%- if publication.summary or publication.links or publication.ratings -%}
                   <details class="academic-publication__details">
                     <summary class="academic-publication__details-toggle" aria-label="Toggle details for {{ publication.title | escape }}">
@@ -158,8 +170,9 @@ comment: false
                         <span aria-hidden="true"></span>
                       {%- endif -%}
                       <span class="academic-publication__details-action">
-                        <i class="fas fa-angle-double-right" aria-hidden="true"></i>
-                        <span>Details</span>
+                        <span class="academic-publication__details-action-label academic-publication__details-action-label--closed">Show details</span>
+                        <span class="academic-publication__details-action-label academic-publication__details-action-label--open">Hide details</span>
+                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
                       </span>
                     </summary>
                     <div class="academic-publication__details-content">
@@ -253,15 +266,29 @@ comment: false
                     </div>
                   {%- endif -%}
                 </div>
-                {%- assign _talk_speakers = talk.speakers | default: talk.authors -%}
-                {%- if _talk_speakers -%}
-                  {%- assign _talk_speakers_html = _talk_speakers -%}
+                {%- assign _talk_authors = talk.authors | default: talk.speakers -%}
+                {%- if _talk_authors -%}
+                  {%- assign _talk_speakers_html = _talk_authors -%}
+                  {%- if talk.authors and talk.speakers -%}
+                    {%- for _speaker in talk.speakers -%}
+                      {%- capture _speaker_with_mark -%}{{ _speaker }}<sup class="academic-talk__speaker-mark" aria-label="Speaker" title="Speaker"><i class="fas fa-microphone" aria-hidden="true"></i></sup>{%- endcapture -%}
+                      {%- assign _talk_speakers_html = _talk_speakers_html | replace: _speaker, _speaker_with_mark -%}
+                    {%- endfor -%}
+                  {%- endif -%}
                   {%- assign _talk_highlight_speaker = talk.highlight_speaker | default: talk.highlight_author -%}
                   {%- if _talk_highlight_speaker -%}
                     {%- capture _highlighted_speaker -%}<strong class="academic-talk__speaker-highlight">{{ _talk_highlight_speaker }}</strong>{%- endcapture -%}
                     {%- assign _talk_speakers_html = _talk_speakers_html | replace: _talk_highlight_speaker, _highlighted_speaker -%}
                   {%- endif -%}
-                  <p class="academic-talk__speakers">{{ _talk_speakers_html }}</p>
+                  <p class="academic-talk__speakers">
+                    {{- _talk_speakers_html -}}
+                    {%- if talk.authors and talk.speakers -%}
+                    <span class="academic-talk__speaker-note">
+                      <i class="fas fa-microphone" aria-hidden="true"></i>
+                      <span>Speakers</span>
+                    </span>
+                    {%- endif -%}
+                  </p>
                 {%- endif -%}
                 {%- if talk.event or talk.date or talk.location or talk.status -%}
                   <div class="academic-talk__details">

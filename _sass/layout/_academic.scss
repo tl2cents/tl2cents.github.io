@@ -796,13 +796,52 @@
   .academic-publication__authors {
     margin-top: .38rem;
     color: #4c5854;
-    font-size: .94rem;
-    font-style: italic;
-    line-height: 1.5;
+    font-family: "Sitka Text", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    font-size: .96rem;
+    font-style: normal;
+    font-kerning: normal;
+    line-height: 1.55;
+    text-rendering: optimizeLegibility;
   }
 
   .academic-publication__author-highlight {
+    color: #293633;
     font-weight: 700;
+  }
+
+  .academic-publication__contribution-mark {
+    margin-left: .04em;
+    color: #9a6c18;
+    font-size: .68em;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 0;
+    vertical-align: super;
+  }
+
+  .academic-publication__contribution-note {
+    display: inline-flex;
+    align-items: center;
+    gap: .22rem;
+    margin-left: .52rem;
+    padding: .08rem .42rem .1rem;
+    border-radius: 999px;
+    background: rgba(214, 159, 63, .11);
+    color: #72592b;
+    font-family: "Sitka Text", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    font-size: .8rem;
+    font-style: italic;
+    font-weight: 600;
+    line-height: 1.2;
+    vertical-align: .06em;
+    white-space: nowrap;
+  }
+
+  .academic-publication__contribution-note-mark {
+    color: #a66f16;
+    font-size: .92em;
+    font-style: normal;
+    font-weight: 800;
   }
 
   .academic-publication__details {
@@ -811,13 +850,19 @@
 
     &[open] {
       .academic-publication__details-action {
-        border-color: rgba(30, 91, 90, .44);
-        background: rgba(30, 91, 90, .14);
         color: #123f3e;
       }
 
       .academic-publication__details-action i {
-        transform: rotate(90deg);
+        transform: rotate(180deg);
+      }
+
+      .academic-publication__details-action-label--closed {
+        display: none;
+      }
+
+      .academic-publication__details-action-label--open {
+        display: inline;
       }
     }
   }
@@ -844,13 +889,12 @@
     }
 
     &:hover .academic-publication__details-action {
-      border-color: rgba(30, 91, 90, .42);
-      background: rgba(30, 91, 90, .12);
       color: #123f3e;
+      text-decoration-color: currentColor;
     }
 
     &:active .academic-publication__details-action {
-      transform: scale(.98);
+      transform: translateY(1px);
     }
 
     &:focus-visible {
@@ -874,18 +918,22 @@
     align-items: center;
     gap: .38rem;
     justify-self: end;
-    min-height: 1.7rem;
-    padding: .28rem .55rem;
-    border: 1px solid rgba(30, 91, 90, .3);
-    border-radius: 4px;
-    background: rgba(30, 91, 90, .08);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .9);
+    padding: .22rem 0;
     color: #174b4a;
-    font-size: .75rem;
+    font-size: .78rem;
     font-weight: 700;
     line-height: 1.2;
+    text-decoration: underline;
+    text-decoration-color: rgba(30, 91, 90, .42);
+    text-decoration-style: dotted;
+    text-decoration-thickness: 1px;
+    text-underline-offset: .22em;
     white-space: nowrap;
-    transition: background-color .18s ease, border-color .18s ease, color .18s ease, transform .18s ease;
+    transition: color .18s ease, text-decoration-color .18s ease, transform .18s ease;
+
+    .academic-publication__details-action-label--open {
+      display: none;
+    }
 
     i {
       width: .72rem;
@@ -1152,13 +1200,50 @@
   .academic-talk__speakers {
     margin: 0 !important;
     color: #4c5854 !important;
-    font-size: .94rem;
-    font-style: italic;
-    line-height: 1.5 !important;
+    font-family: "Sitka Text", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    font-size: .96rem;
+    font-style: normal;
+    font-kerning: normal;
+    line-height: 1.55 !important;
+    text-rendering: optimizeLegibility;
   }
 
   .academic-talk__speaker-highlight {
+    color: #293633;
     font-weight: 700;
+  }
+
+  .academic-talk__speaker-mark {
+    margin-left: .08em;
+    color: #1e5b5a;
+    font-size: .56em;
+    font-style: normal;
+    line-height: 0;
+    vertical-align: super;
+  }
+
+  .academic-talk__speaker-note {
+    display: inline-flex;
+    align-items: center;
+    gap: .28rem;
+    margin-left: .52rem;
+    padding: .08rem .42rem .1rem;
+    border-radius: 999px;
+    background: rgba(30, 91, 90, .1);
+    color: #245b57;
+    font-family: "Sitka Text", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    font-size: .8rem;
+    font-style: italic;
+    font-weight: 600;
+    line-height: 1.2;
+    vertical-align: .06em;
+    white-space: nowrap;
+
+    i {
+      color: #1e5b5a;
+      font-size: .74em;
+      font-style: normal;
+    }
   }
 
   .academic-talk__details {
