@@ -102,11 +102,11 @@ academic:
         - CCF-B
         - CORE-B
       # summary: "TL;DR: 
-      # links:
-      #   - label: EPRINT
-      #     url: none
-      #   - label: Code
-      #     url: none
+      links:
+        - label: EPRINT
+          url: "https://eprint.iacr.org/2026/1835"
+        - label: Code
+          url: "https://github.com/Threonine/wagner-ktree-revisited"
   talks:
     - event: Black Hat USA 2026 Briefings
       title: "Breaking the Unbreakable: Dismantling the Myth of Trusted Cryptographic Libraries"
