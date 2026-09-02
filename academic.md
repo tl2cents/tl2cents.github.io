@@ -44,7 +44,7 @@ academic:
     body: |
       I am a Ph.D. student in Cybersecurity at the University of Chinese Academy of Sciences (**UCAS**), advised by Prof. Xiaorui Gong. I received my B.Sc. degree in information security from the University of Science and Technology of China (**USTC**) in 2022. In parallel, I was a core member of the NeSE CTF team from 2022 to 2026, focusing on crypto and blockchain in international CTF competitions.
 
-      My doctoral research primarily focuses on the Generalized Birthday Problem and Wagner's algorithm. More broadly, I maintain strong research interests in post-quantum cryptography (especially code-based), zero-knowledge proofs, and blockchain security.
+      My doctoral research primarily focuses on the Generalized Birthday Problem and Wagner's algorithm. More broadly, I maintain strong research interests in post-quantum cryptography (especially code-based), incremental cryptography, and blockchain security.
 
   interests:
     - title: Applied Cryptography
@@ -101,7 +101,7 @@ academic:
       ratings:
         - CCF-B
         - CORE-B
-      # summary: "TL;DR: 
+      summary: "TL;DR: We extend post-retrieval to Wagner’s $k$-tree algorithm, reducing peak memory from exponential in $k$ to $O(k^2\\ell N)$ with only linear time overhead. Applied to preimage attacks on incremental hashes, this trade-off can substantially reduce their memory–time cost."
       links:
         - label: EPRINT
           url: "https://eprint.iacr.org/2026/1835"
