@@ -77,7 +77,7 @@ comment: false
           {%- if profile_photo -%}
             {%- include snippets/get-nav-url.html path=profile_photo -%}
             <figure class="academic-intro__portrait">
-              <img src="{{ __return }}" alt="GitHub avatar of {{ profile.name | default: 'academic profile' }}" decoding="async">
+              <img src="{{ __return }}" alt="Portrait of {{ profile.name | default: 'academic profile' }}" decoding="async">
             </figure>
           {%- endif -%}
           <div class="academic-intro__body">{{ academic.intro.body | markdownify }}</div>

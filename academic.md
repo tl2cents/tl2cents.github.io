@@ -10,7 +10,7 @@ academic:
     eyebrow: Academic Homepage
     name: Lili Tang
     name_zh: 唐雳雳
-    photo: /assets/images/profile-github.jpg
+    photo: /assets/images/me.png
     role: Ph.D. in Cybersecurity
     location: Beijing, China
     email: tanglili@iie.ac.cn
@@ -42,9 +42,9 @@ academic:
   intro:
     title: About Me
     body: |
-      I am a Ph.D. student in Cybersecurity at the University of Chinese Academy of Sciences (**UCAS**), advised by Prof. Xiaorui Gong. I received my B.Sc. degree in information security from the University of Science and Technology of China (**USTC**) in 2022. In parallel, I was a core member of the NeSE CTF team from 2022 to 2026, focusing on crypto and blockchain in international CTF competitions.
+      I am a Ph.D. student in Cybersecurity at the University of Chinese Academy of Sciences (**UCAS**), advised by Prof. Xiaorui Gong. I received my B.E. degree in information security from the University of Science and Technology of China (**USTC**) in 2022. In parallel, I was a core member of the NeSE CTF team from 2022 to 2026, focusing on crypto and blockchain in international CTF competitions.
 
-      My doctoral research primarily focuses on the Generalized Birthday Problem and Wagner's algorithm. More broadly, I maintain strong research interests in post-quantum cryptography (especially code-based), incremental cryptography, and blockchain security.
+      My doctoral research primarily focuses on the Generalized Birthday Problem and Wagner's algorithm. More broadly, I maintain strong research interest in post-quantum cryptography (especially code-based), incremental cryptography, and blockchain security.
 
   interests:
     - title: Applied Cryptography
@@ -107,6 +107,15 @@ academic:
           url: "https://eprint.iacr.org/2026/1835"
         - label: Code
           url: "https://github.com/Threonine/wagner-ktree-revisited"
+    - venue: IACR ePrint
+      venue_short: Preprint
+      title: "Two-Bit Lifting for Ternary SIS: Polynomial-Time Collision Attacks on LtHash"
+      authors: Rui Ding, Xiaorui Gong, Hao Jiang, and Lili Tang
+      highlight_author: Lili Tang
+      summary: "TL;DR: We introduce two-bit lifting for ternary SIS, reducing the query complexity of polynomial-time LtHash collision attacks while preserving ternary coefficients. For LtHash16, the attack uses about $2^{81}$ hash queries."
+      links:
+        - label: EPRINT
+          url: "https://eprint.iacr.org/2026/2083"
   talks:
     - event: Black Hat USA 2026 Briefings
       title: "Breaking the Unbreakable: Dismantling the Myth of Trusted Cryptographic Libraries"
